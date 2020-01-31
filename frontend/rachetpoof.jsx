@@ -9,6 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
 //     const Launch = <h1>RachetPoof has launched!</h1>
     ReactDOM.render(
       <h2>RachetPoof has launched!</h2>,
-      document.getElementById("root")
+      document.getElementById('root')
     );
 });
