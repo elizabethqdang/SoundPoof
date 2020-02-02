@@ -2,12 +2,20 @@
   "name": "RachetPoof",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-modal": "^3.11.1",
+    "react-redux": "^7.1.3",
+    "react-responsive-modal": "^4.0.1",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
@@ -18,10 +26,14 @@
     "lib": "lib",
     "test": "test"
   },
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.4.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "webpack --mode=development",
-    "start": "webpack --mode=development"
+    "postinstall": "webpack",
+    "webpack": "webpack --watch --mode=development"
   },
   "repository": {
     "type": "git",
@@ -33,9 +45,5 @@
   "bugs": {
     "url": "https://github.com/eqdang/RachetPoof/issues"
   },
-  "homepage": "https://github.com/eqdang/RachetPoof#readme",
-  "engines": {
-    "node": "10.13.0",
-    "npm": "6.4.1"
-  }
+  "homepage": "https://github.com/eqdang/RachetPoof#readme"
 }

@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
 
+  skip_before_action :verify_authenticity_token
   helper_method :current_user, :logged_in?
 
+  private
   def login!(user)
     session[:session_token] = user.session_token
     @current_user = user
@@ -21,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    !current_user.nil?
+    !!current_user
   end
   
   # def require_logged_out
@@ -30,6 +32,7 @@ class ApplicationController < ActionController::Base
 
   def require_logged_in
     # Prevent logged-out users from seeing certain pages
-    redirect_to new_session_url unless logged_in?
+    redirect_to new_session_url unless current_user
+    # redirect_to new_session_url unless logged_in?
   end
 end
