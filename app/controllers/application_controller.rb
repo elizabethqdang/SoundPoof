@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  # protect_from_forgery with: :exception
+  protect_from_forgery with: :exception
+  skip_before_action :verify_authenticity_token, raise: false
 
-  skip_before_action :verify_authenticity_token
   helper_method :current_user, :logged_in?
 
   private
@@ -31,8 +31,11 @@ class ApplicationController < ActionController::Base
   # end
 
   def require_logged_in
+    unless current_user
+      render json: { base: ['invalid credentials'] }, status: 401
+    end
     # Prevent logged-out users from seeing certain pages
-    redirect_to new_session_url unless current_user
+    # redirect_to new_session_url unless current_user
     # redirect_to new_session_url unless logged_in?
   end
 end

@@ -1,0 +1,139 @@
+#splash-page {
+	display: flex;
+	// flex-direction: column;
+	// align-items: center;
+	justify-content: center;
+}
+
+#splash-header {
+	background: image_url("splash2.jpg") 0 0/cover;
+	position: relative;
+	// background-size: contain;
+	background-repeat: no-repeat;
+	// width: 100%;
+	// height: 100%;
+	height: 446px;
+	margin: 0 auto;
+	min-width: 960px;
+	width: 91.75vw;
+	max-width: 1240px;
+	border-top: 4px solid orange;
+
+}
+
+.splash-bar {
+  width: 90vw;
+  display: flex;
+  height: 46px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.splash-left {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	.splash-logo {
+		box-sizing: border-box;
+		width: 184px;
+		height: 46px;
+	}
+}
+
+.login-signup {
+	align-items: center;
+	text-align: center;
+	font-weight: 100;
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	display: flex;
+	color: #fff;
+	font-size: 14px;
+	font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
+	-webkit-font-smoothing: antialiased;
+
+	.sbutton {
+		border-radius: 3px;
+		color: white;
+		height: 30px;
+		padding: 4px;
+	}
+}
+
+.login-button {
+	font-size: 14px;
+	font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
+	color: #fff;
+	border-color: #e5e5e5;
+	outline: 0;
+	padding: 2px 15px;
+	height: 30px;
+	line-height: 24px;
+	margin: 0 0 0 6px;
+	background: transparent;
+	transition: opacity .2s linear;
+	display: inline-block;
+	position: relative;
+	border: 1px solid #e5e5e5;
+	border-radius: 3px;
+	cursor: pointer;
+	white-space: nowrap;
+  font-weight: 100;
+	text-align: center;
+	vertical-align: baseline;
+	box-sizing: border-box;	
+}
+
+.signup-button {
+	font-size: 14px;
+	font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
+	background-color: #f50;
+	border-color: #f50;
+	color: #fff;
+	outline: 0;
+	padding: 2px 16px;
+	height: 30px;
+	line-height: 24px;
+	margin: 0 0 0 6px;
+	transition: opacity 0.2s linear;
+	display: inline-block;
+	position: relative;
+	border: 1px;
+	border-radius: 3px;
+	cursor: pointer;
+	white-space: nowrap;
+	font-weight: 100;
+	text-align: center;
+	vertical-align: baseline;
+	box-sizing: border-box;
+}
+
+.signin-button:hover {
+	font: 14px/1.5 normal white;
+	font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
+  border-color: white;
+}
+
+.creators-button {
+  font-size: 14px;
+  font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
+  color: #fff;
+  border-color: #e5e5e5;
+  outline: 0;
+  padding: 2px 0px;
+  height: 30px;
+  line-height: 24px;
+  margin: 0 0 0 6px;
+  background: transparent;
+  transition: opacity 0.2s linear;
+  display: inline-block;
+  position: relative;
+  border: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 100;
+  text-align: center;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}

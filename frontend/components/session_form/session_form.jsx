@@ -1,10 +1,12 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      // username: "",
+      email: "",
       password: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,7 +22,8 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    this.props.processForm(user);
+    // this.props.processForm(user);
+    this.props.processForm(user).then(this.props.closeModal);
   }
 
   renderErrors() {
@@ -35,44 +38,61 @@ class SessionForm extends React.Component {
 
   render() {
     return (
-      <div className="login-form-container">
-        <form onSubmit={this.handleSubmit} className="login-form-box">
-          Welcome to RachetPoof!
-          <br />
-          Please {this.props.formType} or {this.props.navLink}
-          {this.renderErrors()}
-          <div className="login-form">
-            <br />
-            <label>
-              Username:
+      <div className="loginFormContainer">
+        <div className="">
+          <form onSubmit={this.handleSubmit} className="loginFormBox">
+
+            <h1>Welcome to RachetPoof!</h1>
+            <br /><br />
+
+            please {this.props.formType} or {this.props.otherForm}
+
+            <div onClick={this.props.closeModal} className="close-x">
+              X
+            </div>
+
+            <div className="modalError">{this.renderErrors()}</div>
+
+            <div className="loginForm">
+              <br />
+                <input
+                  type="text"
+                  placeholder="Your email address or profile URL *"
+                  value={this.state.email}
+                  onChange={this.update('email')}
+                  className="loginInput"
+                />
+              <br />
+                <input
+                  type="password"
+                  placeholder="Your Password *"
+                  value={this.state.password}
+                  onChange={this.update('password')}
+                  className="loginInput"
+                />
+              <br />
+
               <input
-                type="text"
-                value={this.state.username}
-                onChange={this.update('username')}
-                className="login-input"
+                className="session-submit"
+                type="submit"
+                value={this.props.formType}
               />
-            </label>
-            <br />
-            <label>
-              Password:
+              <br />
+              or
+              <br /><br />
+
               <input
-                type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                className="login-input"
+                className="session-submit"
+                type="submit"
+                value="DEMO USER"
               />
-            </label>
-            <br />
-            <input
-              className="session-submit"
-              type="submit"
-              value={this.props.formType}
-            />
-          </div>
-        </form>
+
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
 }
 
-export default SessionForm;
+export default withRouter(SessionForm);
