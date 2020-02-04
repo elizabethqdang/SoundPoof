@@ -1,7 +1,7 @@
 #splash-page {
 	display: flex;
-	// flex-direction: column;
-	// align-items: center;
+	flex-direction: column;
+	align-items: center;
 	justify-content: center;
 }
 
@@ -27,18 +27,48 @@
   height: 46px;
   align-items: center;
   justify-content: space-between;
+	font-size: 14px;
+	font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+  'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
+	color: #fff;
+
 }
 
 .splash-left {
 	display: flex;
 	align-items: center;
 	text-align: center;
-	.splash-logo {
-		box-sizing: border-box;
-		width: 184px;
-		height: 46px;
-	}
 }
+.splash-left-buttons {
+	box-sizing: border-box;
+	width: 184px;
+	height: 46px;
+	color: #fff;
+	font-size: 14px;
+	font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+  'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
+
+}
+.splash-logo {
+	background: image_url("logo.png");
+	position: relative;
+	background-repeat: no-repeat;
+	height: 45px;
+	top: 20px;
+	left: 30px;
+	padding-top: 1px;
+	background: transparent;
+}
+.splash-text {
+  height: 45px;
+  position: relative;
+  top: -20px;
+  left: 38px;
+  letter-spacing: 1px;
+	color: white;
+	text-decoration: none;
+}
+
 
 .login-signup {
 	align-items: center;
@@ -136,4 +166,62 @@
   text-align: center;
   vertical-align: baseline;
   box-sizing: border-box;
+}
+
+
+.header-content {
+  position: absolute;
+  top: 17%;
+  left: 50%;
+  transform: translate(-50%);
+  color: #fff;
+  text-align: center;
+  letter-spacing: 1px;
+	font-family: sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-size: 18px;
+}
+.header-button {
+  font-size: 14px;
+  font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
+  background-color: #f50;
+  border-color: #f50;
+  color: #fff;
+  outline: 0;
+  height: 36px;
+  line-height: 36px;
+  transition: opacity 0.2s linear;
+  display: inline-block;
+  position: relative;
+  border: 1px;
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 100;
+  text-align: center;
+  vertical-align: baseline;
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+
+}
+
+
+
+#splash-trending {
+  width: 91.75vw;
+  max-width: 1240px;
+  padding-top: 46px;
+  background: #fff;
+  min-width: 960px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  h1 {
+    font-size: 32px;
+    line-height: 41.6px;
+    font-weight: 300;
+    margin: 0 auto 30px;
+  }
 }

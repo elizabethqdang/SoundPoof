@@ -19,7 +19,8 @@ const mapDispatchToProps = dispatch => {
     otherForm: (
       <Link to="/signup" onClick={() => dispatch(openModal("signup"))}>create an account</Link>
     ),
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    demoSubmit: user => dispatch(login(user))
   };
 };
 
