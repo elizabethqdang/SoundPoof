@@ -33,7 +33,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "webpack",
-    "webpack": "webpack --watch --mode=development"
+    "webpack": "webpack --watch --mode=development",
+    "start": "webpack-dev-server --mode development"
   },
   "repository": {
     "type": "git",
@@ -45,5 +46,8 @@
   "bugs": {
     "url": "https://github.com/eqdang/RachetPoof/issues"
   },
-  "homepage": "https://github.com/eqdang/RachetPoof#readme"
+  "homepage": "https://github.com/eqdang/RachetPoof#readme",
+  "devDependencies": {
+    "webpack-dev-server": "^3.10.2"
+  }
 }

@@ -1,3 +1,72 @@
 // Place all the styles related to the api/Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.signinForm {
+  align-items: center;
+  width: 400px;
+  height: 570px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+
+  h1 {
+	text-align: center;
+	font-weight: 500;
+  }
+}
+
+.loginFormContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.loginForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loginInput {
+  box-sizing: border-box;
+	width: 400px;
+	font-size: 18px;
+  padding: 8px 7px;
+  border-radius: 5px;
+  border: 1px lightgray solid;
+}
+
+.loginFormBox {
+  padding: 20px;
+  background: white;
+  position: relative;
+}
+
+.session-submit {
+  height: 40px;
+  font-size: 16px;
+  text-transform: capitalize;
+  background-color: #f50;
+  border-color: #f50;
+  color: #fff;
+}
+
+.close-x {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.modalError {
+  height: 20px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: red;
+  font-size: 14px;
+}

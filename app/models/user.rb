@@ -1,22 +1,22 @@
 class User < ApplicationRecord
   attr_reader :password
 
-  validates :username, :password_digest, :session_token, presence: true
-  validates :username, :session_token, uniqueness: true
+  validates :email, :password_digest, :session_token, presence: true
+  validates :email, :session_token, uniqueness: true
   validates :password, allow_nil: true, length: { minimum: 6 }
 
   before_validation :ensure_session_token 
 
-  # has_many :tracks,
-  #   foreign_key: :uploader_id,
-  #   class_name: :Track
+  has_many :tracks,
+    foreign_key: :uploader_id,
+    class_name: :Track
 
   # has_many :comments,
   #   foreign_key: :author_id,
   #   class_name: :Comment
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by(username: username)
+  def self.find_by_credentials(email, password)
+    user = User.find_by(email: email)
     return nil unless user
     user.valid_password?(password) ? user : nil
   end
@@ -39,4 +39,5 @@ class User < ApplicationRecord
     self.save
     self.session_token
   end
+  
 end
