@@ -11,14 +11,19 @@ class Splash extends React.Component {
       <div id="splash-page">
         <header id="splash-header">
           <div className="splash-bar">
-            <Link to="/">
-              <h1>RachetPoof</h1>
-            </Link>
             <GreetingContainer />
 
             {/* <TrackShowContainer /> */}
           </div>
         </header>
+
+        <div className="trending">
+          <ul className="trending-tracks">
+            <li className="trending-track">
+              
+            </li>
+          </ul>
+        </div>
 
         {/* <Switch>
           <Route exact path="/login" component={LoginFormContainer} />
