@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { withRouter } from "react-router";
 
-class NavBar extends React.Component {
+class Navbar extends React.Component {
 	constructor(props) {
 		super(props);
 		// this.state= {};
@@ -39,7 +39,7 @@ class NavBar extends React.Component {
 						<NavLink to="/upload" className="navbar-upload">Upload</NavLink>
 					</li>
 					<li>
-						<Link to={`/users/{user.id}`} className="navbar-profile">Profile</Link>
+						<Link to={`/users/{userId}`} className="navbar-profile">Profile</Link>
 					</li>
 					<li>
 						<Link to="/" onClick={this.handleLogout} className="navbar-logout">Log Out</Link>
@@ -50,4 +50,4 @@ class NavBar extends React.Component {
 	}
 };
 
-export default withRouter(NavBar);
+export default withRouter(Navbar);

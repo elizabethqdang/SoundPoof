@@ -6,24 +6,34 @@ import Splash from "./splash/splash";
 // import SignupFormContainer from "./session_form/signup_form_container";
 import Modal from "./modal/modal";
 import ModalContainer from "./modal/modal_container";
-import TrackUpload from "./track_form/upload_track";
+import UploadTrackContainer from "./track_form/upload_track_container";
+// import UploadTrackFormContainer from "./track_form/upload_track_form_container";
+
 
 const App = () => (
-  <div id="app">
-    <Route path="/" component={Splash} />
-    <ModalContainer />
+	<div id="app">
+		<Route path="/" component={Splash} />
+		{/* <Route path="/" component={UploadTrackFormContainer} /> */}
 
-    {/* <ProtectedRoute path="/" component={Splash} />
+		<ModalContainer />
+
+		{/* <ProtectedRoute path="/" component={Splash} />
     <AuthRoute path="/" component={Splash} /> */}
-    {/* <DefaultRoute path="/" component={Splash} /> */}
+		{/* <DefaultRoute path="/" component={Splash} /> */}
 
-    <Switch>
-      <AuthRoute exact path='/upload' component={TrackUpload} />
-    {/* <Route component={Splash} /> */}
-    </Switch>
+		<Switch>
+			<ProtectedRoute exact path="/upload" component={UploadTrackContainer} />
+      <ModalContainer />
+			{/* <ProtectedRoute
+				exact
+				path="/upload"
+				component={UploadTrackFormContainer}
+			/> */}
+			{/* <Route component={Splash} /> */}
+		</Switch>
 
-    {/* <ProtectedRoute path ='/' component={TrackPlayerContainer} /> */}
-  </div>
+		{/* <ProtectedRoute path ='/' component={TrackPlayerContainer} /> */}
+	</div>
 );
 
 export default App;

@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { createTrack } from "../../actions/track_actions";
 import UploadTrack from "./upload_track";
+import { openModal } from "../../actions/modal_actions";
 
 const mapStateToProps = ({ session, entities: { users } }) => {
 	return {
@@ -13,7 +14,7 @@ const mapStateToProps = ({ session, entities: { users } }) => {
 
 const mapDispatchToProps = dispatch => ({
 	createTrack: formData => dispatch(createTrack(formData)),
-	// openModal: modal => dispatch(openModal(modal))
+	openModal: modal => dispatch(openModal(modal))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadTrack);
