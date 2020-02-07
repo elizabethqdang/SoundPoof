@@ -7,37 +7,37 @@ class UploadTrackForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			title: "",
-			artist: "",
-			artworkFile: null,
-			artworkUrl: "",
-			trackUrl: "",
-			trackFile: this.props.trackFile,
-			modalState: false,
-			isActive: "",
-			errors: "",
-			uploader_id: this.props.currentUser.id
+			// title: "",
+			// artist: "",
+			// artworkFile: null,
+			// artworkUrl: "",
+			// trackUrl: "",
+			// trackFile: this.props.trackFile,
+			// modalState: false,
+			// isActive: "",
+			// errors: "",
+			// uploader_id: this.props.currentUser.id
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.navigateToSearch = this.navigateToSearch.bind(this);
-		this.handleFile = this.handleFile.bind(this);
+		// this.handleFile = this.handleFile.bind(this);
 		this.uploadImage = this.uploadImage.bind(this);
 		this.update = this.update.bind(this);
 	}
 
-	componentWillMount() {
-		Modal.setAppElement("body");
-	}
+	// componentWillMount() {
+	// 	Modal.setAppElement("body");
+	// }
 
-	componentDidMount() {
-		if (this.state.isActive === "") {
-			this.setState({ isActive: "active" });
-		}
-	}
+	// componentDidMount() {
+	// 	if (this.state.isActive === "") {
+	// 		this.setState({ isActive: "active" });
+	// 	}
+	// }
 
-	back() {
-		this.setState({ route: "upload", isActive: "" });
-	}
+	// back() {
+	// 	this.setState({ route: "upload", isActive: "" });
+	// }
 
 	update(property) {
 		return e =>
@@ -50,12 +50,12 @@ class UploadTrackForm extends React.Component {
 	//   return e => this.setState({ [prop]: e.target.value});
 	// }
 
-	handleSubmit(e) {
-		e.preventDefault();
-		const user = Object.assign({}, this.state);
-		// this.props.processForm(user);
-		this.props.processForm(user).then(this.props.closeModal);
-	}
+	// handleSubmit(e) {
+	// 	e.preventDefault();
+	// 	const user = Object.assign({}, this.state);
+	// 	// this.props.processForm(user);
+	// 	this.props.processForm(user).then(this.props.closeModal);
+	// }
 
 	uploadImage(files) {
 		let file = files[0];
@@ -66,11 +66,11 @@ class UploadTrackForm extends React.Component {
 		fileReader.readAsDataURL(file);
 	}
 
-	disableForm() {
-		this.setState({ modalState: true });
-	}
+	// disableForm() {
+	// 	this.setState({ modalState: true });
+	// }
 
-	handleFile(e) {
+	handleSubmit(e) {
 		e.preventDefault();
 
 		// {() => openModal("createTrack")};
@@ -115,7 +115,8 @@ class UploadTrackForm extends React.Component {
 
 	render() {
 		return (
-			<ul className={`upload-song ${this.state.isActive}`}>
+			<div className="">
+			<ul className="">
 				{/* <Modal
 					contentLabel="Modal"
 					isOpen={this.state.modalState}
@@ -164,6 +165,7 @@ class UploadTrackForm extends React.Component {
 					</button>
 				</div>
 			</ul>
+			</div>
 		);
 	}
 }

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NavBar from "./navbar"
+import Navbar from "./navbar"
 
-const NavBarSession = ({ currentUser, logout, openModal }) => {
+const NavbarSession = ({ currentUser, logout, openModal }) => {
 	const sessionLinks = () => (
 		<div className="splash-bar">
 			<div className="splash-bar">
@@ -47,7 +47,7 @@ const NavBarSession = ({ currentUser, logout, openModal }) => {
 	);
 	const currentUserSession = () => (
 		<div><br/>
-			<NavBar />
+			<Navbar />
 			<hgroup className="header-group">
 				<h2 className="header-name">Hi, {currentUser.email}!</h2>
 				<button className="header-button" onClick={logout}>
@@ -63,4 +63,4 @@ const NavBarSession = ({ currentUser, logout, openModal }) => {
 	);
 };
 
-export default NavBarSession;
+export default NavbarSession;
