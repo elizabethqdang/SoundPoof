@@ -1,0 +1,73 @@
+div.navbar {
+  display: flex;
+  height: 46px;
+  background-color: black;
+  color: #cbcccb;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  margin: 0 auto;
+  min-width: 960px;
+  width: 91.75vw;
+  max-width: 1240px;
+
+}
+
+div.navbar ul {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #eee;
+}
+
+.navbar ul li {
+  display: block;
+  padding: 12px 0;
+  min-width: 104px; 
+  height: 45px;
+  border-right: 1px solid #111;
+  box-sizing: border-box;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
+
+// .navbar ul li form {
+
+// }
+
+.navbar .navbar-logo, .navbar-library, .navbar-search, .navbar-profile, .navbar-logout {
+  color: white;
+  text-decoration: none;
+}
+
+div.navbar .navbar-home, div.navbar .navbar-library, .navbar .navbar-logout, .navbar .navbar-stream, .navbar .navbar-upload, .navbar .navbar-search {
+  color: white;
+  text-decoration: none;
+  height: 45px;
+  box-sizing: border-box;
+  font-size: 14px;
+  justify-content: center;
+  // vertical-align: baseline;
+  align-items: center;
+  display: block;
+}
+
+form.navbar-search  {
+  display: flex;
+  position: relative;
+  -webkit-appearance: none;
+  flex: 2 1 0;
+}
+div.navbar input.navbar-search-input {
+font-size: 14px;
+line-height: 20px;
+height: 28px;
+flex: 2 1 0;
+}
+div.navbar button.navbar-search-button {
+  visibility: hidden;
+}
+
+

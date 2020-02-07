@@ -4,6 +4,7 @@ import React from 'react';
 import GreetingContainer from '../greeting/greeting_container';
 // import TrackFormContainer from '../track/track_form_container';
 import { Link, Route, Switch } from 'react-router-dom';
+import NavbarSessionContainer from "../navbar/navbar_session_container";
 
 class Splash extends React.Component {
   render() {
@@ -11,7 +12,7 @@ class Splash extends React.Component {
       <div id="splash-page">
         <header id="splash-header">
           <div className="splash-bar">
-            <GreetingContainer />
+            <NavbarSessionContainer />
 
             {/* <TrackShowContainer /> */}
           </div>
