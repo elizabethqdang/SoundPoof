@@ -8,3 +8,10 @@
 
 User.destroy_all
     user1 = User.create!({email: "Demo User", password: "hunter12"})  
+    user2 = User.create!({email: "Demo User2", password: "hunter12"})  
+
+
+Track.destroy_all
+
+    track1 = Track.create!({title: "Blase", artist: "Louis The Child", user_id: user1.id})
+    track2 = Track.create!({title: "abc", artist: "abc", user_id: user1.id})

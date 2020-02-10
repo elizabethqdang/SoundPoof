@@ -18,31 +18,52 @@ class Navbar extends React.Component {
 			<div className="navbar">
 				<ul>
 					<li>
-						<NavLink to="/" className="navbar-logo">Logo</NavLink>
+						<NavLink to="/" className="navbar-logo">
+							Logo
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/discover" className="navbar-home">Home</NavLink>
+						<NavLink to="/discover" className="navbar-home">
+							Home
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/stream" className="navbar-stream">Stream</NavLink>
+						<NavLink to="/stream" className="navbar-stream">
+							Stream
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/library" className="navbar-library">Library</NavLink>
+						<NavLink to="/library" className="navbar-library">
+							Library
+						</NavLink>
 					</li>
 					<li>
 						<form className="navbar-search">
-							<input type="search" placeholder="Search" className="navbar-search-input"/>
+							<input
+								type="search"
+								placeholder="Search"
+								className="navbar-search-input"
+							/>
 							<button type="submit" className="navbar-search-button" />
 						</form>
 					</li>
 					<li>
-						<NavLink to="/upload" className="navbar-upload">Upload</NavLink>
+						<NavLink to="/upload" className="navbar-upload">
+							Upload
+						</NavLink>
 					</li>
 					<li>
-						<Link to={`/users/{userId}`} className="navbar-profile">Profile</Link>
+						<Link
+							to={`/users/${this.props.currentUser}`}
+							className="navbar-profile"
+						>
+							Profile
+						</Link>
 					</li>
 					<li>
-						<Link to="/" onClick={this.handleLogout} className="navbar-logout">Log Out</Link>
+						<Link to="/" onClick={this.handleLogout} className="navbar-logout">
+							Log Out
+						</Link>
 					</li>
 				</ul>
 			</div>

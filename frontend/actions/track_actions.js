@@ -1,17 +1,16 @@
-import * as APIUtil from "../util/track_api_util";
+import * as TrackAPIUtil from "../util/track_api_util";
 
 export const RECEIVE_TRACKS = "RECEIVE_TRACKS";
 export const RECEIVE_TRACK = "RECEIVE_TRACK";
 export const REQUEST_TRACK_FETCH = "REQUEST_TRACK_FETCH";
 export const REMOVE_TRACK = "REMOVE_TRACK";
 export const RECEIVE_TRACK_ERRORS = "RECEIVE_TRACK_ERRORS";
-
+export const RECEIVE_CURRENT_TRACK = "RECEIVE_CURRENT_TRACK";
 
 export const receiveTracks = tracks => ({
   type: RECEIVE_TRACKS,
   tracks
 });
-
 
 export const receiveTrack = track => ({
   type: RECEIVE_TRACK,
@@ -32,34 +31,34 @@ export const receiveTrackErrors = errors => ({
   errors
 });
 
+export const receiveCurrentTrack = track => ({
+  type: RECEIVE_CURRENT_TRACK,
+  track
+});
+
 export const fetchTracks = () => dispatch =>
-  APIUtil.fetchTracks().then(
-    tracks => dispatch(receiveTracks(tracks)),
-    error => dispatch(receiveTrackErrors(error.responseJSON))
+  TrackAPIUtil.fetchTracks().then(
+    tracks => dispatch(receiveTracks(tracks))
   );
 
 export const fetchTrack = trackId => dispatch => {
-  dispatch(requestTrackFetch());
-  return APIUtil.fetchTrack(trackId).then(
-    trackId => dispatch(receiveTrack(trackId)),
-    error => dispatch(receiveTrackErrors(error.responseJSON))
+  // dispatch(requestTrackFetch());
+  return TrackAPIUtil.fetchTrack(trackId).then(
+    track => dispatch(receiveTrack(track))
   );
 };
 
 export const createTrack = track => dispatch =>
-  APIUtil.createTrack(track).then(
-    track => dispatch(receiveTrack(track)),
-    error => dispatch(receiveTrackErrors(error.responseJSON))
+  TrackAPIUtil.createTrack(track).then(
+    track => dispatch(receiveTrack(track))
   );
 
 export const updateTrack = (track) => dispatch =>
-  APIUtil.updateTrack(track).then(
-    track => dispatch(receiveTrack(track)),
-    error => dispatch(receiveTrackErrors(error.responseJSON))
+  TrackAPIUtil.updateTrack(track).then(
+    track => dispatch(receiveTrack(track))
   );
 
 export const deleteTrack = trackId => dispatch =>
-  APIUtil.deleteTrack(trackId).then(
-    trackId => dispatch(removeTrack(trackId)),
-    error => dispatch(receiveTrackErrors(error.responseJSON))
+  TrackAPIUtil.deleteTrack(trackId).then(
+    track => dispatch(removeTrack(track))
   );

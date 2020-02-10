@@ -15,7 +15,7 @@ const Modal = ({ modal, closeModal }) => {
 		case "signup":
 			component = <SignupFormContainer />;
 			break;
-		case "createTrack":
+		case "upload":
 			component = <UploadTrackFormContainer />;
 			break;
 		default:

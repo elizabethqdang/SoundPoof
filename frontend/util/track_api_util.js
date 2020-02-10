@@ -10,11 +10,11 @@ export const fetchTrack = trackId =>
     url: `api/tracks/${trackId}`
   });
 
-export const createTrack = trackForm =>
+export const createTrack = formData =>
   $.ajax({
     method: "POST",
     url: "api/tracks",
-    data: trackForm,
+    data: formData,
     contentType: false,
     processData: false
   });
