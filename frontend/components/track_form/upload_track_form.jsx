@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router";
-import Modal from "react-modal";
-import { updateTrack} from "../../actions/track_actions";
+// import Modal from "react-modal";
+import { updateTrack } from "../../actions/track_actions";
 
 class UploadTrackForm extends React.Component {
 	constructor(props) {
@@ -102,10 +102,10 @@ class UploadTrackForm extends React.Component {
 		formData.update("track[track_url]", trackFile);
 		formData.update("track[title]", this.state.title);
 		formData.update("track[artist]", this.state.artist);
-		song.update("track[uploader_id]", this.state.uploader_id);
+		track.update("track[uploader_id]", this.state.uploader_id);
 
 		this.props
-			.createSong(track)
+			.createTrack(track)
 			.then(action =>
 				upload.props.history.push(
 					`/${action.track.user.email}/tracks/${action.track.id}`
@@ -114,6 +114,7 @@ class UploadTrackForm extends React.Component {
 	}
 
 	render() {
+		 
 		return (
 			<div className="">
 			<ul className="">

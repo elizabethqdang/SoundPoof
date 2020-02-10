@@ -1,6 +1,7 @@
 import { RECEIVE_TRACK, RECEIVE_TRACKS, REMOVE_TRACK } from '../actions/track_actions';
+import { RECEIVE_USER } from "../actions/user_actions";
 
-const TracksReducer = (state = {}, action) => {
+const tracksReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState = Object.assign({}, state);
 
@@ -10,11 +11,13 @@ const TracksReducer = (state = {}, action) => {
         case RECEIVE_TRACKS:
             return action.tracks;
         case REMOVE_TRACK:
-            delete newState[action.track.id];
-            return newState;      
+            delete newState[action.trackId];
+            return newState;   
+        case RECEIVE_USER:
+            return action.tracks;   
         default:
             return state;
     }
 };
 
-export default TracksReducer;
+export default tracksReducer;

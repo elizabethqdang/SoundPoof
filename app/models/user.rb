@@ -8,7 +8,7 @@ class User < ApplicationRecord
   before_validation :ensure_session_token 
 
   has_many :tracks,
-    foreign_key: :uploader_id,
+    foreign_key: :user_id,
     class_name: :Track
 
   # has_many :comments,

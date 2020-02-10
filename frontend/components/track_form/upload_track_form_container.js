@@ -10,8 +10,8 @@ const mapStateToProps = ({ session, entities: { users } }) => ({
 
 const mapDispatchToProps = dispatch => ({
   createTrack: formData => dispatch(createTrack(formData)),
-	// openModal: () => dispatch(openModal("upload")),
-	// closeModal: () => dispatch(closeModal()),
+	openModal: () => dispatch(openModal("upload")),
+	closeModal: () => dispatch(closeModal()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadTrackForm);
