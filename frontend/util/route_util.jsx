@@ -1,13 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Route, Redirect, withRouter } from "react-router-dom";
+import SessionForm from "../components/session_form/session_form";
 
 const Auth = ({ component: Component, path, loggedIn, exact }) => (
   <Route
     path={path}
     exact={exact}
     render={props =>
-      !loggedIn ? <Component {...props} /> : <Redirect to="/" />
+      !loggedIn ? <Component {...props} /> : <Redirect to="/discover" />
     }
   />
 );
@@ -17,7 +18,7 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => (
     path={path}
     exact={exact}
     render={props =>
-      loggedIn ? <Component {...props} /> : <Redirect to="/" />
+      loggedIn ? <Component {...props} /> : <SessionForm />
     }
   />
 );
