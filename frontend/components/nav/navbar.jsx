@@ -5,15 +5,17 @@ import { withRouter } from "react-router";
 class Navbar extends React.Component {
 	constructor(props) {
 		super(props);
-		// this.state= {};
-		this.handleLogout = this.handleLogout.bind(this);
+		this.state= {};
+		// this.handleLogout = this.handleLogout.bind(this);
 	}
 
-	handleLogout() {
-		this.props.logout();
-	}
+	// handleLogout(e) {
+	// 	e.preventDefault();
+	// 	this.props.logout();
+	// }
 
 	render() {
+		const {logout, currentUser} = this.props;
 		return (
 			<div className="navbar">
 				<ul>
@@ -61,7 +63,7 @@ class Navbar extends React.Component {
 						</Link>
 					</li>
 					<li>
-						<Link to="/" onClick={this.handleLogout} className="navbar-logout">
+						<Link to="/" onClick={e => logout()} className="navbar-logout">
 							Log Out
 						</Link>
 					</li>

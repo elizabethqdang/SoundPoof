@@ -1,24 +1,56 @@
 import React from 'react';
-// import LoginFormContainer from '../session_form/login_form_container';
-// import SignupFormContainer from '../session_form/signup_form_container';
-import GreetingContainer from '../greeting/greeting_container';
-// import TrackFormContainer from '../track/track_form_container';
-import { Link, Route, Switch } from 'react-router-dom';
-import NavbarSessionContainer from "../navbar/navbar_session_container";
+import { NavLink, Link, Route, Switch } from 'react-router-dom';
 
 class Splash extends React.Component {
+
   render() {
+    const {openModal, currentUser} = this.props;
     return (
       <div id="splash-page">
         <header id="splash-header">
           <div className="splash-bar">
-            <NavbarSessionContainer />
-
-            {/* <TrackShowContainer /> */}
+            <div className="splash-left">
+              <div className="splash-left-buttons">
+                <div className="splash-logo"></div>
+                <NavLink to="/" className="splash-text">SOUNDPOOF</NavLink>
+              </div>
+            </div>
+          {/* </div> */}
+            <nav className="login-signup">
+              <button onClick={() => openModal("login")} className="login-button">
+                Sign in
+              </button>
+              <button onClick={() => openModal("signup")} className="signup-button">
+                Create Account
+              </button>
+              <button onClick={() => openModal("signup")} className="creators-button">
+                For Creators
+              </button>
+            </nav>
           </div>
+
+          <section className="header-content">
+            <p>boom shakka lakka</p>
+            <br /><br />
+            <p>What's next in music is first on SoundPoof</p>
+            {/* Upload your first track and begin your journey. SoundPoof gives you space to create,find your fans, and connect with other artists. */}
+            <br /><br />
+            <button className="header-button">Start uploading today</button>
+          </section>
         </header>
 
+        <div className="">
+          <div>
+            Search for artists, bands, tracks, podcasts
+          </div>
+          <button className="header-button"><Link to="/upload">Upload your own</Link></button>
+        </div>
+        <br/><br/>
+
         <div className="trending">
+          <header className="">
+            trending
+          </header>
           <ul className="trending-tracks">
             <li className="trending-track">
               
@@ -26,24 +58,10 @@ class Splash extends React.Component {
           </ul>
         </div>
 
-        {/* <Switch>
-          <Route exact path="/login" component={LoginFormContainer} />
-          <Route exact path="/signup" component={SignupFormContainer} />
-          <Route component={} />
-        </Switch> */}
+        <div>
+          <button className="header-button">Explore trending playlists</button>
+        </div>
 
-        {/* <section className="splash-container">
-          <img className="splash-img" src='{window.splashURL}' />
-          <span className="splash-title splash-title-top">
-            RachetPoof
-            </span>
-          <span className="splash-title splash-title-bottom">
-            SoundCloud Clone
-            </span>
-        </section> */}
-
-        {/* <TrackFormContainer />
-        <br /> */}
       </div>
     )
   }
