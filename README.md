@@ -1,6 +1,6 @@
-## RatchetPoof, a SoundCloud clone
+## SoundPoof, a SoundCloud clone
 
-- [Live on Heruko](https://ratchetpoof.herokuapp.com/)
+- [Live on Heruko](https://soundpoof.herokuapp.com/)
 
 ### Technologies Used
 
