@@ -3,14 +3,12 @@ import entities from "./entities_reducer";
 import session from "./session_reducer";
 import errors from "./errors_reducer";
 import ui from "./ui_reducer";
-import modal from "./modal_reducer";
 
-const RootReducer = combineReducers({
+const rootReducer = combineReducers({
     entities,
     session,
     errors,
     ui,
-    modal,
 });
 
-export default RootReducer;
+export default rootReducer;

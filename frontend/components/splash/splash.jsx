@@ -4,7 +4,7 @@ import { NavLink, Link, Route, Switch } from 'react-router-dom';
 class Splash extends React.Component {
 
   render() {
-    const {openModal, currentUser} = this.props;
+    const {openModal} = this.props;
     return (
       <div id="splash-page">
         <header id="splash-header">
@@ -53,8 +53,20 @@ class Splash extends React.Component {
           </header>
           <ul className="trending-tracks">
             <li className="trending-track">
-              
+							
             </li>
+						<li className="trending-track">
+
+						</li>
+						<li className="trending-track">
+
+						</li>
+						<li className="trending-track">
+
+						</li>
+						<li className="trending-track">
+
+						</li>
           </ul>
         </div>
 
