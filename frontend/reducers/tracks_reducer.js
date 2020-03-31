@@ -1,7 +1,7 @@
 import { RECEIVE_TRACK, RECEIVE_ALL_TRACKS, REMOVE_TRACK } from '../actions/track_actions';
 import { RECEIVE_USER } from "../actions/user_actions";
 
-const TracksReducer = (state = {}, action) => {
+const tracksReducer = (state = {}, action) => {
     Object.freeze(state);
     let nextState = Object.assign({}, state);
 
@@ -20,4 +20,4 @@ const TracksReducer = (state = {}, action) => {
     }
 };
 
-export default TracksReducer;
+export default tracksReducer;

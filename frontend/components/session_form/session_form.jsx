@@ -24,7 +24,10 @@ class SessionForm extends React.Component {
     e.preventDefault();
     const user = Object.assign({}, this.state);
     // this.props.processForm(user);
-    this.props.processForm(user).then(this.props.closeModal);
+    this.props.processForm(user)
+      .then(
+        this.props.history.push("/discover"),
+        this.props.closeModal);
   }
 
   renderErrors() {
@@ -40,7 +43,7 @@ class SessionForm extends React.Component {
   handleDemoSubmit(e){
     e.preventDefault();
     const user = { email: "Demo User", password: "hunter12" }
-    this.props.demoSubmit(user).then(this.props.closeModal);
+    this.props.demoSubmit(user).then(this.props.closeModal, this.props.history.push("/discover"));
     // this.props.processForm(user).then(() => this.props.history.push("/"));
   }
 

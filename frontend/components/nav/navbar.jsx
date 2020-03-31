@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { withRouter } from "react-router";
+import SearchBar from "../search/search_bar";
 
 class Navbar extends React.Component {
 	constructor(props) {
@@ -40,14 +41,15 @@ class Navbar extends React.Component {
 						</NavLink>
 					</li>
 					<li>
-						<form className="navbar-search">
+						<SearchBar />
+						{/* <form className="navbar-search">
 							<input
 								type="search"
 								placeholder="Search"
 								className="navbar-search-input"
 							/>
 							<button type="submit" className="navbar-search-button" />
-						</form>
+						</form> */}
 					</li>
 					<li>
 						<NavLink to="/upload" className="navbar-upload">

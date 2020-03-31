@@ -1,5 +1,5 @@
 {
-  "name": "RachetPoof",
+  "name": "SoundPoof",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.8.3",
@@ -38,7 +38,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eqdang/RachetPoof.git"
+    "url": "git+https://github.com/eqdang/SoundPoof.git"
   },
   "keywords": [],
   "author": "",
