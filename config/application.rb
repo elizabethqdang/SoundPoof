@@ -14,6 +14,13 @@ module RachetPoof
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
+		# the framework and any gems in your application.
+		AWS::S3::Base.establish_connection!(
+    :access_key_id     => 'AKIAJFH7HQZUVHO6S72Q',
+		:secret_access_key => 'zi9t48Vspppl5DXeWMQmbVjsulQgMOktSTkAcQKf'
+		)
+		
+		BUCKET = 'soundpoof'
+
   end
 end

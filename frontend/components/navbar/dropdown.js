@@ -16,21 +16,41 @@ class Dropdown extends React.Component {
 		};
 	}
 
-	componentWillUnmount() { }
+	// componentWillUnmount() { }
 
 	showMenu(event) {
 		event.preventDefault();
-
-		this.setState({ showMenu: true }, () => {
-			document.addEventListener("click", event => this.closeMenu(event));
-		});
+		if (this.state.showMenu === false ) {
+			this.setState(
+				{ showMenu: true },
+				() => { 
+					document.addEventListener("click", event => this.closeMenu(event)) 
+				}
+			);
+		} else if (this.state.showMenu === true) {
+			this.setState(
+				{ showMenu: false },
+				() => {
+					document.addEventListener("click", event => this.closeMenu(event));
+				},
+			);
+		}
 	}
 
 	closeMenu(event) {
+		event.preventDefault();
 		if (this.dropdownElement && !this.dropdownElement.contains(event.target)) {
-			this.setState({ showMenu: false }, () => {
-				document.removeEventListener("click", event => this.closeMenu(event));
-			});
+			if (this.state.showMenu === false) {
+				this.setState(
+					{ showMenu: false }, 
+					() => {document.removeEventListener("click", event => this.closeMenu(event));}
+				);
+			} else {
+				this.setState(
+					{ showMenu: true },
+					() => { document.removeEventListener("click", event => this.closeMenu(event)); }
+				);
+			}
 		}
 	}
 
@@ -45,17 +65,13 @@ class Dropdown extends React.Component {
 							Profile
 					</Link>
 					</button>
-					<button className="dropdown-button">
-						<Link to="/" className="">
-							Account
-					</Link>
-					</button>
 					<button onClick={e => logout()} className="dropdown-button">
 						Logout
 				</button>
 				</div>
 			</div>
 		) : null;
+
 		return (
 			<div>
 				<button type="button" onClick={this.showMenu} className="user-dropdown-list">
@@ -65,9 +81,9 @@ class Dropdown extends React.Component {
 							this.dropdownElement = el;
 						}}
 					>
-						<span className="">
-							<img src="/images/navbar/nooks_cranny_logo.png" id="profile-pict" />
-						</span>
+						{/* <span className="profile-pict"> */}
+							{/* <img src="" id="profile-pict" /> */}
+						{/* </span> */}
 					</div>
 				</button>
 
