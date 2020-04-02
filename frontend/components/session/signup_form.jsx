@@ -112,7 +112,7 @@ class SignupForm extends React.Component {
 							Gender *
 						</p>
 						<br />
-						<div class="session-input-gender">
+						<div className="session-input-gender">
 							<select onChange={this.update('gender')}>
 								<option value="0">Indicate your gender</option>
 								<option value="1">Female</option>

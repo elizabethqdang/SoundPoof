@@ -101,7 +101,7 @@ class LoginForm extends React.Component {
 						</button>
 						<br /> or <br />
 						<a href="#">
-							<span class="glyphicon glyphicon-triangle-left"></span>
+							<span className="glyphicon glyphicon-triangle-left"></span>
 						</a>
 						<input
 							type="text"

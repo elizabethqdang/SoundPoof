@@ -7,22 +7,18 @@ import UploadTrackContainer from "./track_form/upload_track_container";
 // import UploadTrackFormContainer from "./track_form/upload_track_form_container";
 import UploadPageContainer from "./track/upload_page_container";
 import ShowTrackContainer from "./track_show/show_track_container";
-import TrackShowPageContainer from "./track_show/track_show_page_container";
+// import TrackShowPageContainer from "./track_show/track_show_page_container";
 import UserShowPageContainer from "./user/user_show_page_container";
 import NavbarContainer from "./navbar/navbar_container";
-import SessionForm from "./session/session_form";
-import LoginForm from "./session/login_form";
-import SignupForm from "./session/signup_form";
+import TrackIndexContainer from "./track_index/track_index_container";
 
 const App = () => (
 	<div id="app">
 		<ModalContainer />
-		{/* <NavbarContainer /> */}
-		{/* <SessionForm /> */}
-		{/* <LoginForm /> */}
-		{/* <SignupForm /> */}
+		<NavbarContainer />
 		<AuthRoute exact path="/" component={SplashContainer} />
 		<Switch>
+			<Route exact path="/discover" component={TrackIndexContainer} />
 			<ProtectedRoute path="/upload" component={UploadPageContainer} />
 			<Route exact path="/upload" component={UploadPageContainer} />
 			<Route path="/tracks/:trackId" component={ShowTrackContainer} />

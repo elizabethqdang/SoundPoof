@@ -7,7 +7,12 @@ Rails.application.routes.draw do
     resources :tracks, only: [:index, :create, :show, :update, :destroy] do
       resources :comments, only: [:index]
     end
-  end
+	end
+	
+	# match "tracks/upload", :as => "upload"
+	# match "tracks/delete", :as => "delete"
+	
+	# root :to => "tracks#index"
 
   root to: 'static_pages#root'
 
