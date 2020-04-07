@@ -12,6 +12,5 @@ User.destroy_all
 
 
 Track.destroy_all
-
     track1 = Track.create!({title: "Blase", artist: "Louis The Child", user_id: user1.id})
     track2 = Track.create!({title: "abc", artist: "abc", user_id: user1.id})

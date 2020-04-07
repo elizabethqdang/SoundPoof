@@ -76,7 +76,7 @@ class Dropdown extends React.Component {
 			<div>
 				<button type="button" onClick={this.showMenu} className="user-dropdown-list">
 					<div
-						className="user-dropdown-list"
+						// className="user-dropdown-list"
 						ref={el => {
 							this.dropdownElement = el;
 						}}
@@ -87,7 +87,7 @@ class Dropdown extends React.Component {
 					</div>
 				</button>
 
-				{menu}
+				{/* {menu} */}
 			</div>
 		);
 	}

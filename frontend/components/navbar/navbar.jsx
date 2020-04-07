@@ -7,14 +7,14 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchInput: ""
+			searchInput: "",
     };
 
     this.logoutUser = this.logoutUser.bind(this);
-    this.getLinks = this.getLinks.bind(this);
-    this.handleSignup = this.handleSignup.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
-		this.navigateToSearch = this.navigateToSearch.bind(this);
+    // this.getLinks = this.getLinks.bind(this);
+    // this.handleSignup = this.handleSignup.bind(this);
+    // this.handleLogin = this.handleLogin.bind(this);
+		// this.navigateToSearch = this.navigateToSearch.bind(this);
 		this.navLeft = this.navLeft.bind(this);
 		this.navRight = this.navRight.bind(this);
 		this.navSessionLinks = this.navSessionLinks.bind(this);
@@ -45,9 +45,9 @@ class Navbar extends React.Component {
   }
 
   // For testing, changed the route from '/search' to '/'
-  navigateToSearch() {
-    this.props.history.push("/");
-  }
+  // navigateToSearch() {
+  //   this.props.history.push("/");
+  // }
 
   update(property) {
     return e =>
@@ -86,13 +86,13 @@ class Navbar extends React.Component {
 			<Fragment>
 			<div className="logo">
 				<Link to="/">
-					<img src='/images/navbar/nooks_cranny_logo.png' />
+					<img src='' />
 				</Link>
 			</div>
 			<div>
 				<Link to={"/discover"} className="nav-link">
 					Home
-							</Link>
+				</Link>
 			</div>
 			<div>
 				<Link to={"/stream"} className="nav-link">
@@ -102,14 +102,13 @@ class Navbar extends React.Component {
 			<div>
 				<Link to={"/library"} className="nav-link">
 					Library
-						</Link>
+				</Link>
 			</div>
 			</Fragment>
 		)
 	}
 
-	navRight() {
-		const { logout, currentUser } = this.props;
+	navRight(currentUser, logout) {
 		return (
 			<Fragment>
 			<div>
@@ -125,7 +124,6 @@ class Navbar extends React.Component {
 			<div className="nav-link">
 				{currentUser.email}
 				<Dropdown
-					// className="everything-but-dropdown"
 					currentUser={currentUser}
 					logout={logout}
 				/>
@@ -134,110 +132,18 @@ class Navbar extends React.Component {
 		)
 	}
 
-	// Selectively render links dependent on whether the user is logged in
-  getLinks() {
-    const { logout, currentUser } = this.props;
-    if (this.props.loggedIn) {
-      return (
-          <div className="nav-main">
-            <ul className="nav-main-list">
-              <li>
-                <div>
-                  <Link to={"/"} className="nav-link">
-                    Upgrade
-									</Link>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <Link to={"/upload"} className="nav-link">
-                    Upload
-									</Link>
-                </div>
-              </li>
-              <li>
-                <div className="nav-link">
-                  {currentUser.email}
-                  <Dropdown
-                    // className="everything-but-dropdown"
-                    currentUser={currentUser}
-                    logout={logout}
-                  />
-                </div>
-              </li>
-            </ul>
-          </div>
-      );
-    } else {
-      return (
-          <div className="nav-main">
-            <ul className="nav-main-list">
-              <li>
-                <div className="login-link">
-                  <button onClick={this.handleLogin} className="nav-link">
-                    Sign in
-									</button>
-                </div>
-              </li>
-              <li>
-                <div className="signup-link">
-                  <button onClick={this.handleSignup} className="nav-link">
-                    Create account
-									</button>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <button
-                    type="button"
-                    className="nav-link"
-                  ><Link to={"/upload"}>
-                      Upload</Link>
-                  </button>
-                </div>
-              </li>
-            </ul>
-          </div>
-      );
-    }
-  }
 
   render() {
+		const { currentUser, logout } = this.props;
+
     return (
 			<div className="navbar-container">
 				{this.navLeft()}
 				<div className="search-bar">
 					<SearchBar />
 				</div>
-				{this.props.loggedIn ? this.navRight() : this.navSessionLinks()}
+				{currentUser ? this.navRight() : this.navSessionLinks() }
 			</div>
-    //   <div className="navbar-container">
-    //       <div className="logo">
-    //       <Link to="/">
-    //         <img src='/images/navbar/nooks_cranny_logo.png' />
-    //       </Link>
-    //       </div>
-    //       <div>
-    //         <Link to={"/discover"} className="nav-link">
-    //           Home
-		// 							</Link>
-    //       </div>
-    //       <div>
-    //         <Link to={"/stream"} className="nav-link">
-    //           Stream
-		// 							</Link>
-    //       </div>
-    //         <div>
-    //           <Link to={"/library"} className="nav-link">
-    //             Library
-		// 							</Link>
-    //         </div>
-    //     <div className="search-bar">
-    //       <SearchBar />
-    //     </div>
-    //     {this.getLinks()}
-    //   </div>
-		// );
 		)
   }
 }

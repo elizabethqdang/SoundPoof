@@ -59,7 +59,9 @@ class SearchBar extends React.Component {
 				onSubmit={this.handleSubmitSearch}
 				onClick={this.toggleSearchBarPlaceholder}>
 				<div className="search-bar">
-					<i className="search-icon"><img src='/images/navbar/search_bar_icon.png' /></i>
+					<i className="search-icon">
+						<img src='' />
+					</i>
 
 					<input
 						id="searchInput"

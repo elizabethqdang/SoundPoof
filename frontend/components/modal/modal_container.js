@@ -4,7 +4,8 @@ import { closeModal } from "../../actions/modal_actions";
 
 const mapStateToProps = state => {
     return {
-        modal: state.ui.modal
+				modal: state.ui.modal,
+				// loggedIn: Boolean(state.session.id)
     };
 };
 

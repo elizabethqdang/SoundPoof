@@ -8,7 +8,7 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
     path={path}
     exact={exact}
     render={props =>
-      !loggedIn ? <Component {...props} /> : <Redirect to="/discover" />
+      !loggedIn ? <Component {...props} /> : <Redirect to="/" />
     }
   />
 );
@@ -18,7 +18,7 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => (
     path={path}
     exact={exact}
     render={props =>
-      loggedIn ? <Component {...props} /> : <SessionForm />
+			loggedIn ? <Component {...props} /> : <SessionForm />
     }
   />
 );

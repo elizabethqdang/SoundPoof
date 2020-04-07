@@ -2,7 +2,10 @@ import React from 'react';
 import { NavLink, Link, Route, Switch } from 'react-router-dom';
 
 class Splash extends React.Component {
-
+	constructor(props) {
+		super(props);
+	}
+	
   render() {
     const {openModal} = this.props;
     return (
@@ -11,7 +14,7 @@ class Splash extends React.Component {
           <div className="splash-bar">
             <div className="splash-left">
 							<div className="splash-logo">
-								{/* <img src='/assets/images/logo.jpg' className="splash-icon"/> */}
+								<img src='https://soundpoof.s3-us-west-2.amazonaws.com/logo.jpg' className="splash-icon"/>
 							</div>
 							<div className="splash-text">SOUNDPOOF
 							</div>

@@ -7,11 +7,13 @@ import LoginForm from "./login_form";
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		currentUser: state.entities.users[state.session.id],
+		// currentUser: state.entities.users[state.session.id],
 		email: state.session.email,
 		userEmail: state.session.currentUserEmail,
 		errors: state.errors.session,
-		formType: "login"
+		formType: "login",
+		loggedIn: state.session.isAuthenticated,
+		currentUser: state.session.user,
 	};
 };
 

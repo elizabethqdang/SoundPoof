@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  root to: 'static_pages#root'
+
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create, :show]
     resource :session, only: [:create, :show, :destroy]
@@ -9,11 +11,5 @@ Rails.application.routes.draw do
     end
 	end
 	
-	# match "tracks/upload", :as => "upload"
-	# match "tracks/delete", :as => "delete"
-	
-	# root :to => "tracks#index"
-
-  root to: 'static_pages#root'
 
 end

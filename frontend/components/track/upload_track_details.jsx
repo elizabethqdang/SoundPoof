@@ -53,15 +53,15 @@ class UploadTrackDetails extends React.Component {
 		formData.append("track[title]", this.state.title);
 		formData.append("track[user_id]", this.state.userId);
 
-		// const {createTrack, clearModal} = this.props;
+		const {createTrack, clearModal} = this.props;
 		// createTrack(Object.assign({}, this.state).then(({track}) => {
 		// 		clearModal(); 
 		// 		this.props.history.push(`/tracks/${track.id}`);
 		// 		});
 
 		if (this.state.artworkFile) {
-		formData.append("track[artwork_url]", this.state.artworkFile);
-			this.props.createTrack(formData).then(({track}) => {
+			formData.append("track[artwork_url]", this.state.artworkFile);
+			this.props.createTrack(formData).then((track) => {
 				return this.props.history.push(`/tracks/${track.id}`);
 			});
 		} else {
@@ -75,6 +75,7 @@ class UploadTrackDetails extends React.Component {
 	update(field) {
 		return e => this.setState({ [field]: e.target.value });
 	}
+
 	handleImageFile(e) {
 		e.preventDefault();
 		const file = e.target.files[0];
