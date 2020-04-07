@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 const TrackIndexItem = ({ track }) => (
   <li className="track-item-container">
 		<div className="track item1 header">
-			<Link to={`/tracks/${track.id}`}></Link>
+			<Link to={`/tracks/${track._id}`}></Link>
 		</div>
 
 		<div className="track item2 artwork">
