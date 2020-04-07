@@ -16,8 +16,8 @@ class LoginForm extends React.Component {
 
 	// Once the user has been authenticated, redirect to the Tweets page
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.currentUser === true) {
-			this.props.history.push("/discover")
+		if (nextProps.currentUser === true || nextProps.loggedIn === true) {
+			// this.props.history.push("/discover")
 			this.props.closeModal();
 		}
 		// Set or clear errors
@@ -71,7 +71,8 @@ class LoginForm extends React.Component {
 		e.preventDefault();
 		const user = { email: "Demo User", password: "hunter12" };
 		this.props.login(user)
-			.then(this.props.closeModal(), this.props.history.push("/discover"));
+			.then(this.props.closeModal(), 
+			this.props.history.push("/discover"));
 	}
 
 	render() {

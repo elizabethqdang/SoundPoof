@@ -19,7 +19,8 @@ class SessionForm extends React.Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.loggedIn === true || signedIn === true) {
-			this.props.history.push("/discover");
+			// this.props.history.push("/discover");
+			this.setState({ loggedIn: true });
 		}
 		this.setState({ errors: nextProps.errors });
 	}
@@ -32,7 +33,7 @@ class SessionForm extends React.Component {
 	handleDemo(e) {
 		e.preventDefault();
 		const user = { email: "Demo User", password: "hunter12" };
-		this.props.demoLogin(user).then(this.props.closeModal);
+		this.props.login(user).then(this.props.closeModal);
 	}
 
 	handleSubmit(e) {
@@ -100,7 +101,8 @@ class SessionForm extends React.Component {
 const mapStateToProps = (state, ownProps) => ({
     email: state.session.email,
     errors: state.errors.session,
-    formType: "session",
+		formType: "session",
+	loggedIn: Boolean(state.session.isAuthenticated)
 });
 const mapDispatchToProps = dispatch => ({
     login: (user) => dispatch(login(user)),

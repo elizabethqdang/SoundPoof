@@ -5,7 +5,7 @@ import TrackIndex from "./track_index";
 import { fetchAllTracks } from "../../actions/track_actions";
 
 const mapStateToProps = state => ({
-	currentUser: state.session.currentUser,
+	// currentUser: state.session.currentUser,
 	tracks: Object.values(state.entities.tracks)
 
 	// track: { title: "", artist: "", uploader_id: "", trackFile: null },

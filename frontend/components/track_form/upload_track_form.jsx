@@ -171,7 +171,7 @@ class UploadTrackForm extends React.Component {
 	}
 }
 
-// 	componentWillMount() {
+	// componentWillMount() {
 // 		Modal.setAppElement("body");
 // 	}
 
@@ -188,7 +188,7 @@ class UploadTrackForm extends React.Component {
 //   disableForm() {
 //     this.setState({ modalState: true });
 
-// 	// This will be where we create our form data to submit our audio
+// 	This will be where we create our form data to submit our audio
 // 	handleSubmit(e) {
 // 		e.preventDefault();
 // 		const formData = new FormData();
@@ -198,8 +198,8 @@ class UploadTrackForm extends React.Component {
 // 		if (this.state.trackFile) {
 // 			formData.update("track[track]", this.state.trackFile);
 // 		}
-// 		// This will fail because we do not have a AWS bucket set up for this project
-// 		// presently.
+// 		This will fail because we do not have a AWS bucket set up for this project
+// 	 presently.
 // 		this.props.createTrack(formData);
 // 		this.navigateToSearch();
 // 	}

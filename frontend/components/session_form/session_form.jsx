@@ -26,7 +26,7 @@ class SessionForm extends React.Component {
     // this.props.processForm(user);
     this.props.processForm(user)
       .then(
-        this.props.history.push("/discover"),
+        // this.props.history.push("/discover"),
         this.props.closeModal);
   }
 

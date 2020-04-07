@@ -10,13 +10,12 @@ import Root from "./components/root";
     // window.signup = signup;
     
 document.addEventListener("DOMContentLoaded", () => {
-  const root = document.getElementById("root");
 
   let store;
   if (window.currentUser) {
     const preloadedState = {
       session: { 
-        id: window.currentUser.id ,
+        id: window.currentUser.id,
         currentUser: window.currentUser,
       },
       entities: {
@@ -29,5 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
 
+	const root = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, root);
 });
