@@ -63,7 +63,7 @@ class Splash extends React.Component {
 							<div className="trending-track-artwork"></div>
 							<div className="trending-track-info">
 								<div className="trending-track-title"></div>
-								<div className="trending-track-artist"></div>								
+								<div className="trending-track-artist"></div>		
 							</div>
 
             </li>

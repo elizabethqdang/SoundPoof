@@ -15,8 +15,9 @@ class Api::TracksController < ApplicationController
 		# end
 
 		@track = Track.new(track_params)
-    if @track.save
-      render :show
+		@track.user_id = current_user.id
+		if @track.save
+			render "api/tracks/show"
     else
       render json: @track.errors.full_messages, status: 401
     end
@@ -24,23 +25,23 @@ class Api::TracksController < ApplicationController
  
 	def show
     @track = Track.find(params[:id])
-		# render "api/tracks/show"
-		render :show
+		render "api/tracks/show"
+		# render :show
 	end
 	
   def delete
-    if (params[:track])
-      AWS::S3::S3Object.find(params[:track], BUCKET).delete
-      redirect_to root_path
-    else
-      render :text => "No track was found to delete!"
-    end
+    # if (params[:track])
+    #   AWS::S3::S3Object.find(params[:track], BUCKET).delete
+    #   redirect_to root_path
+    # else
+    #   render :text => "No track was found to delete!"
+    # end
   end
  
 	private
 	
 	def track_params
-    params.require(:track).permit(:title, :track_url, :artist, :user_id, :artwork_url)
+    params.require(:track).permit(:title, :artist, :audio, :artwork)
   end
  
   def sanitize_filename(file_name)

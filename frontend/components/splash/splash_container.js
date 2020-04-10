@@ -2,10 +2,11 @@ import { connect } from "react-redux";
 import { openModal } from "../../actions/modal_actions";
 import Splash from "./splash";
 
-const mapStateToProps = (state, { session, entities }) => {
+const mapStateToProps = (state) => {
 	return {
 		// currentUser: state.entities.users[state.session.id],
-		loggedIn: Boolean(state.session.id)
+		// currentUser: users[session.id],
+		// loggedIn: Boolean(state.session.id)
 	};
 };
 

@@ -1,20 +1,20 @@
 // import merge from "lodash/merge";
 import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
-const _nullUser = Object.freeze({
+const _nullUser = {
 	// isAuthenticated: false,
 	// user: {},
   id: null
-});
+};
 
 const sessionReducer = (state = _nullUser, action) => {
-  Object.freeze(state);
+  Object.freeze(_nullUser);
 
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
       return { 
 				// ...state,
-				id: action.currentUser.id
+				id: action.currentUser.id,
 				// user: action.currentUser,
 				// isAuthenticated: !!action.currentUser
 			};

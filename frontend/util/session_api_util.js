@@ -20,7 +20,7 @@ export const logout = () =>
 	
 export const fetchCurrentUser = id => {
 	$.ajax({
-		method:"POST",
+		method: "GET",
 		url: `/api/users/${id}`,
 		data: { currentUser: id }
 	})
@@ -29,6 +29,6 @@ export const fetchCurrentUser = id => {
 export const emailValidate = email =>
   $.ajax({
     method: "POST",
-    url: "/api/session/validate",
+    url: "/api/signup/validate",
     data: { user: email }
   });

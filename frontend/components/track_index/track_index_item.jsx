@@ -13,8 +13,8 @@ const TrackIndexItem = ({ track }) => (
 		</div>
 
 		<div className="track item3 info">
-			<p>Artist {track.artist}</p>
-			<p>Track Title{track.title}</p>
+			<p>Artist: {track.artist}</p>
+			<p>Track Title {track.title}</p>
 		</div>
 
 		<div className="track item4 waveform">
