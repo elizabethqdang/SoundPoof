@@ -1,20 +1,23 @@
-import { RECEIVE_TRACK, RECEIVE_TRACKS, REMOVE_TRACK } from '../actions/track_actions';
+import { RECEIVE_TRACK, RECEIVE_ALL_TRACKS, REMOVE_TRACK, RECEIVE_CURRENT_TRACK } from '../actions/track_actions';
 import { RECEIVE_USER } from "../actions/user_actions";
 
 const tracksReducer = (state = {}, action) => {
+
     Object.freeze(state);
-    let newState = Object.assign({}, state);
+    let nextState = Object.assign( {}, state );
 
     switch (action.type) {
         case RECEIVE_TRACK:
-            return Object.assign(newState, {[action.track.id]: action.track});
-        case RECEIVE_TRACKS:
+						return Object.assign( nextState, {[action.track.id]: action.track} );
+				case RECEIVE_CURRENT_TRACK:
+						return Object.assign( nextState, action.payload.track );
+        case RECEIVE_ALL_TRACKS:
             return action.tracks;
         case REMOVE_TRACK:
-            delete newState[action.trackId];
-            return newState;   
+            delete nextState[action.trackId];
+            return nextState;   
         case RECEIVE_USER:
-            return action.tracks;   
+					return Object.assign( nextState, action.payload.tracks );
         default:
             return state;
     }

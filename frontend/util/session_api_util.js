@@ -16,4 +16,19 @@ export const logout = () =>
   $.ajax({
     method: "DELETE",
     url: "/api/session"
+	});
+	
+export const fetchCurrentUser = id => {
+	$.ajax({
+		method: "GET",
+		url: `/api/users/${id}`,
+		data: { currentUser: id }
+	})
+}
+
+export const emailValidate = email =>
+  $.ajax({
+    method: "POST",
+    url: "/api/signup/validate",
+    data: { user: email }
   });

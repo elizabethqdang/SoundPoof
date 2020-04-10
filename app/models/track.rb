@@ -6,7 +6,7 @@ class Track < ApplicationRecord
         foreign_key: :user_id,
         class_name: :User
 
-    # has_one_attached :track_url
-    # has_one_attached :artwork_url
+    has_one_attached :audio
+    has_one_attached :artwork
     
 end

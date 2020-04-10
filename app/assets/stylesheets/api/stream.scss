@@ -1,0 +1,16 @@
+.stream-container {
+	width: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	margin: 0 0 2em;
+
+	.stream {
+		width: 80%;
+		display: block;
+		margin: 0;
+		padding: 0 2em;
+	}
+
+}

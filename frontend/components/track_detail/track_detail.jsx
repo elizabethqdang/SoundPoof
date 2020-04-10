@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
 
-// import ReviewShow from "./review_show";
 
 const commentList = (comments = []) =>
 	comments.map(comment => <CommentShow comment={comment} key={comment.id} />);
