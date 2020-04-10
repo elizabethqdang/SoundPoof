@@ -87,7 +87,7 @@ class Dropdown extends React.Component {
 					</div>
 				</button>
 
-				{/* {menu} */}
+				{menu}
 			</div>
 		);
 	}

@@ -5,12 +5,12 @@ class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // username: "",
       email: "",
-      password: ""
+			password: "",
+			// errors: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
+		this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
   }
 
   update(field) {
@@ -42,8 +42,11 @@ class SessionForm extends React.Component {
 
   handleDemoSubmit(e){
     e.preventDefault();
-    const user = { email: "Demo User", password: "hunter12" }
-    this.props.demoSubmit(user).then(this.props.closeModal, this.props.history.push("/discover"));
+    const user = { email: "Demo-User", password: "password" };
+		this.props.demoSubmit(user)
+			.then(this.props.closeModal, 
+				this.props.history.push("/discover"),
+				console.log(user));
     // this.props.processForm(user).then(() => this.props.history.push("/"));
   }
 

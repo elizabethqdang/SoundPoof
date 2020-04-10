@@ -12,8 +12,8 @@ class Navbar extends React.Component {
 
     this.logoutUser = this.logoutUser.bind(this);
     // this.getLinks = this.getLinks.bind(this);
-    // this.handleSignup = this.handleSignup.bind(this);
-    // this.handleLogin = this.handleLogin.bind(this);
+    this.handleSignup = this.handleSignup.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
 		// this.navigateToSearch = this.navigateToSearch.bind(this);
 		this.navLeft = this.navLeft.bind(this);
 		this.navRight = this.navRight.bind(this);
@@ -56,16 +56,17 @@ class Navbar extends React.Component {
       });
   }
 
-	navSessionLinks() {
+	navSessionLinks(openModal) {
+		// const { openModal } = this.props;
 		return (
 			<Fragment>
 			<div className="login-link">
-				<button onClick={this.handleLogin} className="nav-link">
+				<button onClick={() => openModal("login")} className="nav-link">
 					Sign in
 				</button>
 			</div>
 			<div className="signup-link">
-				<button onClick={this.handleSignup} className="nav-link">
+				<button onClick={() => openModal("signup")} className="nav-link">
 					Create account
 				</button>
 			</div>
@@ -132,9 +133,14 @@ class Navbar extends React.Component {
 		)
 	}
 
-
   render() {
-		const { currentUser, logout } = this.props;
+		const { currentUser, logout, openModal } = this.props;
+		let nav; 
+		if (currentUser) {
+			nav = this.navRight(currentUser, logout)
+		} else if (!currentUser) {
+			nav = this.navSessionLinks(openModal)
+		};
 
     return (
 			<div className="navbar-container">
@@ -142,7 +148,9 @@ class Navbar extends React.Component {
 				<div className="search-bar">
 					<SearchBar />
 				</div>
-				{currentUser ? this.navRight() : this.navSessionLinks() }
+				{/* {currentUser ? this.navRight(currentUser, logout) : this.navSessionLinks(openModal) } */}
+				{nav}
+				{/* {this.navRight(currentUser, logout)} */}
 			</div>
 		)
   }

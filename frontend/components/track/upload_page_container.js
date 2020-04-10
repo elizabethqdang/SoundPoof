@@ -3,8 +3,8 @@ import {createTrack} from "../../actions/track_actions";
 import UploadPage from "./upload_page";
 
 const mapStateToProps = (state, ownProps) => ({
-    userId: state.session.id,
-    // uploaderId: state.session.id
+		currentUser: state.session.id,
+		user_id: state.session.id
 })
 const mapDispatchToProps = dispatch => ({
     createTrack: (track) => dispatch(createTrack(track))

@@ -18,7 +18,7 @@ class LoginForm extends React.Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.currentUser === true || nextProps.loggedIn === true) {
 			// this.props.history.push("/discover")
-			this.props.closeModal();
+			// this.props.closeModal();
 		}
 		// Set or clear errors
 		this.setState({ errors: nextProps.errors });
@@ -69,10 +69,13 @@ class LoginForm extends React.Component {
 
 	handleDemo(e) {
 		e.preventDefault();
-		const user = { email: "Demo User", password: "hunter12" };
+		const user = { email: "Demo-User", password: "password" };
 		this.props.login(user)
-			.then(this.props.closeModal(), 
-			this.props.history.push("/discover"));
+			.then(
+				this.props.closeModal(), 
+				// this.props.history.push("/discover"),
+				console.log("user", user)
+			);
 	}
 
 	render() {

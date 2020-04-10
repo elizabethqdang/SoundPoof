@@ -5,13 +5,14 @@ class UploadTrackDetails extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			userId: this.props.userId,
+			user_id: this.props.currentUser,
 			title: this.props.title,
 			artist: "",
 			artworkFile: null,
-			trackFile: this.props.trackFile,
+			audioFile: this.props.audioFile,
 			dragged: false,
-			artworkUrl: window.uploadStock
+			artworkUrl: null,
+			errors: [],
 		};
 		this.dragOverHandler = this.dragOverHandler.bind(this);
 		this.dragOverleave = this.dragOverleave.bind(this);
@@ -45,31 +46,32 @@ class UploadTrackDetails extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		let upload = this;
-		let formData = new FormData();
-
-		formData.append("track[track_url]", this.state.trackFile);
+		const formData = new FormData();
 		formData.append("track[artist]", this.state.artist);
 		formData.append("track[title]", this.state.title);
-		formData.append("track[user_id]", this.state.userId);
+		// formData.append("track[user_id]", this.state.user_id);
 
-		const {createTrack, clearModal} = this.props;
+		// const {createTrack, clearModal} = this.props;
 		// createTrack(Object.assign({}, this.state).then(({track}) => {
 		// 		clearModal(); 
 		// 		this.props.history.push(`/tracks/${track.id}`);
 		// 		});
 
-		if (this.state.artworkFile) {
-			formData.append("track[artwork_url]", this.state.artworkFile);
-			this.props.createTrack(formData).then((track) => {
-				return this.props.history.push(`/tracks/${track.id}`);
-			});
+		if (this.state.artworkFile && this.state.audioFile) {
+			formData.append("track[artwork]", this.state.artworkFile);
+			formData.append("track[audio]", this.state.audioFile);
+			this.props.createTrack(formData)
+				.then(res =>
+					this.props.history.push(`/tracks`),
+				(response) => {
+					console.log(response),
+					console.log(formData)
+				});
 		} else {
 			this.setState({
 				errors: ["Please upload an image file"]
 			});
 		}
-		// .then(this.props.closeModal)
 	}
 
 	update(field) {
@@ -77,8 +79,7 @@ class UploadTrackDetails extends React.Component {
 	}
 
 	handleImageFile(e) {
-		e.preventDefault();
-		const file = e.target.files[0];
+		const file = e.currentTarget.files[0];
 		const fileReader = new FileReader();
 		fileReader.onloadend = () => {
 			this.setState({
@@ -95,6 +96,22 @@ class UploadTrackDetails extends React.Component {
 				errors: ["Please upload an image file"]
 			});
 		}
+	}
+
+	renderErrors()
+	{
+		return (
+			<ul>
+				{this.state.errors.map((error, i) =>
+				{
+					return (
+						<li className="errors" key={i}>
+							{error}
+						</li>
+					);
+				})}
+			</ul>
+		);
 	}
 
 	dragOverHandler(e) {
@@ -152,6 +169,8 @@ class UploadTrackDetails extends React.Component {
 							onChange={this.update("artist")}
 							placeholder="Artist Name"
 						/>
+
+						{this.renderErrors()}
 
 						<input className="custom-file-upload" type="submit" value="Save" />
 					</div>

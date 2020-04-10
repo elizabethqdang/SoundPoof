@@ -20,7 +20,8 @@ class TrackIndex extends React.Component {
 	}
 
 	render() {
-		const { tracks } = this.props;
+		const { tracks, currentUser, users } = this.props;
+		console.log(tracks, currentUser, users);
 		return (
 			<div className="discover-container">
 				<div className="discover">
@@ -28,23 +29,137 @@ class TrackIndex extends React.Component {
 				</div>
 				<div className="discover weekly">
 					<div className="discover heading">SoundPoof Weekly</div>
-					<div className="discover content"></div>
+					<div className="discover content">
+						<li className="trending-track-item">
+							<div className="trending-track-artwork"></div>
+							<div className="trending-track-info">
+								<div className="trending-track-title">Title</div>
+								<div className="trending-track-artist">Artist</div>
+							</div>
+						</li>
+						<li className="trending-track-item">
+							<div className="trending-track-artwork"></div>
+							<div className="trending-track-info">
+								<div className="trending-track-title">Title</div>
+								<div className="trending-track-artist">Artist</div>
+							</div>
+						</li>
+						<li className="trending-track-item">
+							<div className="trending-track-artwork"></div>
+							<div className="trending-track-info">
+								<div className="trending-track-title">Title</div>
+								<div className="trending-track-artist">Artist</div>
+							</div>
+						</li>
+						<li className="trending-track-item">
+							<div className="trending-track-artwork"></div>
+							<div className="trending-track-info">
+								<div className="trending-track-title">Title</div>
+								<div className="trending-track-artist">Artist</div>
+							</div>
+						</li>
+					</div>
 				</div>
 				<div className="discover new">
 					<div className="discover heading">New Music</div>
 					<div className="discover content">
-					<ul>
-						{tracks.map(track => <TrackIndexItem key={track._id} track={track} />)}
-					</ul>
+						<ul>
+							<li className="trending-track-item">
+								<div className="trending-track-artwork"></div>
+								<div className="trending-track-info">
+									<div className="trending-track-title"></div>
+									<div className="trending-track-artist"></div>
+								</div>
+							</li>
+							<li className="trending-track-item">
+								<div className="trending-track-artwork"></div>
+								<div className="trending-track-info">
+									<div className="trending-track-title"></div>
+									<div className="trending-track-artist"></div>
+								</div>
+							</li>
+							<li className="trending-track-item">
+								<div className="trending-track-artwork"></div>
+								<div className="trending-track-info">
+									<div className="trending-track-title"></div>
+									<div className="trending-track-artist"></div>
+								</div>
+							</li>
+							<li className="trending-track-item">
+								<div className="trending-track-artwork"></div>
+								<div className="trending-track-info">
+									<div className="trending-track-title"></div>
+									<div className="trending-track-artist"></div>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</div>
 				<div className="discover charts">
 					<div className="discover heading">SoundPoof Charts</div>
-					<div className="discover content"></div>
+					<div className="discover content">
+						<li className="trending-track-item">
+							<div className="trending-track-artwork"></div>
+							<div className="trending-track-info">
+								<div className="trending-track-title"></div>
+								<div className="trending-track-artist"></div>
+							</div>
+						</li>
+						<li className="trending-track-item">
+							<div className="trending-track-artwork"></div>
+							<div className="trending-track-info">
+								<div className="trending-track-title"></div>
+								<div className="trending-track-artist"></div>
+							</div>
+						</li>
+						<li className="trending-track-item">
+							<div className="trending-track-artwork"></div>
+							<div className="trending-track-info">
+								<div className="trending-track-title"></div>
+								<div className="trending-track-artist"></div>
+							</div>
+						</li>
+						<li className="trending-track-item">
+							<div className="trending-track-artwork"></div>
+							<div className="trending-track-info">
+								<div className="trending-track-title"></div>
+								<div className="trending-track-artist"></div>
+							</div>
+						</li>
+					</div>
 				</div>
 				<div className="discover playlists">
 					<div className="discover heading">Top Playlists</div>
-					<div className="discover content"></div>
+					<div className="discover content">
+							<li className="trending-track-item">
+								<div className="trending-track-artwork"></div>
+								<div className="trending-track-info">
+									<div className="trending-track-title"></div>
+									<div className="trending-track-artist"></div>
+								</div>
+							</li>
+							<li className="trending-track-item">
+								<div className="trending-track-artwork"></div>
+								<div className="trending-track-info">
+									<div className="trending-track-title"></div>
+									<div className="trending-track-artist"></div>
+								</div>
+							</li>
+							<li className="trending-track-item">
+								<div className="trending-track-artwork"></div>
+								<div className="trending-track-info">
+									<div className="trending-track-title"></div>
+									<div className="trending-track-artist"></div>
+								</div>
+							</li>
+							<li className="trending-track-item">
+								<div className="trending-track-artwork"></div>
+								<div className="trending-track-info">
+									<div className="trending-track-title"></div>
+									<div className="trending-track-artist"></div>
+								</div>
+							</li>
+					</div>
 				</div>
 			</div>
 		);

@@ -1,13 +1,14 @@
 import React from "react";
 import UploadTrackDetails from "./upload_track_details";
+import NavbarContainer from "../navbar/navbar_container";
 
 class UploadTrack extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			userId: this.props.userId,
+			user_id: this.props.currentUser,
 			title: "",
-			trackFile: null,
+			audioFile: null,
 			errors: [],
 			dragged: false
 		};
@@ -20,12 +21,12 @@ class UploadTrack extends React.Component {
 
 	handleTrackFile(e) {
 		e.preventDefault();
-		const trackFile = e.target.files[0];
+		const audioFile = e.target.files[0];
 
-		if (trackFile.type === "audio/mp3") {
+		if (audioFile.type === "audio/mp3") {
 			this.setState({
-				trackFile: trackFile,
-				title: this.titleize(trackFile.name.split(".")[0].split("-")),
+				audioFile: audioFile,
+				title: this.titleize(audioFile.name.split(".")[0].split("-")),
 				errors: []
 			});
 		} else {
@@ -70,12 +71,12 @@ class UploadTrack extends React.Component {
 
 	dropHandler(e) {
 		e.preventDefault();
-		const trackFile = e.dataTransfer.files[0];
+		const audioFile = e.dataTransfer.files[0];
 
-		if (trackFile.type === "audio/mp3") {
+		if (audioFile.type === "audio/mp3") {
 			this.setState({
-				trackFile: trackFile,
-				title: this.titleize(trackFile.name.split(".")[0].split("-")),
+				audioFile: audioFile,
+				title: this.titleize(audioFile.name.split(".")[0].split("-")),
 				errors: []
 			});
 		} else {
@@ -86,12 +87,12 @@ class UploadTrack extends React.Component {
 	}
 
 	render() {
-		if (this.state.trackFile) {
+		if (this.state.audioFile) {
 			return (
 				<UploadTrackDetails
 					title={this.state.title}
-					trackFile={this.state.trackFile}
-					userId={this.state.userId}
+					audioFile={this.state.audioFile}
+					user_id={this.state.user_id}
 					createTrack={this.props.createTrack}
 				/>
 			);
@@ -109,6 +110,7 @@ class UploadTrack extends React.Component {
 							<input type="file" onChange={this.handleTrackFile} />
 						</label>
 					</form>
+					{this.renderErrors()}
 					<p>
 						Provide FLAC, WAV, ALAC or AIFF for best audio quality.{" "}
 						<a

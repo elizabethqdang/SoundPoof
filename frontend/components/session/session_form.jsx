@@ -10,7 +10,7 @@ class SessionForm extends React.Component {
 		super(props);
 		this.state = {
 			email: "",
-			errors: {}
+			errors: []
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.clearedErrors = false;
@@ -32,8 +32,9 @@ class SessionForm extends React.Component {
 
 	handleDemo(e) {
 		e.preventDefault();
-		const user = { email: "Demo User", password: "hunter12" };
-		this.props.login(user).then(this.props.closeModal);
+		const user = { email: "Demo-User", password: "password" };
+		this.props.login(user)
+			// .then(this.props.closeModal);
 	}
 
 	handleSubmit(e) {
@@ -41,12 +42,6 @@ class SessionForm extends React.Component {
 		const email = Object.assign({}, this.state);
 		this.props.processForm(email);
 	}
-
-	// handleClick(e) {
-	// 	e.preventDefault();
-	// 	openModal("signup");
-	// 	openModal("login");
-	// }
 
 	renderErrors() {
 		return (
@@ -68,6 +63,7 @@ class SessionForm extends React.Component {
 						</div>
 						<p className="session-header">Join now</p>
 						<br />
+						debugger
 						<div onClick={this.handleDemo} className="session-demo">
 							<button className="session-submit">Continue as Demo User</button>
 						</div>
@@ -102,7 +98,7 @@ const mapStateToProps = (state, ownProps) => ({
     email: state.session.email,
     errors: state.errors.session,
 		formType: "session",
-	loggedIn: Boolean(state.session.isAuthenticated)
+		loggedIn: Boolean(state.session.isAuthenticated)
 });
 const mapDispatchToProps = dispatch => ({
     login: (user) => dispatch(login(user)),
