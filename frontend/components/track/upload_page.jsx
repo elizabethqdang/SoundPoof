@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import UploadTrack from "./upload_track";
 // import { Footer } from "../footer/footer";
+import NavbarContainer from '../navbar/navbar_container';
 
 class UploadPage extends React.Component {
 	constructor(props) {
@@ -16,6 +17,7 @@ class UploadPage extends React.Component {
 		return (
 			<>
 				<div className="upload-page" onDragOver={this.dragOverHandler}>
+					<NavbarContainer />
 					<nav className="upload-page-nav">
 						<NavLink className="upload-page-link" to="/upload">
 							Upload
@@ -25,7 +27,7 @@ class UploadPage extends React.Component {
 						</a>
 					</nav>
 					<UploadTrack
-						userId={this.props.userId}
+						user_id={this.props.user_id}
 						createTrack={this.props.createTrack}
 						history={this.props.history}
 						openModal={this.props.openModal}

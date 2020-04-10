@@ -1,6 +1,10 @@
 import React from "react";
+// import LoginFormContainer from "../session/login_form_container";
 import LoginFormContainer from "../session_form/login_form_container";
 import SignupFormContainer from "../session_form/signup_form_container";
+// import SignupFormContainer from "../session/signup_form_container";
+import SessionForm from "../session/session_form";
+import Dropdown from "../navbar/dropdown";
 import UploadTrackFormContainer from "../track_form/upload_track_form_container";
 
 const Modal = ({ modal, closeModal }) => {
@@ -15,9 +19,14 @@ const Modal = ({ modal, closeModal }) => {
 		case "signup":
 			component = <SignupFormContainer />;
 			break;
+		case "session":
+			component = <SessionForm />;
+			break;
 		case "upload":
 			component = <UploadTrackFormContainer />;
 			break;
+		case "dropdown":
+			component = <Dropdown />;
 		default:
 			return null;
 	}

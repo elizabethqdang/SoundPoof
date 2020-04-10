@@ -1,25 +1,28 @@
 import * as TrackAPIUtil from "../util/track_api_util";
 
-export const RECEIVE_TRACKS = "RECEIVE_TRACKS";
+export const RECEIVE_ALL_TRACKS = "RECEIVE_ALL_TRACKS";
 export const RECEIVE_TRACK = "RECEIVE_TRACK";
-export const REQUEST_TRACK_FETCH = "REQUEST_TRACK_FETCH";
+export const REQUEST_TRACK = "REQUEST_TRACK";
 export const REMOVE_TRACK = "REMOVE_TRACK";
 export const RECEIVE_TRACK_ERRORS = "RECEIVE_TRACK_ERRORS";
 export const RECEIVE_CURRENT_TRACK = "RECEIVE_CURRENT_TRACK";
 
-export const receiveTracks = tracks => ({
-  type: RECEIVE_TRACKS,
+
+// Action creators
+export const receiveAllTracks = tracks => ({
+  type: RECEIVE_ALL_TRACKS,
   tracks
 });
 
 export const receiveTrack = track => ({
   type: RECEIVE_TRACK,
-  track
+	track
 });
 
-export const requestTrackFetch = () => ({
-  type: REQUEST_TRACK_FETCH
-});
+export const requestTrack = track => ({
+	type: REQUEST_TRACK,
+	track
+})
 
 export const removeTrack = trackId => ({
   type: REMOVE_TRACK,
@@ -31,22 +34,25 @@ export const receiveTrackErrors = errors => ({
   errors
 });
 
-export const receiveCurrentTrack = track => ({
+export const receiveCurrentTrack = payload => ({
   type: RECEIVE_CURRENT_TRACK,
-  track
+	payload
 });
 
-export const fetchTracks = () => dispatch =>
-  TrackAPIUtil.fetchTracks().then(
-    tracks => dispatch(receiveTracks(tracks))
+
+
+// Thunk actions
+export const fetchAllTracks = () => dispatch => (
+	TrackAPIUtil.fetchAllTracks()
+		.then(tracks => dispatch(receiveAllTracks(tracks)))
+	// .catch(err => console.log(err))
   );
 
-export const fetchTrack = trackId => dispatch => {
-  // dispatch(requestTrackFetch());
-  return TrackAPIUtil.fetchTrack(trackId).then(
-    track => dispatch(receiveTrack(track))
+export const fetchTrack = trackId => dispatch => (
+	TrackAPIUtil.fetchTrack(trackId)
+		.then(payload => dispatch(receiveCurrentTrack(payload)))
+	// .catch(err => console.log(err))
   );
-};
 
 export const createTrack = track => dispatch =>
   TrackAPIUtil.createTrack(track).then(
