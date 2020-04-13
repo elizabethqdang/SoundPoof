@@ -49,9 +49,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/eqdang/RachetPoof/issues"
+    "url": "https://github.com/eqdang/SoundPoof/issues"
   },
-  "homepage": "https://github.com/eqdang/RachetPoof#readme",
+  "homepage": "https://github.com/eqdang/SoundPoof#readme",
   "devDependencies": {
     "webpack-dev-server": "^3.10.2"
   }
