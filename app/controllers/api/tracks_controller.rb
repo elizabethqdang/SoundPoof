@@ -14,8 +14,9 @@ class Api::TracksController < ApplicationController
     #   render :text => "Couldn't complete the upload"
 		# end
 
-		@track = Track.new(track_params)
-		@track.user_id = current_user.id
+		@track = current_user.tracks.new(track_params)
+		# @track = Track.new(track_params)
+		# @track.user_id = current_user.id
 		if @track.save
 			render "api/tracks/show"
     else

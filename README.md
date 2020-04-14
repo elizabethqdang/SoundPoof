@@ -10,7 +10,7 @@
 - Jbuilder
 - PostgreSQL
 
-RachetPoof is a full-stack web application, cloned after the popular music application SoundCloud.
+SoundPoof is a full-stack web application, cloned after the popular music application SoundCloud.
 ![splash](app/assets/images/splash.png)
 
 ### Features
