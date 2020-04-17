@@ -18,13 +18,13 @@ User.destroy_all
 
 Track.destroy_all
 
-		t1 = Track.create!(
+		t1 = Track.create!({
 			title: "Blase", 
 			artist: "Ty Dolla-Louis The Child", 
 			user_id: u1.id
 			# audio_url: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Ty+Dolla+%24ign+-+Blasé+(Louis+The+Child+Remix).mp3",
 			# artwork_url: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+8.26.54+PM.png"
-		)
+		})
 		t1.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/louisthechild-blase.mp3"), filename: "louisthechild-blase.mp3")
 		t1.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+8.26.54+PM.png"), filename: "blase.png")
 
@@ -41,7 +41,8 @@ Track.destroy_all
 			artist: "Seven Lions", 
 			user_id: u4.id 
 		})
-		# t3.audio.attach(io: open("Song"), filename: "Song")
+		t3.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/odesza-saymyname.mp3"), filename: "odesza-saymyname.mp3")
+
 
 		t4 = Track.create!({
 			title: "Crave You", 
@@ -62,6 +63,8 @@ Track.destroy_all
 			artist: "Nero", 
 			user_id: u4.id 
 		})
+		t6.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/excision-throwinelbows.mp3"), filename: "excision-throwinelbows.mp3" )
+	
 
 		t7 = Track.create!({
 			title: "We Rise", 
@@ -76,12 +79,16 @@ Track.destroy_all
 			artist: "Ghastly", 
 			user_id: u3.id 
 		})
+		t8.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/excision-throwinelbows.mp3"), filename: "excision-throwinelbows.mp3" )
+
 
 		t9 = Track.create!({
 			title: "Song", 
 			artist: "Borgore", 
 			user_id: u4.id 
 		})
+		t19.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/excision-throwinelbows.mp3"), filename: "excision-throwinelbows.mp3" )
+
 		
 		t10 = Track.create!({
 			title: "DNA", 
@@ -95,30 +102,35 @@ Track.destroy_all
 			artist: "RL Grime", 
 			user_id: u4.id 
 		})
-
+		t11.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/adventureclub-craveyou.mp3"), filename: "adventureclub-craveyou.mp3")
+		
 		t12 = Track.create!({
 			title: "Song", 
 			artist: "Louis Futon", 
 			user_id: u3.id 
 		})
+		t12.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/adventureclub-craveyou.mp3"), filename: "adventureclub-craveyou.mp3")
 
 		t13 = Track.create!({
 			title: "Song", 
 			artist: "Cashmere Cat", 
 			user_id: u4.id 
 		})
+		t13.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/adventureclub-craveyou.mp3"), filename: "adventureclub-craveyou.mp3")
 
 		t14 = Track.create!({
 			title: "Song", 
 			artist: "Hotel Garuda", 
 			user_id: u4.id 
 		})
+		t15.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/adventureclub-craveyou.mp3"), filename: "adventureclub-craveyou.mp3")
 
 		t15 = Track.create!({
 			title: "Song", 
 			artist: "Autograph", 
 			user_id: u2.id 
 		})
+		t4.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/adventureclub-craveyou.mp3"), filename: "adventureclub-craveyou.mp3")
 
 		t16 = Track.create!({
 			title: "You're On", 
@@ -134,6 +146,7 @@ Track.destroy_all
 			user_id: u4.id 
 		})
 		t17.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/kendrick-humble.mp3"), filename: "humble.mp3" )
+		t17.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+9.08.36+PM.png"), filename: "skrillex.png") 
 
 		t18 = Track.create!({
 			title: "Bangarang", 
@@ -149,6 +162,8 @@ Track.destroy_all
 			user_id: u3.id 
 		})
 		t19.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/deadmau5-strobe.mp3"), filename: "deadmau5-strobe.mp3" )
+		t19.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+9.32.12+PM.png"), filename: "joyryde.png" ) 
+
 
 		t20 = Track.create!({
 			title: "Busted", 
@@ -156,6 +171,8 @@ Track.destroy_all
 			user_id: u2.id 
 		})
 		t20.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/herobust-dram.mp3"), filename: "herobust-dram.mp3" )
+		t20.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+9.32.12+PM.png"), filename: "joyryde.png" ) 
+
 
 		t21 = Track.create!({
 			title: "You Were Right", 
@@ -179,3 +196,4 @@ Track.destroy_all
 			user_id: u2.id 
 		})
 		t23.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/flux-golddust.mp3"), filename: "flux-golddust.mp3" )
+		t23.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+9.32.12+PM.png"), filename: "joyryde.png" ) 
