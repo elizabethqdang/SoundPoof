@@ -12,6 +12,7 @@ const mapStateToProps = state => ({
 	currentUser: state.session.id || {},
 	users: Object.values(state.entities.users) || {},
 	errors: state.errors.tracks || [],
+	
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -63,7 +63,7 @@ class SessionForm extends React.Component {
 						</div>
 						<p className="session-header">Join now</p>
 						<br />
-						debugger
+						
 						<div onClick={this.handleDemo} className="session-demo">
 							<button className="session-submit">Continue as Demo User</button>
 						</div>

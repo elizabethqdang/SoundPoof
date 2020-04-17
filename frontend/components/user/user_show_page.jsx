@@ -61,7 +61,7 @@ class UserShowPage extends React.Component {
 		let name = this.props.user ? (
 			<p className="username">{this.props.user.username}</p>
 		) : null;
-		debugger;
+		
 		if (this.props.songs.length < 1 && this.props.currentUserId) {
 			songs = (
 				<div className="noSongs-container">
