@@ -11,7 +11,6 @@ const mapStateToProps = (state, { match }, ownProps) => {
   return {
 		trackId,
 		// track,
-		// track: state.entities.tracks[ownProps.match.params.trackId],
 		// comments
 	};
 };

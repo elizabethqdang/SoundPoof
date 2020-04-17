@@ -18,13 +18,13 @@ User.destroy_all
 
 Track.destroy_all
 
-		t1 = Track.create!({
+		t1 = Track.create!(
 			title: "Blase", 
 			artist: "Ty Dolla-Louis The Child", 
 			user_id: u1.id
 			# audio_url: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Ty+Dolla+%24ign+-+Blasé+(Louis+The+Child+Remix).mp3",
 			# artwork_url: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+8.26.54+PM.png"
-		})
+		)
 		t1.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/louisthechild-blase.mp3"), filename: "louisthechild-blase.mp3")
 		t1.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+8.26.54+PM.png"), filename: "blase.png")
 

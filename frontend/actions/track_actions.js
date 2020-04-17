@@ -6,7 +6,7 @@ export const REQUEST_TRACK = "REQUEST_TRACK";
 export const REMOVE_TRACK = "REMOVE_TRACK";
 export const RECEIVE_TRACK_ERRORS = "RECEIVE_TRACK_ERRORS";
 export const RECEIVE_CURRENT_TRACK = "RECEIVE_CURRENT_TRACK";
-
+export const RECEIVE_SINGLE_TRACK = "RECEIVE_SINGLE_TRACK";
 
 // Action creators
 export const receiveAllTracks = tracks => ({
@@ -18,11 +18,6 @@ export const receiveTrack = track => ({
   type: RECEIVE_TRACK,
 	track
 });
-
-export const requestTrack = track => ({
-	type: REQUEST_TRACK,
-	track
-})
 
 export const removeTrack = trackId => ({
   type: REMOVE_TRACK,
@@ -39,19 +34,23 @@ export const receiveCurrentTrack = payload => ({
 	payload
 });
 
-
+export const receiveSingleTrack = payload => ({
+	type: RECEIVE_SINGLE_TRACK,
+	user: payload.track.user_id,
+	track: payload.track
+})
 
 // Thunk actions
 export const fetchAllTracks = () => dispatch => (
 	TrackAPIUtil.fetchAllTracks()
 		.then(tracks => dispatch(receiveAllTracks(tracks)))
-	// .catch(err => console.log(err))
   );
 
-export const fetchTrack = trackId => dispatch => (
-	TrackAPIUtil.fetchTrack(trackId)
-		.then(payload => dispatch(receiveCurrentTrack(payload)))
-	// .catch(err => console.log(err))
+export const fetchTrack = id => dispatch => (
+	TrackAPIUtil.fetchTrack(id)
+		.then(
+			track => dispatch(receiveSingleTrack(track))),
+    	errors => dispatch(receiveTrackErrors(errors.responseJSON))
   );
 
 export const createTrack = track => dispatch =>

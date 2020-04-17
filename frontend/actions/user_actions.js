@@ -5,7 +5,8 @@ export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
 export const RECEIVE_USER_ERRORS = "RECEIVE_USER_ERRORS";
 
 const receiveUser = payload => ({
-  type: RECEIVE_USER,
+	type: RECEIVE_USER,
+	// payload
   user: payload.user,
   tracks: payload.tracks || {}
 });
@@ -20,9 +21,9 @@ const receiveAllUsers = users => ({
   users
 });
 
-export const fetchUser = userId => dispatch =>
-  UserAPIUtil.fetchUser(userId).then(
-    user => dispatch(receiveUser(user)),
+export const fetchUser = id => dispatch =>
+  UserAPIUtil.fetchUser(id).then(
+    payload => dispatch(receiveUser(payload)),
     errors => dispatch(receiveUserErrors(errors.responseJSON))
   );
 

@@ -11,16 +11,15 @@ import UserShowPage from "../user/user_show_page";
 import { fetchUser, updateUser } from "../../actions/user_actions";
 
 const msp = (state, ownProps) => {
-	// debugger;
 	return {
 		user: state.entities.users[ownProps.match.params.userId],
 		currentUserId: state.session.id,
 		tracks:
 			Object.values(state.entities.tracks).length >= 1
-				? Object.values(state.entities.tracks).filter(song => {
-						return track.uploaderId === parseInt(ownProps.match.params.userId);
+				? Object.values(state.entities.tracks).filter(track => {
+						return track.user_id === parseInt(ownProps.match.params.userId);
 				  })
-				: Object.values(state.entities.songs),
+				: Object.values(state.entities.tracks),
 		// playing: state.ui.currentSong.playing,
 		// currentSongId: state.ui.currentSong.id
 	};
