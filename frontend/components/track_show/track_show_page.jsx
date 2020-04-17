@@ -8,31 +8,43 @@ class TrackShowPage extends React.Component {
 		super(props);
 		this.state = {
 			user: '',
-			title: '',
-			artist: '',
-
+			user_id: '',
+			artist: ''
 		};
 	}
 	
 	componentWillMount() {
-		let track = this.props.fetchTrack(this.props.trackId);
-		this.props.fetchUser(track['user_id']);
+		let trackId = this.props.match.params.trackId;
+		let track = this.props.tracks[trackId];
+		let userId = track.user_id;
+
+		this.props.fetchUser(userId);
+		this.props.fetchAllUsers().then(() => this.props.fetchTrack(trackId));
 	}
 
-	componentWillReceiveProps(newState) {
-		this.setState({ currentTrack: newState.track })
+	componentWillReceiveProps(newProps) {
+		if (this.props.match.params.trackId !== newProps.match.params.trackId) {
+			this.props.fetchTrack(newProps.match.params.trackId);
+		};
+			// this.setState({
+			// 	currentTrack: newProps.trackId
+			// })
+	}
+
+	componentDidUpdate(prevProps) {
+			if (prevProps.match.params.trackId !== this.props.match.params.trackId) {
+					this.props.fetchTrack(this.props.match.params.trackId);
+			}
 	}
 
 	render() {
-		// let track = this.props.track;
-		const { trackId, errors, id, currentTrack, users } = this.props;
-		let track = currentTrack['track'];
-		let user = currentTrack['user'];
-		console.log( "track-show-page" );
-		console.log("trackId", trackId, "errors", errors, "id", id, "user", user);
-		console.log("currentTrack", currentTrack);
+		const { currentTrack, trackId, tracks, users } = this.props;
+		let track = this.props.tracks[trackId];
+		let userId = [track.user_id];
+		let user = this.props.users[this.props.userId];
 
-		
+		console.log( "track-show-page" );
+		console.log("trackId", trackId, "errors", tracks, "track", track, "users", users, "user", user, "currentTrack", currentTrack, userId);
 
 		// const comments = this.props.track ? (
 		// 	<CommentIndex

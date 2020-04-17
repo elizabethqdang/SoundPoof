@@ -6,9 +6,9 @@ export const RECEIVE_USER_ERRORS = "RECEIVE_USER_ERRORS";
 
 const receiveUser = payload => ({
 	type: RECEIVE_USER,
-	// payload
-  user: payload.user,
-  tracks: payload.tracks || {}
+	payload
+  // user: payload.user,
+  // tracks: payload.tracks || {}
 });
 
 const receiveUserErrors = errors => ({

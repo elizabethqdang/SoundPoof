@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 	tracks: Object.values(state.entities.tracks) || {},
 	trackplayer: state.trackplayer || {},
 	currentUser: state.session.id || {},
-	users: state.entities.users || {},
+	users: Object.values(state.entities.users) || {},
 });
 
 const mapDispatchToProps = dispatch => ({

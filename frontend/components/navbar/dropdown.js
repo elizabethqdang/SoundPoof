@@ -16,39 +16,44 @@ class Dropdown extends React.Component {
 		};
 	}
 
-	// componentWillUnmount() { }
+	logout(e) {
+		e.preventDefault();
+		this.props.logout().then(
+			this.props.history.push("/")
+		);
+	}
 
-	showMenu(event) {
-		event.preventDefault();
+	showMenu(e) {
+		e.preventDefault();
 		if (this.state.showMenu === false ) {
 			this.setState(
 				{ showMenu: true },
 				() => { 
-					document.addEventListener("click", event => this.closeMenu(event)) 
+					document.addEventListener("click", e => this.closeMenu(e)) 
 				}
 			);
 		} else if (this.state.showMenu === true) {
 			this.setState(
 				{ showMenu: false },
 				() => {
-					document.addEventListener("click", event => this.closeMenu(event));
+					document.addEventListener("click", e => this.closeMenu(e));
 				},
 			);
 		}
 	}
 
-	closeMenu(event) {
-		event.preventDefault();
-		if (this.dropdownElement && !this.dropdownElement.contains(event.target)) {
+	closeMenu(e) {
+		e.preventDefault();
+		if (this.dropdownElement && !this.dropdownElement.contains(e.target)) {
 			if (this.state.showMenu === false) {
 				this.setState(
 					{ showMenu: false }, 
-					() => {document.removeEventListener("click", event => this.closeMenu(event));}
+					() => {document.removeEventListener("click", e => this.closeMenu(e));}
 				);
 			} else {
 				this.setState(
 					{ showMenu: true },
-					() => { document.removeEventListener("click", event => this.closeMenu(event)); }
+					() => { document.removeEventListener("click", e => this.closeMenu(e)); }
 				);
 			}
 		}
@@ -65,7 +70,7 @@ class Dropdown extends React.Component {
 							Profile
 					</Link>
 					</button>
-					<button onClick={e => logout()} className="dropdown-button">
+					<button onClick={this.logout} className="dropdown-button">
 						Logout
 				</button>
 				</div>
