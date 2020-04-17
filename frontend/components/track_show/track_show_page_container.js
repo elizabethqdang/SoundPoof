@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
-import { receiveCurrentTrack, fetchTrack, fetchAllTracks } from "../../actions/track_actions";
+import { receiveCurrentTrack, fetchTrack, fetchAllTracks, deleteTrack, updateTrack } from "../../actions/track_actions";
 import { fetchAllUsers, fetchUser } from '../../actions/user_actions';
-// import { receiveCurrentTrack } from "../../actions/audio_actions"
-import TrackShowPage from "./track_show_page";
+import TrackShowPage from './track_show_page';
+import { setCurrentTrack, setPlayPause } from '../../actions/track_player_actions';
+// import { toggleLike } from '../../actions/like_actions';
 // import {
 // 	playSong,
 // 	pauseSong,
@@ -40,11 +41,16 @@ const mapDispatchToProps = dispatch => ({
 	fetchAllTracks: () => dispatch(fetchAllTracks()),
 	fetchAllUsers: () => dispatch(fetchAllUsers()),
 	fetchUser: id => dispatch(fetchUser(id)),
-	// playSong: () => dispatch(playSong()),
-	// pauseSong: () => dispatch(pauseSong()),
-	// updateCurrentSongTime: time => dispatch(updateCurrentSongTime(time)),
-	// resetCurrentSong: () => dispatch(resetCurrentSong()),
-	// receiveCurrentTrack: track => dispatch(receiveCurrentTrack(track))
+	playSong: () => dispatch(playSong()),
+	pauseSong: () => dispatch(pauseSong()),
+	updateCurrentSongTime: time => dispatch(updateCurrentSongTime(time)),
+	resetCurrentSong: () => dispatch(resetCurrentSong()),
+	receiveCurrentTrack: track => dispatch(receiveCurrentTrack(track)),
+	setCurrentTrack: (track) => dispatch(setCurrentTrack(track)),
+	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),
+	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),
+	updateTrack: (track, id) => dispatch(updateTrack(track, id)),
+	toggleLike: (trackId) => dispatch(toggleLike(trackId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackShowPage);
