@@ -10,12 +10,12 @@ amazon_dev:
  service: S3
  access_key_id: <%= ENV['access_key_id'] %>
  secret_access_key: <%= ENV['secret_access_key'] %>
- region: us-west-2
- bucket: soundpoof
+ region: "us-west-2"
+ bucket: "soundpoof"
 
-amazon_prod:
+amazon_pro:
  service: S3
  access_key_id: <%= ENV['access_key_id'] %>
  secret_access_key: <%= ENV['secret_access_key'] %>
- region: us-west-2
- bucket: soundpoof-pro
+ region: "us-west-2"
+ bucket: "soundpoof-pro"
