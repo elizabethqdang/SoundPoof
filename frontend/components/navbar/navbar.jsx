@@ -123,7 +123,7 @@ class Navbar extends React.Component {
 				</Link>
 			</div>
 			<div className="nav-link">
-				{currentUser.email}
+				{/* {currentUser.email} */}
 				<Dropdown
 					currentUser={currentUser}
 					logout={logout}

@@ -77,12 +77,21 @@ form.navbar-search  {
   flex: 2 1 0;
 }
 div.navbar input.navbar-search-input {
-font-size: 14px;
-line-height: 20px;
-height: 28px;
-flex: 2 1 0;
+	font-size: 14px;
+	line-height: 20px;
+	height: 28px;
+	flex: 2 1 0;
 }
 div.navbar button.navbar-search-button {
   visibility: hidden;
 }
 
+.user-dropdown-list {
+	display: inline-flex;
+	flex-flow: row nowrap;
+
+	button {
+		display: block;
+		width: 100%;
+	}
+}

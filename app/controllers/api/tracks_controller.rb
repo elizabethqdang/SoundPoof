@@ -27,7 +27,6 @@ class Api::TracksController < ApplicationController
 	def show
     @track = Track.find(params[:id])
 		render "api/tracks/show"
-		# render :show
 	end
 	
   def delete

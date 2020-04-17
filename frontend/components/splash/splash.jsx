@@ -6,8 +6,19 @@ class Splash extends React.Component {
 		super(props);
 	}
 	
+	componentDidMount() {
+		this.props.fetchAllTracks();
+		this.props.fetchAllUsers();
+	}
+
   render() {
-    const {openModal} = this.props;
+		const {openModal} = this.props;
+		const {tracks, users, currentUser} = this.props;
+		console.log("splash");
+		console.log("tracks", tracks);
+		console.log("users", users);
+		console.log("currentUser", currentUser);
+
     return (
       <div id="splash-page">
         <div id="splash-header">

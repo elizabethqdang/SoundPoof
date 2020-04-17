@@ -13,20 +13,24 @@ class TrackIndex extends React.Component {
 
 	componentWillMount() {
 		this.props.fetchAllTracks();
+		this.props.fetchAllUsers();
 	}
 
 	componentWillReceiveProps(newState) {
-		this.setState({ tracks: newState.tracks });
+    this.setState({ tracks: newState.tracks }); 
 	}
-
+	
 	render() {
-		const { tracks, currentUser, users } = this.props;
-		console.log(tracks, currentUser, users);
+		const { tracks, currentUser, users, track } = this.props;
+		console.log("track-index");
+		console.log("track-index", "tracks", tracks, "track", track, "currentUser", currentUser, "users", users);
+		
 		return (
 			<div className="discover-container">
 				<div className="discover">
 					<NavbarContainer />
 				</div>
+				
 				<div className="discover weekly">
 					<div className="discover heading">SoundPoof Weekly</div>
 					<div className="discover content">
@@ -160,10 +164,11 @@ class TrackIndex extends React.Component {
 								</div>
 							</li>
 					</div>
+
 				</div>
 			</div>
 		);
 	}
 } 
 
-export default withRouter(TrackIndex);
+export default TrackIndex;

@@ -1,19 +1,19 @@
 export const fetchAllTracks = () =>
   $.ajax({
-    method: "GET",
-    url: "/api/tracks"
+    method: 'GET',
+    url: '/api/tracks'
   });
 
 export const fetchTrack = trackId =>
   $.ajax({
-    method: "GET",
-    url: `/api/tracks/${trackId}`
+    method: 'GET',
+		url: `/api/tracks/${trackId}`
   });
 
 export const createTrack = track =>
   $.ajax({
-    method: "POST",
-    url: "/api/tracks",
+    method: 'POST',
+    url: '/api/tracks',
     data: track,
     contentType: false,
 		processData: false,
@@ -21,13 +21,13 @@ export const createTrack = track =>
 
 export const updateTrack = track =>
   $.ajax({
-    method: "PATCH",
+    method: 'PATCH',
     url: `/api/tracks/${track.id}`,
     data: track 
   });
 
 export const deleteTrack = trackId =>
   $.ajax({
-    method: "DELETE",
+    method: 'DELETE',
     url: `/api/tracks/${trackId}`
   });

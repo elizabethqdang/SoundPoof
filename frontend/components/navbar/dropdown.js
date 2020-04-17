@@ -81,10 +81,9 @@ class Dropdown extends React.Component {
 							this.dropdownElement = el;
 						}}
 					>
-						{/* <span className="profile-pict"> */}
-							{/* <img src="" id="profile-pict" /> */}
-						{/* </span> */}
 					</div>
+					<div>{currentUser.email}</div>
+					<img className="profile-pict" />
 				</button>
 
 				{menu}
