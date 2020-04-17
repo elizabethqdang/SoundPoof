@@ -91,7 +91,7 @@ class Navbar extends React.Component {
 				</Link>
 			</div>
 			<div>
-				<Link to={"/discover"} className="nav-link">
+				<Link to={"/"} className="nav-link">
 					Home
 				</Link>
 			</div>
@@ -100,11 +100,11 @@ class Navbar extends React.Component {
 					Stream
 							</Link>
 			</div>
-			<div>
+			{/* <div>
 				<Link to={"/library"} className="nav-link">
 					Library
 				</Link>
-			</div>
+			</div> */}
 			</Fragment>
 		)
 	}
@@ -112,11 +112,11 @@ class Navbar extends React.Component {
 	navRight(currentUser, logout) {
 		return (
 			<Fragment>
-			<div>
+			{/* <div>
 				<Link to={"/"} className="nav-link">
 					Upgrade
 				</Link>
-			</div>
+			</div> */}
 			<div>
 				<Link to={"/upload"} className="nav-link">
 					Upload
