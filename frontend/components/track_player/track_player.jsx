@@ -33,7 +33,7 @@ class TrackPlayer extends React.Component{
     if (prevProps.trackId == -1 || this.props.trackId == -1) return;
     
     if (this.props.trackId !== prevProps.trackId) { //new track is being played, look at waveseek 
-      let progress = this.props.trackplayer.waveSeek; 
+      // let progress = this.props.trackplayer.waveSeek; 
       progress = progress ? progress : 0; 
       this.setState({startT: progress});
       this.props.player.seekTo(progress * this.state.duration);
@@ -131,7 +131,6 @@ class TrackPlayer extends React.Component{
     e.preventDefault();
     this.props.toggleLike(trackId); 
   }
-
  
 
   render() {

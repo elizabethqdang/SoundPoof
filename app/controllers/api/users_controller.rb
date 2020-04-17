@@ -23,12 +23,10 @@ class Api::UsersController < ApplicationController
   # end
   
   def show
-    @user = User.find_by(id: params[:id])
-    if @user
-      render "api/users/show"
-    else
+    @user = User.find(params[:id])
+    render "api/users/show"
+	else
       render json: @user.errors.full_messages, status: 404
-    end
   end
   
   def index

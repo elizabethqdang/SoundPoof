@@ -5,9 +5,9 @@ const defaultState = {
 	currentTrack: null,
 	playing: false,
 	player: null,
-	trackId: 0,
+	trackId: -1,
 	playerSeek: 0,
-	waveSeek: 0,
+	// waveSeek: 0,
 	progressTrackId: {},
 
 };
@@ -26,7 +26,7 @@ const trackPlayerReducer = (oldState = defaultState, action) =>
 				return merge({}, oldState, {
 					playing: true, //action.boolean,
 					trackId: action.trackId,
-					waveSeek: oldState.progressTrackId[action.trackId] || 0,
+					// waveSeek: oldState.progressTrackId[action.trackId] || 0,
 					playerSeek: oldState.progressTrackId[action.trackId] || 0,
 					progressTrackId: { [action.trackId]: action.progress } //setting leaving track progress out
 				});
@@ -41,7 +41,7 @@ const trackPlayerReducer = (oldState = defaultState, action) =>
 			return merge({}, oldState, {
 				playing: false,
 				progressTrackId: { [action.trackId]: 0 },
-				waveSeek: 0,
+				// waveSeek: 0,
 				playerSeek: 0,
 			});
 		case SET_PROGRESS:
@@ -54,15 +54,7 @@ const trackPlayerReducer = (oldState = defaultState, action) =>
 			return Object.assign({}, oldState, { playerSeek: action.progress });
 		case SET_TRACK_PLAYER:
 			return merge({}, oldState, { player: action.trackplayer });
-		case SEEK_WAVE_FORM:
-			if (action.trackId && (action.trackId !== oldState.trackId)) { // if new track is not current track
-				return merge({}, oldState, {
-					progressTrackId: { [action.trackId]: action.progress } //save progress of leaving track 
-				});
-			} else { //it is the same track 
-				// return Object.assign({}, oldState, { waveSeek: action.progress }); 
-				return merge({}, oldState, { progressTrackId: { [action.trackId]: action.progress }, waveSeek: action.progress });
-			}
+
 		default:
 			return oldState;
 	}
