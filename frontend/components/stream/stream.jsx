@@ -19,7 +19,7 @@ class Stream extends React.Component {
 	}
 
 	componentWillReceiveProps(newState) {
-    this.setState({ tracks: newState.tracks, users: newState.tracks }); 
+		this.setState({ tracks: newState.tracks, users: newState.users }); 
   }
 
 	render() {
@@ -36,7 +36,7 @@ class Stream extends React.Component {
 					<div className="stream heading">Hear the latest posts</div>
 					<div className="stream content">
 						<ul className="stream item-container">
-							{tracks.map(track => <TrackIndexItem key={track._id} track={track} user={track.user_id || null} />)}
+							{tracks.map(track => <TrackIndexItem key={track._id} track={track} user={this.props.user || []} />)}
 						</ul>
 					</div>
 				</div>

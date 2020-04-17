@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-const TrackIndexItem = ({ track }) => (
+const TrackIndexItem = ({ track, user_id }) => (
 		<li className="track-item-container">
 				<div className="track item1 header">
 					<Link to={`/tracks/${track.id}`}></Link>

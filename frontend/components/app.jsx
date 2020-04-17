@@ -24,7 +24,7 @@ const App = () => (
 
 		<Switch>
 			{/* <Route exact path="/discover" component={TrackIndexContainer} /> */}
-			<Route exact path="/discover" component={StreamContainer} />
+			<Route exact path="/stream" component={StreamContainer} />
 			<ProtectedRoute path="/upload" component={UploadPageContainer} />
 			<Route exact path="/tracks/:trackId" component={TrackShowPageContainer} />
 			<Route exact path="/users/:userId" component={UserShowPageContainer} />

@@ -16,15 +16,18 @@ const mapStateToProps = (state, ownProps) => {
 	// let trackId = parseInt(match.params.trackId);
 	// let track = state.entities.tracks[ownProps.match.params.trackId];
 	return {
-		// tracks: Object.values(state.entities.tracks),
+		tracks: Object.values(state.entities.tracks),
 		trackId: ownProps.match.params.trackId,
+		track: state.entities.tracks[ownProps.match.params.trackId],
 		trackplayer: state.trackplayer || {},
 		// trackId: parseInt(match.params.trackId),
-		currentTrack: state.currentTrack,
+		currentTrack: state.currentTrack || {},
 		errors: state.errors.tracks || [],
-		// currentUser: state.entities.users[state.session.id],
 		currentUser: state.session.id || {},
-		users: state.entities.users || {},
+		// users: state.entities.users,
+		// [ownProps.match.params.user_id],
+		users: Object.values(state.entities.users) || {},
+		user_id: ownProps.match.params.user_id,
 		// currentTrack: state.entities.tracks[state.ui.currentTrack.id],
 		// playing: state.ui.currentSong.playing,
 		// comments: state.entities.comments

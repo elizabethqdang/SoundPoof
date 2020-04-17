@@ -45,14 +45,13 @@ class SessionForm extends React.Component {
     const user = { email: "Demo-User", password: "password" };
 		this.props.demoSubmit(user)
 			.then(this.props.closeModal, 
-				this.props.history.push("/discover"),
+				this.props.history.push("/stream"),
 				console.log(user));
     // this.props.processForm(user).then(() => this.props.history.push("/"));
   }
 
   render() {
     
-
     return (
       <div className="loginFormContainer">
         <div className="">

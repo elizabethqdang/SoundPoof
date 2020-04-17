@@ -5,7 +5,7 @@ const defaultState = {
 	currentTrack: null,
 	playing: false,
 	player: null,
-	trackId: -1,
+	trackId: 0,
 	playerSeek: 0,
 	waveSeek: 0,
 	progressTrackId: {},

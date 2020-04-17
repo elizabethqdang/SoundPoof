@@ -62,7 +62,7 @@ class UploadTrackDetails extends React.Component {
 			formData.append("track[audio]", this.state.audioFile);
 			this.props.createTrack(formData)
 				.then(res =>
-					this.props.history.push(`/tracks/${track.id}`),
+					this.props.history.push(`/stream`),
 				(response) => {
 					console.log(response),
 					console.log(formData)
