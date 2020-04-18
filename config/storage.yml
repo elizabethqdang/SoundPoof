@@ -10,12 +10,12 @@ amazon_dev:
  service: S3
  access_key_id: <%= Rails.application.credentials.aws[:access_key_id] %>
  secret_access_key: <%= Rails.application.credentials.aws[:secret_access_key] %>
- region: "us-west-2"
- bucket: "soundpoof"
+ region: <%= Rails.application.credentials.aws[:region] %>
+ bucket: <%= Rails.application.credentials.aws[:bucket] %>
 
 amazon_pro:
  service: S3
  access_key_id: <%= Rails.application.credentials.aws[:access_key_id] %>
  secret_access_key: <%= Rails.application.credentials.aws[:secret_access_key] %>
- region: "us-west-2"
- bucket: "soundpoof-pro"
+ region: us-west-2
+ bucket: soundpoof-pro
