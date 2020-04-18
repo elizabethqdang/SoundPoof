@@ -15,7 +15,7 @@ class TrackShowPage extends React.Component {
 		};
 	}
 	
-	componentWillMount() {
+	componentDidMount() {
 		let trackId = this.props.match.params.trackId;
 		let userId = this.props.match.params.user_id;
 		let track = this.props.tracks[trackId];
@@ -80,7 +80,7 @@ class TrackShowPage extends React.Component {
 			return (
 				<div className='button-bar'>
 					<div className={likeButton} onClick={() => this.props.toggleLike(track.id)}>like</div>
-					<Link to={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link>
+					<Link to={`/tracks/${track.id}/edit`} className="controller-btn ˇedit-btn">Edit</Link>
 					<div className='controller-btn delete-btn' onClick={(e) => this.deleteSong(track.id, e)}>Delete</div>
 				</div>
 			);
@@ -102,16 +102,6 @@ class TrackShowPage extends React.Component {
 
 	render() {
 		const { currentTrack, trackId, tracks, users, trackplayer, comments, loading, currentUser, deleteTrack } = this.props;
-		let track = this.props.tracks[trackId];
-		if (track) {
-			let user_id = [track.user_id];
-		} else {
-			let user_id = this.props.users[1];
-		}
-
-		// console.log( "track-show-page" );
-		// console.log("trackId", trackId, "errors", tracks, "track", track, "users", users, "user", user, "currentTrack", currentTrack, userId);
-
 		if (this.state.firstLoad || loading) return (<div>loading</div>);
 		if (track) {
 			let user = this.props.users[track.user_id] 
@@ -119,6 +109,9 @@ class TrackShowPage extends React.Component {
 		let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
 			'ts-play playing' : 'ts-play';
 		let buttonBar = this.userTrackButtons();
+
+		// console.log( "track-show-page" );
+		// console.log("trackId", trackId, "errors", tracks, "track", tra†ck, "users", users, "user", user, "currentTrack", currentTrack, userId);
 
 		return (
 			<div className='track-show-page'>

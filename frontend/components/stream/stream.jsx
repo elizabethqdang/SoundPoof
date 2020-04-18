@@ -1,8 +1,9 @@
 import React from "react";
-import { withRouter } from 'react-router-dom';
+import { NavLink, Link, withRouter } from 'react-router-dom';
 import TrackIndexItem from '../track_index/track_index_item';
 import NavbarContainer from '../navbar/navbar_container';
 import track_show_page from "../track_show/track_show_page";
+
 
 class Stream extends React.Component {
 	constructor(props) {
@@ -27,19 +28,33 @@ class Stream extends React.Component {
 
 		console.log("stream", "tracks", tracks, "currentUser", currentUser, "users", users, "errors", errors);
 
+		// let stream = (tracks.map(track => <TrackIndexItem key={track._id} track={track} user={this.props.user || []} />)
+// )
 		return (
 			<div className="stream-container">
-				<div className="stream">
-					<NavbarContainer />
-				</div>
-				<div className="stream">
-					<div className="stream heading">Hear the latest posts</div>
-					<div className="stream content">
-						<ul className="stream item-container">
-							{tracks.map(track => <TrackIndexItem key={track._id} track={track} user={this.props.user || []} />)}
+				<div className="stream-container">
+
+				<NavbarContainer />
+			</div>
+			<main className='loggedhome-body'>
+				<div className='main-index'>
+					<nav className='content-nav'>
+						<ul>
+							<li>
+								<NavLink to='/stream'>Stream</NavLink>
+							</li>
+							{/* <li><Link to='/stream'>Charts</Link></li> */}
+							<li><Link to='/stream'>Discover</Link></li>
 						</ul>
-					</div>
+					</nav>
+					<div className='nav-border' />
+					<p>Hear the latest posts from the people you're following</p>
+					<ul className='loggedhome-songs'>
+							{tracks.map(track => <TrackIndexItem key={track._id} track={track} user={this.props.user || this.props.users[1]} />)}
+					</ul>
 				</div>
+				{/* <SideBarContainer /> */}
+			</main>
 			</div>
 		);
 	}
