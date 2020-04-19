@@ -28,8 +28,8 @@ class Stream extends React.Component {
 
 		console.log("stream", "tracks", tracks, "currentUser", currentUser, "users", users, "errors", errors);
 
-		// let stream = (tracks.map(track => <TrackIndexItem key={track._id} track={track} user={this.props.user || []} />)
-// )
+		let stream = (tracks.map((track, idx) => <TrackIndexItem key={idx} track={track} user={this.props.user || []} />));
+
 		return (
 			<div className="stream-container">
 				<div className="stream-container">
@@ -43,14 +43,15 @@ class Stream extends React.Component {
 							<li>
 								<NavLink to='/stream'>Stream</NavLink>
 							</li>
-							{/* <li><Link to='/stream'>Charts</Link></li> */}
+							<li><Link to='/stream'>Charts</Link></li>
 							<li><Link to='/stream'>Discover</Link></li>
 						</ul>
 					</nav>
 					<div className='nav-border' />
 					<p>Hear the latest posts from the people you're following</p>
-					<ul className='loggedhome-songs'>
-							{tracks.map(track => <TrackIndexItem key={track._id} track={track} user={this.props.user || this.props.users[1]} />)}
+					<ul className='loggedhome-tracks'>
+							{/* {tracks.map(track => <TrackIndexItem key={track._id} track={track} user={this.props.user || this.props.users[1]} />)} */}
+							{stream}
 					</ul>
 				</div>
 				{/* <SideBarContainer /> */}

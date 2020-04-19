@@ -20,23 +20,23 @@ class TrackShowPage extends React.Component {
 		let userId = this.props.match.params.user_id;
 		let track = this.props.tracks[trackId];
 		if (track) {
-			let user = this.props.track.user_id;
+			let user = track.user_id;
 		} else {
-			let user = this.props.users[1];
+			let user = [];
 		};
 
 		this.props.fetchUser(this.props.user);
 		this.props.fetchAllUsers().then(() => this.props.fetchTrack(trackId));
 	}
 
-	componentWillReceiveProps(newProps) {
-		if (this.props.match.params.trackId !== newProps.match.params.trackId) {
-			this.props.fetchTrack(newProps.match.params.trackId);
-		};
+	// componentWillReceiveProps(newProps) {
+	// 	if (this.props.match.params.trackId !== newProps.match.params.trackId) {
+	// 		this.props.fetchTrack(newProps.match.params.trackId);
+	// 	};
 			// this.setState({
 			// 	currentTrack: newProps.trackId
 			// })
-	}
+	// }
 
 	componentDidUpdate(prevProps) {
 			if (prevProps.match.params.trackId !== this.props.match.params.trackId) {
@@ -101,17 +101,19 @@ class TrackShowPage extends React.Component {
 	}
 
 	render() {
-		const { currentTrack, trackId, tracks, users, trackplayer, comments, loading, currentUser, deleteTrack } = this.props;
+		const { currentTrack, trackId, tracks, users, trackplayer, comments, loading, currentUser, deleteTrack, track } = this.props;
 		if (this.state.firstLoad || loading) return (<div>loading</div>);
 		if (track) {
-			let user = this.props.users[track.user_id] 
-		} else return {};
+			let user = track.user_id;
+		} else {
+			let track = [];
+		};
 		let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
 			'ts-play playing' : 'ts-play';
 		let buttonBar = this.userTrackButtons();
 
-		// console.log( "track-show-page" );
-		// console.log("trackId", trackId, "errors", tracks, "track", tra†ck, "users", users, "user", user, "currentTrack", currentTrack, userId);
+		console.log( "track-show-page" );
+		// console.log("trackId", trackId, "errors", tracks, "track", track, "users", users, "currentTrack", currentTrack, track.userId);
 
 		return (
 			<div className='track-show-page'>

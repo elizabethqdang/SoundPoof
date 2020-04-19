@@ -1,34 +1,12 @@
-.stream-container {
+gl.stream-container {
 	width: 100%;
 	display: flex;
-	flex-flow: column nowrap;
-// 	align-items: center;
+	// flex-flow: column nowrap;
+// 	align-items: ceqnter;
 // 	justify-content: center;
 // 	margin: 0 0 2em;
 
-// 	.stream {
-// 		width: 80%;
-// 		display: block;
-// 		margin: 0;
-// 		padding: 0 2em;
-// 	}
-
 }
-
-// .artwork {
-// 	max-width: 160px;
-
-
-// 	> img {
-// 		width: 100%;
-// 	}
-// }
-
-
-
-//@extend
-
-
 
 div.loggedhome {
   position: relative;
@@ -336,12 +314,12 @@ div.homepage {
       }
     }
 
-    ul.homepage-songs {
+    ul.homepage-tracks {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
 
-      li.song-show {
+      li.track-show {
         max-width: 170px;
         min-width: 170px;
         margin: 10px;
@@ -359,7 +337,7 @@ div.homepage {
   }
 }
 
-li.song-show {
+li.track-show {
   span:hover {
     text-shadow: 0 0 0 black;
     cursor: pointer;
@@ -537,5 +515,192 @@ footer.author {
 
   span.author-name {
     color: black;
+  }
+}
+
+ul.track-info {
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  ul.track-play-info {
+    display: flex;
+
+    ul.track-play-name {
+      flex-grow: 1;
+
+      li {
+        line-height: 1.05;
+      }
+
+      span:hover {
+        cursor: pointer;
+      }
+    }
+
+    div.track-play-icon {
+      background: #f50;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin-right: 5px;
+    }
+
+    div.track-play-icon:hover {
+      background: darkorange;
+    }
+
+    img {
+      height: 40px;
+      width: 40px;
+    }
+
+    img:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+li.track-container {
+  display: flex;
+  height: 150px;
+  margin: 40px 20px 40px 30px;
+  font-weight: 300;
+
+  > img {
+    width: 150px;
+    margin-right: 10px;
+    background-size: cover;
+    border: 1px solid lightgray;
+  }
+
+  img:hover {
+    cursor: pointer;
+  }
+
+  Link {
+    color: gray;
+  }
+
+  Link.track-artist {
+    font-size: 14px;
+  }
+
+  link.track-title {
+    font-weight: 400;
+    color: rgb(50, 50, 50);
+    font-size: 18px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  span.track-genre {
+    height: 35%;
+    color: white;
+    font-size: 12px;
+    background: gray;
+    border-radius: 10px;
+    padding: 2px 9px 3px 9px;
+
+    &:hover {
+      cursor: auto;
+    }
+  }
+}
+
+li.track-detail {
+  display: flex;
+  justify-content: space-between;
+
+  ul {
+    display: flex;
+
+    li {
+      height: 17px;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      border: 1px solid lavender;
+      border-radius: 5px;
+      margin: 3px;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      div.comment-icon {
+        height: 100%;
+        width: 17px;
+        background-image: asset-url('comment.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-right: 3px;
+      }
+
+      span.track-options {
+        font-size: 13px;
+        color: black;
+        padding-bottom: 1px;
+      }
+
+      ul.track-options-dropdown {
+        display: none;
+        position: absolute;
+        padding: 0;
+      }
+
+      ul.active {
+        display: flex;
+        flex-direction: column;
+        width: 100px;
+        background: white;
+        border-radius: 3px;
+        border: 1px solid lavender;
+        top: 25px;
+        left: 10px;
+
+        a.track-options-item {
+          padding: 5px 10px;
+          border-radius: 0px 0 0 0;
+          font-size: 12px;
+          text-decoration: none;
+
+          &:hover {
+            border: none;
+            border-radius: 0px;
+            background: lavender;
+          }
+
+          li:hover {
+            border: none;
+          }
+        }
+      }
+    }
+  }
+
+  ul:last-child li {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    color: gray;
+    align-items: center;
+
+    &:hover {
+      cursor: default;
+    }
+
+    span {
+      font-size: 12px;
+    }
+
+    img {
+      margin-right: 0;
+    }
   }
 }
