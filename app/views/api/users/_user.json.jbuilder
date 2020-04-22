@@ -5,10 +5,10 @@ json.email user.email
 json.tracks do
 	user.tracks.each do |track|
     json.set! track.id do 
-				json.likes track.likes.each do |like|
-					json.id like.track_id
-					json.userlike_id like.userlike_id
-				end
+				# json.likes track.likes.each do |like|
+				# 	json.id like.track_id
+				# 	json.userlike_id like.userlike_id
+				# end
 		end
 	end
 end
