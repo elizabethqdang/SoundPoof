@@ -70,7 +70,7 @@ class Dropdown extends React.Component {
 							Profile
 					</Link>
 					</button>
-					<button onClick={this.logout} className="dropdown-button">
+					<button onClick={logout} className="dropdown-button">
 						Logout
 				</button>
 				</div>

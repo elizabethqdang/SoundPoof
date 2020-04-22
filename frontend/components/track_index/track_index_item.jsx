@@ -1,42 +1,151 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import TrackPlay from './track_play';
-import TrackDetail from '../track_show/track_detail';
+import { Link, Redirect, withRouter } from 'react-router-dom';
+import WaveFormContainer from '../track_player/waveform_container';
+// import CommentsContainer from '../comments/comments_container';
 
-const showTrack = () => (
-	track = track,
-	// user = track.user_id,
-	window.location.hash = `/tracks/${track.id}`
-);
+//will import track index item
+class TrackIndexItem extends React.Component {
+	constructor(props) {
+		super(props);
+		this.songButton = this.songButton.bind(this);
+		this.toggleLike = this.toggleLike.bind(this);
+		this.deleteSong = this.deleteSong.bind(this);
+		this.userTrackButtons = this.userTrackButtons.bind(this);
+		// this.showComments = this.showComments.bind(this);
+	}
 
-const showUser = () => (
-	track = this.props.track,
-	user = track.user_id,
-	window.location.hash = `/users/${track.user_id}`
-);
+	componentWillReceiveProps(nextProps) {
 
-const TrackIndexItem = ({ track, user }) => (
-		<li className="track-container">
-			<img onClick={showTrack} src={track.artwork_url}></img>
-			<ul className='track-info'>
-				{/* <TrackPlay track={track} showTrack={showTrack} /> */}
-				<ul className='track-play-info'>
-					<ul className='track-play-name'>
-						{/* <li><span className='track-artist' onClick={showUser}>{track.artist}</span></li>
-						<li><span className='track-title' onClick={showTrack}>{track.title}</span></li> */}
-						<li><Link to={`/users/${track.user_id}`}>{track.artist}</Link></li>
-						<li><Link to={`/tracks/${track.id}`}>{track.title}</Link></li>
-					</ul>
-					<span className='track-genre'>#{track.user_id}</span>
-				</ul>
+		//this is for the circumstance whree 
+		let { playing, trackId, player } = this.props.trackplayer;
+		let trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
+		let thisId = this.props.track.id;
 
-				<div className='waveform-box'>
-					{/* <div id={`waveform-${this.props.track.id}`}>
-					</div> */}
+		if (playing && (trackId == thisId) && (thisId !== nextProps.trackplayer.trackId)) {
+			let prog = trackProg ? trackProg : player.getCurrentTime() / player.getDuration();
+			this.props.setProg(thisId, prog);
+		} //if song is currently playing and it switches update the progress of left song
+
+	}
+
+	songButton(e) {
+		e.preventDefault();
+		let { track } = this.props;
+		let { currentTrack, playing, trackId } = this.props.trackplayer;
+		let trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
+		let tplayer = this.props.trackplayer.player;
+		if (trackId == -1) { // no song played previously 
+			this.props.setPlayPause(!playing, track.id, 0);
+		}
+		else if (track.id == trackId) { //if we are pausing the same song
+			let prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
+
+			this.props.setPlayPause(!playing, track.id, prog);
+		} else { // not same track 
+			let prog = trackProg ? trackProg : 0; // if previous pause ,pick that, if never played start at 0 
+
+			this.props.setPlayPause(!playing, track.id, prog);
+		}
+		// else if (track.id == trackId) { //if we are pausing the same song
+		//   let tplayer = this.props.trackplayer.player; 
+		//   let prog = this.props.trackplayer.progressTrackId[this.props.track.id]; 
+
+		//   this.props.setPlayPause(!playing, track.id, prog);
+		// } else { // new song 
+		//   let progress = this.props.trackplayer.progressTrackId[track.id] || 0;       
+		//   this.props.setPlayPause(!playing, track.id, progress);
+		// }//
+	}
+
+	deleteSong(trackId, e) {
+		e.preventDefault();
+		this.props.deleteTrack(trackId);
+	}
+
+	toggleLike(trackId, e) {
+		e.preventDefault();
+		this.props.toggleLike(trackId);
+	}
+
+	userTrackButtons() {
+		let track = this.props.track;
+		let likeButton = this.props.liked ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
+
+		if (this.props.currentUser == track.user_id) {
+			return (
+				<div className='button-bar'>
+					<div className={likeButton} onClick={(e) => this.toggleLike(track.id, e)}>like</div>
+					<Link to={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link>
+					<div className='controller-btn delete-btn' onClick={(e) => this.deleteSong(track.id, e)}>Delete</div>
 				</div>
-				<TrackDetail track={track} comments={track.comments} />
-				</ul>
-			</li>
+			);
+		} else {
+			return (
+				<div className='button-bar'>
+					<div className={likeButton} onClick={(e) => this.toggleLike(track.id, e)}>like</div>
+				</div>
+			);
+		}
+	}
+
+	// showComments() {
+	// 	if (this.props.trackplayer.trackId == this.props.track.id) {
+	// 		return (
+	// 			<CommentsContainer track={this.props.track} />
+	// 		);
+	// 	} else {
+	// 		return (
+	// 			<div></div>
+	// 		);
+	// 	}
+	// }
+
+	render() {
+		let { track, trackplayer } = this.props;
+		let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
+			'ti-play playing' : 'ti-play';
+		let buttonBar = this.userTrackButtons();
+		// let commentShow = this.showComments();
+
+		return (
+			<div className='track-item-container'>
+				<div className='track-uploader-info'>
+					<aside className="track-uploader-circle">
+						<img src={track.artist} />
+					</aside>
+					<a href={`/#/users/${track.user_id}`}><aside className="track-uploader-name">{track.user_id}</aside></a>
+				</div>
+
+				<div className='track-item'>
+					<div className='track-image-box'>
+						<a href={`/#/tracks/${track.id}`}><img src={track.artwork_url} /></a>
+					</div>
+
+					<section className='track-details'>
+						<div className='td-top'>
+							<div className={buttonPlaying} onClick={(e) => this.songButton(e)}>
+
+							</div>
+							<div className="ti-upload-det">
+								<a href={`/#/users/${track.user_id}`}><aside className="ti-description">{track.artist}</aside></a>
+								<a href={`/#/tracks/${track.id}`} className="ti-title">{track.title}</a>
+							</div>
+						</div>
+						<div className='sound-bar'>
+							<span></span>
+							{/* <WaveFormContainer track={track} height={60} color={'#000'} /> */}
+						</div>
+						<div className='ti-comment-bar'>
+							{/* {commentShow} */}
+						</div>
+						{buttonBar}
+					</section>
+
+				</div>
+
+			</div>
 		);
+	}
+}
 
 export default withRouter(TrackIndexItem);

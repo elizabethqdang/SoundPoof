@@ -1,7 +1,9 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import NavbarContainer from "../navbar/navbar_container";
-// import CommentIndex from "../comments/comment_index";
+import CommentIndexContainer from "../comments/comment_index_container";
+import CommentFormContainer from '../comments/comment_form_container';
+
 
 class TrackShowPage extends React.Component {
 	constructor(props) {
@@ -17,32 +19,48 @@ class TrackShowPage extends React.Component {
 	
 	componentDidMount() {
 		let trackId = this.props.match.params.trackId;
-		let userId = this.props.match.params.user_id;
+		let user_id = this.props.match.params.user_id;
 		let track = this.props.tracks[trackId];
 		if (track) {
 			let user = track.user_id;
 		} else {
 			let user = [];
 		};
-
-		this.props.fetchUser(this.props.user);
+		
+		this.props.fetchUser(this.props.user_id);
 		this.props.fetchAllUsers().then(() => this.props.fetchTrack(trackId));
+		// this.props.fetchTrack(this.props.match.params.trackId)
+		// 	.then(() => {
+		// 		this.setState({ firstLoad: false });
+		// 		this.props.fetchUser(this.props.track.user_id);
+		// 	}
+			// );
 	}
 
-	// componentWillReceiveProps(newProps) {
-	// 	if (this.props.match.params.trackId !== newProps.match.params.trackId) {
-	// 		this.props.fetchTrack(newProps.match.params.trackId);
-	// 	};
+	componentWillReceiveProps(newProps) {
+		if (this.props.match.params.id !== newProps.match.params.id) {
+			this.props.fetchTrack(newProps.match.params.id);
+		}
+
+		if (this.state.firstLoad || this.props.loading) return;
+		let { playing, trackId, player, progressTrackId } = this.props.trackplayer;
+		let trackProg = progressTrackId[this.props.track.id];
+		let thisId = this.props.track.id;
+
+		if (playing && (trackId == thisId) && (thisId !== newProps.trackplayer.trackId)) {
+			let prog = trackProg ? trackProg : player.getCurrentTime() / player.getDuration();
+			this.props.setProg(thisId, prog);
+		}
+	}
+
+	// componentDidUpdate(prevProps) {
+	// 		if (prevProps.match.params.trackId !== this.props.match.params.trackId) {
+	// 				this.props.fetchTrack(this.props.match.params.trackId);
+	// 		};
 			// this.setState({
 			// 	currentTrack: newProps.trackId
 			// })
 	// }
-
-	componentDidUpdate(prevProps) {
-			if (prevProps.match.params.trackId !== this.props.match.params.trackId) {
-					this.props.fetchTrack(this.props.match.params.trackId);
-			}
-	}
 
 	songButton(track, e)
 	{
@@ -76,7 +94,7 @@ class TrackShowPage extends React.Component {
 	{
 		let track = this.props.track;
 		let likeButton = this.props.liked ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
-		if (this.props.currentUser.id == track.user_id) {
+		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
 				<div className='button-bar'>
 					<div className={likeButton} onClick={() => this.props.toggleLike(track.id)}>like</div>
@@ -117,7 +135,7 @@ class TrackShowPage extends React.Component {
 
 		return (
 			<div className='track-show-page'>
-				<div className="">
+				<div className="splash-bar">
 					<NavbarContainer />
 				</div>
 				<div className='track-show-container'>
@@ -134,13 +152,13 @@ class TrackShowPage extends React.Component {
 						</div>
 					</div>
 					<div className='track-show-image-container'>
-						<img src={track.artworkUrl ? track.artworkUrl : ""} />
+						<img src={track.artwork_url ? track.artwork_url : ""} />
 					</div>
 				</div>
 				<div className='track-show-container-bottom'>
 					<div className='tscb-left'>
 						<div className='track-show-comment-bar'>
-							{/* <CommentsContainer track={track} /> */}
+							<CommentFormContainer track={track} />
 						</div>
 						{buttonBar}
 						<div className='ts-uploader-ci'>
@@ -164,7 +182,7 @@ class TrackShowPage extends React.Component {
 							<a href="https://github.com/eqdang" target="_blank"><img src="" /></a>
 						</div>
 						<div className="ad-container">
-							<a href="https://www.linkedin.com/in/elizabethqdang" target="_blank"><img src="h" /></a>
+							<a href="https://www.linkedin.com/in/elizabethqdang" target="_blank"><img src="" /></a>
 						</div>
 						<div className="extraspace"></div>
 					</div>

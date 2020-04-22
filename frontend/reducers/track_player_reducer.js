@@ -1,4 +1,5 @@
 import { RECEIVE_CURRENT_TRACK, PLAY_PAUSE_TRACK, END_CURRENT_TRACK, SEEK_TRACK, SET_TRACK_PLAYER, SEEK_WAVE_FORM, SEEK_PLAYER, SET_PROGRESS } from '../actions/track_player_actions';
+import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 import merge from 'lodash/merge';
 
 const defaultState = {
@@ -7,13 +8,12 @@ const defaultState = {
 	player: null,
 	trackId: -1,
 	playerSeek: 0,
-	// waveSeek: 0,
+	waveSeek: 0,
 	progressTrackId: {},
 
 };
 
-const trackPlayerReducer = (oldState = defaultState, action) =>
-{
+const trackplayerReducer = (oldState = defaultState, action) => {
 	Object.freeze(oldState);
 	let newState;
 	let change;
@@ -26,7 +26,7 @@ const trackPlayerReducer = (oldState = defaultState, action) =>
 				return merge({}, oldState, {
 					playing: true, //action.boolean,
 					trackId: action.trackId,
-					// waveSeek: oldState.progressTrackId[action.trackId] || 0,
+					waveSeek: oldState.progressTrackId[action.trackId] || 0,
 					playerSeek: oldState.progressTrackId[action.trackId] || 0,
 					progressTrackId: { [action.trackId]: action.progress } //setting leaving track progress out
 				});
@@ -41,23 +41,33 @@ const trackPlayerReducer = (oldState = defaultState, action) =>
 			return merge({}, oldState, {
 				playing: false,
 				progressTrackId: { [action.trackId]: 0 },
-				// waveSeek: 0,
+				waveSeek: 0,
 				playerSeek: 0,
 			});
 		case SET_PROGRESS:
 			return merge({}, oldState, {
 				progressTrackId: { [action.trackId]: action.progress }
 			});
+		case LOGOUT_CURRENT_USER:
+			return defaultState;
 		case SEEK_TRACK:
 			return merge({}, oldState, { seek: action.seconds });
 		case SEEK_PLAYER:
 			return Object.assign({}, oldState, { playerSeek: action.progress });
 		case SET_TRACK_PLAYER:
 			return merge({}, oldState, { player: action.trackplayer });
-
+		case SEEK_WAVE_FORM:
+			if (action.trackId && (action.trackId !== oldState.trackId)) { // if new track is not current track
+				return merge({}, oldState, {
+					progressTrackId: { [action.trackId]: action.progress } //save progress of leaving track 
+				});
+			} else { //it is the same track 
+				// return Object.assign({}, oldState, { waveSeek: action.progress }); 
+				return merge({}, oldState, { progressTrackId: { [action.trackId]: action.progress }, waveSeek: action.progress });
+			}
 		default:
 			return oldState;
 	}
 };
 
-export default trackPlayerReducer;
+export default trackplayerReducer;

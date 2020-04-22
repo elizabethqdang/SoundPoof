@@ -6,11 +6,11 @@ class UploadTrack extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			user_id: this.props.currentUser,
+			// user_id: this.props.user_id,
 			title: "",
 			audioFile: null,
-			errors: [],
-			dragged: false
+			dragged: false, 
+			errors: []
 		};
 
 		this.handleTrackFile = this.handleTrackFile.bind(this);
@@ -21,7 +21,7 @@ class UploadTrack extends React.Component {
 
 	handleTrackFile(e) {
 		e.preventDefault();
-		const audioFile = e.target.files[0];
+		const audioFile = e.currentTarget.files[0];
 
 		if (audioFile.type === "audio/mp3") {
 			this.setState({
@@ -35,6 +35,7 @@ class UploadTrack extends React.Component {
 			});
 		}
 	}
+
 	titleize(arr) {
 		let titleized;
 		const titelizedArray = arr.map(
@@ -72,8 +73,17 @@ class UploadTrack extends React.Component {
 	dropHandler(e) {
 		e.preventDefault();
 		const audioFile = e.dataTransfer.files[0];
+		const fileReader = new FileReader();
+		fileReader.onloadend = () => {
+			this.setState({
+				audioFile: audioFile,
+				errors: [],
+				audio_url: fileReader.result
+			});
+		};
 
 		if (audioFile.type === "audio/mp3") {
+			fileReader.readAsDataURL(audioFile);
 			this.setState({
 				audioFile: audioFile,
 				title: this.titleize(audioFile.name.split(".")[0].split("-")),
@@ -92,7 +102,7 @@ class UploadTrack extends React.Component {
 				<UploadTrackDetails
 					title={this.state.title}
 					audioFile={this.state.audioFile}
-					user_id={this.state.user_id}
+					user_id={this.props.userId}
 					createTrack={this.props.createTrack}
 				/>
 			);

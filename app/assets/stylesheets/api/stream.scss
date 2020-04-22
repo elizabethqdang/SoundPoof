@@ -1,10 +1,10 @@
-gl.stream-container {
+.stream-container {
 	width: 100%;
 	display: flex;
-	// flex-flow: column nowrap;
-// 	align-items: ceqnter;
-// 	justify-content: center;
-// 	margin: 0 0 2em;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	margin: 0 0 2em;
 
 }
 
@@ -16,19 +16,19 @@ p.auth-errors {
   color: red;
 }
 
-header.loggedhome-header {
+.loggedhome-header {
   height: 45px;
   width: 100%;
-  background: rgb(54, 54, 54);
-  color: white;
+  // background: rgb(54, 54, 54);
+  // color: white;
   font-size: 14px;
 
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
+  // z-index: 999;
 
-  nav.navigation {
+  .navigation {
     width: 1100px;
     margin: 0 auto;
     align-items: flex-start;
@@ -91,7 +91,7 @@ header.loggedhome-header {
       height: 100%;
       width: 94px;
       margin: 0;
-      padding: 0;
+      padding: 10% 0;
 
       display: flex;
       justify-content: center;
@@ -105,7 +105,7 @@ header.loggedhome-header {
       }
     }
 
-    ul.searchbar {
+    .search-bar {
       display: flex;
       flex: 1;
       height: 45px;
@@ -219,6 +219,8 @@ input.home-search {
 }
 
 main.loggedhome-body {
+top: 10%;
+margin-top: 100px;
   width: 1100px;
   margin: 0 auto;
   padding-bottom: 50px;
@@ -313,11 +315,12 @@ div.homepage {
         outline: none;
       }
     }
-
+	}
     ul.homepage-tracks {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+			justify-content: center;
+			margin-left: 10%;
 
       li.track-show {
         max-width: 170px;
@@ -335,7 +338,7 @@ div.homepage {
       }
     }
   }
-}
+
 
 li.track-show {
   span:hover {
@@ -579,11 +582,11 @@ li.track-container {
     cursor: pointer;
   }
 
-  Link {
+  link {
     color: gray;
   }
 
-  Link.track-artist {
+  link.track-artist {
     font-size: 14px;
   }
 

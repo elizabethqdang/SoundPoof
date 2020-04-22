@@ -17,17 +17,23 @@ export const createTrack = track =>
     data: track,
     contentType: false,
 		processData: false,
+		dataType: 'json'
   });
 
-export const updateTrack = track =>
-  $.ajax({
-    method: 'PATCH',
-    url: `/api/tracks/${track.id}`,
-    data: track 
-  });
+export const updateTrack = (track, id) => (
+	$.ajax({
+		method: 'PATCH',
+		url: `api/tracks/${id}`,
+		processData: false,
+		contentType: false,
+		dataType: 'json',
+		data: track
+	})
+);
 
-export const deleteTrack = trackId =>
-  $.ajax({
-    method: 'DELETE',
-    url: `/api/tracks/${trackId}`
-  });
+export const deleteTrack = id => (
+	$.ajax({
+		method: 'DELETE',
+		url: `api/tracks/${id}`
+	})
+);

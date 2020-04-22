@@ -17,14 +17,14 @@ class TrackLikes extends React.Component {
 		return false;
 	}
 
-	componentWillReceiveProps(nextProps) {
-		let favorite = nextProps.favoritable;
-		if (this.findUserFavorite(favorite.favorites, nextProps.currentUser)) {
-			this.setState({ isFavorited: 1, isActive: 'active' });
-		} else {
-			this.setState({ isFavorited: 0, isActive: '' });
-		}
-	}
+	// componentDidUpdate(nextProps) {
+	// 	let favorite = nextProps.favoritable;
+	// 	if (this.findUserFavorite(favorite.favorites, nextProps.currentUser)) {
+	// 		this.setState({ isFavorited: 1, isActive: 'active' });
+	// 	} else {
+	// 		this.setState({ isFavorited: 0, isActive: '' });
+	// 	}
+	// }
 
 	componentDidMount() {
 		let favorite = this.props.favoritable;

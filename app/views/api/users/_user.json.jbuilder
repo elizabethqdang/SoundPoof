@@ -1,24 +1,32 @@
 json.extract! user, :id, :email
+json.id user.id
+json.email user.email
+json.username user.username
 
-# json.user do
-#     json.set! user.id do 
-# 				json.extract! user, :id, :email
-# 		end
-# end
+json.tracks do
+	user.tracks.each do |track|
+    json.set! track.id do 
+				json.likes track.likes.each do |like|
+					json.id like.track_id
+					json.userlike_id like.userlike_id
+				end
+		end
+	end
+end
 
 # json.tracks do
 # 	user.tracks.each do |track|
 # 		json.set! track.id do
-# 			json.extract! track, :id, :title, :artist
+# 			json.extract! track, :id, :title, :artist, :user_id
 # 			if track.audio.attached?
-# 					json.audioUrl url_for(track.audio)
+# 					json.audio_url url_for(track.audio)
 # 			else
-# 					json.audioUrl ''
+# 					json.audio_url ''
 # 			end
 # 			if track.artwork.attached?
-# 					json.artworkUrl url_for(track.artwork)  
+# 					json.artwork_url url_for(track.artwork)  
 # 			else
-# 					json.artworkUrl ''
+# 					json.artwork_url ''
 # 			end
 # 		end
 # 	end

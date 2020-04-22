@@ -23,7 +23,7 @@ class UploadPage extends React.Component {
 							Upload
 						</NavLink>
 						<a className="upload-page-link" to="/upload">
-							For Creators on RachetPoof
+							For Creators on SoundPoof
 						</a>
 					</nav>
 					<UploadTrack

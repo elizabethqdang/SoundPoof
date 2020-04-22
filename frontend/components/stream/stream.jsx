@@ -1,9 +1,8 @@
 import React from "react";
 import { NavLink, Link, withRouter } from 'react-router-dom';
-import TrackIndexItem from '../track_index/track_index_item';
+import TrackIndexItem from '../track_index/track_index_item_container';
 import NavbarContainer from '../navbar/navbar_container';
-import track_show_page from "../track_show/track_show_page";
-
+import ReactPlayer from 'react-player';
 
 class Stream extends React.Component {
 	constructor(props) {
@@ -14,13 +13,13 @@ class Stream extends React.Component {
 		}
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.props.fetchAllTracks();
 		this.props.fetchAllUsers();
 	}
 
-	componentWillReceiveProps(newState) {
-		this.setState({ tracks: newState.tracks, users: newState.users }); 
+	componentDidUpdate(newState) {
+		// this.setState({ tracks: newState.tracks, users: newState.users }); 
   }
 
 	render() {
@@ -28,16 +27,22 @@ class Stream extends React.Component {
 
 		console.log("stream", "tracks", tracks, "currentUser", currentUser, "users", users, "errors", errors);
 
-		let stream = (tracks.map((track, idx) => <TrackIndexItem key={idx} track={track} user={this.props.user || []} />));
+		let stream = Object.keys(tracks).map(key => (
+			<TrackIndexItem key={key} track={tracks[key]} user={this.props.user || null} />
+		));
+			
+			// (track, idx) => <TrackIndexItem key={idx} track={track} user={this.props.user || []} />));
 
 		return (
 			<div className="stream-container">
-				<div className="stream-container">
-
+				<div className="loggedhome-header">
 				<NavbarContainer />
+
 			</div>
 			<main className='loggedhome-body'>
+
 				<div className='main-index'>
+
 					<nav className='content-nav'>
 						<ul>
 							<li>
@@ -49,12 +54,19 @@ class Stream extends React.Component {
 					</nav>
 					<div className='nav-border' />
 					<p>Hear the latest posts from the people you're following</p>
-					<ul className='loggedhome-tracks'>
+					<ul className='homepage-tracks'>
 							{/* {tracks.map(track => <TrackIndexItem key={track._id} track={track} user={this.props.user || this.props.users[1]} />)} */}
 							{stream}
 					</ul>
 				</div>
-				{/* <SideBarContainer /> */}
+					<div className="sidebar-placeholder">
+						<div className="ad-container">
+							<a href="" target="_blank"><img src="" /></a>
+						</div>
+						<div className="ad-container">
+							<a href="" target="_blank"><img src="" /></a>
+						</div>
+					</div>
 			</main>
 			</div>
 		);

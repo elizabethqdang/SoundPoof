@@ -5,13 +5,15 @@ class UploadTrackDetails extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			user_id: this.props.currentUser,
+			// user_id: this.props.user_id,
 			title: this.props.title,
 			artist: "",
 			artworkFile: null,
 			audioFile: this.props.audioFile,
 			dragged: false,
-			artworkUrl: null,
+			artwork_url: null,
+			audio: null,
+			artwork: null,
 			errors: [],
 		};
 		this.dragOverHandler = this.dragOverHandler.bind(this);
@@ -30,7 +32,8 @@ class UploadTrackDetails extends React.Component {
 			this.setState({
 				artworkFile: file,
 				errors: [],
-				artworkUrl: fileReader.result
+				artwork_url: fileReader.result,
+				artwork: fileReader.result
 			});
 		};
 
@@ -46,10 +49,11 @@ class UploadTrackDetails extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		const formData = new FormData();
-		formData.append("track[artist]", this.state.artist);
-		formData.append("track[title]", this.state.title);
-		// formData.append("track[user_id]", this.state.user_id);
+		const track = new FormData();
+		track.append("track[artist]", this.state.artist);
+		track.append("track[title]", this.state.title);
+		// track.append("track[user_id]", this.state.user_id);
+		
 
 		// const {createTrack, clearModal} = this.props;
 		// createTrack(Object.assign({}, this.state).then(({track}) => {
@@ -58,14 +62,18 @@ class UploadTrackDetails extends React.Component {
 		// 		});
 
 		if (this.state.artworkFile && this.state.audioFile) {
-			formData.append("track[artwork]", this.state.artworkFile);
-			formData.append("track[audio]", this.state.audioFile);
-			this.props.createTrack(formData)
+			let track = new FormData();
+			track.append("track[artwork]", this.state.artworkFile);
+			track.append("track[audio]", this.state.audioFile);
+			track.append("track[artist]", this.state.artist);
+			track.append("track[title]", this.state.title);
+			track.append("track[user_id]", this.state.userId);
+			this.props.createTrack(track)
 				.then(res =>
 					this.props.history.push(`/stream`),
 				(response) => {
-					console.log(response),
-					console.log(formData)
+					console.log(response)
+					console.log(track) 
 				});
 		} else {
 			this.setState({
@@ -85,7 +93,7 @@ class UploadTrackDetails extends React.Component {
 			this.setState({
 				artworkFile: file,
 				errors: [],
-				artworkUrl: fileReader.result
+				artwork_url: fileReader.result
 			});
 		};
 
@@ -127,8 +135,8 @@ class UploadTrackDetails extends React.Component {
 	}
 
 	render() {
-		const preview = this.state.artworkUrl ? (
-			<img src={this.state.artworkUrl} className="stock-photo" />
+		const preview = this.state.artwork_url ? (
+			<img src={this.state.artwork_url} className="stock-photo" />
 		) : null;
 		return (
 			<div
