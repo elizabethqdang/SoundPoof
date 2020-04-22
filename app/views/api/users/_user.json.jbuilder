@@ -1,7 +1,6 @@
 json.extract! user, :id, :email
 json.id user.id
 json.email user.email
-json.username user.username
 
 json.tracks do
 	user.tracks.each do |track|
