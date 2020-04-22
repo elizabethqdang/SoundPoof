@@ -9,11 +9,12 @@ class User < ApplicationRecord
 
   has_many :tracks,
     foreign_key: :user_id,
-    class_name: :Track
+		class_name: :Track,
+		primary_key: :id
 
-  # has_many :comments,
-  #   foreign_key: :author_id,
-  #   class_name: :Comment
+  has_many :liked_tracks,
+		through: :likes,
+		source: :track
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)

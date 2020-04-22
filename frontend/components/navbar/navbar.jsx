@@ -60,12 +60,12 @@ class Navbar extends React.Component {
 		// const { openModal } = this.props;
 		return (
 			<Fragment>
-			<div className="login-link">
+			<div className="signup-button">
 				<button onClick={() => openModal("login")} className="nav-link">
 					Sign in
 				</button>
 			</div>
-			<div className="signup-link">
+			<div className="login-button">
 				<button onClick={() => openModal("signup")} className="nav-link">
 					Create account
 				</button>
@@ -73,7 +73,7 @@ class Navbar extends React.Component {
 			<div>
 				<button
 					type="button"
-					className="nav-link"
+					className="header-button"
 				><Link to={"/upload"}>
 						Upload</Link>
 				</button>
@@ -85,20 +85,20 @@ class Navbar extends React.Component {
 	navLeft() {
 		return (
 			<Fragment>
-			<div className="logo">
+			<div className="header-item">
 				<Link to="/">
-					<img src='' />
+					<img src='https://soundpoof.s3-us-west-2.amazonaws.com/logo.jpg' className="splash-icon" />
 				</Link>
 			</div>
-			<div>
-				<Link to={"/"} className="nav-link">
+			<div className="header-item">
+				<Link to="/" >
 					Home
 				</Link>
 			</div>
-			<div>
-				<Link to={"/stream"} className="nav-link">
+			<div className="header-item">
+				<Link to={"/stream"} >
 					Stream
-							</Link>
+				</Link>
 			</div>
 			{/* <div>
 				<Link to={"/library"} className="nav-link">
@@ -117,13 +117,13 @@ class Navbar extends React.Component {
 					Upgrade
 				</Link>
 			</div> */}
-			<div>
-				<Link to={"/upload"} className="nav-link">
+			<div className="signup-button">
+				<Link to={"/upload"} >
 					Upload
 				</Link>
 			</div>
-			<div className="nav-link">
-				{/* {currentUser.email} */}
+			<div className="login-button">
+				{currentUser.email}
 				<Dropdown
 					currentUser={currentUser}
 					logout={logout}
@@ -143,14 +143,21 @@ class Navbar extends React.Component {
 		};
 
     return (
-			<div className="navbar-container">
-				{this.navLeft()}
-				<div className="search-bar">
-					<SearchBar />
+			<div id="splash-page">
+				<div className="splash-header">
+
+					<div className="splash-bar">
+						<div className="splash-left">
+							{this.navLeft()}
+						</div>
+						{/* <div className="search-bar">
+							<SearchBar />
+						</div> */}
+						<div className="login-signup">
+							{nav}
+						</div>
+					</div>
 				</div>
-				{/* {currentUser ? this.navRight(currentUser, logout) : this.navSessionLinks(openModal) } */}
-				{nav}
-				{/* {this.navRight(currentUser, logout)} */}
 			</div>
 		)
   }

@@ -3,7 +3,7 @@ import entitiesReducer from "./entities_reducer";
 import sessionReducer from "./session_reducer";
 import errorsReducer from "./errors_reducer";
 import uiReducer from "./ui_reducer";
-import trackPlayerReducer from "./track_player_reducer";
+import trackplayerReducer from "./track_player_reducer";
 import currentTrack from './current_track_reducer';
 
 const rootReducer = combineReducers({
@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
 	session: sessionReducer,
 	errors: errorsReducer,
 	ui: uiReducer,
-	trackplayer: trackPlayerReducer,
+	trackplayer: trackplayerReducer,
 	currentTrack,
 });
 

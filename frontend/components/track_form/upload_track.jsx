@@ -12,9 +12,9 @@ class UploadTrack extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			uploader_id: this.props.uploader_id,
+			user_id: this.props.user_id,
 			title: "",
-			trackFile: null,
+			audioFile: null,
 			errors: []
 			// artist: "", artworkUrl: "", artworkFile: null, trackUrl: "", trackFile: "", route: "upload", isActive: "", formPage: "prompt page",
 		};
@@ -56,7 +56,7 @@ class UploadTrack extends React.Component {
 
 	render() {
 		// <div classsName="">
-		if (this.state.trackFile) {
+		if (this.state.audioFile) {
 			return (
 				<UploadTrackForm
 				// title={this.state.title}

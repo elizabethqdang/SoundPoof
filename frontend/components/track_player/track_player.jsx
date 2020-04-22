@@ -33,7 +33,7 @@ class TrackPlayer extends React.Component{
     if (prevProps.trackId == -1 || this.props.trackId == -1) return;
     
     if (this.props.trackId !== prevProps.trackId) { //new track is being played, look at waveseek 
-      // let progress = this.props.trackplayer.waveSeek; 
+      let progress = this.props.trackplayer.waveSeek; 
       progress = progress ? progress : 0; 
       this.setState({startT: progress});
       this.props.player.seekTo(progress * this.state.duration);
@@ -116,13 +116,13 @@ class TrackPlayer extends React.Component{
       if (this.props.liked){
         liked = 'liked-button-t';}else{ liked = 'liked-button';}
       return {
-        trackToPlay: cTrack.audioUrl,
-        trackImage: cTrack.imageUrl,
-        trackUploader: cTrack.uploader,
+        trackToPlay: cTrack.audio_url,
+        trackImage: cTrack.artwork_url,
+        trackUploader: cTrack.user_id,
         trackName: cTrack.title,
         likeButton: liked,
         linkToTrack: `/#/tracks/${cTrack.id}`,
-        linkToUploader: `/#/users/${cTrack.uploaderId}`
+        linkToUploader: `/#/users/${cTrack.user_id}`
       };
     }
   }

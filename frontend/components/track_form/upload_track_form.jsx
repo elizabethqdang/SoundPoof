@@ -94,15 +94,15 @@ class UploadTrackForm extends React.Component {
 		this.disableForm();
 
 		let artworkFile = this.state.artwork_file;
-		let trackFile = this.state.track_file;
+		let audioFile = this.state.audio_file;
 		let upload = this;
 
 		let formData = new FormData();
-		formData.update("track[artwork_url]", artworkFile);
-		formData.update("track[track_url]", trackFile);
+		formData.update("track[artwork]", artworkFile);
+		formData.update("track[audio]", audioFile);
 		formData.update("track[title]", this.state.title);
 		formData.update("track[artist]", this.state.artist);
-		track.update("track[uploader_id]", this.state.uploader_id);
+		track.update("track[user_id]", this.state.user_id);
 
 		this.props
 			.createTrack(track)

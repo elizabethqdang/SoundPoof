@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
 		tracks: Object.values(state.entities.tracks),
 		trackplayer: state.trackplayer || {},
 		users: state.entities.users || {},
-		currentUser: state.session.currentUser || {},
+		currentUser: state.session.id || {},
 	};
 };
 

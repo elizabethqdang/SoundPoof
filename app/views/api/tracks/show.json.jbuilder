@@ -3,18 +3,18 @@
 # end
 
 
-json.track do
-	json.set! @track.id do
-		json.extract! @track, :id, :title, :user_id, :artist
+# json.track do
+# 	json.set! @track.id do
+		json.extract! @track, :id, :title, :artist, :user_id
         if @track.artwork.attached? 
-            json.artworkUrl url_for(@track.artwork)
+            json.artwork_url url_for(@track.artwork)
         else 
-            json.artworkUrl ''
+            json.artwork_url ''
         end
          if @track.audio.attached? 
-            json.audioUrl url_for(@track.audio)
+            json.audio_url url_for(@track.audio)
         else 
-            json.audioUrl ''
+            json.audio_url ''
 				end
-	end
-end
+	# end
+# end

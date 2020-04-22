@@ -14,9 +14,9 @@ class Api::TracksController < ApplicationController
     #   render :text => "Couldn't complete the upload"
 		# end
 
-		@track = current_user.tracks.new(track_params)
-		# @track = Track.new(track_params)
-		# @track.user_id = current_user.id
+		# @track = current_user.tracks.new(track_params)
+		@track = Track.new(track_params)
+		@track.user_id = current_user.id;
 		if @track.save
 			render "api/tracks/show"
     else
@@ -41,7 +41,7 @@ class Api::TracksController < ApplicationController
 	private
 	
 	def track_params
-    params.require(:track).permit(:title, :artist, :audio, :artwork)
+    params.require(:track).permit(:title, :artwork, :artist, :audio)
   end
  
   def sanitize_filename(file_name)

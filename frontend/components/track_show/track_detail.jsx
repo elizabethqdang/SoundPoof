@@ -1,26 +1,54 @@
-import React from "react";
-import { Link } from "react-router";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+import TrackLikes from './track_likes';
+// import RepostIconContainer from '../icons/repost_container';
+// import MoreOptionsContainer from '../more_options_container';
 
+class TrackDetail extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { isActive: '' };
+	}
 
-const commentList = (comments = []) =>
-	comments.map(comment => <CommentShow comment={comment} key={comment.id} />);
+	// showRepost() {
+	// 	let path = this.props.location.pathname;
+	// 	if (path.slice(path.length - 7) !== 'reposts') {
+	// 		return <RepostIconContainer track={this.props.track} />;
+	// 	}
+	// }
 
-const TrackDetail = ({ track }) => {
-	return (
-		<div>
-			<ul className="bench-list">
-				{/* <img className="index-image" src={track.artwork_url} /> */}
-				{/* <li>Comments: {track.comment || "No reviews yet"}</li> */}
-				<li>Title: {track.title}</li>
-				<li>Artist: {track.artist}</li>
-			</ul>
-			<br />
-			<div className="reviews">
-				<h3>Comments</h3>
-				{/* {commentList(track.comments)} */}
-			</div>
-		</div>
-	);
-};
+	render() {
+		let track = this.props.track;
+		return (
+			<li className="track-detail">
+				<ul>
+					<TrackLikes favoritable={track} />
+					{/* {this.showRepost()} */}
+					<li tabIndex='0' onBlur={this.closeOptions} className='more-options' onClick={this.toggleOptions} >
+						<div className='ellipses-icon' />
+						<span className='song-options'>More</span>
+						{/* {options} */}
+					</li>
+					{/* <MoreOptionsContainer track={this.props.track} /> */}
+				</ul>
+				<ul>
+					<li>
+						<div className='comment-icon' />
+						<span>{this.props.comments}</span>
+					</li>
+				</ul>
+			</li>
+		);
+	}
+}
 
-export default TrackDetail;
+const mapStateToProps = (state, ownProps) => ({
+	currentUser: state.session.currentUser
+});
+
+const mapDispatchToProps = dispatch => ({
+	deleteSong: id => dispatch(deleteSong(id))
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TrackDetail));

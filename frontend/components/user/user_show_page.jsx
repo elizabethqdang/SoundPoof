@@ -1,212 +1,144 @@
-import React from "react";
-// import WaveForm from "../waveform/waveform";
-import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
-// import { updateCurrentSongTime } from "../../actions/current_song_actions";
-// import { Footer } from "../footer/footer";
+import React from 'react';
+import { Link, Redirect, withRouter } from 'react-router-dom';
+import WaveFormContainer from '../track_player/waveform_container';
+import TrackItem from '../track_index/track_index_item';
+import TrackIndex from '../track_index/track_index';
 
 class UserShowPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			// playStatus: this.props.playing,
-			// profileImageUrl: null,
-			// uploadButton: false
+			firstLoad: true,
+			postlike: false
 		};
-		this.mounted = false;
-		this.toggle = this.toggle.bind(this);
-		this.showUploadButton = this.showUploadButton.bind(this);
-		this.hideUploadButton = this.hideUploadButton.bind(this);
-		this.handleImageFile = this.handleImageFile.bind(this);
-	}
-	showUploadButton() {
-		this.setState({ uploadButton: true });
-	}
-	hideUploadButton() {
-		this.setState({ uploadButton: false });
-	}
-	handleImageFile(e) {
-		e.preventDefault();
-		const file = e.target.files[0];
-		const formData = new FormData();
-		formData.append("user[id]", this.props.currentUserId);
-		formData.append("user[image_url]", file);
-
-		this.props.updateUser(formData);
+		this.togglePostTracks = this.togglePostTracks.bind(this);
+		this.togglePostLikes = this.togglePostLikes.bind(this);
 	}
 
-	componentDidMount() {
-		this.props.fetchUser(this.props.match.params.userId);
 
-		this.mounted = true;
+	componentWillMount() {
+		this.props.fetchUser(this.props.match.params.id);
 	}
 
-	toggle(e) {
-		let song = this.props.songs.find(song => song.id === parseInt(e.target.id));
-		if (!this.props.playing) {
-			this.props.playSong();
-		} else {
-			this.props.pauseSong();
+	componentWillReceiveProps(newProps) {
+		if (this.props.user) {
+			if (this.props.user.id != newProps.match.params.id) {
+				this.props.fetchUser(newProps.match.params.id);
+				this.setState({ postlike: false });
+			}
 		}
-		this.setState({ playStatus: !this.props.playing });
-		this.props.receiveCurrentSong(song);
 	}
+
+	togglePostTracks() {
+		this.setState({
+			postlike: false
+		});
+	}
+
+
+	togglePostLikes() {
+		this.setState({
+			postlike: true
+		});
+	}
+
+
 
 	render() {
-		let styleColor = {
-			background: `linear-gradient(to right, hsla(${this.state.color}, 50% , 50%, 0.7) 0%,  #70929c 115% )`
-		};
-		let styleImage;
-		let songs;
-		let name = this.props.user ? (
-			<p className="username">{this.props.user.username}</p>
-		) : null;
-		
-		if (this.props.songs.length < 1 && this.props.currentUserId) {
-			songs = (
-				<div className="noSongs-container">
-					<h1>You have no songs yet...</h1>
-					<Link to="/upload" className={"orange-button-upload"}>
-						Upload now
-					</Link>
-				</div>
-			);
-		} else if (this.props.songs.length < 1) {
-			songs = (
-				<div className="noSongs-container">
-					<h1>This user has no songs...</h1>
-					<Link to="/discover" className={"orange-button"}>
-						Discover Songs
-					</Link>
-					;
-				</div>
-			);
-		} else if (this.mounted) {
-			if (this.props.tracks.length >= 1) {
-				tracks = this.props.tracks.map(song => {
-					return (
-						<div key={track.id} className="medium-waveform-container">
-							<img src={track.imageUrl} className="medium-image" />
-							<div className="medium-info-container">
-								<div className="wave-container">
-									<div className="button-info">
-										<img
-											id={track.id}
-											className="play-pause-show-medium"
-											onClick={this.toggle}
-											src={
-												this.props.playing &&
-												track.id === this.props.currentTrackId
-													? window.hivePause
-													: window.hiveButton
-											}
-										/>
-										<div className="medium-user-song-info">
-											{name}
-											<Link to={`/tracks/${track.id}`} className="songtitle">
-												{track.title}
-											</Link>
-										</div>
-									</div>
+		let { tracks, trackplayer, currentUser, errors, user, likedTracks } = this.props;
 
-									<WaveForm
-										song={song}
-										fetchSong={this.props.fetchTrack}
-										user={this.props.user}
-									/>
-								</div>
-							</div>
-						</div>
-					);
-				});
+		let tag1, tag2, tIndex, editUser, userName, about, aboutstyle;
+		if (user === undefined) {
+			return (<div></div>);
+			// userpic = '';
+			// useremail = ''; 
+			// userId = ''; 
+		} else {
+			if (currentUser.id == user.id) {
+
+				editUser = (<Link to={`/users/${user.id}/edit`} className="edit-user-prof">Edit Profile</Link>);
+			} else {
+				editUser = (<span style={{ display: 'none' }}></span>);
 			}
-		}
-		let profile;
-		let info;
-		let username;
-		if (this.mounted) {
-			if (this.props.user) {
-				info = (
-					<div className="user-info">
-						<p className="user-title">{this.props.user.username}</p>
-					</div>
-				);
-				let initials = <h1>{this.props.user.username[0].toUpperCase()}</h1>;
-
-				if (this.props.user.profileImageUrl) {
-					styleImage = {
-						"background-image": `url(${this.props.user.profileImageUrl})` || " "
-					};
-
-					profile = (
-						<div className="user-image-container">
-							<div
-								className="user-image"
-								style={styleImage}
-								onMouseEnter={this.showUploadButton}
-								onMouseLeave={this.hideUploadButton}
-							>
-								<label
-									className={
-										this.state.uploadButton
-											? "custom-image-upload"
-											: "custom-image-upload hide"
-									}
-								>
-									<i className="fas fa-camera"></i>
-									<p>Upload image</p>
-									<input type="file" onChange={this.handleImageFile} />
-								</label>
-							</div>
-						</div>
-					);
-				} else if (
-					this.props.currentUserId === this.props.user.id &&
-					!this.state.profileImageUrl
-				) {
-					profile = (
-						<div className="profile-pic">
-							{initials}
-							<div
-								className="user-image"
-								style={styleImage}
-								onMouseEnter={this.showUploadButton}
-								onMouseLeave={this.hideUploadButton}
-							>
-								<label
-									className={
-										this.state.uploadButton
-											? "custom-image-upload"
-											: "custom-image-upload hide"
-									}
-								>
-									<i className="fas fa-camera"></i>
-									<p>Upload image</p>
-									<input type="file" onChange={this.handleImageFile} />
-								</label>
-							</div>
-						</div>
-					);
-				} else {
-					profile = <div className="profile-pic">{initials}</div>;
-				}
+			if (this.state.postlike) {
+				tag1 = 'ti-tab';
+				tag2 = 'ti-tab ttmid tagpicked';
+				tIndex = (<TrackIndex fetchTracks={this.props.fetchTracks} tracks={likedTracks} errors={errors} userpage={true} />);
+			} else {
+				tag1 = 'ti-tab tagpicked';
+				tag2 = 'ti-tab ttmid';
+				tIndex = (<TrackIndex fetchTracks={this.props.fetchTracks} tracks={tracks} errors={errors} userpage={true} />);
 			}
+
+			userName = (user.username == null) ? user.email : user.username;
+			if (user.about == null) {
+				about = null;
+				aboutstyle = "no-about";
+			}
+			else {
+				about = user.about;
+				aboutstyle = "about-user";
+			}
+
 		}
 
 		return (
-			<>
-				<div className="user-page-container">
-					<div className="user-show-page" style={styleColor}>
-						<div className="hero-user-display">
-							{profile || ""}
-							{info || ""}
-						</div>
+			<div className='track-show-page'>
+				<div className='user-show-container'>
+					<div className='user-show-image-container'>
+						<img src={user.imageUrl} />
+						{editUser}
 					</div>
-					{songs || ""}
+					<div className='user-show-detail'>
+						<div className='user-sd-top'>
+
+							<div className='user-sd-info'>
+
+								<div className='user-sd-title'>{userName}</div>
+								<div className='user-sd-other'>{user.email}</div>
+								<div className='user-sd-other'>{user.location || "vibesphere, Earth"}</div>
+							</div>
+						</div>
+
+					</div>
+
 				</div>
-				<Footer />
-			</>
+				<div className='track-show-container-bottom'>
+					<span className='track-index-page-container'>
+						<div className='track-index-container'>
+							<ul className='track-index-tabs'>
+								<li className={tag1}><a onClick={() => this.togglePostTracks()}>Tracks</a></li>
+								<li className={tag2}><a onClick={() => this.togglePostLikes()}>Liked</a></li>
+							</ul>
+							{tIndex}
+
+						</div>
+						<div className="sidebar-placeholder">
+							<div className="user-stats">
+								<div className="us-track-num">
+									<p>Tracks</p>
+									<p>{parseInt(tracks.length)}</p>
+								</div>
+								<div className="vertical-line"></div>
+								<div className="us-track-num">
+									<p>Liked Tracks</p>
+									<p>{parseInt(likedTracks.length)}</p>
+								</div>
+							</div>
+							<div className={aboutstyle}>{about}</div>
+							<div className="ad-container">
+								<a href="" target="_blank"><img src="" /></a>
+							</div>
+							<div className="ad-container">
+								<a href="" target="_blank"><img src="" /></a>
+							</div>
+							<div className="extraspace"></div>
+						</div>
+					</span>
+				</div>
+			</div>
 		);
 	}
 }
+
 export default withRouter(UserShowPage);

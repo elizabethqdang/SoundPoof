@@ -7,15 +7,15 @@ local:
  root: <%= Rails.root.join("storage") %>
 
 amazon_dev:
- service: S3
- access_key_id: <%= Rails.application.credentials.aws[:access_key_id] %>
- secret_access_key: <%= Rails.application.credentials.aws[:secret_access_key] %>
- region: <%= Rails.application.credentials.aws[:region] %>
- bucket: <%= Rails.application.credentials.aws[:bucket] %>
+  service: S3
+  access_key_id: AKIAIB76BJPJFZGGGFYQ
+  secret_access_key: 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
+  region: us-west-2
+  bucket: soundpoof
 
 amazon_pro:
- service: S3
- access_key_id: <%= Rails.application.credentials.aws[:access_key_id] %>
- secret_access_key: <%= Rails.application.credentials.aws[:secret_access_key] %>
- region: <%= Rails.application.credentials.aws[:region] %>
- bucket: <%= Rails.application.credentials.aws[:bucket] %>
+  service: S3
+  access_key_id: AKIA6HDAWGJERW4UNEI5
+  secret_access_key: C5PwkUn7AWy0f2qoKCykbMTDS3nyHFdhl8HaMv
+  region: us-west-2
+  bucket: soundpoof-pro

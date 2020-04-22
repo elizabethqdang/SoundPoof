@@ -55,15 +55,21 @@ export const fetchTrack = id => dispatch => (
 
 export const createTrack = track => dispatch =>
   TrackAPIUtil.createTrack(track).then(
-    track => dispatch(receiveTrack(track))
+    track => dispatch(receiveTrack(track)),
   );
 
-export const updateTrack = (track) => dispatch =>
-  TrackAPIUtil.updateTrack(track).then(
-    track => dispatch(receiveTrack(track))
-  );
+export const updateTrack = (track, id) => dispatch => (
+	APIUtil.updateTrack(track, id).then(track => (
+		dispatch(receiveTrack(track))
+	), err => (
+		dispatch(receiveTrackErrors(err.responseJSON))
+	))
+);
 
-export const deleteTrack = trackId => dispatch =>
-  TrackAPIUtil.deleteTrack(trackId).then(
-    track => dispatch(removeTrack(track))
-  );
+export const deleteTrack = trackId => dispatch => (
+	APIUtil.deleteTrack(trackId).then(track => (
+		dispatch(removeTrack(trackId))
+	), err => (
+		dispatch(receiveTrackErrors(err.responseJSON))
+	))
+);

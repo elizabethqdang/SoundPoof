@@ -6,7 +6,7 @@ import Navbar from "./navbar";
 const mapStateToProps = (state) => ({
 	loggedIn: Boolean(state.session.isAuthenticated),
 	// loggedIn: Boolean(state.session.id),
-	currentUser: state.entities.users[state.session.id],
+	currentUser: state.session.id,
 });
 
 const mapDispatchToProps = dispatch => ({
