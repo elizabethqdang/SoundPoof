@@ -219,7 +219,7 @@ input.home-search {
 }
 
 main.loggedhome-body {
-top: 10%;
+top: 100px;
 margin-top: 100px;
   width: 1100px;
   margin: 0 auto;
@@ -229,7 +229,8 @@ margin-top: 100px;
   background: white;
 
   div.main-index {
-    flex: 5;
+		flex: 5;
+		margin-top: 100px;
 
     p {
       color: gray;
