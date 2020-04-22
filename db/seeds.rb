@@ -33,7 +33,7 @@ t1 = Track.create({
 # artwork = open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+8.26.54+PM.png')
 # t1.audio.attach(io: file, filename: 'louisthechild-blase.mp3')
 # t1.artwork.attach(io: artwork, filename: 'blase.png')
-t1.audio.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/louisthechild-blase.mp3'), filename: 'louisthechild-blase.mp3')
+t1.audio.attach(io: open('https://soundpoof-pro.s3-us-west-2.amazonaws.com/tracks/louisthechild-blase.mp3'), filename: 'louisthechild-blase.mp3')
 t1.artwork.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+8.26.54+PM.png'), filename: 'blase.png')
 
 t2 = Track.create({
