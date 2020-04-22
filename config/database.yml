@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: SoundPoof_production2
+  database: SoundPoof_production
   username: SoundPoof
   password: <%= ENV['SOUNDPOOF_DATABASE_PASSWORD'] %>
