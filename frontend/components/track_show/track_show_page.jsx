@@ -3,7 +3,8 @@ import { withRouter } from "react-router-dom";
 import NavbarContainer from "../navbar/navbar_container";
 import CommentIndexContainer from "../comments/comment_index_container";
 import CommentFormContainer from '../comments/comment_form_container';
-
+import TrackDetail from "./track_detail";
+import TrackLikesContainer from "./track_likes_container";
 
 class TrackShowPage extends React.Component {
 	constructor(props) {
@@ -18,6 +19,7 @@ class TrackShowPage extends React.Component {
 	}
 	
 	componentDidMount() {
+		// const { track, user } = this.props;
 		let trackId = this.props.match.params.trackId;
 		let user_id = this.props.match.params.user_id;
 		let track = this.props.tracks[trackId];
@@ -28,7 +30,9 @@ class TrackShowPage extends React.Component {
 		};
 		
 		this.props.fetchUser(this.props.user_id);
-		this.props.fetchAllUsers().then(() => this.props.fetchTrack(trackId));
+		this.props.fetchAllUsers().then(() => this.props.fetchTrack(trackId),
+			() => this.setState({ firstLoad: false })
+		);
 		// this.props.fetchTrack(this.props.match.params.trackId)
 		// 	.then(() => {
 		// 		this.setState({ firstLoad: false });
@@ -135,7 +139,7 @@ class TrackShowPage extends React.Component {
 
 		return (
 			<div className='track-show-page'>
-				<div className="splash-bar">
+				<div className="track-show-navbar-container">
 					<NavbarContainer />
 				</div>
 				<div className='track-show-container'>
@@ -161,6 +165,8 @@ class TrackShowPage extends React.Component {
 							<CommentFormContainer track={track} />
 						</div>
 						{buttonBar}
+						{/* <TrackDetail /> */}
+						<TrackLikesContainer track={track} />
 						<div className='ts-uploader-ci'>
 							<div className='ts-uc-left'>
 								<div className='ts-artist-circle'>

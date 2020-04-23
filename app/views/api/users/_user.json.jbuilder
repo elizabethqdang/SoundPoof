@@ -1,6 +1,8 @@
 json.extract! user, :id, :email
 json.id user.id
 json.email user.email
+json.trackIds user.track_ids
+json.likedTrackIds user.liked_track_ids
 
 json.tracks do
 	user.tracks.each do |track|

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, NavLink } from "react-router-dom";
 import Dropdown from "./dropdown";
 import SearchBar from "../search/search_bar";
 
@@ -18,7 +18,6 @@ class Navbar extends React.Component {
 		this.navLeft = this.navLeft.bind(this);
 		this.navRight = this.navRight.bind(this);
 		this.navSessionLinks = this.navSessionLinks.bind(this);
-
   }
 
   logoutUser(e) {
@@ -60,24 +59,21 @@ class Navbar extends React.Component {
 		// const { openModal } = this.props;
 		return (
 			<Fragment>
-			<div className="signup-button">
-				<button onClick={() => openModal("login")} className="nav-link">
-					Sign in
-				</button>
-			</div>
-			<div className="login-button">
-				<button onClick={() => openModal("signup")} className="nav-link">
-					Create account
-				</button>
-			</div>
-			<div>
-				<button
-					type="button"
-					className="header-button"
-				><Link to={"/upload"}>
-						Upload</Link>
-				</button>
-			</div>
+			<section className="nav-right">
+				<NavLink className="nav-upload hov-white" activeClassName="nav-selected" exact to="/upload" >
+						Upload
+				</NavLink>
+				<Link to="/"className="nav-user-menu">
+					<div className="nav-user-button" onClick={() => openModal("signup")}>
+					</div>
+					<div className="nav-user-username">
+						Create account
+					</div>
+				</Link>
+				<div onClick={() => openModal("login")} className="nav-sign-out">
+						Sign in
+				</div>
+			</section>
 			</Fragment>
 		);
 	}
@@ -85,26 +81,18 @@ class Navbar extends React.Component {
 	navLeft() {
 		return (
 			<Fragment>
-			<div className="header-item">
-				<Link to="/">
-					<img src='https://soundpoof.s3-us-west-2.amazonaws.com/logo.jpg' className="splash-icon" />
+			<section className="nav-left">
+				<Link to="/"className="nav-logo">
+					SoundPoof
+					{/* <img src='https://soundpoof.s3-us-west-2.amazonaws.com/logo.jpg' className="nav-logo" /> */}
 				</Link>
-			</div>
-			<div className="header-item">
-				<Link to="/" >
-					Home
-				</Link>
-			</div>
-			<div className="header-item">
-				<Link to={"/stream"} >
+				<NavLink className="nav-home" activeClassName="nav-selected" exact to="/discover">
+						Home
+				</NavLink>
+				<NavLink className="nav-collection" activeClassName="nav-selected" exact to="/stream">
 					Stream
-				</Link>
-			</div>
-			{/* <div>
-				<Link to={"/library"} className="nav-link">
-					Library
-				</Link>
-			</div> */}
+				</NavLink>
+			</section>
 			</Fragment>
 		)
 	}
@@ -112,23 +100,25 @@ class Navbar extends React.Component {
 	navRight(currentUser, logout) {
 		return (
 			<Fragment>
-			{/* <div>
-				<Link to={"/"} className="nav-link">
-					Upgrade
-				</Link>
-			</div> */}
-			<div className="signup-button">
-				<Link to={"/upload"} >
+			<section className="nav-right">
+				<NavLink className="nav-upload hov-white" activeClassName="nav-selected" exact to="/upload" >
 					Upload
+				</NavLink>
+				<Link to={`/users/${currentUser.id}`} className="nav-user-menu">
+					<div className="nav-user-button">
+						<div className="nav-user-image">
+							{/* <Dropdown
+								currentUser={currentUser}
+								logout={logout}
+							/> */}
+							<span style={currentUser.profile ? currentUser.profile : null}>Placeholder</span>
+						</div>
+						<div className="nav-user-username">{currentUser.email}</div>
+					</div>
 				</Link>
-			</div>
-			<div className="login-button">
-				{currentUser.email}
-				<Dropdown
-					currentUser={currentUser}
-					logout={logout}
-				/>
-			</div>
+
+ 				<div onClick={logout} className="nav-sign-out">Sign Out</div>
+			</section>
 			</Fragment>
 		)
 	}
@@ -143,21 +133,16 @@ class Navbar extends React.Component {
 		};
 
     return (
-			<div id="splash-page">
-				<div className="splash-header">
-
-					<div className="splash-bar">
-						<div className="splash-left">
+			<div id="navbar">
+			<div id="navbar-container">
+				<nav className="nav">
+					<div className="inner-nav full-width transparent-background no-height">
 							{this.navLeft()}
-						</div>
-						{/* <div className="search-bar">
 							<SearchBar />
-						</div> */}
-						<div className="login-signup">
 							{nav}
-						</div>
 					</div>
-				</div>
+				</nav>
+			</div>
 			</div>
 		)
   }

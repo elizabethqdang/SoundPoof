@@ -65,7 +65,7 @@ class Dropdown extends React.Component {
 			<div className="">
 				<div className="user-dropdown-list">
 					<button className="dropdown-button">
-						<Link to={`/users/${currentUser.id}`} className="dropdown-button">
+						<Link to={`/users/${currentUser.id}`} className="">
 							{" "}
 							Profile
 					</Link>
@@ -79,16 +79,16 @@ class Dropdown extends React.Component {
 
 		return (
 			<div>
-				<button type="button" onClick={this.showMenu} className="user-dropdown-list">
+				<button type="button" onClick={this.showMenu} className="header-item">
 					<div
-						// className="user-dropdown-list"
 						ref={el => {
 							this.dropdownElement = el;
 						}}
 					>
 					</div>
-					<div>{currentUser.email}</div>
 					<img className="profile-pict" />
+					 <div className="creator-button">{currentUser.email}
+					</div>
 				</button>
 
 				{menu}

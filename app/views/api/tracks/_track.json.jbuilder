@@ -6,14 +6,11 @@ json.user_id track.user_id
 json.audio_url url_for(track.audio)
 json.artwork_url url_for(track.artwork)
 json.comments track.comments
+json.numLikes track.likes.length
 
 json.tracks do
 		json.set! track.id do
 			json.extract! track, :id, :title, :artist, :user_id
-			json.likes track.likes.each do |like|
-					json.id like.track_id
-					json.userlike_id like.userlike_id
-			end
 			json.comments track.comments.each do |comment|
 				json.comment_id track.comment_id
 				json.commenter_id	track.user_id

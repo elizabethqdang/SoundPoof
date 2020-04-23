@@ -19,7 +19,7 @@ class UploadPage extends React.Component {
 				<div className="upload-page" onDragOver={this.dragOverHandler}>
 					<NavbarContainer />
 					<nav className="upload-page-nav">
-						<NavLink className="upload-page-link" to="/upload">
+						<NavLink className="content_nav" to="/upload">
 							Upload
 						</NavLink>
 						<a className="upload-page-link" to="/upload">
