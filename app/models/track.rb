@@ -11,7 +11,11 @@ class Track < ApplicationRecord
 				primary_key: :id
 
 		has_many	:likes, dependent: :destroy
-			
+		
+		has_many	:likers,
+			through: :likes,
+			source: :user
+
 		has_many	:comments, 
 				dependent: :destroy,
 				foreign_key: :track_id,

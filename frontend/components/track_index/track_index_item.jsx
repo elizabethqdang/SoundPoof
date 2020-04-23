@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import WaveFormContainer from '../track_player/waveform_container';
 // import CommentsContainer from '../comments/comments_container';
+import TrackLikesContainer from '../track_show/track_likes_container';
 
 //will import track index item
 class TrackIndexItem extends React.Component {
@@ -68,10 +69,10 @@ class TrackIndexItem extends React.Component {
 	}
 
 	userTrackButtons() {
-		let track = this.props.track;
+		let {track, currentUser} = this.props;
 		let likeButton = this.props.liked ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
 
-		if (this.props.currentUser == track.user_id) {
+		if (currentUser && (currentUser.id === track.user_id)) {
 			return (
 				<div className='button-bar'>
 					<div className={likeButton} onClick={(e) => this.toggleLike(track.id, e)}>like</div>
@@ -139,6 +140,7 @@ class TrackIndexItem extends React.Component {
 							{/* {commentShow} */}
 						</div>
 						{buttonBar}
+						{/* <TrackLikesContainer track={track} /> */}
 					</section>
 
 				</div>

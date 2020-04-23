@@ -3,63 +3,59 @@ import React from 'react';
 class TrackLikes extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { isFavorited: 0, isActive: '' };
-		this.addFavorite = this.addFavorite.bind(this);
+		this.handleToggleLike = this.handleToggleLike.bind(this);
 	}
 
-	findUserFavorite(array, user) {
-		if (array === undefined) return false;
-		for (let i = 0; i < array.length; i++) {
-			if (array[i].user_id === user.id) {
-				return true;
-			}
+	currentUser() {
+		const { users, sessionCurrentUser } = this.props;
+		if (sessionCurrentUser) { return users[sessionCurrentUser.id]; }
+		return null;
+	}
+
+	handleToggleLike(e) {
+		e.preventDefault();
+		const { track, deleteLike, createLike } = this.props;
+		const currentUser = this.currentUser();
+
+		if (!currentUser) {
+			this.props.history.push('/login');
+			return;
 		}
-		return false;
-	}
 
-	// componentDidUpdate(nextProps) {
-	// 	let favorite = nextProps.favoritable;
-	// 	if (this.findUserFavorite(favorite.favorites, nextProps.currentUser)) {
-	// 		this.setState({ isFavorited: 1, isActive: 'active' });
-	// 	} else {
-	// 		this.setState({ isFavorited: 0, isActive: '' });
-	// 	}
-	// }
-
-	componentDidMount() {
-		let favorite = this.props.favoritable;
-		if (this.findUserFavorite(favorite.favorites, this.props.currentUser)) {
-			this.setState({ isFavorited: 1, isActive: 'active' });
-		}
-	}
-
-	addFavorite() {
-		let user = this.props.currentUser;
-		let favoritable = this.props.favoritable;
-
-		if (this.state.isFavorited === 1) {
-			let favorite = this.props.favoritable.favorites.find(fav => (
-				fav.user_id === this.props.currentUser.id
-			));
-
-			this.props.deleteFavorite(favorite.id)
-				.then(() => this.props.fetchSelectedRandomSong(this.props.favoritable.id));
+		if (currentUser.likedTrackIds.includes(track.id)) {
+			deleteLike(track.id);
 		} else {
-			this.props.createFavorite(user, favoritable)
-				.then(() => this.props.fetchSelectedRandomSong(this.props.favoritable.id));
+			createLike(track.id);
 		}
 	}
-
 
 	render() {
-		let favorites = this.props.favoritable.favorites || [];
+		const { track, type } = this.props;
+		const currentUser = this.currentUser();
+
+		if (currentUser && !currentUser.likedTrackIds) { return null; }
+
+		const likeActive = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'active' : '');
+		const likeText = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'Liked' : 'Like');
+
+		let content;
+		// switch (type) {
+		// 	case 'STREAM_INDEX_ITEM':
+				content = <button onClick={this.handleToggleLike} type="button" className={`bc-btn sound-actions-btn action-like ${likeActive}`}>{track.numLikes}</button>;
+			// 	break;
+			// case 'QUEUE_ITEM':
+			// 	content = <button onClick={this.handleToggleLike} className={`bc-btn playable-like-btn queue-like-btn ${likeActive}`}>Like</button>;
+			// 	break;
+			// case 'QUEUE_ITEM_ACTION':
+			// 	content = <button onClick={this.handleToggleLike} className={`more-actions-btn more-like-btn ${likeActive}`}>{likeText}</button>;
+			// 	break;
+			// case 'PLAY_BAR':
+			// 	content = <div onClick={this.handleToggleLike} className={`playbar-like ${likeActive}`}></div>;
+			// 	break;
+		// }
+
 		return (
-			<li onClick={this.addFavorite} className={`favorite ${this.state.isActive}`}>
-				<div className={`heart-icon ${this.state.isActive}`} />
-				<span className={`favorite ${this.state.isActive}`}>
-					{`${favorites.length}`}
-				</span>
-			</li>
+			content
 		);
 	}
 }

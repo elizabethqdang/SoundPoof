@@ -11,3 +11,17 @@ export const fetchUser = id => (
         url: `/api/users/${id}`
     })
 );
+
+export const createLike = (trackId) => {
+	return $.ajax({
+		url: `api/users/likes/${trackId}`,
+		method: 'post',
+	});
+};
+
+export const deleteLike = (trackId) => {
+	return $.ajax({
+		url: `api/users/likes/${trackId}`,
+		method: 'delete',
+	});
+};

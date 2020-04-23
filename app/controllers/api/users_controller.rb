@@ -34,6 +34,27 @@ end
   def index
     @users = User.all
     render :index
+	end
+	
+
+	def like
+    @like = current_user.likes.new(track_id: params[:track_id])
+    if @like.save
+      render :like
+    else
+      render json: @like.errors.full_messages, status: 422
+    end
+  end
+
+  def unlike
+    @like = current_user.likes.find_by(track_id: params[:track_id])
+
+    if @like
+      @like.destroy
+      render :like
+    else
+      render json: ['already unliked or not authorized to unlike'], status: 401
+    end
   end
 
   
