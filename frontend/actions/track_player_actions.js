@@ -1,9 +1,15 @@
 export const RECEIVE_CURRENT_TRACK = 'RECEIVE_CURRENT_TRACK';
 export const PLAY_PAUSE_TRACK = 'PLAY_PAUSE_TRACK';
+export const RECEIVE_POSITION = "RECEIVE_POSITION";
+export const RECEIVE_DURATION = "RECEIVE_DURATION";
+export const PREVIOUS = "PREVIOUS";
+export const NEXT = "NEXT";
 export const TRACK_PROGRESS = 'TRACK_PROGRESS';
 export const END_CURRENT_TRACK = 'END_CURRENT_TRACK';
 export const SEEK_TRACK = 'SEEK_TRACK';
 export const SET_TRACK_PLAYER = 'SET_TRACK_PLAYER';
+export const TOGGLE_SHUFFLE = "TOGGLE_SHUFFLE";
+export const TOGGLE_LOOP = "TOGGLE_LOOP";
 export const SEEK_WAVE_FORM = 'SEEK_WAVE_FORM';
 export const SEEK_PLAYER = 'SEEK_PLAYER';
 export const SET_PROGRESS = 'SET_PROGRESS';
@@ -18,6 +24,32 @@ export const playPauseTrack = (boolean, trackId, progress) => ({
 	boolean,
 	trackId,
 	progress
+});
+
+export const receivePosition = (position) => ({
+	type: RECEIVE_POSITION,
+	position
+});
+
+export const receiveDuration = (duration) => ({
+	type: RECEIVE_DURATION,
+	duration
+});
+
+export const previous = () => ({
+	type: PREVIOUS
+});
+
+export const next = () => ({
+	type: NEXT
+});
+
+export const toggleShuffle = () => ({
+	type: TOGGLE_SHUFFLE,
+});
+
+export const toggleLoop = () => ({
+	type: TOGGLE_LOOP,
 });
 
 export const setSeekTrack = seconds => ({

@@ -59,7 +59,7 @@ export const createTrack = track => dispatch =>
   );
 
 export const updateTrack = (track, id) => dispatch => (
-	APIUtil.updateTrack(track, id).then(track => (
+	TrackAPIUtil.updateTrack(track, id).then(track => (
 		dispatch(receiveTrack(track))
 	), err => (
 		dispatch(receiveTrackErrors(err.responseJSON))
@@ -67,7 +67,7 @@ export const updateTrack = (track, id) => dispatch => (
 );
 
 export const deleteTrack = trackId => dispatch => (
-	APIUtil.deleteTrack(trackId).then(track => (
+	TrackAPIUtil.deleteTrack(trackId).then(track => (
 		dispatch(removeTrack(trackId))
 	), err => (
 		dispatch(receiveTrackErrors(err.responseJSON))

@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_TRACK, PLAY_PAUSE_TRACK, END_CURRENT_TRACK, SEEK_TRACK, SET_TRACK_PLAYER, SEEK_WAVE_FORM, SEEK_PLAYER, SET_PROGRESS } from '../actions/track_player_actions';
+	import { RECEIVE_CURRENT_TRACK, PLAY_PAUSE_TRACK, PREVIOUS, NEXT,END_CURRENT_TRACK, TOGGLE_SHUFFLE, TOGGLE_LOOP, SEEK_TRACK, SET_TRACK_PLAYER, SEEK_WAVE_FORM, SEEK_PLAYER, SET_PROGRESS } from '../actions/track_player_actions';
 import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 import merge from 'lodash/merge';
 
@@ -10,7 +10,9 @@ const defaultState = {
 	playerSeek: 0,
 	waveSeek: 0,
 	progressTrackId: {},
-
+	loop: null,
+	shuffle: false,
+	unshuffled: []
 };
 
 const trackplayerReducer = (oldState = defaultState, action) => {
@@ -30,13 +32,43 @@ const trackplayerReducer = (oldState = defaultState, action) => {
 					playerSeek: oldState.progressTrackId[action.trackId] || 0,
 					progressTrackId: { [action.trackId]: action.progress } //setting leaving track progress out
 				});
-			}
-			else {
+			} else if (!action.trackId || action.trackId === -1) {
+				return merge({}, oldState, {
+					playing: true,
+					trackId: 0
+				});
+			} else {
 				return merge({}, oldState, {
 					playing: !oldState.playing,
 					progressTrackId: { [action.trackId]: action.progress },
 				});
 			}
+		case NEXT:
+			newState = merge({}, oldState);
+					switch (state.loop) {
+						case LOOP_ALL:
+							if (newState.trackId === newState.tracks.length - 1) {
+								newState.trackId = 0;
+							} else {
+								newState.trackId += 1;
+							}
+							break;
+						case null:
+							if (newState.trackId !== newState.tracks.length - 1) {
+								newState.trackId += 1;
+							}
+							break
+					}
+					newState.playing = true;
+					return newState;
+		case PREVIOUS:
+			newState = merge({}, oldState);
+			if (newState.trackId !== 0 && newState.position < 1000) {
+				newState.trackId -= 1;
+			}
+			newState.playing = true;
+			newState.seek = 0;
+			return newState;
 		case END_CURRENT_TRACK:
 			return merge({}, oldState, {
 				playing: false,

@@ -10,8 +10,11 @@ class Track < ApplicationRecord
 				class_name: :User,
 				primary_key: :id
 
-		has_many	:likes, dependent: :destroy
-		
+		has_many	:likes, 
+			dependent: :destroy,
+			foreign_key: :track_id,
+			class_name: :Track,
+			primary_key: :id
 		has_many	:likers,
 			through: :likes,
 			source: :user
@@ -21,6 +24,9 @@ class Track < ApplicationRecord
 				foreign_key: :track_id,
 				class_name: :Comment,
 				primary_key: :id
+		has_many	:commenters,
+			through: :comments,
+			source: :user
 				
 		# has_attached_file :artwork, 
 		# 	validate_media_type: false, 

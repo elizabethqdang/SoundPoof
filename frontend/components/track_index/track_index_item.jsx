@@ -15,14 +15,14 @@ class TrackIndexItem extends React.Component {
 		// this.showComments = this.showComments.bind(this);
 	}
 
-	componentWillReceiveProps(nextProps) {
+	componentDidUpdate(prevProps) {
 
 		//this is for the circumstance whree 
 		let { playing, trackId, player } = this.props.trackplayer;
 		let trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
 		let thisId = this.props.track.id;
 
-		if (playing && (trackId == thisId) && (thisId !== nextProps.trackplayer.trackId)) {
+		if (playing && (trackId == thisId) && (thisId !== prevProps.trackplayer.trackId)) {
 			let prog = trackProg ? trackProg : player.getCurrentTime() / player.getDuration();
 			this.props.setProg(thisId, prog);
 		} //if song is currently playing and it switches update the progress of left song

@@ -10,9 +10,12 @@ class CommentIndex extends React.Component {
 
 	render() {
 		let { track, comments, currentUser, deleteComment } = this.props;
-		let trackComments = track.comments.map(id => (
-			<CommentIndexItem key={id} track={track} currentUser={currentUser} id={id} deleteComment={deleteComment} comment={comments[id]} />
-		));
+			if (comments.length > 0) { 
+			const trackComments = track.comments.map(id => (
+				<CommentIndexItem key={id} track={track} currentUser={currentUser} id={id} deleteComment={deleteComment} comment={comments[id]} /> ))
+			} else {
+				return null;
+			}
 
 
 		return (

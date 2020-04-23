@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import UserShowPage from './user_show_page';
-import { fetchTracks, deleteTrack, updateTrack } from '../../actions/track_actions';
+import { deleteTrack, updateTrack } from '../../actions/track_actions';
 import { setCurrentTrack, setPlayPause } from '../../actions/track_player_actions';
 import { fetchUser } from '../../actions/user_actions';
 // import { toggleLike } from '../../actions/like_actions';
@@ -50,7 +50,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-	fetchTracks: () => dispatch(fetchTracks()),
+	// fetchTracks: () => dispatch(fetchTracks()),
 	fetchUser: (id) => dispatch(fetchUser(id)),
 	setCurrentTrack: (track) => dispatch(setCurrentTrack(track)),
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),

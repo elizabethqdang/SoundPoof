@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import NavbarContainer from "../navbar/navbar_container";
 import CommentIndexContainer from "../comments/comment_index_container";
 import CommentFormContainer from '../comments/comment_form_container';
@@ -10,9 +10,9 @@ class TrackShowPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			user: '',
-			user_id: '',
-			artist: '',
+			// user: '',
+			// user_id: '',
+			// artist: '',
 			firstload: true,
 			
 		};
@@ -20,30 +20,36 @@ class TrackShowPage extends React.Component {
 	
 	componentDidMount() {
 		// const { track, user } = this.props;
-		let trackId = this.props.match.params.trackId;
-		let user_id = this.props.match.params.user_id;
-		let track = this.props.tracks[trackId];
-		if (track) {
-			let user = track.user_id;
-		} else {
-			let user = [];
-		};
-		
-		this.props.fetchUser(this.props.user_id);
-		this.props.fetchAllUsers().then(() => this.props.fetchTrack(trackId),
-			() => this.setState({ firstLoad: false })
-		);
+		// let trackId = this.props.match.params.trackId;
+		// let userId = this.props.match.params.userId;
+		// let track = this.props.tracks[trackId];
+		// if (track) {
+		// 	let user = track.user_id;
+		// } else {
+		// 	let user = [];
+		// };
+		// this.props.fetchTrack(this.props.match.params.trackId);
+		// this.props.fetchUser(this.props.userId);
+		// this.props.fetchAllUsers().then(() => this.props.fetchTrack(trackId),
+		// 	() => this.setState({ firstLoad: false })
+		// );
 		// this.props.fetchTrack(this.props.match.params.trackId)
 		// 	.then(() => {
 		// 		this.setState({ firstLoad: false });
 		// 		this.props.fetchUser(this.props.track.user_id);
 		// 	}
 			// );
+		this.props.fetchTrack(this.props.match.params.id)
+			.then(() => {
+				this.setState({ firstLoad: false });
+				this.props.fetchUser(this.props.track.uploaderId);
+			}
+			);
 	}
 
-	componentWillReceiveProps(newProps) {
-		if (this.props.match.params.id !== newProps.match.params.id) {
-			this.props.fetchTrack(newProps.match.params.id);
+	componentDidUpdate(prevProps) {
+		if (this.props.match.params.id !== prevProps.match.params.id) {
+			this.props.fetchTrack(prevProps.match.params.id);
 		}
 
 		if (this.state.firstLoad || this.props.loading) return;
@@ -66,6 +72,7 @@ class TrackShowPage extends React.Component {
 			// })
 	// }
 
+	
 	songButton(track, e)
 	{
 		e.preventDefault();
@@ -94,11 +101,19 @@ class TrackShowPage extends React.Component {
 		this.props.deleteTrack(trackId).then(() => this.props.history.push('/stream'));
 	}
 
+	currentUser() {
+		const { users, currentUser } = this.props;
+		if (currentUser) return users[currentUser.id];
+		// return null;
+	}
+
 	userTrackButtons()
 	{
+		// const { tracks, users, errors } = this.props;
+		// const currentUser = this.currentUser();
 		let track = this.props.track;
 		let likeButton = this.props.liked ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
-		if (this.props.currentUser.id === this.props.track.user_id) {
+		if (this.props.currentUser && (this.props.currentUser.id === this.props.track.uploaderId)) {
 			return (
 				<div className='button-bar'>
 					<div className={likeButton} onClick={() => this.props.toggleLike(track.id)}>like</div>
@@ -147,7 +162,7 @@ class TrackShowPage extends React.Component {
 						<div className='track-sd-top'>
 							<div className={buttonPlaying} onClick={(e) => this.songButton(track, e)}></div>
 							<div className='track-sd-info'>
-								<a href={`/#/users/${track.user_id}`}><div className='track-sd-uploader'>{track.artist}</div></a>
+								<a href={`/#/users/${track.uploaderId}`}><div className='track-sd-uploader'>{track.artist}</div></a>
 								<div className='track-sd-title'>{track.title}</div>
 							</div>
 						</div>
@@ -170,15 +185,15 @@ class TrackShowPage extends React.Component {
 						<div className='ts-uploader-ci'>
 							<div className='ts-uc-left'>
 								<div className='ts-artist-circle'>
-									<a href={`/#/users/${track.user_id}`}><img src="" /></a>
+									<a href={`/#/users/${track.uploaderId}`}><img src="" /></a>
 								</div>
-								<a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.artist}</div></a>
+								<a href={`/#/users/${track.uploaderId}`}><div className='ts-artist-name'>{track.artist}</div></a>
 								<div className='ts-follow-btn'>Follow</div>
 							</div>
 							<div className='ts-uc-right'>
 								<div className='ts-track-description'>{track.description}</div>
 								<div className='track-show-comment-index'>
-									{/* <CommentIndexContainer track={track} /> */}
+									<CommentIndexContainer track={track} />
 								</div>
 							</div>
 						</div>
