@@ -1,5 +1,5 @@
 import * as APIUtil from '../util/comment_api_util';
-import { receiveTrack } from './track_actions';
+import { receiveTrack, receiveCurrentTrack } from './track_actions';
 
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
@@ -18,12 +18,12 @@ export const removeComment = commentId => ({
 
 export const createComment = (comment, id) => dispatch => (
 	APIUtil.createComment(comment, id).then(payload => (
-		dispatch(receiveTrack(payload))
+		dispatch(receiveCurrentTrack(payload))
 	))
 );
 
 export const deleteComment = commentId => dispatch => (
 	APIUtil.deleteComment(commentId).then(payload => (
-		dispatch(receiveTrack(payload))
+		dispatch(receiveCurrentTrack(payload))
 	))
 );

@@ -8,24 +8,33 @@ class Stream extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			tracks: [],
-			users: []
+			// tracks: [],
+			// users: []
 		}
 	}
 
 	componentDidMount() {
 		this.props.fetchAllTracks();
-		this.props.fetchAllUsers();
+		// this.props.fetchAllUsers();
+		// this.props.fetchUser(this.props.currentUser.id)
 	}
 
-	componentDidUpdate(newState) {
+	// componentDidUpdate(newState) {
 		// this.setState({ tracks: newState.tracks, users: newState.users }); 
-  }
+	// }
+	
+	// currentUser() {
+	// 	const { users, currentUser } = this.props;
+	// 	if (currentUser) return currentUser.id || currentUser;
+		// else return null;
+	// }
 
 	render() {
-		const { tracks, currentUser, users, errors } = this.props;
+		const { tracks, users, errors } = this.props;
+		// const currentUser = this.currentUser();
+		// if (!currentUser) return null;
 
-		console.log("stream", "tracks", tracks, "currentUser", currentUser, "users", users, "errors", errors);
+		console.log("stream", "tracks", tracks, "users", users, "errors", errors);
 
 		let stream = Object.keys(tracks).map(key => (
 			<TrackIndexItem key={key} track={tracks[key]} user={this.props.user || null} />

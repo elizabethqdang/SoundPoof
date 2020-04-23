@@ -29,13 +29,17 @@ class Api::TracksController < ApplicationController
 		render "api/tracks/show"
 	end
 	
-  def delete
-    # if (params[:track])
-    #   AWS::S3::S3Object.find(params[:track], BUCKET).delete
-    #   redirect_to root_path
-    # else
-    #   render :text => "No track was found to delete!"
-    # end
+  def destroy
+    if (params[:track])
+      AWS::S3::S3Object.find(params[:track], BUCKET).delete
+      redirect_to root_path
+    else
+      render :text => "No track was found to delete!"
+		end
+		
+		# @track = Track.find(params[:id])
+    # @track.destroy
+    # render json: {}
   end
  
 	private

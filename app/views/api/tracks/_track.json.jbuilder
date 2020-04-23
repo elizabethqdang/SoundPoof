@@ -2,10 +2,12 @@ json.extract! track, :id, :title, :artist :user_id
 json.id track.id
 json.title track.title
 json.artist track.artist
-json.user_id track.user_id
+json.uploaderId track.user_id
 json.audio_url url_for(track.audio)
 json.artwork_url url_for(track.artwork)
 json.comments track.comments
+json.commenter_id track.commenter_id
+json.likes track.user.id
 json.numLikes track.likes.length
 
 json.tracks do

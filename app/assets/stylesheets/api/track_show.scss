@@ -3,11 +3,11 @@
 }
 
 .track-show-page {
-  display: flex;
+  display: inline-block;
   flex-direction: column;
 	width: 80%;
 	justify-content: center;
-align-items: center;
+	align-items: center;
 
 }
 .track-show-navbar-container {

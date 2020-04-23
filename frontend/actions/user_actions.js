@@ -3,12 +3,14 @@ import * as UserAPIUtil from "../util/user_api_util";
 export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
 export const RECEIVE_USER_ERRORS = "RECEIVE_USER_ERRORS";
+export const RECEIVE_LIKE = "RECEIVE_LIKE";
+export const REMOVE_LIKE = "REMOVE_LIKE";
 
 const receiveUser = payload => ({
 	type: RECEIVE_USER,
-	payload
-  // user: payload.user,
-  // tracks: payload.tracks || {}
+	payload,
+  user: payload.user,
+  tracks: payload.tracks || {}
 });
 
 const receiveUserErrors = errors => ({

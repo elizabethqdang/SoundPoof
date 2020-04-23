@@ -1,6 +1,7 @@
 @tracks.each do |track|
     json.set! track.id do 
-        json.extract! track, :id, :title, :artist, :user_id
+				json.extract! track, :id, :title, :artist, :description, :user_id, :comments
+				json.uploaderId track.user_id
         if track.artwork.attached? 
             json.artwork_url url_for(track.artwork)
         else 

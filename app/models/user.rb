@@ -20,6 +20,11 @@ class User < ApplicationRecord
 		through: :likes,
 		source: :track
 
+	has_many :comments,
+		dependent: :destroy,
+		class_name: :Comment,
+		primary_key: :id,
+		foreign_key: :user_id
 
 
   def self.find_by_credentials(email, password)

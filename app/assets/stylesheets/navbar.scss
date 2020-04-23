@@ -172,12 +172,14 @@
 
 .nav-user-username {
   display: block;
-  max-width: 218px;
+	// max-width: 218px;
+	width: max-content;
   text-align: center;
   font-size: 14px;
   background-color: rgb(51, 51, 51);
   color: #ccc;
-  font-weight: 300;
+	font-weight: 300;
+	word-wrap: none;
 }
 
 .nav-user-menu:hover .nav-user-username {

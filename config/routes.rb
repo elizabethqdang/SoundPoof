@@ -4,14 +4,14 @@ Rails.application.routes.draw do
   root to: 'static_pages#root'
 
   namespace :api, defaults: { format: :json } do
-		resources :users, only: [:create, :show]
-    resource :session, only: [:create, :show, :destroy]
+		resources :users, only: [:index, :create, :show, :update]
+    resource :session, only: [:create, :destroy]
     resources :tracks, only: [:index, :create, :show, :update, :destroy] do
-			resources :comments, only: [:index]
-		
+			resources :comments, only: [:index, :create, :show, :destroy]
+		end
+
 		post 'users/likes/:track_id', to: 'users#like'
     delete 'users/likes/:track_id', to: 'users#unlike'
-    end
 	end
 	
 

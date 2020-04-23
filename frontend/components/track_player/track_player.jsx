@@ -54,11 +54,11 @@ class TrackPlayer extends React.Component{
     }
   }
 
-  // componentWillReceiveProps(newProps){
-  //   if (newProps.seek !== this.props.seek ){
-  //     this.reactplayer.current.seekTo(newProps.seek);
-  //   }
-  // }
+  componentWillReceiveProps(newProps){
+    if (newProps.seek !== this.props.seek ){
+      this.reactplayer.current.seekTo(newProps.seek);
+    }
+  }
 
   onDuration(){
     return ((duration) => {
@@ -84,8 +84,8 @@ class TrackPlayer extends React.Component{
       let prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
       this.props.setPlayPause(!playing, trackId, prog); 
     }
-  }
-
+	}
+	
   onEnded() {
     let {trackId} = this.props;
     this.props.endCurrentTrack(trackId); 
