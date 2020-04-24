@@ -25,7 +25,7 @@ class Api::TracksController < ApplicationController
   end
  
 	def show
-    @track = Track.find(params[:id])
+		@track = Track.find(params[:id])
 		render "api/tracks/show"
 	end
 	
@@ -45,7 +45,7 @@ class Api::TracksController < ApplicationController
 	private
 	
 	def track_params
-    params.require(:track).permit(:title, :artwork, :artist, :audio)
+    params.require(:track).permit(:title, :artwork, :audio, :artist, :user_id)
   end
  
   def sanitize_filename(file_name)

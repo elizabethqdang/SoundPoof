@@ -7,6 +7,8 @@ export const REMOVE_TRACK = "REMOVE_TRACK";
 export const RECEIVE_TRACK_ERRORS = "RECEIVE_TRACK_ERRORS";
 export const RECEIVE_CURRENT_TRACK = "RECEIVE_CURRENT_TRACK";
 export const RECEIVE_SINGLE_TRACK = "RECEIVE_SINGLE_TRACK";
+export const REQUEST_TRACK_FETCH = 'REQUEST_TRACK_FETCH';
+export const SET_PEAKS = 'SET_PEAKS'; 
 
 // Action creators
 export const receiveAllTracks = tracks => ({
@@ -40,18 +42,23 @@ export const receiveSingleTrack = payload => ({
 	track: payload.track
 })
 
+export const requestTrackFetch = () => ({
+	type: REQUEST_TRACK_FETCH
+});
+
 // Thunk actions
 export const fetchAllTracks = () => dispatch => (
 	TrackAPIUtil.fetchAllTracks()
 		.then(tracks => dispatch(receiveAllTracks(tracks)))
   );
 
-export const fetchTrack = id => dispatch => (
-	TrackAPIUtil.fetchTrack(id)
+export const fetchTrack = id => dispatch => {
+	dispatch(requestTrackFetch()); 
+	return TrackAPIUtil.fetchTrack(id)
 		.then(
-			track => dispatch(receiveSingleTrack(track))),
-    	errors => dispatch(receiveTrackErrors(errors.responseJSON))
-  );
+			track => dispatch(receiveTrack(track))),
+    	errors => dispatch(receiveTrackErrors(errors.responseJSON));
+};
 
 export const createTrack = track => dispatch =>
   TrackAPIUtil.createTrack(track).then(

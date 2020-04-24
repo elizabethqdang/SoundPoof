@@ -5,7 +5,10 @@ class User < ApplicationRecord
   validates :email, :session_token, uniqueness: true
   validates :password, allow_nil: true, length: { minimum: 6 }
 
-  before_validation :ensure_session_token 
+	before_validation :ensure_session_token 
+	
+	has_one_attached :profile_image
+	has_one_attached :banner_image
 
   has_many :tracks,
     foreign_key: :user_id,
