@@ -1,14 +1,15 @@
-export const fetchAllUsers = () => (
+export const fetchAllUsers = (userIds) => (
     $.ajax({
         url: '/api/users',
-        method: 'GET'
+				method: 'GET',
+				data: { userIds }
     })
 );
 
-export const fetchUser = id => (
+export const fetchUser = userId => (
     $.ajax({
         method: 'GET',
-        url: `/api/users/${id}`
+				url: `/api/users/${userId}`
     })
 );
 
@@ -23,5 +24,15 @@ export const deleteLike = (trackId) => {
 	return $.ajax({
 		url: `api/users/likes/${trackId}`,
 		method: 'delete',
+	});
+};
+
+export const updateUser = (userId, formData) => {
+	return $.ajax({
+		url: `api/users/${userId}`,
+		method: 'patch',
+		contentType: false,
+		processData: false,
+		data: formData,
 	});
 };

@@ -3,7 +3,7 @@ import { receiveCurrentTrack, fetchTrack, fetchAllTracks, deleteTrack, updateTra
 import { fetchAllUsers, fetchUser } from '../../actions/user_actions';
 import TrackShowPage from './track_show_page';
 import { setCurrentTrack, setPlayPause } from '../../actions/track_player_actions';
-import { toggleLike } from '../../actions/like_actions';
+// import { toggleLike } from '../../actions/like_actions';
 
 const currentUserLikes = ({ session: { currentUser } }, trackid) => {
 	if (!currentUser || !currentUser.likes) return false;
@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 	return {
 		// tracks: Object.values(state.entities.tracks),
 		// trackId: ownProps.match.params.trackId,
-		track: state.entities.tracks[ownProps.match.params.id],
+		track: state.entities.tracks[ownProps.match.params.id] || {},
 		trackplayer: state.trackplayer || {},
 		// trackId: parseInt(match.params.trackId),
 		currentTrack: state.currentTrack || {},

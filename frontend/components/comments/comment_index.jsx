@@ -6,21 +6,22 @@ class CommentIndex extends React.Component {
 		super(props);
 	}
 
-
+trackComments() {
+	let trackComments = track.comments.map(id => (
+		<CommentIndexItem key={id} track={track} currentUser={currentUser} id={id} deleteComment={deleteComment} comment={comments[id]} />
+	));
+}
 
 	render() {
 		let { track, comments, currentUser, deleteComment } = this.props;
-			if (comments.length > 0) { 
-			const trackComments = track.comments.map(id => (
-				<CommentIndexItem key={id} track={track} currentUser={currentUser} id={id} deleteComment={deleteComment} comment={comments[id]} /> ))
-			} else {
-				return null;
-			}
-
+		if (comments.length > 0) {
+			return this.trackComments();
+		} else {
+			return "null";
+		};
 
 		return (
 			<div className='tsc-container'>
-				{trackComments}
 			</div>
 		);
 	}

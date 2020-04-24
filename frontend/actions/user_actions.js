@@ -6,11 +6,11 @@ export const RECEIVE_USER_ERRORS = "RECEIVE_USER_ERRORS";
 export const RECEIVE_LIKE = "RECEIVE_LIKE";
 export const REMOVE_LIKE = "REMOVE_LIKE";
 
-const receiveUser = payload => ({
+const receiveUser = user => ({
 	type: RECEIVE_USER,
-	payload,
-  user: payload.user,
-  tracks: payload.tracks || {}
+	user,
+  // user: payload.user,
+  // tracks: payload.tracks || {}
 });
 
 const receiveUserErrors = errors => ({
@@ -18,9 +18,9 @@ const receiveUserErrors = errors => ({
   errors
 });
 
-const receiveAllUsers = users => ({
+const receiveAllUsers = payload => ({
   type: RECEIVE_ALL_USERS,
-  users
+  users: payload.users
 });
 
 export const receiveLike = (payload) => ({
@@ -35,14 +35,22 @@ export const removeLike = (payload) => ({
 	trackId: payload.trackId
 });
 
-export const fetchUser = id => dispatch =>
-  UserAPIUtil.fetchUser(id).then(
-    payload => dispatch(receiveUser(payload)),
-    errors => dispatch(receiveUserErrors(errors.responseJSON))
-  );
+export const fetchUser = userId => dispatch => {
+  return UserAPIUtil.fetchUser(userId).then(user => {
+		dispatch(receiveUser(user));
+		return user;
+	}, errors => {
+		dispatch(receiveUserErrors(errors.responseJSON));
+		return errors;
+	});
+}
 
-export const fetchAllUsers = () => dispatch =>
-  UserAPIUtil.fetchAllUsers().then(users => dispatch(receiveAllUsers(users)));
+export const fetchAllUsers = (userIds) => dispatch => {
+	UserAPIUtil.fetchAllUsers(userIds).then(payload => {
+		dispatch(receiveAllUsers(payload));
+		return payload;
+	});
+};
 
 export const createLike = (trackId) => (dispatch) => {
 	return UserAPIUtil.createLike(trackId).then(payload => {
@@ -60,6 +68,16 @@ export const deleteLike = (trackId) => (dispatch) => {
 		return payload;
 	}, errors => {
 		console.log(errors.responseJSON);
+		return errors;
+	});
+};
+
+export const updateUser = (userId, formData) => (dispatch) => {
+	return UserApiUtil.updateUser(userId, formData).then(user => {
+		dispatch(receiveUser(user));
+		return user;
+	}, errors => {
+		dispatch(receiveUserErrors(errors.responseJSON));
 		return errors;
 	});
 };

@@ -72,7 +72,7 @@ class TrackIndexItem extends React.Component {
 		let {track, currentUser} = this.props;
 		let likeButton = this.props.liked ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
 
-		if (currentUser && (currentUser.id === track.user_id)) {
+		if (currentUser && (this.props.currentUser.id === this.props.track.uploaderId)) {
 			return (
 				<div className='button-bar'>
 					<div className={likeButton} onClick={(e) => this.toggleLike(track.id, e)}>like</div>

@@ -26,7 +26,7 @@ class SessionForm extends React.Component {
     // this.props.processForm(user);
     this.props.processForm(user)
       .then(
-        // this.props.history.push("/discover"),
+        this.props.history.push("/stream"),
         this.props.closeModal);
   }
 
@@ -57,7 +57,7 @@ class SessionForm extends React.Component {
         <div className="">
           <form onSubmit={this.handleSubmit} className="loginFormBox">
 
-            <h1>Welcome to RachetPoof!</h1>
+            <h1>Welcome to SoundPoof!</h1>
             <br /><br />
 
             please {this.props.formType} or {this.props.otherForm}
