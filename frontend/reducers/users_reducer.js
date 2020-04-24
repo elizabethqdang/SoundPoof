@@ -20,9 +20,13 @@ const usersReducer = (state = initialState, action) => {
 			}
 			return newState;
 		case RECEIVE_USER:
+			// let newState;
+			// newState = { [action.user.id]: action.payload };
+			// return Object.assign({}, state, newState);
+
 			newState = _.merge({}, state);
-			newState[action.payload.user.id] = action.payload.user;
-			newState[action.payload.user.id].likedTrackIds = new Set(newState[action.payload.user.id].likedTrackIds);
+			newState[action.user.id] = action.user;
+			newState[action.user.id].likedTrackIds = new Set(newState[action.user.id].likedTrackIds);
 			return newState;
 			// return Object.assign({}, state, {
 			// 		[action.payload.id]: action.payload
@@ -30,9 +34,9 @@ const usersReducer = (state = initialState, action) => {
 		case RECEIVE_CURRENT_USER:
 			if (!action.user) { return state }
 				newState = _.merge({}, state);
-			if (!Boolean(newState[action.currentUser.id])) {
-				newState[action.payload.user.id] = action.payload.user;
-				newState[action.payload.user.id].likedTrackIds = new Set(newState[action.payload.user.id].likedTrackIds);
+			if (!Boolean(newState[action.user.id])) {
+				newState[action.user.id] = action.user;
+				newState[action.user.id].likedTrackIds = new Set(newState[action.user.id].likedTrackIds);
 				newState[action.currentUser.id] = action.currentUser;
 				newState[action.currentUser.id].likedTrackIds = new Set(newState[action.currentUser.id].likedTrackIds);
 			}

@@ -4,20 +4,24 @@ import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from "../actions/session_ac
 const _nullUser = {
 	// isAuthenticated: false,
 	// user: {},
-  id: null
+	id: null,
+	currentUser: null
 };
 
 const sessionReducer = (state = _nullUser, action) => {
   Object.freeze(_nullUser);
-
+	let newState;
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
-      return { 
+      // return { 
 				// ...state,
 				id: action.currentUser.id,
 				// user: action.currentUser,
 				// isAuthenticated: !!action.currentUser
-			};
+				newState = _.merge({}, state);
+				newState.currentUser = action.user;
+				return newState;
+			// };
       // const currentUser = action.currentUser;
       // return merge({}, { currentUser });
     case LOGOUT_CURRENT_USER:
