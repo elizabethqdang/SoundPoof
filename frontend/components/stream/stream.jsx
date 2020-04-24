@@ -11,6 +11,7 @@ class Stream extends React.Component {
 			// tracks: [],
 			// users: []
 		}
+		this.fetched = false;
 	}
 
 	componentDidMount() {
