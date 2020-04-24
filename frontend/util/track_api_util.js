@@ -1,7 +1,8 @@
 export const fetchAllTracks = () =>
   $.ajax({
     method: 'GET',
-    url: '/api/tracks'
+		url: '/api/tracks',
+		dataType: 'json'
   });
 
 export const fetchTrack = trackId =>

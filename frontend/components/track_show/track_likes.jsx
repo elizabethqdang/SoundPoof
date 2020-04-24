@@ -36,7 +36,7 @@ class TrackLikes extends React.Component {
 		if (currentUser && !currentUser.likedTrackIds) { return null; }
 
 		const likeActive = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'active' : '');
-		const likeText = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'Liked' : 'Like');
+		// const likeText = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'Liked' : 'Like');
 
 		let content;
 		// switch (type) {
