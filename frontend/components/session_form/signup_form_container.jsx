@@ -13,6 +13,7 @@ const mapStateToProps = (state, { errors }) => {
 		// navLink: <Link to="/login">log in instead</Link>,
 		loggedIn: Boolean(state.session.id),
 		errors: state.errors.session,
+		currentUser: state.session.currentUser,
   };
 };
 

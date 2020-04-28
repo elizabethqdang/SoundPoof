@@ -20,11 +20,11 @@ class UserShow extends React.Component {
     this.fetched = true;
   }
 
-  componentWillReceiveProps(nextProps) {
-		if (nextProps.match.params.id !== this.props.match.params.userId) {
-      this.props.fetchUser(nextProps.match.params.userId);
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+	// 	if (nextProps.match.params.id !== this.props.match.params.userId) {
+  //     this.props.fetchUser(nextProps.match.params.userId);
+  //   }
+  // }
 
   updateImage(type) {
     return (e) => {

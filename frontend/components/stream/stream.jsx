@@ -35,7 +35,7 @@ class Stream extends React.Component {
 		// const currentUser = this.currentUser();
 		// if (!currentUser) return null;
 
-		console.log("stream", "tracks", tracks, "users", users, "errors", errors);
+		// console.log("stream", "tracks", tracks, "users", users, "errors", errors);
 
 		let stream = Object.keys(tracks).map(key => (
 			<TrackIndexItem key={key} track={tracks[key]} user={this.props.user || null} />

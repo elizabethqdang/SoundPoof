@@ -45,7 +45,7 @@ class Api::TracksController < ApplicationController
 	private
 	
 	def track_params
-    params.require(:track).permit(:title, :artwork, :audio, :artist, :user_id)
+    params.require(:track).permit(:title, :artwork, :audio, :artist)
   end
  
   def sanitize_filename(file_name)
@@ -53,5 +53,4 @@ class Api::TracksController < ApplicationController
     just_filename.sub(/[^\w\.\-]/,'_')
   end
  
-
 end

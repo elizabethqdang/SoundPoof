@@ -28,29 +28,24 @@ const usersReducer = (state = initialState, action) => {
 			newState[action.user.id] = action.user;
 			newState[action.user.id].likedTrackIds = new Set(newState[action.user.id].likedTrackIds);
 			return newState;
-			// return Object.assign({}, state, {
-			// 		[action.payload.id]: action.payload
-			// });
+
 		case RECEIVE_CURRENT_USER:
 			if (!action.user) { return state }
-				newState = _.merge({}, state);
+				newState = Object.assign({}, state);
 			if (!Boolean(newState[action.user.id])) {
-				newState[action.user.id] = action.user;
-				newState[action.user.id].likedTrackIds = new Set(newState[action.user.id].likedTrackIds);
+				// newState[action.user.id] = action.user;
+				// newState[action.user.id].likedTrackIds = new Set(newState[action.user.id].likedTrackIds);
 				newState[action.currentUser.id] = action.currentUser;
 				newState[action.currentUser.id].likedTrackIds = new Set(newState[action.currentUser.id].likedTrackIds);
 			}
 			return newState;
-			// return Object.assign({}, state, {
-			// 		[action.currentUser.id]: action.currentUser
-			// });
 		case RECEIVE_LIKE:
 			newState = _.merge({}, state);
-			newState[action.userId].likedTrackIds.add(action.trackId);
+			newState[action.currentUser].likedTrackIds.add(action.trackId);
 			return newState;
 		case REMOVE_LIKE:
 			newState = _.merge({}, state);
-			newState[action.userId].likedTrackIds.delete(action.trackId);
+			newState[action.currentUser].likedTrackIds.delete(action.trackId);
 			return newState;
 		default:
 			return state;

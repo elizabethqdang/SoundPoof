@@ -72,7 +72,7 @@ class TrackIndexItem extends React.Component {
 		let {track, currentUser} = this.props;
 		let likeButton = this.props.liked ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
 
-		if (currentUser && (this.props.currentUser.id === this.props.track.uploaderId)) {
+		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
 				<div className='button-bar'>
 					<div className={likeButton} onClick={(e) => this.toggleLike(track.id, e)}>like</div>
@@ -112,14 +112,14 @@ class TrackIndexItem extends React.Component {
 			<div className='track-item-container'>
 				<div className='track-uploader-info'>
 					<aside className="track-uploader-circle">
-						<img src={track.artist} />
+						<img src={track.artworkUrl} />
 					</aside>
 					<a href={`/#/users/${track.user_id}`}><aside className="track-uploader-name">{track.user_id}</aside></a>
 				</div>
 
 				<div className='track-item'>
 					<div className='track-image-box'>
-						<a href={`/#/tracks/${track.id}`}><img src={track.artwork_url} /></a>
+						<a href={`/#/tracks/${track.id}`}><img src={track.artworkUrl} /></a>
 					</div>
 
 					<section className='track-details'>
@@ -140,7 +140,7 @@ class TrackIndexItem extends React.Component {
 							{/* {commentShow} */}
 						</div>
 						{buttonBar}
-						{/* <TrackLikesContainer track={track} /> */}
+						<TrackLikesContainer track={track} />
 					</section>
 
 				</div>

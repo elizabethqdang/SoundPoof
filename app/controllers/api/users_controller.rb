@@ -24,38 +24,21 @@ class Api::UsersController < ApplicationController
     else
       render json: @user.errors.full_messages, status: 422
     end
-
-    # @user = selected_user
-    # if @user && @user.update_attributes(user_params)
-    #   render :show
-    # elsif !@user
-    #   render json: ['Could not locate user'], status: 400
-    # else
-    #   render json: @user.errors.full_messages, status: 401
-    # end
   end
   
   def show
 		@user = User.find(params[:id])
-		# if @user
-		# 	render "api/users/show"
-		# else
-		# 	render json: @user.errors.full_messages, status: 404
-		# end
+	
+		if @user
+			render "api/users/show"
+		else
+			render json: @user.errors.full_messages, status: 404
+		end
 end
   
 	def index
-		def index
-			if (params[:userIds] && params[:userIds].length > 0)
-				@users = User.includes(:tracks, :liked_tracks, :comments).where(id: params[:userIds])
-				@all_info = true
-			else
-      	@users = User.includes(:tracks).all
-			end
-		end
-	
-    # @users = User.all
-    # render :index
+    @users = User.all
+    render :index
 	end
 	
 

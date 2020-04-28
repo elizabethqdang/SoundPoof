@@ -61,7 +61,7 @@ class UploadTrackForm extends React.Component {
 		let file = files[0];
 		let fileReader = new FileReader();
 		fileReader.onloadend = () => {
-			this.setState({ artwork_file: file, artwork_url: fileReader.result });
+			this.setState({ artworkFile: file, artworkUrl: fileReader.result });
 		};
 		fileReader.readAsDataURL(file);
 	}
@@ -93,7 +93,7 @@ class UploadTrackForm extends React.Component {
 
 		this.disableForm();
 
-		let artworkFile = this.state.artwork_file;
+		let artworkFile = this.state.artworkFile;
 		let audioFile = this.state.audio_file;
 		let upload = this;
 

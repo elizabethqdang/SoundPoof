@@ -78,7 +78,7 @@ class UploadTrack extends React.Component {
 			this.setState({
 				audioFile: audioFile,
 				errors: [],
-				audio_url: fileReader.result
+				audioUrl: fileReader.result
 			});
 		};
 

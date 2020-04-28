@@ -128,7 +128,7 @@ artist: "Flux Pavilion",
 user_id: u4.id 
 })
 t8.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/cannonball.mp3"), filename: "cannonball.mp3")
-t8.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/"), filename: "")
+t8.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"), filename: "placeholder.jpeg")
 
 t9 = Track.create({
 title: "Drop The Game", 

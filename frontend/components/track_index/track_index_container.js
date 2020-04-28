@@ -10,7 +10,6 @@ const mapStateToProps = state => ({
 	currentUser: state.session.currentUser || {},
 	tracks: Object.values(state.entities.tracks) || {},
 	trackplayer: state.trackplayer || {},
-	// currentUser: state.session.id || {},
 	users: Object.values(state.entities.users) || {},
 	liked: currentUserLikes(state, ownProps.track.id)
 });

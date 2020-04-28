@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { receiveCurrentTrack, fetchTrack, fetchAllTracks, deleteTrack, updateTrack } from "../../actions/track_actions";
-import { fetchAllUsers, fetchUser } from '../../actions/user_actions';
+import { fetchAllUsers, fetchUser, createLike, deleteLike } from '../../actions/user_actions';
 import TrackShowPage from './track_show_page';
 import { setCurrentTrack, setPlayPause } from '../../actions/track_player_actions';
 // import { toggleLike } from '../../actions/like_actions';
@@ -17,18 +17,16 @@ const mapStateToProps = (state, ownProps) => {
 	return {
 		// tracks: Object.values(state.entities.tracks),
 		// trackId: ownProps.match.params.trackId,
-		track: state.entities.tracks[ownProps.match.params.id] || {},
+		track: state.entities.tracks[ownProps.match.params.trackId] || {},
 		trackplayer: state.trackplayer || {},
 		// trackId: parseInt(match.params.trackId),
 		currentTrack: state.currentTrack || {},
 		errors: state.errors.tracks || [],
 		currentUser: state.session.currentUser || {},
 		users: state.entities.users,
-		// [ownProps.match.params.user_id],
 		// users: Object.values(state.entities.users) || {},
 		// user_id: ownProps.match.params.user_id,
 		loading: state.ui.loading,
-		// user_id: track.user_id,
 		// currentTrack: state.entities.tracks[state.ui.currentTrack.id],
 		// playing: state.ui.currentTrack.playing,
 		comments: Object.values(state.entities.comments) || {},
@@ -50,7 +48,7 @@ const mapDispatchToProps = dispatch => ({
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),
 	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),
 	updateTrack: (track, id) => dispatch(updateTrack(track, id)),
-	toggleLike: (trackId) => dispatch(toggleLike(trackId))
+	toggleLike: (trackId) => dispatch(createLike(trackId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackShowPage);

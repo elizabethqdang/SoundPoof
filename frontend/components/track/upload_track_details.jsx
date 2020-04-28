@@ -11,7 +11,7 @@ class UploadTrackDetails extends React.Component {
 			artworkFile: null,
 			audioFile: this.props.audioFile,
 			dragged: false,
-			artwork_url: null,
+			artworkUrl: null,
 			audio: null,
 			artwork: null,
 			errors: [],
@@ -32,7 +32,7 @@ class UploadTrackDetails extends React.Component {
 			this.setState({
 				artworkFile: file,
 				errors: [],
-				artwork_url: fileReader.result,
+				artworkUrl: fileReader.result,
 				artwork: fileReader.result
 			});
 		};
@@ -93,7 +93,7 @@ class UploadTrackDetails extends React.Component {
 			this.setState({
 				artworkFile: file,
 				errors: [],
-				artwork_url: fileReader.result
+				artworkUrl: fileReader.result
 			});
 		};
 
@@ -135,8 +135,8 @@ class UploadTrackDetails extends React.Component {
 	}
 
 	render() {
-		const preview = this.state.artwork_url ? (
-			<img src={this.state.artwork_url} className="stock-photo" />
+		const preview = this.state.artworkUrl ? (
+			<img src={this.state.artworkUrl} className="stock-photo" />
 		) : null;
 		return (
 			<div

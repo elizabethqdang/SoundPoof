@@ -116,8 +116,8 @@ class TrackPlayer extends React.Component{
       if (this.props.liked){
         liked = 'liked-button-t';}else{ liked = 'liked-button';}
       return {
-        trackToPlay: cTrack.audio_url,
-        trackImage: cTrack.artwork_url,
+        trackToPlay: cTrack.audioUrl,
+        trackImage: cTrack.artworkUrl,
         trackUploader: cTrack.user_id,
         trackName: cTrack.title,
         likeButton: liked,
