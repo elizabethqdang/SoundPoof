@@ -126,7 +126,7 @@ class Navbar extends React.Component {
 	}
 
   render() {
-		const { currentUser, logout, openModal } = this.props;
+		const { currentUser, logout, openModal, loggedIn } = this.props;
 		let nav; 
 		if (currentUser) {
 			nav = this.navRight(currentUser, logout)

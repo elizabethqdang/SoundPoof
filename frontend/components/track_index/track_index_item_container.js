@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import TrackIndexItem from './track_index_item';
 import { fetchTrack, deleteTrack, updateTrack } from '../../actions/track_actions';
+import { createLike, deleteLike } from '../../actions/user_actions';
 import { setCurrentTrack, setPlayPause, setProg } from '../../actions/track_player_actions';
 // import { toggleLike } from '../../actions/like_actions';
 
@@ -13,7 +14,7 @@ const mapStateToProps = (state, ownProps) => ({
 	comments: state.entities.comments,
 	errors: state.errors.tracks || [],
 	trackplayer: state.trackplayer || {},
-	currentUser: state.session.currentUser,
+	currentUser: state.session.currentUser || {},
 	loading: state.ui.loading,
 	liked: currentUserLikes(state, ownProps.track.id)
 });
@@ -24,7 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),
 	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),
 	updateTrack: (track, id) => dispatch(updateTrack(track, id)),
-	toggleLike: (trackId) => dispatch(toggleLike(trackId)),
+	toggleLike: (trackId) => dispatch(createLike(trackId)),
 	setProg: (trackId, progress) => dispatch(setProg(trackId, progress)),
 	createLike: (trackId) => dispatch(createLike(trackId)),
 	deleteLike: (id) => dispatch(deleteLike(id))

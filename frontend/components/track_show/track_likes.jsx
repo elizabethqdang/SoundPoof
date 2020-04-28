@@ -6,16 +6,9 @@ class TrackLikes extends React.Component {
 		this.handleToggleLike = this.handleToggleLike.bind(this);
 	}
 
-	currentUser() {
-		const { users, sessionCurrentUser } = this.props;
-		if (sessionCurrentUser) { return users[sessionCurrentUser.id]; }
-		return null;
-	}
-
 	handleToggleLike(e) {
 		e.preventDefault();
-		const { track, deleteLike, createLike } = this.props;
-		const currentUser = this.currentUser();
+		const { track, deleteLike, createLike, currentUser } = this.props;
 
 		if (!currentUser) {
 			this.props.history.push('/login');
@@ -30,8 +23,8 @@ class TrackLikes extends React.Component {
 	}
 
 	render() {
-		const { track, type } = this.props;
-		const currentUser = this.currentUser();
+		const { track, currentUser } = this.props;
+		console.log(track.id);
 
 		if (currentUser && !currentUser.likedTrackIds) { return null; }
 

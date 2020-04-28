@@ -4,8 +4,7 @@ import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from "../actions/session_ac
 const _nullUser = {
 	// isAuthenticated: false,
 	// user: {},
-	id: null,
-	currentUser: null
+	currentUser: null,
 };
 
 const sessionReducer = (state = _nullUser, action) => {
@@ -13,15 +12,15 @@ const sessionReducer = (state = _nullUser, action) => {
 	let newState;
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
-      // return { 
+      return { 
 				// ...state,
-				id: action.currentUser.id,
-				// user: action.currentUser,
+				// id: action.currentUser.id,
+				currentUser: action.currentUser,
 				// isAuthenticated: !!action.currentUser
-				newState = _.merge({}, state);
-				newState.currentUser = action.user;
-				return newState;
-			// };
+				// newState = _.merge({}, state);
+				// newState.currentUser = action.user;
+				// return newState;
+			};
       // const currentUser = action.currentUser;
       // return merge({}, { currentUser });
     case LOGOUT_CURRENT_USER:

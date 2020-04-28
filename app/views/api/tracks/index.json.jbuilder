@@ -1,27 +1,25 @@
-@tracks.each do |track|
-		json.set! track.id do 
-			json.partial! 'api/tracks/track', track: track			
-		end
-end
-
-
 # @tracks.each do |track|
-#     json.set! track.id do 
-# 				json.extract! track, :id, :title, :artist, :description, :user_id, :comments
-# 				json.uploaderId track.user_id
-#         if track.artwork.attached? 
-#             json.artwork_url url_for(track.artwork)
-#         else 
-#             json.artwork_url ''
-#         end
-# 				 if track.audio.attached? 
-					
-#             json.audio_url url_for(track.audio)
-#         else 
-#             json.audio_url ''
-#         end
+# 		json.set! track.id do 
+# 			json.partial! 'api/tracks/track', track: track			
 # 		end
 # end
+
+
+@tracks.each do |track|
+    json.set! track.id do 
+				json.extract! track, :id, :title, :artist, :user_id
+        if track.artwork.attached? 
+            json.artworkUrl url_for(track.artwork)
+        else 
+            json.artworkUrl ''
+        end
+				if track.audio.attached? 
+            json.audioUrl url_for(track.audio)
+        else 
+            json.audioUrl ''
+        end
+		end
+end
 
 # <ul>
 # <% @tracks.each do |track| %>

@@ -12,8 +12,8 @@ class TrackIndex extends React.Component {
 	}
 
 	componentWillMount() {
-		this.props.fetchAllTracks();
-		this.props.fetchAllUsers();
+		// this.props.fetchAllTracks();
+		// this.props.fetchAllUsers();
 	}
 
 	componentWillReceiveProps(newState) {

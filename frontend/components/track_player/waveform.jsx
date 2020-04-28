@@ -24,9 +24,9 @@ class WaveForm extends React.Component {
 		//will set audio peaks if not stored yet. 
 		if (this.props.track.audioPeaks.length !== 0) {
 			let peaks = JSON.parse(this.props.track.audioPeaks);
-			this.wavesurfer.load(this.props.track.audio_url, peaks);
+			this.wavesurfer.load(this.props.track.audioUrl, peaks);
 		} else {
-			this.wavesurfer.load(this.props.track.audio_url);
+			this.wavesurfer.load(this.props.track.audioUrl);
 		}
 
 		this.wavesurfer.setMute(true);

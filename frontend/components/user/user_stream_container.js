@@ -5,14 +5,11 @@ import UserStream from './user_stream';
 
 const mapStateToProps = (state, ownProps) => {
 
-  // const { songQueue, songIdx, playing } = state.ui.playback;
-  // const currentSongId = songQueue[songIdx];
-
   return {
-    currentUser: state.entities.users[state.session.currentUser.id],
+		currentUser: state.entities.users[state.session.currentUser.id],
+		currentUser: state.session.currentUser,
     tracks: state.entities.tracks,
     users: state.entities.users,
-    // currentSongId,
     playing: state.ui.playback.playing,
   };
 };

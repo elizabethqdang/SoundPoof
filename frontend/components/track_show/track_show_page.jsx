@@ -10,9 +10,6 @@ class TrackShowPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			// user: '',
-			// user_id: '',
-			// artist: '',
 			firstload: true,
 		};
 		this.songButton = this.songButton.bind(this);
@@ -21,30 +18,10 @@ class TrackShowPage extends React.Component {
 	}
 	
 	componentDidMount() {
-		// const { track, user } = this.props;
-		// let trackId = this.props.match.params.trackId;
-		// let userId = this.props.match.params.userId;
-		// let track = this.props.tracks[trackId];
-		// if (track) {
-		// 	let user = track.user_id;
-		// } else {
-		// 	let user = [];
-		// };
-		// this.props.fetchTrack(this.props.match.params.trackId);
-		// this.props.fetchUser(this.props.userId);
-		// this.props.fetchAllUsers().then(() => this.props.fetchTrack(trackId),
-		// 	() => this.setState({ firstLoad: false })
-		// );
-		// this.props.fetchTrack(this.props.match.params.trackId)
-		// 	.then(() => {
-		// 		this.setState({ firstLoad: false });
-		// 		this.props.fetchUser(track.user_id);
-		// 	}
-			// );
 		this.props.fetchTrack(this.props.match.params.trackId);
 		// this.props.fetchUser(this.props.match.params.userId);
 		this.setState({ 
-			// currentTrack: newProps.trackId,
+			// currentTrack: prevProps.trackId,
 			firstLoad: false 
 		});
 
@@ -55,29 +32,19 @@ class TrackShowPage extends React.Component {
 			this.props.fetchTrack(prevProps.match.params.trackId);
 		}
 
-		if (this.state.firstLoad || this.props.loading) return;
-		let { playing, trackId, player, progressTrackId } = this.props.trackplayer;
-		let trackProg = progressTrackId[this.props.track.id];
-		let thisId = this.props.track.id;
+		// if (this.state.firstLoad || this.props.loading) return;
+		// let { playing, trackId, player, progressTrackId } = this.props.trackplayer;
+		// let trackProg = progressTrackId[this.props.track.id];
+		// let thisId = this.props.track.id;
 
-		if (playing && (trackId == thisId) && (thisId !== newProps.trackplayer.trackId)) {
-			let prog = trackProg ? trackProg : player.getCurrentTime() / player.getDuration();
-			this.props.setProg(thisId, prog);
-		}
+		// if (playing && (trackId == thisId) && (thisId !== prevProps.trackplayer.trackId)) {
+		// 	let prog = trackProg ? trackProg : player.getCurrentTime() / player.getDuration();
+		// 	this.props.setProg(thisId, prog);
+		// }
 	}
 
-	// componentDidUpdate(prevProps) {
-	// 		if (prevProps.match.params.trackId !== this.props.match.params.trackId) {
-	// 				this.props.fetchTrack(this.props.match.params.trackId);
-	// 		};
-			// this.setState({
-			// 	currentTrack: newProps.trackId
-			// })
-	// }
-
 	
-	songButton(track, e)
-	{
+	songButton(track, e) {
 		e.preventDefault();
 		let { currentTrack, playing, trackId } = this.props.trackplayer;
 		let tplayer = this.props.trackplayer.player;
@@ -104,17 +71,8 @@ class TrackShowPage extends React.Component {
 		this.props.deleteTrack(trackId).then(() => this.props.history.push('/stream'));
 	}
 
-	// currentUser() {
-	// 	const { users, currentUser } = this.props;
-	// 	if (currentUser) return users[currentUser.id];
-		// return null;
-	// }
-
-	userTrackButtons()
-	{
-		const { tracks, currentUser, users, errors } = this.props;
-		// const currentUser = this.currentUser();
-		let track = this.props.track;
+	userTrackButtons() {
+		const { tracks, currentUser, users, errors, track } = this.props;
 		let likeButton = this.props.liked ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
 		if (this.props.currentUser.id === this.props.track.uploaderId) {
 			return (
@@ -143,17 +101,13 @@ class TrackShowPage extends React.Component {
 	render() {
 		const { currentTrack, trackId, tracks, users, trackplayer, comments, loading, currentUser, deleteTrack, track } = this.props;
 		if (this.state.firstLoad || loading) return (<div>loading</div>);
-		// if (track) {
-		// 	let user = track.user_id;
-		// } else {
-		// 	let track = [];
-		// };
+
 		let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
 			'ts-play playing' : 'ts-play';
 		let buttonBar = this.userTrackButtons();
 
-		console.log( "track-show-page" );
-		// console.log("trackId", trackId, "errors", tracks, "track", track, "users", users, "currentTrack", currentTrack, track.userId);
+		// console.log( "track-show-page" );
+		// console.log("trackId", trackId, "errors", "track", track, "track.id", track.id, "currentTrack", currentTrack, track.userId);
 
 		return (
 			<div className='track-show-page'>
@@ -174,7 +128,7 @@ class TrackShowPage extends React.Component {
 						</div>
 					</div>
 					<div className='track-show-image-container'>
-						<img src={track.artwork_url ? track.artwork_url : ""} />
+						<img src={track.artworkUrl ? track.artworkUrl : ""} />
 					</div>
 				</div>
 				<div className='track-show-container-bottom'>
@@ -182,7 +136,7 @@ class TrackShowPage extends React.Component {
 						<div className='track-show-comment-bar'>
 							<CommentFormContainer track={track} />
 						</div>
-						{buttonBar}
+						{/* {buttonBar} */}
 						{/* <TrackDetail /> */}
 						<TrackLikesContainer track={track} />
 						<div className='ts-uploader-ci'>
