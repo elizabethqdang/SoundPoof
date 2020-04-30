@@ -8,7 +8,7 @@ class TrackLikes extends React.Component {
 
 	handleToggleLike(e) {
 		e.preventDefault();
-		const { track, deleteLike, createLike, currentUser } = this.props;
+		const { track, removeLike, createLike, deleteLike, currentUser } = this.props;
 
 		if (!currentUser) {
 			this.props.history.push('/login');
@@ -24,7 +24,7 @@ class TrackLikes extends React.Component {
 
 	render() {
 		const { track, currentUser } = this.props;
-		console.log(track.id);
+		// console.log(track.id);
 
 		if (currentUser && !currentUser.likedTrackIds) { return null; }
 

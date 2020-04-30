@@ -17,31 +17,20 @@ class Stream extends React.Component {
 	componentDidMount() {
 		this.props.fetchAllTracks();
 		// this.props.fetchAllUsers();
-		// this.props.fetchUser(this.props.currentUser.id)
+		this.props.fetchUser(this.props.currentUser.id)
 	}
 
 	// componentDidUpdate(newState) {
 		// this.setState({ tracks: newState.tracks, users: newState.users }); 
 	// }
-	
-	// currentUser() {
-	// 	const { users, currentUser } = this.props;
-	// 	if (currentUser) return currentUser.id || currentUser;
-		// else return null;
-	// }
 
 	render() {
 		const { tracks, users, errors } = this.props;
-		// const currentUser = this.currentUser();
-		// if (!currentUser) return null;
-
 		// console.log("stream", "tracks", tracks, "users", users, "errors", errors);
 
 		let stream = Object.keys(tracks).map(key => (
 			<TrackIndexItem key={key} track={tracks[key]} user={this.props.user || null} />
 		));
-			
-			// (track, idx) => <TrackIndexItem key={idx} track={track} user={this.props.user || []} />));
 
 		return (
 			<div className="stream-container">
@@ -65,7 +54,6 @@ class Stream extends React.Component {
 					<div className='nav-border' />
 					<p>Hear the latest posts from the people you're following</p>
 					<ul className='homepage-tracks'>
-							{/* {tracks.map(track => <TrackIndexItem key={track._id} track={track} user={this.props.user || this.props.users[1]} />)} */}
 							{stream}
 					</ul>
 				</div>

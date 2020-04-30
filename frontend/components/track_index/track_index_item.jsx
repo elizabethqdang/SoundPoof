@@ -16,7 +16,6 @@ class TrackIndexItem extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-
 		//this is for the circumstance whree 
 		let { playing, trackId, player } = this.props.trackplayer;
 		let trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
@@ -63,19 +62,25 @@ class TrackIndexItem extends React.Component {
 		this.props.deleteTrack(trackId);
 	}
 
-	toggleLike(trackId, e) {
+	toggleLike(e) {
 		e.preventDefault();
-		this.props.toggleLike(trackId);
+		const { track, deleteLike, createLike, currentUser } = this.props;
+
+		if (currentUser.likedTrackIds.includes(track.id)) {
+			deleteLike(track.id);
+		} else {
+			createLike(track.id);
+		}
 	}
 
 	userTrackButtons() {
 		let {track, currentUser} = this.props;
-		let likeButton = this.props.liked ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
+		let likeButton = (currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
 
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
 				<div className='button-bar'>
-					<div className={likeButton} onClick={(e) => this.toggleLike(track.id, e)}>like</div>
+					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>like</div>
 					<Link to={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link>
 					<div className='controller-btn delete-btn' onClick={(e) => this.deleteSong(track.id, e)}>Delete</div>
 				</div>
@@ -83,7 +88,7 @@ class TrackIndexItem extends React.Component {
 		} else {
 			return (
 				<div className='button-bar'>
-					<div className={likeButton} onClick={(e) => this.toggleLike(track.id, e)}>like</div>
+					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>like</div>
 				</div>
 			);
 		}
@@ -140,7 +145,6 @@ class TrackIndexItem extends React.Component {
 							{/* {commentShow} */}
 						</div>
 						{buttonBar}
-						<TrackLikesContainer track={track} />
 					</section>
 
 				</div>

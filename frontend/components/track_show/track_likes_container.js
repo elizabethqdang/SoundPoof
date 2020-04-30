@@ -1,7 +1,7 @@
 import TrackLikes from './track_likes';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createLike, removeLike } from '../../actions/user_actions';
+import { createLike, removeLike, deleteLike } from '../../actions/user_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     createLike: (trackId) => dispatch(createLike(trackId)),
-    deleteLike: (trackId) => dispatch(removeLike(trackId)),
+    deleteLike: (trackId) => dispatch(deleteLike(trackId)),
   };
 };
 
