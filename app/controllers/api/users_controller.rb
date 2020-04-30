@@ -43,7 +43,9 @@ end
 	
 
 	def like
-    @like = current_user.likes.new(track_id: params[:track_id])
+    @like = Like.new(track_id: params[:track_id])
+		# @like = current_user.likes.new(track_id: params[:track_id])
+		@like.user_id = current_user.id;
     if @like.save
       render :like
     else

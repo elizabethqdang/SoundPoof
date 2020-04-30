@@ -31,7 +31,7 @@
 		# json.set! @track.id do
 			json.extract! @track, :id, :title, :artist, :user_id
 			json.commentIds @track.comments.pluck(:id)
-			json.likes @track.likes.pluck(:id)
+			json.likes @track.likes.pluck(:user_id)
 			json.numLikes @track.likes.length
 			if @track.audio.attached?
 					json.audioUrl url_for(@track.audio)

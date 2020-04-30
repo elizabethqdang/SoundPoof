@@ -1,14 +1,8 @@
 import { connect } from 'react-redux';
 import TrackIndexItem from './track_index_item';
 import { fetchTrack, deleteTrack, updateTrack } from '../../actions/track_actions';
-import { createLike, deleteLike } from '../../actions/user_actions';
+import { fetchUser, createLike, removeLike, deleteLike } from '../../actions/user_actions';
 import { setCurrentTrack, setPlayPause, setProg } from '../../actions/track_player_actions';
-// import { toggleLike } from '../../actions/like_actions';
-
-const currentUserLikes = ({ session: { currentUser } }, trackid) => {
-	if (!currentUser || !currentUser.likes) return false;
-	return currentUser.likes.includes(parseInt(trackid));
-};
 
 const mapStateToProps = (state, ownProps) => ({
 	comments: state.entities.comments,
@@ -16,11 +10,11 @@ const mapStateToProps = (state, ownProps) => ({
 	trackplayer: state.trackplayer || {},
 	currentUser: state.session.currentUser || {},
 	loading: state.ui.loading,
-	liked: currentUserLikes(state, ownProps.track.id)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	fetchTrack: (userId) => dispatch(fetchTrack(userId)),
+	fetchUser: (userId) => dispatch(fetchTrack(userId)),
+	fetchTrack: (trackId) => dispatch(fetchTrack(trackId)),
 	setCurrentTrack: (track) => dispatch(setCurrentTrack(track)),
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),
 	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),
@@ -28,7 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
 	toggleLike: (trackId) => dispatch(createLike(trackId)),
 	setProg: (trackId, progress) => dispatch(setProg(trackId, progress)),
 	createLike: (trackId) => dispatch(createLike(trackId)),
-	deleteLike: (id) => dispatch(deleteLike(id))
+	deleteLike: (trackId) => dispatch(deleteLike(trackId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackIndexItem);

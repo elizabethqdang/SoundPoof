@@ -27,6 +27,8 @@ const usersReducer = (state = initialState, action) => {
 			newState = _.merge({}, state);
 			newState[action.user.id] = action.user;
 			newState[action.user.id].likedTrackIds = new Set(newState[action.user.id].likedTrackIds);
+			// newState[action.currentUser.id] = action.currentUser;
+			// newState[action.currentUser.id].likedTrackIds = new Set(newState[action.currentUser.id].likedTrackIds);
 			return newState;
 
 		case RECEIVE_CURRENT_USER:
@@ -41,11 +43,11 @@ const usersReducer = (state = initialState, action) => {
 			return newState;
 		case RECEIVE_LIKE:
 			newState = _.merge({}, state);
-			newState[action.currentUser].likedTrackIds.add(action.trackId);
+			newState[action.userId].likedTrackIds.add(action.trackId);
 			return newState;
 		case REMOVE_LIKE:
 			newState = _.merge({}, state);
-			newState[action.currentUser].likedTrackIds.delete(action.trackId);
+			newState[action.userId].likedTrackIds.delete(action.trackId);
 			return newState;
 		default:
 			return state;

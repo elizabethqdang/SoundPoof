@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
 	errors: errorsReducer,
 	ui: uiReducer,
 	trackplayer: trackplayerReducer,
-	currentTrack,
+	// currentTrack,
 });
 
 export default rootReducer;
