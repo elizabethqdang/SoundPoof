@@ -117,9 +117,9 @@ class TrackIndexItem extends React.Component {
 			<div className='track-item-container'>
 				<div className='track-uploader-info'>
 					<aside className="track-uploader-circle">
-						<img src={track.artworkUrl} />
+						<img src={track.userProfile} />
 					</aside>
-					<a href={`/#/users/${track.user_id}`}><aside className="track-uploader-name">{track.user_id}</aside></a>
+					<a href={`/#/users/${track.user_id}`}><aside className="track-uploader-name">{track.userEmail}</aside></a>
 				</div>
 
 				<div className='track-item'>
