@@ -6,21 +6,25 @@ class Track < ApplicationRecord
 		has_one_attached :artwork
 
     belongs_to :user,
-        foreign_key: :user_id,
-				class_name: :User,
-				primary_key: :id
+			foreign_key: :user_id,
+			class_name: :User,
+			primary_key: :id
 
-		has_many	:likes, dependent: :destroy
+		has_many	:likes, 
+			dependent: :destroy,
+			foreign_key: :track_id,
+			class_name: :Like,
+			primary_key: :id
 
 		has_many	:likers,
 			through: :likes,
 			source: :user
 
 		has_many	:comments, 
-				dependent: :destroy,
-				foreign_key: :track_id,
-				class_name: :Comment,
-				primary_key: :id
+			dependent: :destroy,
+			foreign_key: :track_id,
+			class_name: :Comment,
+			primary_key: :id
 				
 		has_many	:commenters,
 			through: :comments,
@@ -38,6 +42,4 @@ class Track < ApplicationRecord
 		#  validates_attachment_content_type :artwork, content_type: /\Aimage\/.*\Z/
   	# validates_attachment_content_type :track, content_type: /\Aaudio\/.*\Z/
 
-    
-    
 end

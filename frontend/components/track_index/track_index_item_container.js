@@ -13,7 +13,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	fetchUser: (userId) => dispatch(fetchTrack(userId)),
+	fetchUser: (userId) => dispatch(fetchUser(userId)),
+	fetchCurrentUser: (userId) => dispatch(fetchUser(userId)),
 	fetchTrack: (trackId) => dispatch(fetchTrack(trackId)),
 	setCurrentTrack: (track) => dispatch(setCurrentTrack(track)),
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),

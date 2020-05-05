@@ -35,7 +35,7 @@ class TrackIndexItem extends React.Component {
 		let trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
 		let tplayer = this.props.trackplayer.player;
 		if (trackId == -1) { // no song played previously 
-			this.props.setPlayPause(!playing, track.id, 0);
+			this.props.setPlayPause(!playing, track.id, 1);
 		}
 		else if (track.id == trackId) { //if we are pausing the same song
 			let prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
@@ -64,9 +64,11 @@ class TrackIndexItem extends React.Component {
 
 	toggleLike(e) {
 		e.preventDefault();
-		const { track, deleteLike, createLike, currentUser } = this.props;
+		const { track, deleteLike, createLike, currentUser, users } = this.props;
+		const user = users[currentUser.id];
+		// console.log("users", users, "user", user, "current", currentUser);
 
-		if (currentUser.likedTrackIds.includes(track.id)) {
+		if (user.likedTrackIds.has(track.id)) {
 			deleteLike(track.id);
 		} else {
 			createLike(track.id);
@@ -74,8 +76,10 @@ class TrackIndexItem extends React.Component {
 	}
 
 	userTrackButtons() {
-		let {track, currentUser} = this.props;
-		let likeButton = (currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
+		const {track, currentUser, users} = this.props;
+		const user = users[currentUser.id];
+
+		const likeButton = (user && user.likedTrackIds.has(track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
 
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (

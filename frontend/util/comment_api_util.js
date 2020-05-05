@@ -1,7 +1,7 @@
-export const createComment = (comment, id) => (
+export const createComment = (comment, track_id) => (
 	$.ajax({
 		method: 'POST',
-		url: `api/tracks/${id}/comments`,
+		url: `api/tracks/${track_id}/comments`,
 		processData: false,
 		contentType: false,
 		dataType: 'json',

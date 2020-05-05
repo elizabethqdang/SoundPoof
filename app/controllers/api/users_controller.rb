@@ -37,15 +37,21 @@ class Api::UsersController < ApplicationController
 end
   
 	def index
-    @users = User.all
+		if (params[:userIds] && params[:userIds].length > 0)
+      @users = User.includes(:tracks, :liked_tracks, :commented_tracks).where(id: params[:userIds])
+      @all_info = true
+    else
+      @users = User.includes(:tracks, :commented_tracks).all
+    end
+    # @users = User.all
     render :index
 	end
 	
 
 	def like
-    @like = Like.new(track_id: params[:track_id])
+    @like = current_user.likes.new(track_id: params[:track_id])
 		# @like = current_user.likes.new(track_id: params[:track_id])
-		@like.user_id = current_user.id;
+		# @like.user_id = current_user.id;
     if @like.save
       render :like
     else
@@ -60,7 +66,7 @@ end
       @like.destroy
       render :like
     else
-      render json: ['already unliked or not authorized to unlike'], status: 401
+      render json: ['You have already unliked this track or you do not have permission to unlike this track'], status: 401
     end
   end
 
@@ -68,7 +74,7 @@ end
   private
   
   def user_params
-    params.require(:user).permit(:email, :password, :bio, :location, :banner_image)
+    params.require(:user).permit(:email, :password, :bio, :location, :username)
   end
 
 end
