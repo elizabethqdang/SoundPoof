@@ -137,7 +137,7 @@ class UploadTrackDetails extends React.Component {
 	render() {
 		const preview = this.state.artworkUrl ? (
 			<img src={this.state.artworkUrl} className="stock-photo" />
-		) : null;
+		) : <img src="https://soundpoof.s3-us-west-2.amazonaws.com/logo.jpg" className="stock-photo" />;
 		return (
 			<div
 				className="upload-form-container"

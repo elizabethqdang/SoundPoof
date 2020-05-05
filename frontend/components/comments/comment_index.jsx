@@ -13,12 +13,12 @@ trackComments() {
 }
 
 	render() {
-		let { track, comments, currentUser, deleteComment } = this.props;
-		if (comments.length > 0) {
-			return this.trackComments();
-		} else {
-			return "null";
-		};
+		// let { track, comments, currentUser, deleteComment } = this.props;
+		// if (comments.length > 0) {
+			// return this.trackComments();
+		// } else {
+		// 	return "null";
+		// };
 
 		return (
 			<div className='tsc-container'>
