@@ -5,11 +5,11 @@ import TrackShowPage from './track_show_page';
 import { setCurrentTrack, setPlayPause } from '../../actions/track_player_actions';
 // import { toggleLike } from '../../actions/like_actions';
 
-const currentUserLikes = ({ session: { currentUser } }, trackid) => {
-	if (!currentUser || !currentUser.likes) return false;
-	return currentUser.likes.includes(parseInt(trackid));
+// const currentUserLikes = ({ session: { currentUser } }, trackid) => {
+// 	if (!currentUser || !currentUser.likes) return false;
+// 	return currentUser.likes.includes(parseInt(trackid));
+// };
 
-};
 const mapStateToProps = (state, ownProps) => {
 	// const	tracks = state.entities.tracks;
 	// let trackId = parseInt(match.params.trackId);
@@ -28,7 +28,7 @@ const mapStateToProps = (state, ownProps) => {
 		loading: state.ui.loading,
 		// currentTrack: state.entities.tracks[state.ui.currentTrack.id],
 		// playing: state.ui.currentTrack.playing,
-		comments: Object.values(state.entities.comments) || {},
+		comments: Object.values(state.entities.comments),
 		liked: currentUserLikes(state, ownProps.match.params.id)
 	};
 };

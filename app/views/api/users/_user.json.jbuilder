@@ -2,6 +2,8 @@ json.extract! user, :id, :email, :username, :bio, :location
 json.id user.id
 json.email user.email
 json.username user.username
+json.bio user.bio
+json.location user.location
 json.trackIds user.track_ids
 json.likedTrackIds user.liked_track_ids
 json.commentIds user.comment_ids

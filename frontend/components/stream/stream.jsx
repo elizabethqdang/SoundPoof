@@ -17,7 +17,7 @@ class Stream extends React.Component {
 	componentDidMount() {
 		this.props.fetchAllTracks();
 		// this.props.fetchAllUsers();
-		this.props.fetchUser(this.props.currentUser.id)
+		this.props.fetchCurrentUser(this.props.currentUser.id)
 	}
 
 	// componentDidUpdate(newState) {
@@ -25,11 +25,11 @@ class Stream extends React.Component {
 	// }
 
 	render() {
-		const { tracks, users, errors } = this.props;
+		const { tracks, users, errors, user, currentUser } = this.props;
 		// console.log("stream", "tracks", tracks, "users", users, "errors", errors);
 
 		let stream = Object.keys(tracks).map(key => (
-			<TrackIndexItem key={key} track={tracks[key]} user={this.props.user || null} />
+			<TrackIndexItem key={key} track={tracks[key]} currentUser={currentUser || null} users={users} />
 		));
 
 		return (
