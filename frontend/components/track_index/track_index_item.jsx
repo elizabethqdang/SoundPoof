@@ -81,7 +81,7 @@ class TrackIndexItem extends React.Component {
 			return (
 				<div className='button-bar'>
 					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>like</div>
-					<Link to={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link>
+					{/* <Link sto={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link> */}
 					<div className='controller-btn delete-btn' onClick={(e) => this.deleteSong(track.id, e)}>Delete</div>
 				</div>
 			);

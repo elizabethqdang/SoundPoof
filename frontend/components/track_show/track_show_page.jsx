@@ -3,7 +3,6 @@ import { Link, withRouter } from "react-router-dom";
 import NavbarContainer from "../navbar/navbar_container";
 import CommentIndexContainer from "../comments/comment_index_container";
 import CommentFormContainer from '../comments/comment_form_container';
-import TrackDetail from "./track_detail";
 import TrackLikesContainer from "./track_likes_container";
 
 class TrackShowPage extends React.Component {
@@ -65,8 +64,7 @@ class TrackShowPage extends React.Component {
 		}//
 	}
 
-	deleteSong(trackId, e)
-	{
+	deleteSong(trackId, e) {
 		e.preventDefault();
 		this.props.deleteTrack(trackId).then(() => this.props.history.push('/stream'));
 	}
@@ -78,7 +76,7 @@ class TrackShowPage extends React.Component {
 			return (
 				<div className='button-bar'>
 					<div className={likeButton} onClick={() => this.props.toggleLike(track.id)}>like</div>
-					<Link to={`/tracks/${track.id}/edit`} className="controller-btn ˇedit-btn">Edit</Link>
+					{/* <Link to={`/tracks/${track.id}/edit`} className="controller-btn ˇedit-btn">Edit</Link> */}
 					<div className='controller-btn delete-btn' onClick={(e) => this.deleteSong(track.id, e)}>Delete</div>
 				</div>
 			);
@@ -137,15 +135,13 @@ class TrackShowPage extends React.Component {
 							<CommentFormContainer track={track} />
 						</div>
 						{/* {buttonBar} */}
-						{/* <TrackDetail /> */}
 						<TrackLikesContainer track={track} />
 						<div className='ts-uploader-ci'>
 							<div className='ts-uc-left'>
 								<div className='ts-artist-circle'>
-									<a href={`/#/users/${track.uploaderId}`}><img src="" /></a>
+									{/* <a href={`/#/users/${track}`}><img src="" /></a> */}
 								</div>
-								<a href={`/#/users/${track.uploaderId}`}><div className='ts-artist-name'>{track.artist}</div></a>
-								<div className='ts-follow-btn'>Follow</div>
+								{/* <a href={`/#/users/${track.uploaderId}`}><div className='ts-artist-name'>{track.artist}</div></a> */}
 							</div>
 							<div className='ts-uc-right'>
 								<div className='ts-track-description'>{track.description}</div>
