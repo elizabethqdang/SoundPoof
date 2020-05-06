@@ -112,7 +112,7 @@ class TrackShowPage extends React.Component {
 
 	render() {
 		let { currentTrack, trackId, tracks, users, trackplayer, comments, loading, currentUser, deleteTrack, track, deleteComment } = this.props;
-		// const user = users[currentUser.id];
+		const user = users[currentUser.id];
 		// console.log("stream", "tracks", tracks, "users", users, "user", user, "current", currentUser);
 
 		if (track === undefined) {
@@ -191,4 +191,4 @@ class TrackShowPage extends React.Component {
 	}
 }
 
-export default withRouter(TrackShowPage);
+export default (TrackShowPage);

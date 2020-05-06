@@ -22,7 +22,7 @@ const mapStateToProps = (state, ownProps) => {
 		// currentTrack: state.currentTrack || {},
 		errors: state.errors.tracks || [],
 		currentUser: state.session.currentUser || {},
-		users: state.entities.users,
+		users: state.entities.users || {},
 		// users: Object.values(state.entities.users) || {},
 		loading: state.ui.loading,
 		// currentTrack: state.entities.tracks[state.ui.currentTrack.id],

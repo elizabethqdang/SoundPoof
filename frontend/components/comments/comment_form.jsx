@@ -24,13 +24,15 @@ class CommentForm extends React.Component {
 	}
 
 	render() {
-		let { track, currentUser } = this.props;
+		const { track, currentUser, users, comment } = this.props;
+		let user = users[currentUser.id];
+
 		return (
 			<div className='comment-container'>
 				<div className='comment-form'>
 					<form onSubmit={this.handleSubmit} className='cform'>
 						<div className='comment-form-user'>
-							{/* <img src={currentUser.imageUrl} /> */}
+							<img src={user.profile_image_url ? user.profile_image_url : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"} />
 						</div>
 						<div className='comment-input-container'>
 							<input className='comment-input' type='text' onChange={this.updateBody()} value={this.state.body} placeholder='Write a Comment' />

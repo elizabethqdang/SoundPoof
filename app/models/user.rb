@@ -8,7 +8,12 @@ class User < ApplicationRecord
 	before_validation :ensure_session_token 
 	
 	has_one_attached :profile_image
-	has_one_attached :banner_image
+	has_attached_file :banner, validate_media_type: false, default_url: "/assets/images/banner4.jpg"
+	has_attached_file :profile, validate_media_type: false, default_url: "/assets/images/placeholder.jpeg"
+  
+  # validates_attachment_content_type :banner, :profile
+  # :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/,
+  #  :message => 'file type is not allowed (only jpeg/png/gif images)'
 
   has_many :tracks,
     foreign_key: :user_id,
@@ -36,6 +41,13 @@ class User < ApplicationRecord
 		through: :comments,
 		source: :track
 
+	def avatar_check user
+      if user.profile_image.present?
+        image_tag user.profile_image_url :thumb
+      else
+        image_tag 'placeholder.jpeg'
+      end
+  end
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)

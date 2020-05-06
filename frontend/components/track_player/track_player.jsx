@@ -30,7 +30,7 @@ class TrackPlayer extends React.Component{
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.trackId == -1 || this.props.trackId == -1) return;
+    if (prevProps.trackId === -1 || this.props.trackId === -1) return;
     
     if (this.props.trackId !== prevProps.trackId) { //new track is being played, look at waveseek 
       let progress = this.props.trackplayer.waveSeek; 
@@ -46,7 +46,6 @@ class TrackPlayer extends React.Component{
   }
 
   keepProgress() {
-
     if (this.state.startT !== null) {
       const startTime = this.state.startT; 
       this.setState({ startT: null }); 
@@ -77,20 +76,27 @@ class TrackPlayer extends React.Component{
     let tplayer = this.props.trackplayer.player; 
     let trackProg = this.props.trackplayer.progressTrackId[this.props.trackId];
     let { currentTrack, playing, player, trackId} = this.props;
-    if (trackId !== -1) { // it should be the same song 
-
-      // let prog = this.props.trackplayer.progressTrackId[trackId] || 0;
-      
-      let prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
+    if (trackId !== 0) { 
+			// it should be the same song 
+      let prog = this.props.trackplayer.progressTrackId[trackId] || 1;
+      // let prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
       this.props.setPlayPause(!playing, trackId, prog); 
-    }
+    } else if (trackId == 0) {
+						this.props.setPlayPause(!playing, 1, 0);
+				} else if (track.id == trackId) { //if we are pausing the same song
+					let prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
+					this.props.setPlayPause(!playing, track.id, prog);
+				} else { // not same track 
+					let prog = trackProg ? trackProg : 0; // if previous pause ,pick that, if never played start at 0 
+
+					this.props.setPlayPause(!playing, track.id, prog);
+				}
 	}
 	
   onEnded() {
     let {trackId} = this.props;
     this.props.endCurrentTrack(trackId); 
   }
-
 
   secondsToTime(seconds){
     let duration = new Date(null);
@@ -100,7 +106,6 @@ class TrackPlayer extends React.Component{
   }
 
   testFunction(){
-
     if (!this.props.currentTrack){
       return {
         trackToPlay: '',
@@ -127,14 +132,19 @@ class TrackPlayer extends React.Component{
     }
   }
 
-  toggleLike(trackId, e){
+  toggleLike(e){
     e.preventDefault();
-    this.props.toggleLike(trackId); 
+			const { track, deleteLike, createLike, currentUser, users } = this.props;
+			const user = users[currentUser.id];
+
+			if (user.likedTrackIds.has(track.id)) {
+				deleteLike(track.id);
+			} else {
+				createLike(track.id);
+			}
   }
- 
 
   render() {
-    
     let { currentTrack, playing } = this.props;
     let { loop, volume, muted } = this.state;
     let { trackToPlay, trackImage, trackUploader, trackName, likeButton, linkToTrack, linkToUploader } = this.testFunction();
@@ -148,7 +158,7 @@ class TrackPlayer extends React.Component{
     let durationTime = this.secondsToTime(this.state.duration);
     let playedTime = this.secondsToTime(this.state.playedSeconds);
     let percentage = `${Math.ceil(this.state.played * 100)}%`;
-    // let loopActive = loop ? 'loop-btn-active' : 'loop-btn';
+    let loopActive = loop ? 'loop-btn-active' : 'loop-btn';
 
     return (
       <div id='track-player-bar'>
@@ -178,7 +188,7 @@ class TrackPlayer extends React.Component{
             <a href={linkToUploader}><p className='tp-trackuploader'>{trackUploader}</p></a>
             <a href={linkToTrack}><p className='tp-trackname'>{trackName}</p></a>
             </div>
-            <div id={likeButton} className='controller-btn' onClick={(e) => this.toggleLike(currentTrack.id, e)}></div>
+            <div id={likeButton} className='controller-btn' onClick={(e) => this.toggleLike(e)}></div>
             <div id='playlist-button' className='controller-btn'></div>
 
           </div>

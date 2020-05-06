@@ -3,7 +3,6 @@ import { Link, Redirect, withRouter } from 'react-router-dom';
 import WaveFormContainer from '../track_player/waveform_container';
 import CommentIndexContainer from '../comments/comment_index_container';
 
-//will import track index item
 class TrackIndexItem extends React.Component {
 	constructor(props) {
 		super(props);
