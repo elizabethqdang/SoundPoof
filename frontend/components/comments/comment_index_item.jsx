@@ -14,9 +14,9 @@ class CommentIndexItem extends React.Component {
   }
 
   userTrackButtons() {
-    let { track, deleteComment, currentUser, id, comment } = this.props;
+    const { track, deleteComment, currentUser, id, comment } = this.props;
     
-    if (this.props.currentUser.id == this.props.comment.user_id) {
+    if (currentUser.id == comment.user_id) {
       return (
         <div className='comment-index-button' onClick={(e)=> this.deleteComment(e)}></div>
       );}else{

@@ -10,12 +10,17 @@ const usersReducer = (state = initialState, action) => {
 
 	switch (action.type) {
 		case RECEIVE_ALL_USERS:
-			if (!state.users) {
+			if (action.doNotReplace) {
 				newState = _.merge({}, action.users);
-			} else {
-				newState = _.merge({}, state, action.users);
 				for (let userId in action.users) {
 					newState[userId].likedTrackIds = new Set(newState[userId].likedTrackIds)
+					newState[currentUser].likedTrackIds = new Set(newState[userId].likedTrackIds)
+					newState[userId].commentedTrackIds = new Set(newState[userId].commentedTrackIds)
+					newState[currentUser].commentedTrackIds = new Set(newState[userId].commentedTrackIds)
+				}
+			} else {
+				if (!state.users) {
+				newState = _.merge({}, state, action.users);
 				}
 			}
 			return newState;
@@ -27,8 +32,7 @@ const usersReducer = (state = initialState, action) => {
 			newState = _.merge({}, state);
 			newState[action.user.id] = action.user;
 			newState[action.user.id].likedTrackIds = new Set(newState[action.user.id].likedTrackIds);
-			// newState[action.currentUser.id] = action.currentUser;
-			// newState[action.currentUser.id].likedTrackIds = new Set(newState[action.currentUser.id].likedTrackIds);
+			newState[action.user.id].commentedTrackIds = new Set(newState[action.user.id].commentedTrackIds);
 			return newState;
 
 		case RECEIVE_CURRENT_USER:
@@ -36,9 +40,8 @@ const usersReducer = (state = initialState, action) => {
 
 			newState = _.merge({}, state);
 			if (!Boolean(newState[action.user.id])) {
-				newState[action.user.id] = action.user;
-				newState[action.user.id].likedTrackIds = new Set(newState[action.user.id].likedTrackIds);
 				newState[action.currentUser.id] = action.currentUser;
+				newState[action.currentUser.id].commentedTrackIds = new Set(newState[action.currentUser.id].commentedTrackIds);
 				newState[action.currentUser.id].likedTrackIds = new Set(newState[action.currentUser.id].likedTrackIds);
 			}
 			return newState;

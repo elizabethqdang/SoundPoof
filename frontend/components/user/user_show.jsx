@@ -64,7 +64,7 @@ class UserShow extends React.Component {
   render() {
 		const { user, currentUserId, track } = this.props;
 		const currentUser = this.currentUser();
-		console.log(user, currentUserId);
+		console.log("user", user, "currentUserId", currentUserId);
 
 		if (currentUser && !currentUser.likedTrackIds) { return null; }
 

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { fetchAllTracks, fetchTrack} from "../../actions/track_actions";
 import { setCurrentTrack, setPlayPause, setProg } from '../../actions/track_player_actions';
 import { fetchAllUsers, fetchUser } from "../../actions/user_actions";
+
 import Stream from "./stream";
 
 const mapStateToProps = state => ({
@@ -21,8 +22,8 @@ const mapDispatchToProps = dispatch => ({
 	fetchAllTracks: () => dispatch(fetchAllTracks()),
 	fetchTrack: id => dispatch(fetchTrack(id)),
 	fetchAllUsers: () => dispatch(fetchAllUsers()),
-	fetchUser: (userId) => dispatch(fetchUser(userId)),
 	fetchCurrentUser: (userId) => dispatch(fetchUser(userId)),
+	// fetchCurrentUser: (currentUser) => dispatch(fetchCurrentUser(currentUser)),
 	setCurrentTrack: (track) => dispatch(setCurrentTrack(track)),
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),
 	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),

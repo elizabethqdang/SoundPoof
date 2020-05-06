@@ -1,8 +1,8 @@
 json.extract! comment, :id, :body, :user_id, :track_id
-# json.id comment.id
-# json.commenter_id comment.user_id
-# json.body comment.body
-# json.track_id comment.track_id
+json.id comment.id
+json.commenter_id comment.user_id
+json.body comment.body
+json.track_id comment.track_id
 
 # json.comments do
 # 		json.set! comment.id do

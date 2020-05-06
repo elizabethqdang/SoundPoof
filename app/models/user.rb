@@ -17,7 +17,10 @@ class User < ApplicationRecord
 		dependent: :destroy
 
 	has_many :likes,
-		dependent: :destroy
+		dependent: :destroy,
+		class_name: :Like,
+		primary_key: :id,
+		foreign_key: :user_id
 		
   has_many :liked_tracks,
 		through: :likes,
