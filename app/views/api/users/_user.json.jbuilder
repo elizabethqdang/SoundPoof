@@ -1,4 +1,10 @@
 json.extract! user, :id, :email, :username, :bio, :location
+if user.profile_image.attached?
+	json.profile_image_url url_for(user.profile_image)
+else
+	json.profile_image_url ''
+end
+
 json.id user.id
 json.email user.email
 json.username user.username
@@ -9,8 +15,8 @@ json.likedTrackIds user.liked_track_ids
 json.commentedTrackIds user.commented_track_ids
 
 # json.profile_image_url url_for(user.profile_image)
-# json.banner_image url_for(user.banner_image)
-
+json.bannerUrl asset_path(user.banner.url)
+json.profileUrl asset_path(user.profile.url)
 
 # json.user do
 # 		json.set! user.id do 

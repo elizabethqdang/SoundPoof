@@ -15,11 +15,12 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),
-	toggleLike: (trackId) => dispatch(toggleLike(trackId)),
 	fetchTrack: (id) => dispatch(fetchTrack(id)),
 	setTrackPlayer: (trackplayer) => dispatch(setTrackPlayer(trackplayer)),
 	seekPlayer: (progress) => dispatch(seekPlayer(progress)),
-	endCurrentTrack: (id) => dispatch(endCurrentTrack(id))
+	endCurrentTrack: (id) => dispatch(endCurrentTrack(id)),
+	createLike: (trackId) => dispatch(createLike(trackId)),
+	deleteLike: (trackId) => dispatch(deleteLike(trackId))
 });
 
 
