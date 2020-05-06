@@ -40,10 +40,12 @@ export const fetchUser = userId => dispatch => {
   return UserAPIUtil.fetchUser(userId).then(user => {
 		dispatch(receiveUser(user));
 		return user;
-	}, errors => {
-		dispatch(receiveUserErrors(errors.responseJSON));
-		return errors;
-	});
+	}, 
+	// errors => {
+	// 	dispatch(receiveUserErrors(errors.responseJSON));
+	// 	return errors;
+	// }
+	);
 }
 
 export const fetchAllUsers = (userIds) => dispatch => {

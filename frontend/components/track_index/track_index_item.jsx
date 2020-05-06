@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import WaveFormContainer from '../track_player/waveform_container';
-// import CommentsContainer from '../comments/comments_container';
-import TrackLikesContainer from '../track_show/track_likes_container';
+import CommentIndexContainer from '../comments/comment_index_container';
 
 //will import track index item
 class TrackIndexItem extends React.Component {
@@ -12,7 +11,7 @@ class TrackIndexItem extends React.Component {
 		this.toggleLike = this.toggleLike.bind(this);
 		this.deleteSong = this.deleteSong.bind(this);
 		this.userTrackButtons = this.userTrackButtons.bind(this);
-		// this.showComments = this.showComments.bind(this);
+		this.showComments = this.showComments.bind(this);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -98,24 +97,24 @@ class TrackIndexItem extends React.Component {
 		}
 	}
 
-	// showComments() {
-	// 	if (this.props.trackplayer.trackId == this.props.track.id) {
-	// 		return (
-	// 			<CommentsContainer track={this.props.track} />
-	// 		);
-	// 	} else {
-	// 		return (
-	// 			<div></div>
-	// 		);
-	// 	}
-	// }
+	showComments() {
+		if (this.props.trackplayer.trackId == this.props.track.id) {
+			return (
+				<CommentIndexContainer track={this.props.track} />
+			);
+		} else {
+			return (
+				<div></div>
+			);
+		}
+	}
 
 	render() {
 		let { track, trackplayer } = this.props;
 		let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
 			'ti-play playing' : 'ti-play';
 		let buttonBar = this.userTrackButtons();
-		// let commentShow = this.showComments();
+		let commentShow = this.showComments();
 
 		return (
 			<div className='track-item-container'>
@@ -146,7 +145,7 @@ class TrackIndexItem extends React.Component {
 							{/* <WaveFormContainer track={track} height={60} color={'#000'} /> */}
 						</div>
 						<div className='ti-comment-bar'>
-							{/* {commentShow} */}
+							{commentShow}
 						</div>
 						{buttonBar}
 					</section>

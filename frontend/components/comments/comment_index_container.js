@@ -4,12 +4,12 @@ import { deleteComment } from '../../actions/comment_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   errors: state.errors.tracks || [],
-  currentUser: state.session.currentUser,
+  currentUser: state.session.currentUser || {},
   comments: Object.values(state.entities.comments) || {} 
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  deleteComment: (id) => dispatch(deleteComment(id))
+  deleteComment: (trackId) => dispatch(deleteComment(trackId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentIndex);

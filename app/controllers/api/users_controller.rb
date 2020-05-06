@@ -27,7 +27,7 @@ class Api::UsersController < ApplicationController
   end
   
   def show
-		@user = User.find(params[:id])
+		@user = User.find_by(id: params[:id])
 	
 		if @user
 			render "api/users/show"
@@ -37,14 +37,14 @@ class Api::UsersController < ApplicationController
 end
   
 	def index
-		if (params[:userIds] && params[:userIds].length > 0)
-      @users = User.includes(:tracks, :liked_tracks, :commented_tracks).where(id: params[:userIds])
-      @all_info = true
-    else
-      @users = User.includes(:tracks, :commented_tracks).all
-    end
-    # @users = User.all
-    render :index
+		# if (params[:userIds] && params[:userIds].length > 0)
+    #   @users = User.includes(:tracks, :liked_tracks, :comments, :commented_tracks).where(id: params[:userIds])
+    #   @all_info = true
+    # else
+    #   @users = User.includes(:tracks, :commented_tracks).all
+    # end
+    @users = User.includes(:tracks, :liked_tracks, :comments, :commented_tracks).where(id: params[:userIds])
+    # render :index
 	end
 	
 

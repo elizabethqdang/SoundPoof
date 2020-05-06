@@ -5,6 +5,7 @@ class Comment < ApplicationRecord
 			foreign_key: :user_id,
 			class_name: :User,
 			primary_key: :id
+			
   belongs_to :track,
   		foreign_key: :track_id,
 			class_name: :Track,

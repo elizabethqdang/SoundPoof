@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_TRACK } from '../actions/track_actions';
+import { RECEIVE_SINGLE_TRACK } from '../actions/track_actions';
 import { REMOVE_COMMENT, RECEIVE_COMMENT } from '../actions/comment_actions';
 import merge from 'lodash/merge';
 
@@ -7,7 +7,7 @@ const commentsReducer = (oldState = {}, action) => {
 	let newState = Object.assign({}, oldState);
 
 	switch (action.type) {
-		case RECEIVE_CURRENT_TRACK:
+		case RECEIVE_SINGLE_TRACK:
 			if (action.payload.comments === undefined) {
 				return {};
 			} else {

@@ -5,7 +5,6 @@ export const RECEIVE_TRACK = "RECEIVE_TRACK";
 export const REQUEST_TRACK = "REQUEST_TRACK";
 export const REMOVE_TRACK = "REMOVE_TRACK";
 export const RECEIVE_TRACK_ERRORS = "RECEIVE_TRACK_ERRORS";
-export const RECEIVE_CURRENT_TRACK = "RECEIVE_CURRENT_TRACK";
 export const RECEIVE_SINGLE_TRACK = "RECEIVE_SINGLE_TRACK";
 export const REQUEST_TRACK_FETCH = 'REQUEST_TRACK_FETCH';
 export const SET_PEAKS = 'SET_PEAKS'; 
@@ -31,15 +30,11 @@ export const receiveTrackErrors = errors => ({
   errors
 });
 
-export const receiveCurrentTrack = payload => ({
-  type: RECEIVE_CURRENT_TRACK,
-	payload
-});
-
 export const receiveSingleTrack = payload => ({
 	type: RECEIVE_SINGLE_TRACK,
-	user: payload.track.user_id,
-	track: payload.track
+	payload
+	// user: payload.track.user_id,
+	// track: payload.track
 })
 
 export const requestTrackFetch = () => ({
@@ -52,12 +47,20 @@ export const fetchAllTracks = () => dispatch => (
 		.then(tracks => dispatch(receiveAllTracks(tracks)))
   );
 
-export const fetchTrack = id => dispatch => {
-	dispatch(requestTrackFetch()); 
-	return TrackAPIUtil.fetchTrack(id)
+// export const fetchTrack = trackId => dispatch => {
+// 	dispatch(requestTrackFetch()); 
+// 	return TrackAPIUtil.fetchTrack(trackId)
+// 		.then(
+// 			track => dispatch(receiveTrack(track))),
+//     	errors => dispatch(receiveTrackErrors(errors.responseJSON));
+// };
+
+export const fetchTrack = trackId => dispatch => {
+	dispatch(requestTrackFetch());
+	return TrackAPIUtil.fetchTrack(trackId)
 		.then(
-			track => dispatch(receiveTrack(track))),
-    	errors => dispatch(receiveTrackErrors(errors.responseJSON));
+			payload => dispatch(receiveSingleTrack(payload))),
+			errors => dispatch(receiveTrackErrors(errors.responseJSON));
 };
 
 export const createTrack = track => dispatch =>
