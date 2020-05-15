@@ -4,7 +4,7 @@ import UploadPage from "./upload_page";
 
 const mapStateToProps = (state) => ({
 		currentUser: state.session.currentUser,
-		userId: state.session.currentUser,
+		user_id: state.session.currentUser.id,
 		// userId: users[session.id]
 })
 const mapDispatchToProps = dispatch => ({

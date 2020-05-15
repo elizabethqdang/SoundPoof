@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+// import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_USER, RECEIVE_ALL_USERS, RECEIVE_LIKE, REMOVE_LIKE } from '../actions/user_actions';
 
 const initialState = {};
@@ -25,35 +25,31 @@ const usersReducer = (state = initialState, action) => {
 			}
 			return newState;
 		case RECEIVE_USER:
-			// let newState;
-			// newState = { [action.user.id]: action.payload };
-			// return Object.assign({}, state, newState);
-
 			newState = _.merge({}, state);
-			newState[action.user.id] = action.user;
-			newState[action.user.id].likedTrackIds = new Set(newState[action.user.id].likedTrackIds);
-			newState[action.user.id].commentedTrackIds = new Set(newState[action.user.id].commentedTrackIds);
+			newState[action.payload.id] = action.payload;
+			// newState[action.user.id].likedTrackIds = new Set(newState[action.user.id].likedTrackIds);
+			// newState[action.user.id].commentedTrackIds = new Set(newState[action.user.id].commentedTrackIds);
 			return newState;
 
-		case RECEIVE_CURRENT_USER:
-			if (!action.user) { return state; }
+		// case RECEIVE_CURRENT_USER:
+		// 	if (!action.user) { return state; }
 
-			newState = _.merge({}, state);
-			if (!Boolean(newState[action.user.id])) {
-				newState[action.currentUser.id] = action.currentUser;
-				newState[action.currentUser.id].commentedTrackIds = new Set(newState[action.currentUser.id].commentedTrackIds);
-				newState[action.currentUser.id].likedTrackIds = new Set(newState[action.currentUser.id].likedTrackIds);
-			}
-			return newState;
-		case RECEIVE_LIKE:
-			newState = _.merge({}, state);
-			newState[action.userId].likedTrackIds.add(action.trackId);
+		// 	newState = _.merge({}, state);
+		// 	if (!Boolean(newState[action.user.id])) {
+		// 		newState[action.currentUser.id] = action.currentUser;
+		// 		newState[action.currentUser.id].commentedTrackIds = new Set(newState[action.currentUser.id].commentedTrackIds);
+		// 		newState[action.currentUser.id].likedTrackIds = new Set(newState[action.currentUser.id].likedTrackIds);
+		// 	}
+		// 	return newState;
+		// case RECEIVE_LIKE:
+		// 	newState = _.merge({}, state);
+		// 	newState[action.userId].likedTrackIds.add(action.trackId);
 			// newState[action.currentUser.userId].likedTrackIds.add(action.trackId);
-			return newState;
-		case REMOVE_LIKE:
-			newState = _.merge({}, state);
-			newState[action.userId].likedTrackIds.delete(action.trackId);
-			return newState;
+	// 		return newState;
+	// 	case REMOVE_LIKE:
+	// 		newState = _.merge({}, state);
+	// 		newState[action.userId].likedTrackIds.delete(action.trackId);
+	// 		return newState;
 		default:
 			return state;
 	}

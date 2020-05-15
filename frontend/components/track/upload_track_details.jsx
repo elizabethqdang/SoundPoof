@@ -5,15 +5,16 @@ class UploadTrackDetails extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			// user_id: this.props.user_id,
+			user_id: this.props.user_id,
 			title: this.props.title,
 			artist: "",
 			artworkFile: null,
-			audioFile: this.props.audioFile,
-			dragged: false,
 			artworkUrl: null,
-			audio: null,
-			artwork: null,
+			audioFile: this.props.audioFile,
+			audioUrl: this.props.audioUrl,
+			dragged: false,
+			// audio: null,
+			// artwork: null,
 			errors: [],
 		};
 		this.dragOverHandler = this.dragOverHandler.bind(this);
@@ -23,6 +24,7 @@ class UploadTrackDetails extends React.Component {
 		this.dropHandler = this.dropHandler.bind(this);
 		this.update = this.update.bind(this);
 	}
+
 	dropHandler(e) {
 		e.preventDefault();
 		const file = e.dataTransfer.files[0];
@@ -33,7 +35,7 @@ class UploadTrackDetails extends React.Component {
 				artworkFile: file,
 				errors: [],
 				artworkUrl: fileReader.result,
-				artwork: fileReader.result
+				// artwork: fileReader.result
 			});
 		};
 
@@ -52,7 +54,7 @@ class UploadTrackDetails extends React.Component {
 		const track = new FormData();
 		track.append("track[artist]", this.state.artist);
 		track.append("track[title]", this.state.title);
-		// track.append("track[user_id]", this.state.user_id);
+		track.append("track[user_id]", this.state.user_id);
 		
 
 		// const {createTrack, clearModal} = this.props;
@@ -67,7 +69,7 @@ class UploadTrackDetails extends React.Component {
 			track.append("track[audio]", this.state.audioFile);
 			track.append("track[artist]", this.state.artist);
 			track.append("track[title]", this.state.title);
-			track.append("track[user_id]", this.state.userId);
+			// track.append("track[user_id]", this.state.user_id);
 			this.props.createTrack(track)
 				.then(res =>
 					this.props.history.push(`/stream`),
@@ -87,18 +89,19 @@ class UploadTrackDetails extends React.Component {
 	}
 
 	handleImageFile(e) {
-		const file = e.currentTarget.files[0];
+		const artworkFile = e.currentTarget.files[0];
 		const fileReader = new FileReader();
+
 		fileReader.onloadend = () => {
 			this.setState({
-				artworkFile: file,
+				artworkFile: artworkFile,
 				errors: [],
 				artworkUrl: fileReader.result
 			});
 		};
 
-		if (file) {
-			fileReader.readAsDataURL(file);
+		if (artworkFile) {
+			fileReader.readAsDataURL(artworkFile);
 		} else {
 			this.setState({
 				errors: ["Please upload an image file"]
@@ -106,8 +109,7 @@ class UploadTrackDetails extends React.Component {
 		}
 	}
 
-	renderErrors()
-	{
+	renderErrors() {
 		return (
 			<ul>
 				{this.state.errors.map((error, i) =>
@@ -135,6 +137,13 @@ class UploadTrackDetails extends React.Component {
 	}
 
 	render() {
+		const { user_id, userId, audioFile, audio, audioUrl } = this.props;
+		console.log("upload_track_details state", this.state);
+		console.log("upload_track_details user_id", user_id);
+		console.log("audioFile", audioFile);
+		console.log("audio", audio);
+		console.log("audioUrl", audioUrl);
+
 		const preview = this.state.artworkUrl ? (
 			<img src={this.state.artworkUrl} className="stock-photo" />
 		) : <img src="https://soundpoof.s3-us-west-2.amazonaws.com/logo.jpg" className="stock-photo" />;

@@ -6,9 +6,9 @@ export const RECEIVE_USER_ERRORS = "RECEIVE_USER_ERRORS";
 export const RECEIVE_LIKE = "RECEIVE_LIKE";
 export const REMOVE_LIKE = "REMOVE_LIKE";
 
-const receiveUser = user => ({
+const receiveUser = payload => ({
 	type: RECEIVE_USER,
-	user,
+	payload,
   // user: payload.user,
   // tracks: payload.tracks || {}
 });
@@ -37,9 +37,9 @@ export const removeLike = (payload) => ({
 });
 
 export const fetchUser = userId => dispatch => {
-  return UserAPIUtil.fetchUser(userId).then(user => {
-		dispatch(receiveUser(user));
-		return user;
+  return UserAPIUtil.fetchUser(userId).then(payload => {
+		dispatch(receiveUser(payload));
+		return payload;
 	}, 
 	// errors => {
 	// 	dispatch(receiveUserErrors(errors.responseJSON));

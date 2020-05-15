@@ -1,9 +1,9 @@
 json.extract! comment, :id, :body, :user_id, :track_id
 json.id comment.id
-json.commenter_id comment.user_id
+json.user_id comment.user_id
 json.body comment.body
 json.track_id comment.track_id
-json.commenterProfile comment.user.profile_image
+json.commenterProfile url_for(comment.user.profile_image)
 
 # json.comments do
 # 		json.set! comment.id do

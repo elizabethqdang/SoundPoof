@@ -1,8 +1,10 @@
 import { connect } from "react-redux";
 import { fetchTrack, fetchAllTracks, deleteTrack, updateTrack } from "../../actions/track_actions";
 import { fetchAllUsers, fetchUser, createLike, deleteLike } from '../../actions/user_actions';
+import { fetchCurrentUser } from '../../actions/session_actions';
 import TrackShowPage from './track_show_page';
 import { setCurrentTrack, setPlayPause, receiveCurrentTrack } from '../../actions/track_player_actions';
+import { deleteComment } from '../../actions/comment_actions';
 
 // const currentUserLikes = ({ session: { currentUser } }, trackid) => {
 // 	if (!currentUser || !currentUser.likes) return false;
@@ -37,7 +39,7 @@ const mapDispatchToProps = dispatch => ({
 	fetchAllTracks: () => dispatch(fetchAllTracks()),
 	fetchAllUsers: (userIds) => dispatch(fetchAllUsers(userIds)),
 	fetchUser: userId => dispatch(fetchUser(userId)),
-	fetchCurrentUser: userId => dispatch(fetchUser(userId)),
+	fetchCurrentUser: id => dispatch(fetchCurrentUser(id)),
 	playSong: () => dispatch(playSong()),
 	pauseSong: () => dispatch(pauseSong()),
 	updateCurrentSongTime: time => dispatch(updateCurrentSongTime(time)),
@@ -48,7 +50,8 @@ const mapDispatchToProps = dispatch => ({
 	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),
 	updateTrack: (track, id) => dispatch(updateTrack(track, id)),
 	createLike: (trackId) => dispatch(createLike(trackId)),
-	deleteLike: (id) => dispatch(deleteLike(id))
+	deleteLike: (id) => dispatch(deleteLike(id)),
+	deleteComment: (commentId) => dispatch(deleteComment(commentId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackShowPage);

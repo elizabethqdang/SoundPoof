@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.currentUser) {
     const preloadedState = {
       session: { 
-        id: window.currentUser.id,
+        // id: window.currentUser.id,
         currentUser: window.currentUser,
       },
       entities: {

@@ -58,3 +58,9 @@ export const otherForm = email => dispatch => (
     .fail(error => (dispatch(receiveSessionErrors(error.responseJSON))))
 );
 
+export const fetchCurrentUser = currentUserId => dispatch => {
+	return SessionAPIUtil.fetchCurrentUser(currentUserId).then(currentUser => {
+		dispatch(receiveCurrentUser(currentUser));
+		// return currentUser;
+	});
+};

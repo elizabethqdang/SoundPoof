@@ -23,11 +23,8 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    // this.props.processForm(user);
     this.props.processForm(user)
-      .then(
-        this.props.history.push("/stream"),
-        this.props.closeModal);
+      .then(() => this.props.closeModal());
   }
 
   renderErrors() {
@@ -44,9 +41,9 @@ class SessionForm extends React.Component {
     e.preventDefault();
     const user = { email: "Demo-User", password: "password" };
 		this.props.demoSubmit(user)
-			.then(this.props.closeModal, 
-				this.props.history.push("/stream"),
-				console.log(user));
+			.then(() => this.props.closeModal());
+			// 	this.props.history.push("/stream"),
+			// 	console.log(user));
     // this.props.processForm(user).then(() => this.props.history.push("/"));
   }
 

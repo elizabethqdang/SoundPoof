@@ -30,7 +30,7 @@ class TrackPlayer extends React.Component{
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.trackId === -1 || this.props.trackId === -1) return;
+    if (prevProps.trackId === 0 || this.props.trackId === 0) return;
     
     if (this.props.trackId !== prevProps.trackId) { //new track is being played, look at waveseek 
       let progress = this.props.trackplayer.waveSeek; 

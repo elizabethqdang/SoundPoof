@@ -14,7 +14,7 @@ class TrackShowPage extends React.Component {
 		this.songButton = this.songButton.bind(this);
 		this.userTrackButtons = this.userTrackButtons.bind(this);
 		this.toggleLike = this.toggleLike.bind(this);
-		this.deleteSong = this.deleteSong.bind(this);
+		this.deleteTrack = this.deleteTrack.bind(this);
 	}
 	
 	componentDidMount() {
@@ -24,7 +24,6 @@ class TrackShowPage extends React.Component {
 			// currentTrack: prevProps.trackId,
 			firstLoad: false 
 		});
-
 	}
 
 	componentDidUpdate(prevProps) {
@@ -50,7 +49,7 @@ class TrackShowPage extends React.Component {
 		let trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
 		let prog;
 
-		if (trackId == -1) {
+		if (trackId == 0) {
 			// this.props.setCurrentTrack(track);
 			this.props.setPlayPause(!playing, track.id, 1);
 		} else if (track.id == trackId) { //if we are pausing the same song
@@ -63,18 +62,19 @@ class TrackShowPage extends React.Component {
 		}//
 	}
 
-	deleteSong(trackId, e) {
+	deleteTrack(e) {
 		e.preventDefault();
-		this.props.deleteTrack(trackId).then(() => this.props.history.push('/stream'));
+		const { deleteTrack, track } = this.props;
+		deleteTrack(track.id).then(() => this.props.history.push('/stream'));
 	}
 
 	toggleLike(e) {
 		e.preventDefault();
-		const { tracks, track, deleteLike, createLike, currentUser, users } = this.props;
-		const user = users[currentUser.id];
+		const { track, deleteLike, createLike, currentUser, users } = this.props;
+		// const user = users[currentUser.id];
 		// console.log("stream", "tracks", tracks, "users", users, "errors", errors);
 
-		if (user.likedTrackIds.has(track.id)) {
+		if (currentUser.likedTrackIds.includes(track.id)) {
 			deleteLike(track.id);
 		} else {
 			createLike(track.id);
@@ -82,17 +82,17 @@ class TrackShowPage extends React.Component {
 	}
 
 	userTrackButtons() {
-		const { tracks, currentUser, users, errors, track } = this.props;
-		const user = users[currentUser.id];
+		const { currentUser, users, errors, track } = this.props;
+		// const user = users[currentUser.id];
 
-		const likeButton = (user && user.likedTrackIds.has(track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
+		const likeButton = (currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
 
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
 				<div className='button-bar'>
 					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>like</div>
 					{/* <Link to={`/tracks/${track.id}/edit`} className="controller-btn ˇedit-btn">Edit</Link> */}
-					<div className='controller-btn delete-btn' onClick={(e) => this.deleteSong(track.id, e)}>Delete</div>
+					<div className='controller-btn delete-btn' onClick={(e) => this.deleteTrack(e)}>Delete</div>
 				</div>
 			);
 		} else {
@@ -102,12 +102,6 @@ class TrackShowPage extends React.Component {
 				</div>
 			);
 		}
-	}
-
-	deleteSong(trackId, e) {
-		e.preventDefault();
-		this.props.deleteTrack(trackId);
-		this.props.history.push('/stream');
 	}
 
 	render() {
@@ -171,7 +165,7 @@ class TrackShowPage extends React.Component {
 									<div className='ts-track-description'>{track.description}</div>
 									<div className='track-show-comment-index'>
 										{trackComments}
-										<CommentIndexContainer track={track} />
+										{/* <CommentIndexContainer track={track} /> */}
 									</div>
 								</div>
 							</div>
