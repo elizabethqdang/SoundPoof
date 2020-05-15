@@ -9,10 +9,10 @@ export const createComment = (comment, track_id) => (
 	})
 );
 
-export const updateComment = (comment, id) => (
+export const updateComment = (comment, track_id) => (
 	$.ajax({
 		method: 'PATCH',
-		url: `api/comments/${id}`,
+		url: `api/comments/${track_id}`,
 		processData: false,
 		contentType: false,
 		dataType: 'json',
@@ -20,9 +20,9 @@ export const updateComment = (comment, id) => (
 	})
 );
 
-export const deleteComment = id => (
+export const deleteComment = track_id => (
 	$.ajax({
 		method: 'DELETE',
-		url: `api/comments/${id}`
+		url: `api/comments/${track_id}`
 	})
 );

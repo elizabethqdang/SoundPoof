@@ -15,21 +15,21 @@ export const fetchUser = userId => (
 
 export const createLike = (trackId) => {
 	return $.ajax({
-		url: `api/users/likes/${trackId}`,
+		url: `/api/users/likes/${trackId}`,
 		method: 'post',
 	});
 };
 
 export const deleteLike = (trackId) => {
 	return $.ajax({
-		url: `api/users/likes/${trackId}`,
+		url: `/api/users/likes/${trackId}`,
 		method: 'delete',
 	});
 };
 
 export const updateUser = (userId, formData) => {
 	return $.ajax({
-		url: `api/users/${userId}`,
+		url: `/api/users/${userId}`,
 		method: 'patch',
 		contentType: false,
 		processData: false,

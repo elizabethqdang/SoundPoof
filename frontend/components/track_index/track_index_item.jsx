@@ -8,7 +8,7 @@ class TrackIndexItem extends React.Component {
 		super(props);
 		this.songButton = this.songButton.bind(this);
 		this.toggleLike = this.toggleLike.bind(this);
-		this.deleteSong = this.deleteSong.bind(this);
+		this.deleteTrack = this.deleteTrack.bind(this);
 		this.userTrackButtons = this.userTrackButtons.bind(this);
 		this.showComments = this.showComments.bind(this);
 	}
@@ -23,7 +23,6 @@ class TrackIndexItem extends React.Component {
 			let prog = trackProg ? trackProg : player.getCurrentTime() / player.getDuration();
 			this.props.setProg(thisId, prog);
 		} //if song is currently playing and it switches update the progress of left song
-
 	}
 
 	songButton(e) {
@@ -32,8 +31,8 @@ class TrackIndexItem extends React.Component {
 		let { currentTrack, playing, trackId } = this.props.trackplayer;
 		let trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
 		let tplayer = this.props.trackplayer.player;
-		if (trackId == -1) { // no song played previously 
-			this.props.setPlayPause(!playing, track.id, 1);
+		if (trackId == 0) { // no song played previously 
+			this.props.setPlayPause(!playing, track.id, 0);
 		}
 		else if (track.id == trackId) { //if we are pausing the same song
 			let prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
@@ -55,7 +54,7 @@ class TrackIndexItem extends React.Component {
 		// }//
 	}
 
-	deleteSong(trackId, e) {
+	deleteTrack(trackId, e) {
 		e.preventDefault();
 		this.props.deleteTrack(trackId);
 	}
@@ -63,10 +62,10 @@ class TrackIndexItem extends React.Component {
 	toggleLike(e) {
 		e.preventDefault();
 		const { track, deleteLike, createLike, currentUser, users } = this.props;
-		const user = users[currentUser.id];
+		// const user = users[currentUser.id];
 		// console.log("users", users, "user", user, "current", currentUser);
 
-		if (user.likedTrackIds.has(track.id)) {
+		if (currentUser.likedTrackIds.includes(track.id)) {
 			deleteLike(track.id);
 		} else {
 			createLike(track.id);
@@ -75,16 +74,16 @@ class TrackIndexItem extends React.Component {
 
 	userTrackButtons() {
 		const {track, currentUser, users} = this.props;
-		const user = users[currentUser.id];
+		// const user = users[currentUser.id];
 
-		const likeButton = (user && user.likedTrackIds.has(track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
+		const likeButton = (currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
 
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
 				<div className='button-bar'>
 					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>like</div>
 					{/* <Link sto={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link> */}
-					<div className='controller-btn delete-btn' onClick={(e) => this.deleteSong(track.id, e)}>Delete</div>
+					<div className='controller-btn delete-btn' onClick={(e) => this.deleteTrack(track.id, e)}>Delete</div>
 				</div>
 			);
 		} else {
@@ -144,7 +143,7 @@ class TrackIndexItem extends React.Component {
 							{/* <WaveFormContainer track={track} height={60} color={'#000'} /> */}
 						</div>
 						<div className='ti-comment-bar'>
-							{commentShow}
+							{/* {commentShow} */}
 						</div>
 						{buttonBar}
 					</section>

@@ -1,5 +1,5 @@
-// import merge from "lodash/merge";
 import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from "../actions/session_actions";
+import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/user_actions';
 
 const _nullUser = {
 	// isAuthenticated: false,
@@ -8,21 +8,17 @@ const _nullUser = {
 };
 
 const sessionReducer = (state = _nullUser, action) => {
-  Object.freeze(_nullUser);
-	let newState;
+  Object.freeze(state);
+	let newState = {};
+
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
-      return { 
-				// ...state,
-				// id: action.currentUser.id,
-				currentUser: action.currentUser,
-				// isAuthenticated: !!action.currentUser
-				// newState = _.merge({}, state);
-				// newState.currentUser = action.user;
-				// return newState;
-			};
-      // const currentUser = action.currentUser;
-      // return merge({}, { currentUser });
+				return { currentUser: action.currentUser };
+			// 	newState = _.merge({}, state);
+			// 	newState[action.currentUser.id] = action.currentUser;
+			// 	newState[action.currentUser.id].commentedTrackIds = new Set(newState[action.currentUser.id].commentedTrackIds);
+			// 	newState[action.currentUser.id].likedTrackIds = new Set(newState[action.currentUser.id].likedTrackIds);
+			// return newState;
     case LOGOUT_CURRENT_USER:
       return {
 				// isAuthenticated: false,
@@ -30,8 +26,17 @@ const sessionReducer = (state = _nullUser, action) => {
 				// id: null,
 				_nullUser
 			}
-    default:
-      return state;
+		case RECEIVE_LIKE:
+			newState = _.merge({}, state);
+			newState.currentUser.likedTrackIds.push(action.trackId);
+			return newState;
+		case REMOVE_LIKE:
+			newState = _.merge({}, state);
+			const sliceIdx = newState.currentUser.likedTrackIds.indexOf(action.trackId);
+			newState.currentUser.likedTrackIds.splice(sliceIdx, 1); 
+			return newState;
+		default:
+			return state;
   }
 };
 

@@ -19,30 +19,8 @@ import TrackPlayerContainer from "./track_player/track_player_container";
 import { fetchAllUsers } from '../actions/user_actions';
 import { fetchAllTracks } from '../actions/track_actions';
 
-class App extends React.Component {
-
-	// componentDidMount() {
-	// 	this.props.fetchAllUsers();
-	// 	this.props.fetchAllTracks();
-	// }
-
-	// componentDidCatch(error, errorInfo) {
-		// You can also log the error to an error reporting service
-		// logErrorToMyService(error, errorInfo);
-	// }
-
-
-	render() {
-		// console.log(response.error);
-		// console.log(error, errorInfo);
-		// if (Object.keys(this.props.users).length === 0 || Object.keys(this.props.tracks).length === 0) {
-		// 	return null;
-		// }
-
-		return (
-
-		// const App = () => (
-			<div id="app">
+const App = () => (
+		<div id="app">
 
 				<ModalContainer />
 
@@ -52,7 +30,7 @@ class App extends React.Component {
 
 				<Switch>
 					{/* <Route exact path="/discover" component={TrackIndexContainer} /> */}
-					<Route exact path="/stream" component={StreamContainer} />
+					<ProtectedRoute exact path="/stream" component={StreamContainer} />
 					<ProtectedRoute exact path="/upload" component={UploadPageContainer} />
 					<ProtectedRoute exact path="/tracks/:trackId" component={TrackShowPageContainer} />
 					<ProtectedRoute exact path="/users/:userId" component={UserShow} />
@@ -61,22 +39,5 @@ class App extends React.Component {
 				<Route path="/" component={TrackPlayerContainer} />
 			</div>
 			);
-		}}
 
-const mapStateToProps = (state) => ({
-	users: state.entities.users,
-	tracks: state.entities.tracks,
-	onRootPage: state.session.onRootPage
-});
-
-const mapDispatchToProps = (dispatch) => ({
-	fetchAllUsers: () => dispatch(fetchAllUsers()),
-	fetchAllTracks: () => dispatch(fetchAllTracks()),
-});
-
-export default withRouter(
-	connect(
-		mapStateToProps,
-		mapDispatchToProps
-	)(App)
-);
+export default App;

@@ -77,7 +77,7 @@ export const updateTrack = (track, id) => dispatch => (
 );
 
 export const deleteTrack = trackId => dispatch => (
-	TrackAPIUtil.deleteTrack(trackId).then(track => (
+	TrackAPIUtil.deleteTrack(trackId).then(trackId => (
 		dispatch(removeTrack(trackId))
 	), err => (
 		dispatch(receiveTrackErrors(err.responseJSON))

@@ -6,9 +6,10 @@ class UploadTrack extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			// user_id: this.props.user_id,
+			user_id: this.props.user_id,
 			title: "",
 			audioFile: null,
+			audioUrl: null,
 			dragged: false, 
 			errors: []
 		};
@@ -22,13 +23,40 @@ class UploadTrack extends React.Component {
 	handleTrackFile(e) {
 		e.preventDefault();
 		const audioFile = e.currentTarget.files[0];
+		const fileReader = new FileReader();
 
-		if (audioFile.type === "audio/mp3") {
-			this.setState({
-				audioFile: audioFile,
-				title: this.titleize(audioFile.name.split(".")[0].split("-")),
-				errors: []
-			});
+		// this.setState({
+		// 	audioFile: audioFile,
+		// 	errors: [],
+		// 	audioUrl: fileReader.result,
+		// 	title: this.titleize(audioFile.name.split(".")[0].split("-")),
+		// });
+		// console.log("upload_track handleTrackFile state", this.state);
+
+		fileReader.onloadend = () => {
+			// if (this.state.audioFile.type === ("audio/mp3" || "audio/mpeg")) {
+				this.setState({
+					audioFile: audioFile,
+					title: this.titleize(audioFile.name.split(".")[0].split("-")),
+					errors: [],
+					audioUrl: fileReader.result
+				});
+			// 	console.log("state", this.state, this.state.audioFile.type);
+			// } else {
+			// 	this.setState({
+			// 		errors: ["Please upload an audio file"]
+			// 	});
+			// }
+		
+		};
+
+		if (audioFile) {
+			fileReader.readAsDataURL(audioFile);
+		// 	this.setState({
+		// 		audioFile: audioFile,
+		// 		title: this.titleize(audioFile.name.split(".")[0].split("-")),
+		// 		errors: []
+			// });
 		} else {
 			this.setState({
 				errors: ["Please upload an audio file"]
@@ -74,6 +102,7 @@ class UploadTrack extends React.Component {
 		e.preventDefault();
 		const audioFile = e.dataTransfer.files[0];
 		const fileReader = new FileReader();
+
 		fileReader.onloadend = () => {
 			this.setState({
 				audioFile: audioFile,
@@ -89,6 +118,8 @@ class UploadTrack extends React.Component {
 				title: this.titleize(audioFile.name.split(".")[0].split("-")),
 				errors: []
 			});
+			console.log("upload_track dropHandler audioFile", audioFile);
+			console.log("upload_track dropHandler audioUrl", audioUrl);
 		} else {
 			this.setState({
 				errors: ["Please upload an audio file"]
@@ -97,12 +128,20 @@ class UploadTrack extends React.Component {
 	}
 
 	render() {
+		const { user_id, userId, audioFile, audio, audioUrl } = this.props;
+		console.log("upload_track user_id", user_id);
+		// console.log("userId", userId);
+		console.log("audioFile", audioFile);
+		console.log("audio", audio);
+		console.log("audioUrl", audioUrl);
+
 		if (this.state.audioFile) {
 			return (
 				<UploadTrackDetails
 					title={this.state.title}
 					audioFile={this.state.audioFile}
-					user_id={this.props.userId}
+					audioUrl={this.state.audioUrl}
+					user_id={this.props.user_id}
 					createTrack={this.props.createTrack}
 				/>
 			);
@@ -117,7 +156,7 @@ class UploadTrack extends React.Component {
 					<form className="upload-form-content">
 						<label className="custom-file-upload">
 							or choose files to upload
-							<input type="file" onChange={this.handleTrackFile} />
+							<input type="file" onChange={(e) => this.handleTrackFile(e)} />
 						</label>
 					</form>
 					{this.renderErrors()}

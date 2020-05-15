@@ -1,9 +1,4 @@
-json.extract! user, :id, :email, :username, :bio, :location
-if user.profile_image.attached?
-	json.profile_image_url url_for(user.profile_image)
-else
-	json.profile_image_url ''
-end
+# json.extract! user, :id, :track_ids, :username, :email, :bio, :location
 
 json.id user.id
 json.email user.email
@@ -12,37 +7,11 @@ json.bio user.bio
 json.location user.location
 json.trackIds user.track_ids
 json.likedTrackIds user.liked_track_ids
+json.tracks user.tracks
 json.commentedTrackIds user.commented_track_ids
 
-# json.profile_image_url url_for(user.profile_image)
-json.bannerUrl asset_path(user.banner.url)
-json.profileUrl asset_path(user.profile.url)
+# json.trackIds user.tracks.pluck(:id)
 
-# json.user do
-# 		json.set! user.id do 
-# 			json.extract! user, :id, :track_ids, :username, :email
-	# 		if user.profile_image.attached?
-	# 			json.profile_image_url url_for(user.profile_image)
-	# 		else
-	# 			json.profile_image_url ''
-	# 		end
-	# 	end
-	# end
-
-# json.tracks do
-# 	user.tracks.each do |track|
-# 		json.set! track.id do
-# 			json.extract! track, :id, :title, :artist, :user_id, :description
-# 			if track.audio.attached?
-# 					json.audioUrl url_for(track.audio)
-# 			else
-# 					json.audioUrl ''
-# 			end
-# 			if track.artwork.attached?
-# 					json.artworkUrl url_for(track.artwork)  
-# 			else
-# 					json.artworkUrl ''
-# 			end
-# 		end
-# 	end
-# end
+json.profile_image_url url_for(user.profile_image)
+# json.bannerUrl asset_path(user.banner.url)
+# json.profileUrl asset_path(user.profile.url)

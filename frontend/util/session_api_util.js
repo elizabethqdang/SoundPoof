@@ -18,13 +18,13 @@ export const logout = () =>
     url: "/api/session"
 	});
 	
-export const fetchCurrentUser = id => {
+export const fetchCurrentUser = currentUserId => (
 	$.ajax({
 		method: "GET",
-		url: `/api/users/${id}`,
-		data: { currentUser: id }
+		url: `/api/users/${currentUserId}`,
+		data: { currentUser: currentUserId }
 	})
-}
+);
 
 export const emailValidate = email =>
   $.ajax({
