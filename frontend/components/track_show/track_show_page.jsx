@@ -28,7 +28,7 @@ class TrackShowPage extends React.Component {
 
 	componentDidUpdate(prevProps) {
 		if (this.props.match.params.trackId !== prevProps.match.params.trackId) {
-			this.props.fetchTrack(prevProps.match.params.trackId);
+			this.props.fetchTrack(this.props.match.params.trackId);
 		}
 
 		// if (this.state.firstLoad || this.props.loading) return;
@@ -105,7 +105,7 @@ class TrackShowPage extends React.Component {
 	}
 
 	render() {
-		let { currentTrack, trackId, tracks, users, trackplayer, comments, loading, currentUser, deleteTrack, track, deleteComment } = this.props;
+		const { currentTrack, trackId, tracks, users, trackplayer, comments, comment, loading, currentUser, deleteTrack, track, deleteComment } = this.props;
 		const user = users[currentUser.id];
 		// console.log("stream", "tracks", tracks, "users", users, "user", user, "current", currentUser);
 
@@ -114,11 +114,11 @@ class TrackShowPage extends React.Component {
 				<div></div>
 			)
 		} else {
-			let user = this.props.users[this.props.track.user_id];
-			let currentUser = this.props.users[this.props.currentUser.id];
-			let comments = this.props.comments;
-			let trackComments = Object.keys(comments).map(key => (
-				<CommentIndexItem key={key} track={track} user={user} currentUser={currentUser || null} deleteComment={deleteComment} comment={comments[key]} users={users} />
+			const user = this.props.users[this.props.track.user_id];
+			// let currentUser = this.props.users[this.props.currentUser.id];
+			const { comments, track, users } = this.props;
+			let trackComments = (comments).map(comment => (
+				<CommentIndexItem key={comment.id} currentUser={currentUser || null} deleteComment={deleteComment} comment={comment} users={users} track={track} />
 			));
 			let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
 				'ts-play playing' : 'ts-play';
@@ -159,7 +159,7 @@ class TrackShowPage extends React.Component {
 									<div className='ts-artist-circle'>
 										<a href={`/#/users/${track.user_id}`}><img src={track.userProfile} /></a>
 									</div>
-									<a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.artist}</div></a>
+									<a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a>
 								</div>
 								<div className='ts-uc-right'>
 									<div className='ts-track-description'>{track.description}</div>

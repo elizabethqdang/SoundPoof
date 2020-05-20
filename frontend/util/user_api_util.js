@@ -1,8 +1,8 @@
-export const fetchAllUsers = (userIds) => (
+export const fetchAllUsers = () => (
     $.ajax({
         url: '/api/users',
-				method: 'GET',
-				data: { userIds }
+				method: 'GET'
+				// dataType: 'json'
     })
 );
 

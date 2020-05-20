@@ -16,7 +16,7 @@ class Splash extends React.Component {
 		const {tracks, users, currentUser} = this.props;
 		// console.log("splash");
 		// console.log("tracks", tracks);
-		// console.log("users", users);
+		console.log("users", users);
 		// console.log("currentUser", currentUser);
 
     return (

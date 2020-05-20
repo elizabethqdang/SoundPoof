@@ -18,10 +18,11 @@ const receiveUserErrors = errors => ({
   errors
 });
 
-const receiveAllUsers = payload => ({
+const receiveAllUsers = users => ({
 	type: RECEIVE_ALL_USERS,
-	doNotReplace: payload.doNotReplace,
-  users: payload.users
+	// doNotReplace: payload.doNotReplace,
+	users
+  // users: payload.users
 });
 
 export const receiveLike = (payload) => ({
@@ -48,10 +49,10 @@ export const fetchUser = userId => dispatch => {
 	);
 }
 
-export const fetchAllUsers = (userIds) => dispatch => {
-	UserAPIUtil.fetchAllUsers(userIds).then(payload => {
-		dispatch(receiveAllUsers(payload));
-		return payload;
+export const fetchAllUsers = () => dispatch => {
+	UserAPIUtil.fetchAllUsers().then(users => {
+		dispatch(receiveAllUsers(users));
+		return users;
 	});
 };
 

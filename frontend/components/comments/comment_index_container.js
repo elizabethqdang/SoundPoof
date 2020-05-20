@@ -2,10 +2,11 @@ import { connect } from 'react-redux';
 import CommentIndex from './comment_index';
 import { deleteComment } from '../../actions/comment_actions';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
   errors: state.errors.tracks || [],
   currentUser: state.session.currentUser || {},
-  comments: Object.values(state.entities.comments) || {} 
+	comments: state.entities.comments || {},
+	users: state.entities.users || {}
 });
 
 const mapDispatchToProps = (dispatch) => ({

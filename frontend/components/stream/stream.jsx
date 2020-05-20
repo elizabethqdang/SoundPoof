@@ -15,7 +15,7 @@ class Stream extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchAllTracks();
+		// this.props.fetchAllTracks();
 		// this.props.fetchAllUsers();
 		this.props.fetchCurrentUser(this.props.currentUser.id);
 	}

@@ -13,6 +13,7 @@ class UserShow extends React.Component {
     super(props);
 		this.fetched = false;
 		this.handleToggleLike = this.handleToggleLike.bind(this);
+		this.updateImage = this.updateImage.bind(this);
   }
 
   componentDidMount() {
@@ -107,11 +108,10 @@ class UserShow extends React.Component {
 							</div>
 							<div className="user-header-details-content">
 								<div className="user-header-details-username">
-									username
-									{/* {this.props.user.email} */}
+									{this.props.user.email}
 									</div>
 									location
-								{/* {this.location()} */}
+								{/* {this.props.user.location()} */}
 							</div>
 						</section>
 					</div>
@@ -150,7 +150,7 @@ class UserShow extends React.Component {
 												{/* <div onClick={handleTogglePlayback} className={`bc-btn sound-title-play-btn ${paused}`}></div> */}
 												<div className="sound-title-info-container">
 													<div className="sound-title-info-first">
-														{/* {this.usernames()} */}username
+														{this.props.user.profile_image_url}
 													</div>
 													<a className="sound-title-info-second">
 														title

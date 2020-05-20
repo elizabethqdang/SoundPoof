@@ -7,9 +7,66 @@
 		{
 			"type": "chrome",
 			"request": "launch",
+			"name": "Launch Chrome",
+			"url": "http://localhost:8080",
+			"webRoot": "${workspaceFolder}"
+		},
+		{
+			"type": "chrome",
+			"request": "attach",
+			"name": "Attach to Chrome",
+			"port": 9222,
+			"webRoot": "${workspaceFolder}"
+		},
+		{
+			"type": "node",
+			"request": "attach",
+			"name": "Attach",
+			"port": 9229,
+			"skipFiles": [
+				"<node_internals>/**"
+			]
+		},
+
+		{
+			"type": "chrome",
+			"request": "launch",
+			"name": "Launch Chrome",
+			"url": "http://localhost:3000",
+			"webRoot": "${workspaceFolder}"
+		},
+
+		{
+			"type": "chrome",
+			"request": "launch",
 			"name": "Launch Chrome against localhost",
 			"url": "http://localhost:3000",
 			"webRoot": "${workspaceFolder}"
+		},
+		{
+			"type": "devtools-for-chrome",
+			"request": "launch",
+			"name": "Launch Chrome DevTools",
+			"file": "${workspaceFolder}"
+		},
+		{
+			"type": "devtools-for-chrome",
+			"request": "attach",
+			"name": "Attach Chrome DevTools",
+			"file": "http://localhost:3000/"
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Launch Local Node File",
+			"console": "integratedTerminal",
+			"program": "${file}"
+		},
+		{
+			"name": "Launch workspaceFolder Chrome",
+			"type": "chrome",
+			"request": "launch",
+			"file": "${workspaceFolder}"
 		}
 	]
 }

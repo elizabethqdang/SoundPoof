@@ -6,11 +6,6 @@ import TrackShowPage from './track_show_page';
 import { setCurrentTrack, setPlayPause, receiveCurrentTrack } from '../../actions/track_player_actions';
 import { deleteComment } from '../../actions/comment_actions';
 
-// const currentUserLikes = ({ session: { currentUser } }, trackid) => {
-// 	if (!currentUser || !currentUser.likes) return false;
-// 	return currentUser.likes.includes(parseInt(trackid));
-// };
-
 const mapStateToProps = (state, ownProps) => {
 	// const	tracks = state.entities.tracks;
 	// let trackId = parseInt(match.params.trackId);
@@ -24,20 +19,19 @@ const mapStateToProps = (state, ownProps) => {
 		// currentTrack: state.currentTrack || {},
 		errors: state.errors.tracks || [],
 		currentUser: state.session.currentUser || {},
-		users: state.entities.users || {},
+		users: state.entities.users,
 		// users: Object.values(state.entities.users) || {},
 		loading: state.ui.loading,
 		// currentTrack: state.entities.tracks[state.ui.currentTrack.id],
 		// playing: state.ui.currentTrack.playing,
 		comments: Object.values(state.entities.comments) || {},
-		// liked: currentUserLikes(state, ownProps.match.params.id)
 	};
 };
 
 const mapDispatchToProps = dispatch => ({
 	fetchTrack: trackId => dispatch(fetchTrack(trackId)),
 	fetchAllTracks: () => dispatch(fetchAllTracks()),
-	fetchAllUsers: (userIds) => dispatch(fetchAllUsers(userIds)),
+	fetchAllUsers: () => dispatch(fetchAllUsers()),
 	fetchUser: userId => dispatch(fetchUser(userId)),
 	fetchCurrentUser: id => dispatch(fetchCurrentUser(id)),
 	playSong: () => dispatch(playSong()),

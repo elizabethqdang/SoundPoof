@@ -5,12 +5,12 @@ class CommentIndexItem extends React.Component {
   constructor(props) {
     super(props);
 		this.deleteComment = this.deleteComment.bind(this);
+		this.userTrackButtons = this.userTrackButtons.bind(this);
   }
 
   deleteComment(e) {
     e.preventDefault(); 
-    let { track } = this.props;
-    this.props.deleteComment(track.id); 
+    this.props.deleteComment(this.props.track.id); 
   }
 
   userTrackButtons() {
@@ -26,20 +26,23 @@ class CommentIndexItem extends React.Component {
   }
  
   render() {
-
-      let { track, id, comment } = this.props;
-      let userButton = this.userTrackButtons(); 
+			const { track, id, comment, currentUser, users } = this.props;
+			console.log("comment", comment);
+			console.log("currentUser", currentUser);
+			console.log("track", track);
+			console.log("users", users);
+			// console.log("comment", comment);
 
       return (
             <div className='posted-comment'>
                 <a href={`/#/users/${comment.user_id}`}><div className='comment-uploader-img'>
-                    <img src={comment.commenterProfileUrl}/> 
+						<img src={comment.profileUrl ? comment.profileUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"}/> 
                 </div></a> 
                 <div className='comment-uploader-body'>
                     <a href={`/#/users/${comment.user_id}`}><div>{comment.commenterEmail}</div></a> 
                     <div>{comment.body}</div>
                 </div>
-                {userButton}
+                {this.userTrackButtons()}
             </div>
         );
   }
