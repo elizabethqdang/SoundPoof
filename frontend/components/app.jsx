@@ -16,8 +16,8 @@ import StreamContainer from "./stream/stream_container";
 import LoginFormContainer from "./session_form/login_form_container";
 import SignupFormContainer from "./session_form/signup_form_container";
 import TrackPlayerContainer from "./track_player/track_player_container";
-import { fetchAllUsers } from '../actions/user_actions';
-import { fetchAllTracks } from '../actions/track_actions';
+// import { fetchAllUsers } from '../actions/user_actions';
+// import { fetchAllTracks } from '../actions/track_actions';
 
 const App = () => (
 		<div id="app">

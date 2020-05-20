@@ -29,14 +29,15 @@ class Api::UsersController < ApplicationController
   def show
 		@user = User.find(params[:id])
 	
-		# if @user
+		if @user
 			render "api/users/show"
-		# else
-		# 	render json: @user.errors.full_messages, status: 404
-		# end
+		else
+			render json: @user.errors.full_messages, status: 404
+		end
 	end
   
-	# def index
+	def index
+		@users = User.all
 		# if (params[:userIds] && params[:userIds].length > 0)
     #   @users = User.includes(:tracks, :liked_tracks, :comments, :commented_tracks).where(id: params[:userIds])
     #   @all_info = true
@@ -45,7 +46,7 @@ class Api::UsersController < ApplicationController
     # end
     # @users = User.includes(:tracks, :liked_tracks, :comments, :commented_tracks).where(id: params[:userIds])
     # render :index
-	# end
+	end
 	
 
 	def like

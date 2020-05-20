@@ -10,20 +10,21 @@ const usersReducer = (state = initialState, action) => {
 
 	switch (action.type) {
 		case RECEIVE_ALL_USERS:
-			if (action.doNotReplace) {
-				newState = _.merge({}, action.users);
-				for (let userId in action.users) {
-					newState[userId].likedTrackIds = new Set(newState[userId].likedTrackIds)
-					newState[currentUser].likedTrackIds = new Set(newState[userId].likedTrackIds)
-					newState[userId].commentedTrackIds = new Set(newState[userId].commentedTrackIds)
-					newState[currentUser].commentedTrackIds = new Set(newState[userId].commentedTrackIds)
-				}
-			} else {
-				if (!state.users) {
-				newState = _.merge({}, state, action.users);
-				}
-			}
-			return newState;
+			// if (action.doNotReplace) {
+				// newState = _.merge({}, action.payload);
+			// 	for (let userId in action.payload) {
+			// 		newState[userId].likedTrackIds = new Set(newState[userId].likedTrackIds)
+			// 		newState[currentUser].likedTrackIds = new Set(newState[userId].likedTrackIds)
+			// 		newState[userId].commentedTrackIds = new Set(newState[userId].commentedTrackIds)
+			// 		newState[currentUser].commentedTrackIds = new Set(newState[userId].commentedTrackIds)
+			// 	}
+			// } else {
+			// 	if (!state.users) {
+				// newState = _.merge({}, state, action.payload);
+				// }
+			// }
+			// return newState;
+			return action.users;
 		case RECEIVE_USER:
 			newState = _.merge({}, state);
 			newState[action.payload.id] = action.payload;

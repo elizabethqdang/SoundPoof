@@ -20,9 +20,9 @@ export const updateComment = (comment, track_id) => (
 	})
 );
 
-export const deleteComment = track_id => (
+export const deleteComment = (track_id, commentId) => (
 	$.ajax({
 		method: 'DELETE',
-		url: `api/comments/${track_id}`
+		url: `api/tracks/${track_id}/comments/${commentId}`
 	})
 );

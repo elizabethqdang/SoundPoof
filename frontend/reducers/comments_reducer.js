@@ -17,7 +17,7 @@ const commentsReducer = (oldState = {}, action) => {
 			if (action.payload.comments === undefined) {
 				return {};
 			} else {
-				return Object.assign(newState, action.payload.comments);
+				return Object.assign({}, action.payload.comments);
 			};
 		default:
 			return oldState;

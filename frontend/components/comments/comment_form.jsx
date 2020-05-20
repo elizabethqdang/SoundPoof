@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 
-// .then(() => this.props.history.push('/tracks'))
 class CommentForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -32,7 +31,7 @@ class CommentForm extends React.Component {
 				<div className='comment-form'>
 					<form onSubmit={this.handleSubmit} className='cform'>
 						<div className='comment-form-user'>
-							<img src={user.profile_image_url ? user.profile_image_url : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"} />
+							<img src={currentUser.profile_image_url ? currentUser.profile_image_url : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"} />
 						</div>
 						<div className='comment-input-container'>
 							<input className='comment-input' type='text' onChange={this.updateBody()} value={this.state.body} placeholder='Write a Comment' />
