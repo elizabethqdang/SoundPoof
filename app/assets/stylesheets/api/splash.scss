@@ -248,71 +248,188 @@
 
 
 
-
-.trending-container {
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: center;
-	align-items: center;
-	padding-bottom: 10px;
-	width: 100%;
+#splashbottom {
+  width: 91.75vw;
+  max-width: 1240px;
+  padding-top: 46px;
+  background: #fff;
+  min-width: 960px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  h1 {
+    font-size: 32px;
+    line-height: 41.6px;
+    font-weight: 300;
+    margin: 0 auto 30px;
+  }
 }
 
-.trending-header {
-	display: block;
-	font-size: 24px;
-	text-align: center;
-	padding-top: 20px;
-	margin-bottom: 30px;
-	width: 100%;
+.splash-trending{
+  list-style: none;
+  margin: 0 5px;
+  display: flex;
+  margin-left: 5px;
+  flex-wrap: wrap;
 }
+
+.trending-track-item {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.trending-track-artwork {
+  box-sizing: border-box;
+	background-image: linear-gradient(135deg, #846170, #e6846e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  max-width: 180px;
+  max-height: 180px;
+  min-width: 180px;
+  min-height: 180px;
+  img {
+    flex-shrink: 0;
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+.trending-track-info {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5px;
+}
+
+.trending-track {
+  font-weight: 300;
+}
+
+.trending-track:hover {
+  color: black;
+}
+
+.title {
+  color: gray;
+}
+.artist {
+  color: cloud-gray;
+  padding-top: 3px;
+}
+
+.splash-title {
+  position: absolute;
+  top: 17%;
+  left: 50%;
+  transform: translate(-50%);
+  color: white;
+  text-align: center;
+  letter-spacing: 1px;
+  font-family: sans-serif;
+}
+
+.splash-subtitle {
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translate(-50%);
+  color: white;
+  text-align: center;
+  letter-spacing: 1px;
+  font-family: 'Roboto', arial, helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+  width: 500px;
+  line-height: 1.5;
+  margin-top: 15px;
+}
+
 .trending-track-item-container {
-	display: flex;
-	flex-flow: row wrap;
-	box-sizing: border-box;
-	width: 100%;
-	justify-content: center;
-	align-items: center;
+  margin: 0 auto;
 }
-	.trending-track-item {
-		min-width: 16.66%;
-		padding-right: 20px;
-		box-sizing: border-box;
-		float: left;
-		flex-flow: column nowrap;
 
-		display: flex;
-		height: 215px;
+h3.bl-header {
+  margin: 10px auto 40px;
+  font-size: 25px;
+  font-weight: 300;
+}
+
+
+
+
+
+
+
+//
+// .trending-container {
+// 	display: flex;
+// 	flex-flow: column nowrap;
+// 	justify-content: center;
+// 	align-items: center;
+// 	padding-bottom: 10px;
+// 	width: 100%;
+// }
+
+// .trending-header {
+// 	display: block;
+// 	font-size: 24px;
+// 	text-align: center;
+// 	padding-top: 20px;
+// 	margin-bottom: 30px;
+// 	width: 100%;
+// }
+// .trending-track-item-container {
+// 	display: flex;
+// 	flex-flow: row wrap;
+// 	box-sizing: border-box;
+// 	width: 100%;
+// 	justify-content: center;
+// 	align-items: center;
+// }
+// 	.trending-track-item {
+// 		min-width: 16.66%;
+// 		padding-right: 20px;
+// 		box-sizing: border-box;
+// 		float: left;
+// 		flex-flow: column nowrap;
+
+// 		display: flex;
+// 		height: 215px;
 	
-		.trending-track-artwork {
-			width: 100%;
-			background-image: linear-gradient(135deg, #846170, #e6846e);
-			// background-color: #f50;
-			min-height: 136px;
-			height: auto;
+// 		.trending-track-artwork {
+// 			width: 100%;
+// 			background-image: linear-gradient(135deg, #846170, #e6846e);
+// 			// background-color: #f50;
+// 			min-height: 136px;
+// 			height: auto;
 
-		}
+// 		}
 
-		.trending-track-info {
-			width: 100%;
-			height: 35px;
+// 		.trending-track-info {
+// 			width: 100%;
+// 			height: 35px;
 		
-			.trending-track-title {
+// 			.trending-track-title {
 
-			}
-			.trending-track-artist {
+// 			}
+// 			.trending-track-artist {
 
-			}
-		}
-}
+// 			}
+// 		}
+// }
 
-.nav-bar {
-	position: fixed;
-	height: 10%;
-	top: 0;
-	left: 0;
+// .nav-bar {
+// 	position: fixed;
+// 	height: 10%;
+// 	top: 0;
+// 	left: 0;
 
-}
+// }
 
 
 

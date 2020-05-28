@@ -65,25 +65,25 @@ class TrackIndexItem extends React.Component {
 		// const user = users[currentUser.id];
 		// console.log("users", users, "user", user, "current", currentUser);
 
-		if (currentUser.likedTrackIds.includes(track.id)) {
+		if (this.props.currentUser.likedTrackIds.has(this.props.track.id)) {
 			deleteLike(track.id);
 		} else {
-			createLike(track.id);
+			createLike(trackId);
 		}
 	}
 
 	userTrackButtons() {
 		const {track, currentUser, users} = this.props;
-		// const user = users[currentUser.id];
+		const user = users[currentUser.id];
 
-		const likeButton = (currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
+		const likeButton = (this.props.currentUser.likerIds.has(this.props.track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
 
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
 				<div className='button-bar'>
 					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>like</div>
-					{/* <Link sto={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link> */}
-					<div className='controller-btn delete-btn' onClick={(e) => this.deleteTrack(track.id, e)}>Delete</div>
+					{/* <Link to={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link> */}
+					<div className='controller-btn delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
 				</div>
 			);
 		} else {
