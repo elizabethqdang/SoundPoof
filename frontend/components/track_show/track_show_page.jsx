@@ -74,7 +74,8 @@ class TrackShowPage extends React.Component {
 		// const user = users[currentUser.id];
 		console.log("trackshow-toggleLike", "currentUser", currentUser, "track", track);
 
-		if (this.props.track.likerIds.includes(this.props.currentUser.id)) {
+		if (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) {
+		// if (this.props.track.likerIds.includes(this.props.currentUser.id)) {
 			this.props.deleteLike(track.id);
 		} else {
 			this.props.createLike(track.id);
@@ -85,7 +86,8 @@ class TrackShowPage extends React.Component {
 		const { currentUser, users, errors, track } = this.props;
 		// const user = users[currentUser.id];
 
-		const likeButton = (this.props.track.likerIds.includes(this.props.currentUser.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
+		const likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
+		// const likeButton = (this.props.track.likerIds.includes(this.props.currentUser.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
 
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (

@@ -2,7 +2,8 @@
 	json.set! user.id do
 		json.extract! user, :id, :username, :email, :location, :bio
 		json.likedTrackIds user.liked_track_ids
-		json.commentedTrackIds user.commented_track_ids
+		# json.commentedTrackIds user.commented_track_ids
+		json.commentIds user.comment_ids
 
 		if user.profile_image.attached?
 			json.profile_image_url url_for(user.profile_image)

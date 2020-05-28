@@ -54,6 +54,6 @@
   },
   "homepage": "https://github.com/eqdang/SoundPoof#readme",
   "devDependencies": {
-    "webpack-dev-server": "^3.10.2"
+    "webpack-dev-server": "^3.11.0"
   }
 }
