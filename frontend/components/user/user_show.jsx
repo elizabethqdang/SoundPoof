@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 import { fetchUser, updateUser } from '../../actions/user_actions';
 import NavbarContainer from '../navbar/navbar_container';
+import TrackIndexItem from '../track_index/track_index_item';
 import UserHeroImage from './user_hero_image';
 import InfoBar from './info_bar';
 import UserMainContent from './user_main_content';
@@ -63,14 +64,18 @@ class UserShow extends React.Component {
 	}
 
   render() {
-		const { user, currentUserId, track } = this.props;
-		const currentUser = this.currentUser();
-		console.log("user", user, "currentUserId", currentUserId);
+		const { user, users, track, tracks, currentUser } = this.props;
+		// const currentUser = this.currentUser();
+		console.log("user", user, "users", users, "currentUser", currentUser, "track", track, "tracks", tracks);
 
-		if (currentUser && !currentUser.likedTrackIds) { return null; }
+		// let userStream = (this.props.tracks).map(track => (
+		// 	<TrackIndexItem key={track.id} track={track} currentUser={this.props.currentUser || null} users={users} tracks={tracks} />
+		// ));
 
-		const likeActive = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'active' : '');
-		const likeText = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'Liked' : 'Like');
+		// if (currentUser && !currentUser.likedTrackIds) { return null; }
+
+		// const likeActive = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'active' : '');
+		// const likeText = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'Liked' : 'Like');
 
 
     const tabs = [
@@ -94,6 +99,8 @@ class UserShow extends React.Component {
         {/* <UserHeroImage user={this.props.user} currentUserId={this.props.currentUserId} updateUser={this.props.updateUser} updateImage={this.updateImage.bind(this)}/> */}
 	
       <section className="user-hero">
+					{/* <NavbarContainer /> */}
+
 					<div className="user-header">
 						<div className="user-banner-image" style={bannerImg}>
 							{/* {this.bannerChooser()} */}
@@ -111,7 +118,7 @@ class UserShow extends React.Component {
 									{this.props.user.email}
 									</div>
 									location
-								{/* {this.props.user.location()} */}
+									{this.props.user.location}
 							</div>
 						</section>
 					</div>
@@ -198,24 +205,27 @@ class UserShow extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const userId = ownProps.match.params.id;
-  const currentUserId = ((state.session.currentUser) ? state.session.currentUser.id : null);
+// const mapStateToProps = (state, ownProps) => {
+//   const userId = ownProps.match.params.id;
+//   const currentUserId = ((state.session.currentUser) ? state.session.currentUser.id : null);
 
-  return {
-    currentUserId,
-    user: state.entities.users[userId],
-  };
-};
+//   return {
+// 		currentUserId,
+// 		currentUser: state.session.currentUser || {},
+//     user: state.entities.users[userId],
+//   };
+// };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  fetchUser: (userId) => dispatch(fetchUser(userId)),
-  updateUser: (formData) => dispatch(updateUser(ownProps.match.params.id, formData)),
-});
+// const mapDispatchToProps = (dispatch, ownProps) => ({
+//   fetchUser: (userId) => dispatch(fetchUser(userId)),
+//   updateUser: (formData) => dispatch(updateUser(ownProps.match.params.id, formData)),
+// });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(UserShow)
-);
+// export default withRouter(
+//   connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+//   )(UserShow)
+// );
+
+export default withRouter(UserShow);

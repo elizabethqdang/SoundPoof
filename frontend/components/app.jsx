@@ -9,7 +9,7 @@ import NavbarContainer from "./navbar/navbar_container";
 // import UploadTrackFormContainer from "./track_form/upload_track_form_container";
 import UploadPageContainer from "./track/upload_page_container";
 import TrackShowPageContainer from "./track_show/track_show_page_container";
-import UserShow from "./user/user_show";
+import UserShow from "./user/user_show_container";
 import UserShowPageContainer from "./user/user_show_page_container";
 import TrackIndexContainer from "./track_index/track_index_container";
 import StreamContainer from "./stream/stream_container";
