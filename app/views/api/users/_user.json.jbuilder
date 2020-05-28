@@ -14,6 +14,12 @@ json.commentIds user.comments.pluck(:id)
 json.trackIds user.tracks.pluck(:id)
 # json.trackUserId user.tracks.pluck(:user_id)
 
-json.profile_image_url url_for(user.profile_image)
+# json.profile_image_url url_for(user.profile_image)
 json.bannerUrl asset_path(user.banner.url)
 json.profileUrl asset_path(user.profile.url)
+
+	if user.profile_image.attached?
+			json.profile_image_url url_for(user.profile_image)
+	else
+		json.profile_image_url 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg'
+	end

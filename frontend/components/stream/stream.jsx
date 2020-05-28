@@ -26,8 +26,8 @@ class Stream extends React.Component {
 
 	render() {
 		let { tracks, users, errors, user, currentUser } = this.props;
-		console.log("stream", "tracks", tracks, "users", users, "errors", errors);
-		console.log("stream", "currentUser", currentUser);
+		// console.log("stream", "tracks", tracks, "users", users, "errors", errors);
+		// console.log("stream", "currentUser", currentUser);
 
 		let stream = (this.props.tracks).map(track => (
 			<TrackIndexItem key={track.id} track={track} currentUser={this.props.currentUser || null} users={users} tracks={tracks} />
