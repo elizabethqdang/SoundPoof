@@ -1,7 +1,7 @@
-export const createComment = (comment, track_id) => (
+export const createComment = (comment, trackId) => (
 	$.ajax({
 		method: 'POST',
-		url: `api/tracks/${track_id}/comments`,
+		url: `api/tracks/${trackId}/comments`,
 		processData: false,
 		contentType: false,
 		dataType: 'json',
@@ -9,10 +9,10 @@ export const createComment = (comment, track_id) => (
 	})
 );
 
-export const updateComment = (comment, track_id) => (
+export const updateComment = (trackId, commentId) => (
 	$.ajax({
 		method: 'PATCH',
-		url: `api/comments/${track_id}`,
+		url: `api/comments/${trackId}`,
 		processData: false,
 		contentType: false,
 		dataType: 'json',
@@ -20,9 +20,10 @@ export const updateComment = (comment, track_id) => (
 	})
 );
 
-export const deleteComment = (track_id, commentId) => (
+export const deleteComment = (trackId, commentId) => (
 	$.ajax({
 		method: 'DELETE',
-		url: `api/tracks/${track_id}/comments/${commentId}`
+		url: `/api/comments/${commentId}`
+		// url: `api/tracks/${trackId}/comments/${commentId}`
 	})
 );

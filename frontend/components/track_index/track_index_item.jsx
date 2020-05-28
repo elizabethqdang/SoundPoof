@@ -63,12 +63,12 @@ class TrackIndexItem extends React.Component {
 		e.preventDefault();
 		const { track, deleteLike, createLike, currentUser, users } = this.props;
 		// const user = users[currentUser.id];
-		// console.log("users", users, "user", user, "current", currentUser);
+		console.log("togglelike", "track", track);
 
-		if (this.props.currentUser.likedTrackIds.has(this.props.track.id)) {
+		if (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) {
 			deleteLike(track.id);
 		} else {
-			createLike(trackId);
+			createLike(track.id);
 		}
 	}
 
@@ -76,7 +76,10 @@ class TrackIndexItem extends React.Component {
 		const {track, currentUser, users} = this.props;
 		const user = users[currentUser.id];
 
-		const likeButton = (this.props.currentUser.likerIds.has(this.props.track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
+		// console.log("trackindexitem");
+		// console.log("currentUser", currentUser);
+
+		const likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
 
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (

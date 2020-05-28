@@ -4,6 +4,7 @@ class Api::CommentsController < ApplicationController
 				@comment = Comment.new(comment_params)
 				# @comment = current_user.comments.new(comment_params)
 				@comment.user_id = current_user.id
+				# @comment.id = params[:id]
 				@comment.track_id = params[:track_id]
         if @comment.save
             # @track = Track.find(@comment.track_id)
@@ -22,10 +23,12 @@ class Api::CommentsController < ApplicationController
         end 
     end
 
-    def destroy
-        @comment = Comment.find(params[:id])
-        @comment.destroy
+		def destroy
+				# @comment = Comment.find_by(id: params[:id])
+				# @comment.track_id = params[:track_id]
+				@comment = Comment.find(params[:id])
         # @track = Track.find(@comment.track_id)
+        @comment.destroy
         render "api/comments/show"
     end 
 

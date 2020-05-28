@@ -33,17 +33,19 @@ json.comments do
 		json.set! comment.id do 
 			json.extract! comment, :id, :body, :user_id, :track_id
 
+			json.id comment.id
+			json.comment_id comment.id
 			json.user_id comment.user.id
 			json.track_id comment.track.id
 			json.commenterEmail comment.user.email
 			json.commenterUsername comment.user.username
-			json.profileUrl url_for(comment.user.profile_image)
+			# json.profileUrl url_for(comment.user.profile_image)
 			
-			# if comment.user.profile_image.attached?
-			# 	json.profileUrl url_for(comment.user.profile_image)
-			# else
-			# 	json.profileUrl ''
-			# end
+			if comment.user.profile_image.attached?
+				json.profileUrl url_for(comment.user.profile_image)
+			else
+				json.profileUrl ''
+			end
 
     end 
 	end

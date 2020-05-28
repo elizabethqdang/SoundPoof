@@ -4,6 +4,7 @@ import CommentIndexItem from './comment_index_item';
 class CommentIndex extends React.Component {
 	constructor(props) {
 		super(props);
+		this.trackComments = this.trackComments.bind(this);
 	}
 
 	trackComments() {
@@ -11,7 +12,7 @@ class CommentIndex extends React.Component {
 		if (comments) { 
 			return (
 				track.comments.map(comment => (
-				<CommentIndexItem key={comment.id} track={track} currentUser={currentUser} deleteComment={deleteComment} comment={comment} users={users} />
+				<CommentIndexItem id={comment.id} key={comment.id} track={track} currentUser={currentUser} deleteComment={deleteComment} comment={comment} users={users} />
 				)));
 		} else {
 			return (

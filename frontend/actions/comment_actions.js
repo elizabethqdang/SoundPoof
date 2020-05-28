@@ -21,13 +21,14 @@ export const removeComment = commentId => ({
 });
 
 export const createComment = (comment, trackId) => dispatch => (
-	CommentAPIUtil.createComment(comment, trackId).then(payload => (
-		dispatch(receiveComment(payload))
+	CommentAPIUtil.createComment(comment, trackId).then(comment => (
+		dispatch(receiveComment(comment))
 	))
 );
 
-export const deleteComment = commentId => dispatch => (
-	CommentAPIUtil.deleteComment(commentId).then(payload => (
-		dispatch(removeComment(payload))
+export const deleteComment = (trackId, commentId) => dispatch => (
+	CommentAPIUtil.deleteComment(trackId, commentId).then(
+			commentId => (dispatch(removeComment(commentId)), 
+			errors => (console.log(errors.responseJSON))
 	))
 );

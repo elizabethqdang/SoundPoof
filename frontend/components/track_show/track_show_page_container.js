@@ -45,7 +45,7 @@ const mapDispatchToProps = dispatch => ({
 	updateTrack: (track, id) => dispatch(updateTrack(track, id)),
 	createLike: (trackId) => dispatch(createLike(trackId)),
 	deleteLike: (trackId) => dispatch(deleteLike(trackId)),
-	deleteComment: (commentId) => dispatch(deleteComment(commentId))
+	deleteComment: (trackId, commentId) => dispatch(deleteComment(trackId, commentId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackShowPage);

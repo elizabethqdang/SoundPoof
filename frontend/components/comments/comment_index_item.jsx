@@ -9,8 +9,11 @@ class CommentIndexItem extends React.Component {
   }
 
   deleteComment(e) {
-    e.preventDefault(); 
-    this.props.deleteComment(this.props.track.id); 
+		e.preventDefault(); 
+		const { comment, track, deleteComment } = this.props;
+		console.log("deleteComment", "comment", comment, "comment.id", comment.id);
+
+    deleteComment(track.id, this.props.comment.id); 
   }
 
   userTrackButtons() {
@@ -27,11 +30,10 @@ class CommentIndexItem extends React.Component {
  
   render() {
 			const { track, id, comment, currentUser, users } = this.props;
-			console.log("comment", comment);
-			console.log("currentUser", currentUser);
-			console.log("track", track);
-			console.log("users", users);
 			// console.log("comment", comment);
+			// console.log("currentUser", currentUser);
+			// console.log("track", track);
+			// console.log("users", users);
 
       return (
             <div className='posted-comment'>
