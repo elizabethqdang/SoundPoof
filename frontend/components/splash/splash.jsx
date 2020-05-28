@@ -7,17 +7,17 @@ class Splash extends React.Component {
 	}
 	
 	componentDidMount() {
-		this.props.fetchAllTracks();
-		this.props.fetchAllUsers();
+		// this.props.fetchAllTracks();
+		// this.props.fetchAllUsers();
 	}
 
   render() {
 		const {openModal} = this.props;
 		const {tracks, users, currentUser} = this.props;
 		// console.log("splash");
-		// console.log("tracks", tracks);
+		console.log("tracks", tracks);
 		console.log("users", users);
-		// console.log("currentUser", currentUser);
+		console.log("currentUser", currentUser);
 
     return (
       <div id="splash-page">
@@ -65,117 +65,166 @@ class Splash extends React.Component {
         </div>
         <br/><br/>
 
-        <div className="trending-container">
-          <div className="trending-header">
-            trending
-          </div>
-          <ul className="trending-track-item-container">
-            <li className="trending-track-item">
-							<div className="trending-track-artwork"></div>
-							<div className="trending-track-info">
-								<div className="trending-track-title"></div>
-								<div className="trending-track-artist"></div>		
-							</div>
+				<div id='splashbottom'>
+					<h1 className='splash-title'> SoundPoof </h1>
+					<h2 className='splash-subtitle'> Formerly known as RatchetPoof </h2>
+					<h3 className='bl-header'> Hear what's trending for free in the SOUNDPOOF community </h3>
 
-            </li>
-						<li className="trending-track-item">
-							<div className="trending-track-artwork"></div>
-							<div className="trending-track-info">
-								<div className="trending-track-title"></div>
-								<div className="trending-track-artist"></div>
-							</div>
-
-						</li>
-						<li className="trending-track-item">
-							<div className="trending-track-artwork"></div>
-							<div className="trending-track-info">
-								<div className="trending-track-title"></div>
-								<div className="trending-track-artist"></div>
-							</div>
-
-						</li>
-						<li className="trending-track-item">
-							<div className="trending-track-artwork"></div>
-							<div className="trending-track-info">
-								<div className="trending-track-title"></div>
-								<div className="trending-track-artist"></div>
-							</div>
-
-						</li>
-						<li className="trending-track-item">
-							<div className="trending-track-artwork"></div>
-							<div className="trending-track-info">
-								<div className="trending-track-title"></div>
-								<div className="trending-track-artist"></div>
-							</div>
-
-						</li>
-						<li className="trending-track-item">
-							<div className="trending-track-artwork"></div>
-							<div className="trending-track-info">
-								<div className="trending-track-title"></div>
-								<div className="trending-track-artist"></div>
-							</div>
-
-						</li>
-						<li className="trending-track-item">
-							<div className="trending-track-artwork"></div>
-							<div className="trending-track-info">
-								<div className="trending-track-title"></div>
-								<div className="trending-track-artist"></div>
-							</div>
-
-						</li>
-						<li className="trending-track-item">
-							<div className="trending-track-artwork"></div>
-							<div className="trending-track-info">
-								<div className="trending-track-title"></div>
-								<div className="trending-track-artist"></div>
-							</div>
-
-						</li>
-						<li className="trending-track-item">
-							<div className="trending-track-artwork"></div>
-							<div className="trending-track-info">
-								<div className="trending-track-title"></div>
-								<div className="trending-track-artist"></div>								
-							</div>
-
-						</li>
-						<li className="trending-track-item">
-							<div className="trending-track-artwork"></div>
-							<div className="trending-track-info">
-								<div className="trending-track-title"></div>
-								<div className="trending-track-artist"></div>								
-							</div>
-
-						</li>
-						<li className="trending-track-item">
-							<div className="trending-track-artwork"></div>
-							<div className="trending-track-info">
-								<div className="trending-track-title"></div>
-								<div className="trending-track-artist"></div>								
-							</div>
-
-						</li>
-						<li className="trending-track-item">
-							<div className="trending-track-artwork"></div>
-							<div className="trending-track-info">
-								<div className="trending-track-title"></div>
-								<div className="trending-track-artist"></div>								
-							</div>
-						</li>
-          </ul>
-					<div className="trending-footer"></div>
-        </div>
+					<ul className='splash-trending'>
+{/* 1 */}
+						<a className='trending-track-item-container' href="/#/signup">
+							<li className='trending-track-item'>
+								<div className='trending-track-artwork'>
+									<img src='https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+8.26.54+PM.png' />
+								</div>
+								<div className='trending-track-info'>
+									<p className='trending-track title'>Ty Dolla $ign - Blasé (Louis The Child Remix)</p>
+									<p className='trending-track artist'>Louis The Child</p>
+								</div>
+							</li>
+						</a>
+{/* 2 */}
+						<a className='trending-track-item-container' href="/#/signup">
+							<li className='trending-track-item'>
+								<div className='trending-track-artwork'>
+									<img src="https://soundpoof.s3-us-west-2.amazonaws.com/tracks/neverbelikeyou.png" />
+								</div>
+								<div className='trending-track-info'>
+									<p className='trending-track title'>Never Be Like You</p>
+									<p className='trending-track artist'>Flume</p>
+								</div>
+							</li>
+						</a>
+{/* 3 */}
+						<a className='trending-track-item-container' href="/#/signup">
+							<li className='trending-track-item'>
+								<div className='trending-track-artwork'>
+									<img src="" />
+								</div>
+								<div className='trending-track-info'>
+									<p className='trending-track title'> </p>
+									<p className='trending-track artist'> </p>
+								</div>
+							</li>
+						</a>
+{/* 4 */}
+						<a className='trending-track-item-container' href="/#/signup">
+							<li className='trending-track-item'>
+								<div className='trending-track-artwork'>
+									<img src="" />
+								</div>
+								<div className='trending-track-info'>
+									<p className='trending-track title'> </p>
+									<p className='trending-track artist'> </p>
+								</div>
+							</li>
+						</a>
+{/* 5 */}
+						<a className='trending-track-item-container' href="/#/signup">
+							<li className='trending-track-item'>
+								<div className='trending-track-artwork'>
+									<img src="" />
+								</div>
+								<div className='trending-track-info'>
+									<p className='trending-track title'> </p>
+									<p className='trending-track artist'> </p>
+								</div>
+							</li>
+						</a>
+{/* 6 */}
+						<a className='trending-track-item-container' href="/signup">
+							<li className='trending-track-item'>
+								<div className='trending-track-artwork'>
+									<img src="" />
+								</div>
+								<div className='trending-track-info'>
+									<p className='trending-track title'> </p>
+									<p className='trending-track artist'> </p>
+								</div>
+							</li>
+						</a>
+{/* 7 */}
+						<a className='trending-track-item-container' href="/#/signup">
+							<li className='trending-track-item'>
+								<div className='trending-track-artwork'>
+									<img src="" />
+								</div>
+								<div className='trending-track-info'>
+									<p className='trending-track title'> </p>
+									<p className='trending-track artist'> </p>
+								</div>
+							</li>
+						</a>
+{/* 8 */}
+						<a className='trending-track-item-container' href="/signup">
+							<li className='trending-track-item'>
+								<div className='trending-track-artwork'>
+									<img src="" />
+								</div>
+								<div className='trending-track-info'>
+									<p className='trending-track title'> </p>
+									<p className='trending-track artist'> </p>
+								</div>
+							</li>
+						</a>
+{/* 9 */}
+						<a className='trending-track-item-container' href="/signup">
+							<li className='trending-track-item'>
+								<div className='trending-track-artwork'>
+									<img src="" />
+								</div>
+								<div className='trending-track-info'>
+									<p className='trending-track title'> </p>
+									<p className='trending-track artist'></p>
+								</div>
+							</li>
+						</a>
+{/* 10 */}
+						<a className='trending-track-item-container' href="/signup">
+							<li className='trending-track-item'>
+								<div className='trending-track-artwork'>
+									<img src="" />
+								</div>
+								<div className='trending-track-info'>
+									<p className='trending-track title'>  </p>
+									<p className='trending-track artist'>  </p>
+								</div>
+							</li>
+						</a>
+{/* 11 */}
+						<a className='trending-track-item-container' href="/signup">
+							<li className='trending-track-item'>
+								<div className='trending-track-artwork'>
+									<img src="" />
+								</div>
+								<div className='trending-track-info'>
+									<p className='trending-track title'> </p>
+									<p className='trending-track artist'> </p>
+								</div>
+							</li>
+						</a>
+{/* 12 */}
+						<a className='trending-track-item-container' href="/signup" >
+							<li className='trending-track-item'>
+								<div className='trending-track-artwork'>
+									<img src="" />
+								</div>
+								<div className='trending-track-info'>
+									<p className='trending-track title'></p>
+									<p className='trending-track artist'></p>
+								</div>
+							</li>
+						</a>
+					</ul>
+					</div>
+				<div className="trending-footer"></div>
 
         <div>
           <button className="header-button">Explore trending playlists</button>
         </div>
-
-      </div>
-    )
-  }
+			</div>
+		); 
+	}
 };
 
 export default Splash;

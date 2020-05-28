@@ -1,16 +1,18 @@
 @tracks.each do |track|
     json.set! track.id do 
 				json.extract! track, :id, :title, :artist, :user_id, :description
-				
-				json.user_id track.user.id
+				json.id track.id
+				json.user_id track.user_id
 				# json.comments track.comments
-				# json.commenterIds track.comments.pluck(:user_id)
+				json.commenterIds track.comments.pluck(:user_id)
 				json.likerIds track.likes.pluck(:user_id)
 				json.numLikes track.likes.length
-				json.profileUrl url_for(track.user.profile_image)
+				# json.profileUrl url_for(track.user.profile_image)
 				json.userEmail track.user.email
 				json.userUsername track.user.username
-
+				json.profileUrl asset_path(track.user.profile.url)
+				json.bannerUrl asset_path(track.user.banner.url)
+				
 				if track.audio.attached? 
             json.audioUrl url_for(track.audio)
         else 

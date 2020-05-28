@@ -72,12 +72,12 @@ class TrackShowPage extends React.Component {
 		e.preventDefault();
 		const { track, deleteLike, createLike, currentUser, users } = this.props;
 		// const user = users[currentUser.id];
-		// console.log("stream", "tracks", tracks, "users", users, "errors", errors);
+		console.log("trackshow-toggleLike", "currentUser", currentUser, "track", track);
 
-		if (currentUser.likedTrackIds.includes(track.id)) {
-			deleteLike(track.id);
+		if (this.props.track.likerIds.includes(this.props.currentUser.id)) {
+			this.props.deleteLike(track.id);
 		} else {
-			createLike(track.id);
+			this.props.createLike(track.id);
 		}
 	}
 
@@ -85,13 +85,12 @@ class TrackShowPage extends React.Component {
 		const { currentUser, users, errors, track } = this.props;
 		// const user = users[currentUser.id];
 
-		const likeButton = (currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
+		const likeButton = (this.props.track.likerIds.includes(this.props.currentUser.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
 
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
 				<div className='button-bar'>
 					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>like</div>
-					{/* <Link to={`/tracks/${track.id}/edit`} className="controller-btn ˇedit-btn">Edit</Link> */}
 					<div className='controller-btn delete-btn' onClick={(e) => this.deleteTrack(e)}>Delete</div>
 				</div>
 			);
@@ -118,7 +117,7 @@ class TrackShowPage extends React.Component {
 			// let currentUser = this.props.users[this.props.currentUser.id];
 			const { comments, track, users } = this.props;
 			let trackComments = (comments).map(comment => (
-				<CommentIndexItem key={comment.id} currentUser={currentUser || null} deleteComment={deleteComment} comment={comment} users={users} track={track} />
+				<CommentIndexItem key={comment.id} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} />
 			));
 			let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
 				'ts-play playing' : 'ts-play';

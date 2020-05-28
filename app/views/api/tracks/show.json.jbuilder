@@ -3,7 +3,7 @@ json.track do
 			# json.extract! @track, :id, :title, :artist, :user_id, :description
 
 			json.id @track.id
-			json.user_id @track.user.id
+			json.user_id @track.user_id
 			json.title @track.title
 			json.artist @track.artist
 			json.description @track.description
@@ -14,7 +14,6 @@ json.track do
 			json.userProfile url_for(@track.user.profile_image)
 			json.userEmail @track.user.email
 			json.userUsername @track.user.username
-			json.user_id @track.user.id
 
 			if @track.audio.attached?
 					json.audioUrl url_for(@track.audio)

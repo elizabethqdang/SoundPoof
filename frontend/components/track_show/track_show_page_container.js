@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => ({
 	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),
 	updateTrack: (track, id) => dispatch(updateTrack(track, id)),
 	createLike: (trackId) => dispatch(createLike(trackId)),
-	deleteLike: (id) => dispatch(deleteLike(id)),
+	deleteLike: (trackId) => dispatch(deleteLike(trackId)),
 	deleteComment: (commentId) => dispatch(deleteComment(commentId))
 });
 

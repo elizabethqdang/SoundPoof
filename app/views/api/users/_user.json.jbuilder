@@ -10,7 +10,8 @@ json.likedTrackIds user.liked_track_ids
 json.tracks user.tracks
 json.commentedTrackIds user.commented_track_ids
 
-# json.trackIds user.tracks.pluck(:id)
+json.trackIds user.tracks.pluck(:id)
+json.trackUserId user.tracks.pluck(:user_id)
 
 json.profile_image_url url_for(user.profile_image)
 # json.bannerUrl asset_path(user.banner.url)
