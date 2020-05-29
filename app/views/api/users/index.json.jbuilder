@@ -7,7 +7,8 @@
 		json.username user.username
 		json.location user.location
 		json.bio user.bio
-		json.trackIds user.track_ids
+		# json.trackIds user.track_ids
+		json.trackIds user.tracks.pluck(:id)
 		json.likedTrackIds user.liked_track_ids
 		# json.commentedTrackIds user.commented_track_ids
 		json.commentIds user.comments.pluck(:id)

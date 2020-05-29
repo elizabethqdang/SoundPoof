@@ -41,8 +41,8 @@ const usersReducer = (state = initialState, action) => {
 			// if (action.payload.tracks === undefined) {
 			// 	return {};
 			// } else {
-				// return newState[action.payload.user.id] = action.payload.user;
-			return Object.assign(newState, action.payload.user);
+				// return newState[action.user] = action.payload.user;
+				return Object.assign(newState, action.payload);
 
 			// };
 		// case RECEIVE_CURRENT_USER:
