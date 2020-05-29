@@ -84,7 +84,7 @@ class TrackIndexItem extends React.Component {
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
 				<div className='button-bar'>
-					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>like</div>
+					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
 					{/* <Link to={`/tracks/${track.id}/edit`} className="controller-btn edit-btn">Edit</Link> */}
 					<div className='controller-btn delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
 				</div>
@@ -92,7 +92,7 @@ class TrackIndexItem extends React.Component {
 		} else {
 			return (
 				<div className='button-bar'>
-					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>like</div>
+					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
 				</div>
 			);
 		}
@@ -121,7 +121,7 @@ class TrackIndexItem extends React.Component {
 			<div className='track-item-container'>
 				<div className='track-uploader-info'>
 					<aside className="track-uploader-circle">
-						<img src={track.userProfile} />
+						<img src={track.profileImgUrl} />
 					</aside>
 					<a href={`/#/users/${track.user_id}`}><aside className="track-uploader-name">{track.userEmail}</aside></a>
 				</div>

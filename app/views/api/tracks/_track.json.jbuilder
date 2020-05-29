@@ -14,4 +14,4 @@ json.numComments track.comments.length
 json.commentIds track.comments.pluck(:id)
 
 # json.userId track.user.id
-json.userProfile asset_path(track.user.profile.url)
+json.profileUrl asset_path(track.user.profile.url)

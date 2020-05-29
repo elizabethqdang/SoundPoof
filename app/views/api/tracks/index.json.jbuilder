@@ -7,7 +7,7 @@
 				json.commenterIds track.comments.pluck(:user_id)
 				json.likerIds track.likes.pluck(:user_id)
 				json.numLikes track.likes.length
-				# json.profileUrl url_for(track.user.profile_image)
+				json.profileImgUrl url_for(track.user.profile_image)
 				json.userEmail track.user.email
 				json.userUsername track.user.username
 				json.profileUrl asset_path(track.user.profile.url)

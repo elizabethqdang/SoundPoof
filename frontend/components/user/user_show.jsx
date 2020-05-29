@@ -73,9 +73,9 @@ class UserShow extends React.Component {
 				<div></div>
 			)
 		} else {
-			const { user, tracks, track, users } = this.props;
+			const { user, tracks, track, users, createLike, deleteLike, currentUser } = this.props;
 			let userStream = (tracks).map(track => (
-				<TrackIndexItem key={track.id} track={track} currentUser={this.props.currentUser || null} users={users} trackplayer={trackplayer || {}} />
+				<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} />
 			));
 
 			console.log("tracks", tracks, "user", user, "userStream", userStream);
@@ -99,7 +99,7 @@ class UserShow extends React.Component {
       return null;
 		}
 	
-		const avatarImg = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg" };
+		const profileImgUrl = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg" };
 		const bannerImg = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/banner.jpeg" };
 
     return (
@@ -116,9 +116,7 @@ class UserShow extends React.Component {
 						</div>
 						<section className="user-header-details">
 							<div className="user-header-details-avatar">
-								<div className="user-header-details-avatar-image" style=
-								{avatarImg}>
-									{/* {this.avatarChooser()} */}
+								<div className="user-header-details-avatar-image"><img src={user.profile_image ? user.profile_image_url : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg"} />
 								</div>
 								<div className="user-header-details-avatar-btn"></div>
 							</div>
@@ -167,7 +165,7 @@ class UserShow extends React.Component {
 												{/* <div onClick={handleTogglePlayback} className={`bc-btn sound-title-play-btn ${paused}`}></div> */}
 												<div className="sound-title-info-container">
 													<div className="sound-title-info-first">
-														{this.props.user.profile_image_url}
+														{this.props.user.profile_image}
 													</div>
 													<a className="sound-title-info-second">
 														title
@@ -214,28 +212,5 @@ class UserShow extends React.Component {
     )};
   }
 }
-
-// const mapStateToProps = (state, ownProps) => {
-//   const userId = ownProps.match.params.id;
-//   const currentUserId = ((state.session.currentUser) ? state.session.currentUser.id : null);
-
-//   return {
-// 		currentUserId,
-// 		currentUser: state.session.currentUser || {},
-//     user: state.entities.users[userId],
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch, ownProps) => ({
-//   fetchUser: (userId) => dispatch(fetchUser(userId)),
-//   updateUser: (formData) => dispatch(updateUser(ownProps.match.params.id, formData)),
-// });
-
-// export default withRouter(
-//   connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-//   )(UserShow)
-// );
 
 export default withRouter(UserShow);
