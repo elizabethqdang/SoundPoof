@@ -108,7 +108,7 @@ class TrackShowPage extends React.Component {
 	render() {
 		const { currentTrack, trackId, tracks, users, trackplayer, comments, comment, loading, currentUser, deleteTrack, track, deleteComment, user} = this.props;
 		// const user = users[currentUser.id];
-		console.log("trackShowPage", "tracks", tracks, "track", track, "comments", comment, "users", users, "user", user, "current", currentUser);
+		console.log("trackShowPage", "tracks", tracks, "track", track, "comments", comments, "users", users, "user", user, "current", currentUser);
 
 		if (track === undefined) {
 			return (

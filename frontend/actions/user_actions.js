@@ -40,12 +40,12 @@ export const removeLike = (payload) => ({
 export const fetchUser = userId => dispatch => {
   return UserAPIUtil.fetchUser(userId).then(payload => {
 		dispatch(receiveUser(payload));
-		return payload;
+		// return payload;
 	}, 
-	// errors => {
-	// 	dispatch(receiveUserErrors(errors.responseJSON));
-	// 	return errors;
-	// }
+	errors => {
+		dispatch(receiveUserErrors(errors.responseJSON));
+		return errors;
+	}
 	);
 }
 

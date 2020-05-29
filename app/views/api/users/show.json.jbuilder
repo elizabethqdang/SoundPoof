@@ -33,6 +33,10 @@ json.tracks do
 		json.set! track.id do
 			json.extract! track, :id, :title, :artist, :user_id, :description
 
+			json.id track.id
+			json.user_id track.user.id
+			json.title track.title
+			json.artist track.artist
 			json.numComments track.comments.length
 			json.numLikes track.likes.length
 

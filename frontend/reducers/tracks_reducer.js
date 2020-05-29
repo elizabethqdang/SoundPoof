@@ -3,7 +3,6 @@ import { RECEIVE_USER } from "../actions/user_actions";
 import merge from 'lodash/merge';
 import _ from 'lodash';
 
-
 const tracksReducer = (state = {}, action) => {
 
 		Object.freeze(state);
@@ -13,7 +12,7 @@ const tracksReducer = (state = {}, action) => {
 				case RECEIVE_ALL_TRACKS:
 					return action.tracks;
 				case RECEIVE_TRACK:
-					return Object.assign(nextState, {[action.track.id]: action.track});
+					return nextState[action.track.id] = action.track;
 				// case RECEIVE_CURRENT_TRACK:
 					// nextState = { [action.track.id]: action.track };
 					// return Object.assign({}, state, nextState);	
@@ -24,7 +23,12 @@ const tracksReducer = (state = {}, action) => {
             delete nextState[action.trackId.id];
             return nextState;   
         case RECEIVE_USER:
-					return Object.assign(nextState, action.tracks);
+				// 	if (action.users === undefined) {
+				// 		return {};
+				// 	} else {
+						return Object.assign(nextState, action.payload.tracks);
+				// 	};
+					// return nextState[action.payload.tracks];
         default:
             return state;
     }
