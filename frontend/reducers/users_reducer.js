@@ -1,15 +1,16 @@
 import _ from 'lodash';
 // import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_USER, RECEIVE_ALL_USERS, RECEIVE_LIKE, REMOVE_LIKE } from '../actions/user_actions';
+import { RECEIVE_SINGLE_TRACK } from '../actions/track_actions';
 
 const initialState = {};
 
 const usersReducer = (state = initialState, action) => {
 	Object.freeze(state);
-	let newState = {};
+	// let newState = {};
+	let newState = Object.assign({}, state);
 
 	switch (action.type) {
-		case RECEIVE_ALL_USERS:
 			// if (action.doNotReplace) {
 				// newState = _.merge({}, action.payload);
 			// 	for (let userId in action.payload) {
@@ -24,14 +25,26 @@ const usersReducer = (state = initialState, action) => {
 				// }
 			// }
 			// return newState;
-			return action.users;
 		case RECEIVE_USER:
-			newState = _.merge({}, state);
-			newState[action.payload.id] = action.payload;
+			// let newState = _.merge({}, state);
+			// newState[action.payload.user.id] = action.payload.user;
+			// newState[action.payload.tracks] = action.payload.tracks;
 			// newState[action.user.id].likedTrackIds = new Set(newState[action.user.id].likedTrackIds);
 			// newState[action.user.id].commentedTrackIds = new Set(newState[action.user.id].commentedTrackIds);
-			return newState;
+			// return newState;
+			// return Object.assign(newState, { [action.payload.user.id]: action.payload.user });
+			// return Object.assign(newState, { [action.payload.tracks]: action.payload.tracks });
+		// case RECEIVE_SINGLE_TRACK:
+			// return Object.assign(newState, { [action.payload.track.id]: action.payload.track });
+			// return newState[action.payload.track.id] = action.payload.track;
+			// return newState;
+			// if (action.payload.tracks === undefined) {
+			// 	return {};
+			// } else {
+				// return newState[action.payload.user.id] = action.payload.user;
+			return Object.assign(newState, action.payload.user);
 
+			// };
 		// case RECEIVE_CURRENT_USER:
 		// 	if (!action.user) { return state; }
 
@@ -51,6 +64,9 @@ const usersReducer = (state = initialState, action) => {
 	// 		newState = _.merge({}, state);
 	// 		newState[action.userId].likedTrackIds.delete(action.trackId);
 	// 		return newState;
+		case RECEIVE_ALL_USERS:
+			return Object.assign(newState, action.users);
+
 		default:
 			return state;
 	}

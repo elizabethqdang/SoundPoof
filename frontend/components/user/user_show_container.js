@@ -7,13 +7,18 @@ const mapStateToProps = (state, ownProps) => {
 	const userId = ownProps.match.params.userId;
 	const currentUserId = ((state.session.currentUser) ? state.session.currentUser.id : null);
 	const user = state.entities.users[ownProps.match.params.userId];
+	const tracks = state.entities.tracks || {};
+	// const trackIds = (state.entities.tracks).map((track) => {
+	// 	if (track.user_id === userId);
+	// 	return track.id
+	// })
 	return {
 		currentUserId,
 		currentUser: state.session.currentUser || {},
 		user: state.entities.users[ownProps.match.params.userId],
 		// user: state.entities.users[userId],
 		// userId: ownProps.match.params.id,
-		tracks: state.entities.tracks[user.track_id] || {},
+		tracks: state.entities.tracks || {},
 		users: state.entities.users || {},
 	};
 };

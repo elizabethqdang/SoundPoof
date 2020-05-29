@@ -228,4 +228,4 @@ class UserShow extends React.Component {
 //   )(UserShow)
 // );
 
-export default withRouter(UserShow);
+export default (UserShow);
