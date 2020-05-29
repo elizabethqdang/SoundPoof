@@ -1,12 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
-import { fetchUser, updateUser } from '../../actions/user_actions';
 import NavbarContainer from '../navbar/navbar_container';
 import TrackIndexItem from '../track_index/track_index_item';
-import UserHeroImage from './user_hero_image';
-import InfoBar from './info_bar';
-import UserMainContent from './user_main_content';
+import StreamSidebar from './info_bar';
 // import UserEditForm from './user_edit_form';
 
 class UserShow extends React.Component {
@@ -80,7 +77,6 @@ class UserShow extends React.Component {
 
 			console.log("tracks", tracks, "user", user, "userStream", userStream);
 
-
 		// if (currentUser && !currentUser.likedTrackIds) { return null; }
 
 		// const likeActive = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'active' : '');
@@ -99,33 +95,31 @@ class UserShow extends React.Component {
       return null;
 		}
 	
-		const profileImgUrl = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg" };
+			const profileIcon = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg" };
 		const bannerImg = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/banner.jpeg" };
 
     return (
       <div>
 				<NavbarContainer />
-        {/* <UserHeroImage user={this.props.user} currentUserId={this.props.currentUserId} updateUser={this.props.updateUser} updateImage={this.updateImage.bind(this)}/> */}
-	
       <section className="user-hero">
 					{/* <NavbarContainer /> */}
-
 					<div className="user-header">
 						<div className="user-banner-image" style={bannerImg}>
 							{/* {this.bannerChooser()} */}
 						</div>
 						<section className="user-header-details">
 							<div className="user-header-details-avatar">
-								<div className="user-header-details-avatar-image"><img src={user.profile_image ? user.profile_image_url : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg"} />
-								</div>
+								{/* <div className="user-header-details-avatar-image" style={{["backgroundImage"]: user.profileImgUrl}}> */}
+									<img src={user.profileImgUrl} className="user-header-details-avatar-image" />
+								{/* </div> */}
 								<div className="user-header-details-avatar-btn"></div>
 							</div>
 							<div className="user-header-details-content">
 								<div className="user-header-details-username">
 									{this.props.user.email}
 									</div>
-									location
-									{this.props.user.location}
+								<div className="user-header-details-location">
+									{this.props.user.location}</div>
 							</div>
 						</section>
 					</div>
@@ -148,65 +142,20 @@ class UserShow extends React.Component {
 					<main className="user-main border-right-light">
 						<div className="user-main-stream">
 							{userStream}
-							<li className="stream-index-item">
-								<div className="stream-index-item-body">
-									<div className="stream-index-item-artwork">
-										<a href="#" className="stream-index-item-cover-art">
-											<div className="stream-index-item-cover-art-bg">
-												<span className="stream-index-item-cover-art-true-image" 
-												// style={coverImage}
-												>Sound Cover Image</span>
-											</div>
-										</a>
-									</div>
-									<div className="stream-index-item-content">
-										<div className="stream-index-item-header">
-											<div className="sound-title-container">
-												{/* <div onClick={handleTogglePlayback} className={`bc-btn sound-title-play-btn ${paused}`}></div> */}
-												<div className="sound-title-info-container">
-													<div className="sound-title-info-first">
-														{this.props.user.profile_image}
-													</div>
-													<a className="sound-title-info-second">
-														title
-														{/* {track.title} */}
-													</a>
-													<div className="sound-title-info-third">
-														<div className="sound-title-info-upload-time">
-															{/* {FormatUtil.timeSince(createdAt)} */}
-															</div>
-														{/* <a className="tag-container tag-small">
-                      <span className="truncate sound-title-info-tag">Electronic</span>
-                    </a> */}
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div className="sound-waveform">
-											<div className="waveform loaded">
-
-											</div>
-										</div>
-
-										<div className="sound-footer">
-											<div className="sound-actions">
-												{/* <LikeToggle type="STREAM_INDEX_ITEM" track={track} /> */}
-												{/* <RepostToggle type="STREAM_INDEX_ITEM" track={track} /> */}
-												{/* <button onClick={addToNextUp.bind(null, track.id)} type="button" className="bc-btn sound-actions-btn action-next-up">Add to Next up</button> */}
-											</div>
-											<div className="sound-stats">
-												<div className="sound-stats-plays">
-													{/* {FormatUtil.formatPlays(track.plays)} */}
-													</div>
-												{/* <div className="sound-stats-comments">1</div> */}
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
 						</div>
 					</main>
+						<div className="border-right-light">
+							{/* <StreamSidebar /> */}
+							{/* <div className='tscb-sidebar'> */}
+								<div className="ad-container">
+									<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src={this.props.currentUser.profileImgUrl} /></a>
+								</div>
+								<div className="ad-container">
+									<a href="https://www.linkedin.com/in/elizabethqdang" target="_blank"><img src="" /></a>
+								</div>
+								<div className="extraspace"></div>
+							</div>
+						{/* </div> */}
 				</section>
       </div>
     )};

@@ -40,7 +40,7 @@ json.comments do
 			json.track_id comment.track.id
 			json.commenterEmail comment.user.email
 			json.commenterUsername comment.user.username
-			json.profileImgUrl url_for(comment.user.profile_image)
+			# json.profileImgUrl url_for(comment.user.profile_image)
 			
 			if comment.user.profile_image.attached?
 				json.profileImgUrl url_for(comment.user.profile_image)

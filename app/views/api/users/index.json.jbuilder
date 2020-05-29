@@ -17,9 +17,9 @@
 		json.profileUrl asset_path(user.profile.url)
 
 		if user.profile_image.attached?
-			json.profile_image_url url_for(user.profile_image)
+			json.profileImgUrl url_for(user.profile_image)
 		else
-			json.profile_image_url ''
+			json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jp'
 		end
 		
 	

@@ -6,6 +6,7 @@
 	color: #333;
 	top: 50px;
 	margin-top: 46px;
+	width: 1080px;
 }
 
 .user-header {
@@ -15,7 +16,8 @@
   padding: 30px;
   box-sizing: border-box;
   overflow: hidden;
-  height: 260px;
+	height: 260px;
+	width: 100%;
 }
 
 .user-banner {
@@ -23,7 +25,8 @@
   top: 0;
   left: 0;
   bottom: 0;
-  right: 0;
+	right: 0;
+	width: 100%;
   background: #e5e5e5;
 }
 
@@ -32,7 +35,8 @@
   top: 0;
   left: 0;
   bottom: 0;
-  right: 0;
+	right: 0;
+	width: 100%;
   background-color: #666;
   background-size: cover;
   background-position: top left;
@@ -75,7 +79,8 @@
 .user-header-details-avatar-image {
   height: 200px;
   width: 200px;
-  background-image: url("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg");
+	// background-image: url("");
+	background-image: linear-gradient(135deg, #70929c, #8e8485);
   color: transparent;
   opacity: 1;
   transition: opacity 0.2s linear;
@@ -265,9 +270,7 @@
   height: 100%;
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px inset;
-  background-image: image-url(
-    'https://i1.sndcdn.com/artworks-000252522563-niz13p-t500x500.jpg'
-  );
+  background-image: image-url('');
 }
 
 .stream-index-item-content {

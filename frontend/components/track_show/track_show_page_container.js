@@ -9,7 +9,7 @@ import { deleteComment } from '../../actions/comment_actions';
 const mapStateToProps = (state, ownProps) => {
 	// const	tracks = state.entities.tracks;
 	// let trackId = parseInt(match.params.trackId);
-	const track = state.entities.tracks[ownProps.match.params.trackId];
+	const track = state.entities.tracks[ownProps.match.params.trackId] || {};
 	return {
 		tracks: state.entities.tracks || {},
 		// trackId: ownProps.match.params.trackId,
@@ -20,7 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 		errors: state.errors.tracks || [],
 		currentUser: state.session.currentUser || {},
 		users: state.entities.users,
-		user: state.entities.users[track.user_id],
+		user: state.entities.users[track.user_id] || {},
 		// users: Object.values(state.entities.users) || {},
 		loading: state.ui.loading,
 		// currentTrack: state.entities.tracks[state.ui.currentTrack.id],

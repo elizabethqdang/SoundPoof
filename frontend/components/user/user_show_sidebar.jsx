@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink, Link, withRouter } from 'react-router-dom';
 
-class StreamSidebar extends React.Component {
+class UserShowSidebar extends React.Component {
   constructor(props) {
 		super(props);
 		this.followItem = this.followItem.bind(this);
@@ -30,6 +30,7 @@ class StreamSidebar extends React.Component {
 
     return (
 			<aside className="sidebar-right">
+
 				<section className="sidebar-module who-to-follow">
 					<a className="sidebar-header" href="#">
 						<h3 className="sidebar-header-title">
@@ -44,11 +45,13 @@ class StreamSidebar extends React.Component {
 					<div className="sidebar-content">
 						<ul className="sidebar-list">
 							{this.followItem()}
+				
 							{/* {this.likeItem()} */}
 						</ul>
 					</div>
 				</section>
 			</aside>
+
     );
   }
 }
@@ -71,9 +74,11 @@ const StreamSidebarFollowItem = ({ user, users, track, currentUser}) => {
 				<div className="user-suggestion-meta">
 					<div className="user-suggestion-stats">
 						<div className="user-suggestion-followers">
+							{/* &nbsp;&nbsp;{FormatUtil.formatPlays(user.followerIds.size)} */}
 							{user.likedTrackIds.length}
 						</div>
 						<div className="user-suggestion-tracks">
+							{/* &nbsp;&nbsp;{FormatUtil.formatPlays(user.songIds.length)} */}
 							{user.trackIds.length}
 						</div>
 					</div>
@@ -108,9 +113,11 @@ const StreamSidebarLikeItem = ({ user, users, tracks, currentUser, track }) => {
 				<div className="user-suggestion-meta">
 					<div className="user-suggestion-stats">
 						<div className="user-suggestion-followers">
+							{/* &nbsp;&nbsp;{FormatUtil.formatPlays(user.followerIds.size)} */}
 							{track.numLikes}
 						</div>
 						<div className="user-suggestion-tracks">
+							{/* &nbsp;&nbsp;{FormatUtil.formatPlays(user.songIds.length)} */}
 							{track.numComments}
 						</div>
 					</div>
@@ -133,4 +140,4 @@ const mapStateToProps = (state) => ({
 	tracks: (Object.values(state.entities.tracks)).slice(0, 3) || {}
 });
 
-export default (connect)(mapStateToProps, null)(withRouter(StreamSidebar));
+export default (connect)(mapStateToProps, null)(withRouter(UserShowSidebar));
