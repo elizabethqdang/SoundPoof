@@ -92,14 +92,14 @@ class TrackShowPage extends React.Component {
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
 				<div className='button-bar'>
-					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>like</div>
+					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
 					<div className='controller-btn delete-btn' onClick={(e) => this.deleteTrack(e)}>Delete</div>
 				</div>
 			);
 		} else {
 			return (
 				<div className='button-bar'>
-					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>like</div>
+					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
 				</div>
 			);
 		}
@@ -158,7 +158,7 @@ class TrackShowPage extends React.Component {
 							<div className='ts-uploader-ci'>
 								<div className='ts-uc-left'>
 									<div className='ts-artist-circle'>
-										<a href={`/#/users/${track.user_id}`}><img src={track.userProfile} /></a>
+										<a href={`/#/users/${track.user_id}`}><img src={track.profileImgUrl} /></a>
 									</div>
 									<a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a>
 								</div>

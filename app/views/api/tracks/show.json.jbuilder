@@ -11,7 +11,8 @@ json.track do
 			json.commentIds @track.comments.pluck(:id)
 			json.likerIds @track.likes.pluck(:user_id)
 			json.numLikes @track.likes.length
-			json.userProfile url_for(@track.user.profile_image)
+			json.profileImgUrl url_for(@track.user.profile_image)
+			json.profileUrl asset_path(@track.user.profile.url)
 			json.userEmail @track.user.email
 			json.userUsername @track.user.username
 
@@ -39,12 +40,12 @@ json.comments do
 			json.track_id comment.track.id
 			json.commenterEmail comment.user.email
 			json.commenterUsername comment.user.username
-			# json.profileUrl url_for(comment.user.profile_image)
+			json.profileImgUrl url_for(comment.user.profile_image)
 			
 			if comment.user.profile_image.attached?
-				json.profileUrl url_for(comment.user.profile_image)
+				json.profileImgUrl url_for(comment.user.profile_image)
 			else
-				json.profileUrl ''
+				json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jp'
 			end
 
     end 
