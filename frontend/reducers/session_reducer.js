@@ -9,15 +9,15 @@ const _nullUser = {
 
 const sessionReducer = (state = _nullUser, action) => {
   Object.freeze(state);
-	let newState = {};
+	let newState = Object.assign({}, state);
 
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
 				// return { currentUser: action.currentUser };
-				newState = _.merge({}, state);
+				// let newState = _.merge({}, state);
 				newState[action.currentUser] = action.currentUser;
-				newState[action.currentUser].commentIds = new Set(newState[action.currentUser].commentIds);
-				newState[action.currentUser].likedTrackIds = new Set(newState[action.currentUser].likedTrackIds);
+				// newState[action.currentUser].commentIds = new Set(newState[action.currentUser].commentIds);
+				// newState[action.currentUser].likedTrackIds = new Set(newState[action.currentUser].likedTrackIds);
 			return newState;
     case LOGOUT_CURRENT_USER:
       return {

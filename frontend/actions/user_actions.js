@@ -8,7 +8,7 @@ export const REMOVE_LIKE = "REMOVE_LIKE";
 
 const receiveUser = payload => ({
 	type: RECEIVE_USER,
-	payload,
+	payload
   // user: payload.user,
   // tracks: payload.tracks || {}
 });
@@ -38,23 +38,21 @@ export const removeLike = (payload) => ({
 });
 
 export const fetchUser = userId => dispatch => {
-  return UserAPIUtil.fetchUser(userId).then(payload => {
-		dispatch(receiveUser(payload));
+  return UserAPIUtil.fetchUser(userId).then(payload => 
+		dispatch(receiveUser(payload))
 		// return payload;
-	}, 
-	errors => {
+	), 
+	errors => 
 		dispatch(receiveUserErrors(errors.responseJSON));
-		return errors;
-	}
-	);
-}
-
-export const fetchAllUsers = () => dispatch => {
-	UserAPIUtil.fetchAllUsers().then(users => {
-		dispatch(receiveAllUsers(users));
-		return users;
-	});
+		// return errors;
 };
+
+export const fetchAllUsers = () => dispatch => (
+	UserAPIUtil.fetchAllUsers().then(users => 
+		dispatch(receiveAllUsers(users))
+		// return users;
+	)
+);
 
 export const createLike = (trackId) => (dispatch) => {
 	return UserAPIUtil.createLike(trackId).then(payload => {

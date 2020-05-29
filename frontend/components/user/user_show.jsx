@@ -22,11 +22,11 @@ class UserShow extends React.Component {
     this.fetched = true;
   }
 
-  // componentWillReceiveProps(nextProps) {
-	// 	if (nextProps.match.params.id !== this.props.match.params.userId) {
-  //     this.props.fetchUser(nextProps.match.params.userId);
-  //   }
-  // }
+	componentDidUpdate(prevProps) {
+		if (this.props.match.params.userId !== prevProps.match.params.userId) {
+			this.props.fetchUser(this.props.match.params.userId);
+		}
+	}
 
   updateImage(type) {
     return (e) => {
@@ -64,13 +64,22 @@ class UserShow extends React.Component {
 	}
 
   render() {
-		const { user, users, track, tracks, currentUser } = this.props;
+		const { user, users, track, tracks, currentUser, trackplayer } = this.props;
 		// const currentUser = this.currentUser();
 		console.log("user", user, "users", users, "currentUser", currentUser, "track", track, "tracks", tracks);
 
-		// let userStream = (this.props.tracks).map(track => (
-		// 	<TrackIndexItem key={track.id} track={track} currentUser={this.props.currentUser || null} users={users} tracks={tracks} />
-		// ));
+		if (user === undefined) {
+			return (
+				<div></div>
+			)
+		} else {
+			const { user, tracks, track, users } = this.props;
+			let userStream = (tracks).map(track => (
+				<TrackIndexItem key={track.id} track={track} currentUser={this.props.currentUser || null} users={users} trackplayer={trackplayer || {}} />
+			));
+
+			console.log("tracks", tracks, "user", user, "userStream", userStream);
+
 
 		// if (currentUser && !currentUser.likedTrackIds) { return null; }
 
@@ -140,6 +149,7 @@ class UserShow extends React.Component {
 				<section>
 					<main className="user-main border-right-light">
 						<div className="user-main-stream">
+							{userStream}
 							<li className="stream-index-item">
 								<div className="stream-index-item-body">
 									<div className="stream-index-item-artwork">
@@ -201,7 +211,7 @@ class UserShow extends React.Component {
 					</main>
 				</section>
       </div>
-    );
+    )};
   }
 }
 
@@ -228,4 +238,4 @@ class UserShow extends React.Component {
 //   )(UserShow)
 // );
 
-export default (UserShow);
+export default withRouter(UserShow);
