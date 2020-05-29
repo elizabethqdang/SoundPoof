@@ -163,17 +163,16 @@ class TrackShowPage extends React.Component {
 									<a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a>
 								</div>
 								<div className='ts-uc-right'>
-									<div className='ts-track-description'>{track.description}</div>
+									<div className='ts-track-description'>Description{track.description}</div>
 									<div className='track-show-comment-index'>
 										{trackComments}
-										{/* <CommentIndexContainer track={track} /> */}
 									</div>
 								</div>
 							</div>
 						</div>
 						<div className='tscb-sidebar'>
 							<div className="ad-container">
-								<a href="https://github.com/eqdang" target="_blank"><img src="" /></a>
+								<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src={this.props.currentUser.profileImgUrl} /></a>
 							</div>
 							<div className="ad-container">
 								<a href="https://www.linkedin.com/in/elizabethqdang" target="_blank"><img src="" /></a>

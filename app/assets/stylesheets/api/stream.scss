@@ -1,3 +1,9 @@
+body {
+  font-family: 'Interstate';
+  font-weight: 200;
+  background-color: rgb(242, 242, 242);
+}
+
 .stream-container {
 	width: 100%;
 	display: flex;
@@ -222,16 +228,18 @@ main.loggedhome-body {
 	top: 50px;
 // margin-top: 100px;
   width: 1100px;
-  margin: 0 auto;
   padding-bottom: 50px;
   display: flex;
   position: relative;
-  background: white;
+	background: white;
+	padding: 30px 20px;
+	// margin: 22px 330px 0 0;
 
   div.main-index {
 		flex: 5;
-		margin-top: 50px;
-
+		// margin-top: 22px;
+		width: 580px;
+		
     p {
       color: gray;
       font-size: 16px;

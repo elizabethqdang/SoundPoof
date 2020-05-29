@@ -15,3 +15,4 @@ json.commentIds track.comments.pluck(:id)
 
 # json.userId track.user.id
 json.profileUrl asset_path(track.user.profile.url)
+json.profileImgUrl url_for(track.user.profile_image)

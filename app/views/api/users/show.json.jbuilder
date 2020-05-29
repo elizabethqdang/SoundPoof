@@ -18,9 +18,9 @@ json.user do
 		# 	json.profileUrl ''
 		# end
 		if @user.profile_image.attached?
-			json.profile_image_url url_for(@user.profile_image)
+			json.profileImgUrl url_for(@user.profile_image)
 		else
-			json.profile_image_url 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg'
+			json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg'
 		end
 
 		json.bannerUrl asset_path(@user.banner.url)

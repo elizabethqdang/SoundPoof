@@ -100,7 +100,7 @@ class Navbar extends React.Component {
 	}
 
 	navRight(currentUser, logout) {
-		const navProfileUrl = (this.props.currentUser.profile_image_url ? currentUser.profile_image_url : {});
+		// const { currentUser, logout } = this.props;
 		return (
 			<Fragment>
 			<section className="nav-right">
@@ -114,7 +114,7 @@ class Navbar extends React.Component {
 								currentUser={currentUser}
 								logout={logout}
 							/> */}
-								<span>{navProfileUrl}</span>
+								<span><img src={currentUser.profileImgUrl} /></span>
 						</div>
 						<div className="nav-user-username">{currentUser.email}</div>
 					</div>

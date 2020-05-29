@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Link, withRouter } from 'react-router-dom';
 import TrackIndexItem from '../track_index/track_index_item_container';
 import NavbarContainer from '../navbar/navbar_container';
+import StreamSidebar from '../user/info_bar';
 import ReactPlayer from 'react-player';
 
 class Stream extends React.Component {
@@ -25,7 +26,7 @@ class Stream extends React.Component {
 	// }
 
 	render() {
-		let { tracks, users, errors, user, currentUser } = this.props;
+		const { tracks, users, errors, user, currentUser } = this.props;
 		// console.log("stream", "tracks", tracks, "users", users, "errors", errors);
 		// console.log("stream", "currentUser", currentUser);
 
@@ -60,11 +61,15 @@ class Stream extends React.Component {
 				</div>
 					<div className="sidebar-placeholder">
 						<div className="ad-container">
-							<a href="" target="_blank"><img src="" /></a>
+							<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src={this.props.currentUser.profileImgUrl} /></a>
 						</div>
 						<div className="ad-container">
-							<a href="" target="_blank"><img src="" /></a>
+							<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} />
 						</div>
+						{/* <div className="ad-container">
+							<a href="" target="_blank"><img src="" /></a>
+						</div> */}
+
 					</div>
 			</main>
 			</div>
