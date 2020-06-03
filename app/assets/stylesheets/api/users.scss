@@ -270,7 +270,7 @@
   height: 100%;
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px inset;
-  background-image: image-url('');
+  background-image: image-url(''	);
 }
 
 .stream-index-item-content {
@@ -557,7 +557,9 @@
 
 .sound-actions-btn.action-like.active:before,
 .sound-actions-btn.action-repost.active:before {
-  background-color: #f50;
+	background-color: #f50;
+	color: #f50;
+	border: 2px solid #f50;
 }
 
 .sound-actions-btn.action-like:before {
@@ -574,10 +576,6 @@
   -webkit-mask-repeat: no-repeat;
   height: 16px;
   width: 16px;
-}
-
-.sound-actions-btn.action-next-up:before {
-  background-image: image-url('next-up-icon.png');
 }
 
 .sound-stats {
