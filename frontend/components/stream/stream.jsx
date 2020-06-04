@@ -61,7 +61,7 @@ class Stream extends React.Component {
 				</div>
 					<div className="sidebar-placeholder">
 						<div className="ad-container">
-							<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src={this.props.currentUser.profileImgUrl} /></a>
+							<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src="" /></a>
 						</div>
 						<div className="ad-container">
 							<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} />
