@@ -74,15 +74,17 @@ class TrackIndexItem extends React.Component {
 
 	userTrackButtons() {
 		const {track, currentUser, users} = this.props;
-		const { likeButton, repostButton } = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'active' : '');
+		// const { likeButton, repostButton } = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'active' : '');
+		const likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
 		const likeText = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'Liked' : 'Like');
-		// const repostButton = ((currentUser.reposts && track.id in currentUser.reposts) ? 'active' : '' );
+		const repostButton = ((currentUser.reposts && track.id in currentUser.reposts) ? 'active' : '' );
 		// console.log("trackindexitem");
 		// console.log("currentUser", currentUser);
 
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
 				<div className='button-bar'>
+					{/* <div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div> */}
 					<div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
 					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`}>Repost</div>
 					<div className='controller-btn delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
