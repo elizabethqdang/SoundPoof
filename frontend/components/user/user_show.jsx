@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 import NavbarContainer from '../navbar/navbar_container';
 import TrackIndexItem from '../track_index/track_index_item';
-import StreamSidebar from './info_bar';
-// import UserEditForm from './user_edit_form';
+import StreamSidebar from '../stream/stream_sidebar';
 
 class UserShow extends React.Component {
   constructor(props) {

@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, Link, withRouter } from 'react-router-dom';
 import TrackIndexItem from '../track_index/track_index_item_container';
 import NavbarContainer from '../navbar/navbar_container';
-import StreamSidebar from '../user/info_bar';
+import StreamSidebar from './stream_sidebar';
 import ReactPlayer from 'react-player';
 
 class Stream extends React.Component {
