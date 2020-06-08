@@ -104,7 +104,6 @@ class UserShow extends React.Component {
 					{/* <NavbarContainer /> */}
 					<div className="user-header">
 						<div className="user-banner-image" style={bannerImg}>
-							{/* {this.bannerChooser()} */}
 						</div>
 						<section className="user-header-details">
 							<div className="user-header-details-avatar">

@@ -3,7 +3,7 @@
   top: 30px;
   bottom: 0;
   right: 0;
-	width: 300px;
+	// width: 300px;
 	display: flex;
 	flex-direction: column nowrap;
 	// background-color: pink;
@@ -16,7 +16,8 @@
 
 .sidebar-module {
   margin-bottom: 20px;
-  transition: all 200ms linear;
+	transition: all 200ms linear;
+	width: 100%;
 }
 
 .sidebar-header {
@@ -60,7 +61,8 @@
 
 .sidebar-content {
   min-height: 210px;
-  padding-top: 5px;
+	padding-top: 5px;
+	width: 100%;
 }
 
 .sidebar-list {
@@ -69,21 +71,20 @@
 }
 
 .user-suggestion-item {
-  padding: 10px 0;
+  padding: 5px 0;
   display: flex;
   flex: 1;
   align-items: center;
   position: relative;
-  min-height: 50px;
+  min-height: 40px;
   width: 100%;
 }
 
 .user-suggestion-avatar {
   margin-right: 10px;
   word-wrap: break-word;
-
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   opacity: 1;
 
   box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px inset;
