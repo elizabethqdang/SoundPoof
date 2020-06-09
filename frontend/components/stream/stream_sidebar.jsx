@@ -81,7 +81,7 @@ const StreamSidebarFollowItem = ({ user, users, track, currentUser}) => {
 					<div className="user-suggestion-actions">
 						<button 
 						// onClick={this.like} 
-						className={`bc-btn user-suggestion-follow-btn ${active}`} type="button">{likeButton}</button>;
+						className={`bc-btn user-suggestion-follow-btn ${active}`} type="button">{likeButton}</button>
 					</div>
 				</div>
 
