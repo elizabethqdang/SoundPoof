@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import TrackSearchResult from "./track_search_result";
+import UserSearchResult from "./user_search_result";
 
 class SearchBar extends React.Component {
 	constructor(props) {
@@ -97,10 +99,12 @@ class SearchBar extends React.Component {
 								let type;
 								if (result.username) {
 									type = USER;
+									return <UserSearchResult key={idx} />;
 								} else {
 									type = TRACK;
+									return <TrackSearchResult key={idx} />;
 								}
-								return <SearchResultItem key={idx} result={result} type={type} />;
+								// return <SearchResultItem key={idx} result={result} type={type} />;
 							})
 						}
 					</ul>
