@@ -35,6 +35,15 @@ const sessionReducer = (state = _nullUser, action) => {
 			const sliceIdx = newState.currentUser.likedTrackIds.indexOf(action.trackId);
 			newState.currentUser.likedTrackIds.splice(sliceIdx, 1); 
 			return newState;
+		case RECEIVE_REPOST:
+			newState = _.merge({}, state);
+			newState.currentUser.repostedTrackIds.push(action.trackId);
+			return newState;
+		case REMOVE_REPOST:
+			newState = _.merge({}, state);
+			const sliceIdx = newState.currentUser.repostedTrackIds.indexOf(action.trackId);
+			newState.currentUser.repostedTrackIds.splice(sliceIdx, 1);
+			return newState;
 		default:
 			return state;
   }

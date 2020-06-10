@@ -58,6 +58,15 @@ class Api::UsersController < ApplicationController
     else
       render json: @like.errors.full_messages, status: 422
     end
+	end
+	
+	def repost
+    @repost = current_user.reposts.new(track_id: params[:track_id])
+    if @repost.save
+      render :repost
+    else
+      render json: @repost.errors.full_messages, status: 422
+    end
   end
 
   def unlike
@@ -67,10 +76,20 @@ class Api::UsersController < ApplicationController
       @like.destroy
       render :like
     else
-      render json: ['You have already unliked this track or you do not have permission to unlike this track'], status: 401
+      render json: ['Already unliked, not authorized, or track does not exist'], status: 401
+    end
+	end
+	
+  def unrepost
+    @repost = current_user.reposts.find_by(track_id: params[:track_id])
+
+    if @repost
+      @repost.destroy
+      render :repost
+    else
+      render json: ['Already removed, not authorized, or reposted track does not exist'], status: 401
     end
   end
-
   
   private
   
