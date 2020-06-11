@@ -12,7 +12,10 @@ Rails.application.routes.draw do
 		resources :comments, only: [:update, :destroy]
 
 		post 'users/likes/:track_id', to: 'users#like'
-    delete 'users/likes/:track_id', to: 'users#unlike'
+		delete 'users/likes/:track_id', to: 'users#unlike'
+		
+		post 'users/reposts/:track_id', to: 'users#repost'
+    delete 'users/reposts/:track_id', to: 'users#unrepost'
 	end
 	
 

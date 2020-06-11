@@ -5,6 +5,8 @@ export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
 export const RECEIVE_USER_ERRORS = "RECEIVE_USER_ERRORS";
 export const RECEIVE_LIKE = "RECEIVE_LIKE";
 export const REMOVE_LIKE = "REMOVE_LIKE";
+export const RECEIVE_REPOST = "RECEIVE_REPOST";
+export const REMOVE_REPOST = "REMOVE_REPOST";
 
 const receiveUser = payload => ({
 	type: RECEIVE_USER,
@@ -33,6 +35,18 @@ export const receiveLike = (payload) => ({
 
 export const removeLike = (payload) => ({
 	type: REMOVE_LIKE,
+	userId: payload.userId,
+	trackId: payload.trackId
+});
+
+export const receiveRepost = (payload) => ({
+	type: RECEIVE_REPOST,
+	userId: payload.userId,
+	trackId: payload.trackId
+});
+
+export const removeRepost = (payload) => ({
+	type: REMOVE_REPOST,
 	userId: payload.userId,
 	trackId: payload.trackId
 });
@@ -67,6 +81,26 @@ export const createLike = (trackId) => (dispatch) => {
 export const deleteLike = (trackId) => (dispatch) => {
 	return UserAPIUtil.deleteLike(trackId).then(payload => {
 		dispatch(removeLike(payload));
+		return payload;
+	}, errors => {
+		console.log(errors.responseJSON);
+		return errors;
+	});
+};
+
+export const createRepost = (trackId) => (dispatch) => {
+	return UserAPIUtil.createRepost(trackId).then(payload => {
+		dispatch(receiveRepost(payload));
+		return payload;
+	}, errors => {
+		console.log(errors.responseJSON);
+		return errors;
+	});
+};
+
+export const deleteRepost = (trackId) => (dispatch) => {
+	return UserAPIUtil.deleteRepost(trackId).then(payload => {
+		dispatch(removeRepost(payload));
 		return payload;
 	}, errors => {
 		console.log(errors.responseJSON);
