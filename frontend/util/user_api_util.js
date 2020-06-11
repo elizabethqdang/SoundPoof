@@ -27,6 +27,20 @@ export const deleteLike = (trackId) => {
 	});
 };
 
+export const createRepost = (trackId) => {
+	return $.ajax({
+		url: `/api/users/reposts/${trackId}`,
+		method: 'post',
+	});
+};
+
+export const deleteRepost = (trackId) => {
+	return $.ajax({
+		url: `/api/users/reposts/${trackId}`,
+		method: 'delete',
+	});
+};
+
 export const updateUser = (userId, formData) => {
 	return $.ajax({
 		url: `/api/users/${userId}`,

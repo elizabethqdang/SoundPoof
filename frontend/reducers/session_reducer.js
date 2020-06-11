@@ -1,5 +1,5 @@
 import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from "../actions/session_actions";
-import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/user_actions';
+import { RECEIVE_LIKE, REMOVE_LIKE, RECEIVE_REPOST, REMOVE_REPOST } from '../actions/user_actions';
 
 const _nullUser = {
 	// isAuthenticated: false,
@@ -10,6 +10,7 @@ const _nullUser = {
 const sessionReducer = (state = _nullUser, action) => {
   Object.freeze(state);
 	let newState = Object.assign({}, state);
+	let idx;
 
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
@@ -32,8 +33,8 @@ const sessionReducer = (state = _nullUser, action) => {
 			return newState;
 		case REMOVE_LIKE:
 			newState = _.merge({}, state);
-			const sliceIdx = newState.currentUser.likedTrackIds.indexOf(action.trackId);
-			newState.currentUser.likedTrackIds.splice(sliceIdx, 1); 
+			idx = newState.currentUser.likedTrackIds.indexOf(action.trackId);
+			newState.currentUser.likedTrackIds.splice(idx, 1); 
 			return newState;
 		case RECEIVE_REPOST:
 			newState = _.merge({}, state);
@@ -41,8 +42,8 @@ const sessionReducer = (state = _nullUser, action) => {
 			return newState;
 		case REMOVE_REPOST:
 			newState = _.merge({}, state);
-			const sliceIdx = newState.currentUser.repostedTrackIds.indexOf(action.trackId);
-			newState.currentUser.repostedTrackIds.splice(sliceIdx, 1);
+			idx = newState.currentUser.repostedTrackIds.indexOf(action.trackId);
+			newState.currentUser.repostedTrackIds.splice(idx, 1);
 			return newState;
 		default:
 			return state;
