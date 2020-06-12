@@ -12,6 +12,7 @@
 		json.likedTrackIds user.liked_track_ids
 		# json.commentedTrackIds user.commented_track_ids
 		json.commentIds user.comments.pluck(:id)
+		json.repostedTrackIds user.reposted_track_ids
 
 		json.bannerUrl asset_path(user.banner.url)
 		json.profileUrl asset_path(user.profile.url)

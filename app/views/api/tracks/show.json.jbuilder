@@ -7,10 +7,13 @@ json.track do
 			json.title @track.title
 			json.artist @track.artist
 			json.description @track.description
+			json.timestamp @track.created_at
 			json.comments @track.comments
 			json.commentIds @track.comments.pluck(:id)
 			json.likerIds @track.likes.pluck(:user_id)
 			json.numLikes @track.likes.length
+			json.reposterIds @track.reposts.pluck(:user_id)
+			json.numReposts @track.reposts.length
 			json.profileImgUrl url_for(@track.user.profile_image)
 			json.profileUrl asset_path(@track.user.profile.url)
 			json.userEmail @track.user.email

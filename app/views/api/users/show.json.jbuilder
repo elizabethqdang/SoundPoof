@@ -11,6 +11,7 @@ json.user do
 		json.numLiked @user.liked_track_ids.length
 		# json.commentedTrackIds @user.commented_track_ids
 		json.commentIds @user.comments.pluck(:id)
+		json.repostedTrackIds @user.reposted_track_ids
 
 		# if @user.profile.attached?
 		# 	json.profileUrl asset_path(@user.profile.url)
@@ -39,6 +40,7 @@ json.tracks do
 			json.artist track.artist
 			json.numComments track.comments.length
 			json.numLikes track.likes.length
+			json.numReposts track.reposts.length
 
 			if track.audio.attached?
 					json.audioUrl url_for(track.audio)

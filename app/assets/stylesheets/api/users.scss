@@ -501,66 +501,65 @@
   transition: all 300ms ease-in-out;
 }
 
-.sound-actions {
-  z-index: 1;
-  overflow: hidden;
-  position: relative;
-  float: left;
-  background-color: #fff;
-  margin: 0;
-  float: left;
-  clear: none;
-}
+// .sound-actions {
+//   z-index: 1;
+//   overflow: hidden;
+//   position: relative;
+//   float: left;
+//   background-color: #fff;
+//   margin: 0;
+//   float: left;
+//   clear: none;
+// }
 
-.sound-actions-btn {
-  min-width: 25px;
-  float: left;
-  margin-right: 5px;
-  font-family: 'Lucida Grande';
-  text-indent: 19px;
-  font-size: 11px;
-  padding: 2px 9px 2px 8px;
-  height: 22px;
-  line-height: 1.4;
-  border-color: #e5e5e5;
-}
+// .sound-actions-btn {
+//   min-width: 25px;
+//   float: left;
+//   margin-right: 5px;
+//   font-family: 'Lucida Grande';
+//   text-indent: 19px;
+//   font-size: 11px;
+//   padding: 2px 9px 2px 8px;
+//   height: 22px;
+//   line-height: 1.4;
+//   border-color: #e5e5e5;
+// }
 
-.sound-actions-btn.active {
-  color: #f50;
-}
+// .sound-actions-btn.active {
+//   color: #f50;
+// }
 
-.sound-actions-btn:hover {
-  color: #333;
-  outline: 0;
-  border-color: #ccc;
-}
+// .sound-actions-btn:hover {
+//   color: #333;
+//   outline: 0;
+//   border-color: #ccc;
+// }
 
-.sound-actions-btn.active:hover {
-  border-color: #f50;
-  color: #f50;
-}
+// .sound-actions-btn.active:hover {
+//   border-color: #f50;
+//   color: #f50;
+// }
 
-.sound-actions-btn:before {
-  content: '';
-  display: block;
-  position: absolute;
-  background-repeat: no-repeat;
-  background-position: center center;
-  top: 0;
-  bottom: 0;
-  margin: auto 0;
-  left: 5px;
-  height: 20px;
-  width: 20px;
-  background-size: 16px 16px;
-}
+// .sound-actions-btn:before {
+//   content: '';
+//   display: block;
+//   position: absolute;
+//   background-repeat: no-repeat;
+//   background-position: center center;
+//   top: 0;
+//   bottom: 0;
+//   margin: auto 0;
+//   left: 5px;
+//   height: 20px;
+//   width: 20px;
+//   background-size: 16px 16px;
+// }
 
-.sound-actions-btn.action-like.active:before,
-.sound-actions-btn.action-repost.active:before {
-	background-color: #f50;
-	color: #f50;
-	border: 2px solid #f50;
-}
+// .sound-actions-btn.action-like.active:before,
+// .sound-actions-btn.action-repost.active:before {
+// 	color: #f50;
+// 	border: 2px solid #f50;
+// }
 
 .sound-actions-btn.action-like:before {
   -webkit-mask-position: 50% 50%;
@@ -577,6 +576,7 @@
   height: 16px;
   width: 16px;
 }
+
 
 .sound-stats {
   position: absolute;

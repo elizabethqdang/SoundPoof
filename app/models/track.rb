@@ -29,6 +29,16 @@ class Track < ApplicationRecord
 		has_many	:commenters,
 			through: :comments,
 			source: :user
+
+		has_many	:reposts,
+			dependent: :destroy,
+			foreign_key: :track_id,
+			class_name: :Repost,
+			primary_key: :id
+
+		has_many	:reposters,
+			through:	:reposts,
+			source:		:user
 				
 		# has_attached_file :artwork, default_url: "https://soundpoof.s3-us-west-2.amazonaws.com/logo.jpg"
 		# 	validate_media_type: false, 
