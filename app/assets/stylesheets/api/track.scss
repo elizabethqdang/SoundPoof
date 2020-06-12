@@ -135,7 +135,9 @@
   display: flex;
   margin-top: 10px;
   height: 22px;
-  text-align: center;
+	text-align: center;
+	font-size: 11px;
+	font-family: 'Lucida Grande';
   .controller-btn {
     border: 1px lightgray solid;
     margin: 0 5px;
@@ -152,11 +154,17 @@
 .like-btn {
   color: black;
 	border: 2px solid black;
+	font-size: 11px;
+	font-family: 'Lucida Grande';
+
 }
 
 .liked {
   color: #f50;
-  border: 2px solid #f50;
+	border: 2px solid #f50;
+	font-size: 11px;
+	font-family: 'Lucida Grande';
+
 }
 
 .track-index-container {

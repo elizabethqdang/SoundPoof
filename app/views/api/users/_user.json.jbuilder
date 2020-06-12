@@ -7,12 +7,12 @@ json.bio user.bio
 json.location user.location
 json.trackIds user.track_ids
 json.likedTrackIds user.liked_track_ids
+json.repostedTrackIds user.reposted_track_ids
 # json.tracks user.tracks
 # json.commentedTrackIds user.commented_track_ids
 json.commentIds user.comments.pluck(:id)
 
 json.trackIds user.tracks.pluck(:id)
-json.trackUserId user.tracks.pluck(:user_id)
 
 # json.profileImgUrl url_for(user.profile_image)
 json.bannerUrl asset_path(user.banner.url)

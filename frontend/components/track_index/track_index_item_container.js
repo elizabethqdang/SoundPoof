@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import TrackIndexItem from './track_index_item';
-import { fetchTrack, deleteTrack, updateTrack } from '../../actions/track_actions';
-import { fetchUser, createLike, removeLike, deleteLike } from '../../actions/user_actions';
+import { fetchTrack, fetchSingleTrack, deleteTrack, updateTrack } from '../../actions/track_actions';
+import { fetchUser, createLike, deleteLike, createRepost, deleteRepost } from '../../actions/user_actions';
 import { setCurrentTrack, setPlayPause, setProg } from '../../actions/track_player_actions';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -22,7 +22,9 @@ const mapDispatchToProps = (dispatch) => ({
 	updateTrack: (track, id) => dispatch(updateTrack(track, id)),
 	setProg: (trackId, progress) => dispatch(setProg(trackId, progress)),
 	createLike: (trackId) => dispatch(createLike(trackId)),
-	deleteLike: (trackId) => dispatch(deleteLike(trackId))
+	deleteLike: (trackId) => dispatch(deleteLike(trackId)),
+	createRepost: (trackId) => dispatch(createRepost(trackId)),
+	deleteRepost: (trackId) => dispatch(deleteRepost(trackId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackIndexItem);

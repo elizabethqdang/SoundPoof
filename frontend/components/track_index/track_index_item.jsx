@@ -8,6 +8,7 @@ class TrackIndexItem extends React.Component {
 		super(props);
 		this.songButton = this.songButton.bind(this);
 		this.toggleLike = this.toggleLike.bind(this);
+		this.toggleRepost = this.toggleRepost.bind(this);
 		this.deleteTrack = this.deleteTrack.bind(this);
 		this.userTrackButtons = this.userTrackButtons.bind(this);
 		this.showComments = this.showComments.bind(this);
@@ -66,35 +67,54 @@ class TrackIndexItem extends React.Component {
 		console.log("togglelike", "track", track);
 
 		if (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) {
-			deleteLike(track.id);
+			deleteLike(track.id).then(
+				() => this.props.fetchTrack(track.id)
+			);
 		} else {
-			createLike(track.id);
+			createLike(track.id).then(
+				() => this.props.fetchTrack(track.id)
+			);
+		}
+	}
+
+	toggleRepost(e) {
+		e.preventDefault();
+		const { track, deleteRepost, createRepost, currentUser, users } = this.props;
+		console.log("toggleRepost", "track", track);
+
+		if (this.props.currentUser.repostedTrackIds.includes(this.props.track.id)) {
+			deleteRepost(track.id).then(
+				() => this.props.fetchTrack(track.id)
+			);
+		} else {
+			createRepost(track.id).then(
+				() => this.props.fetchTrack(track.id)
+			);
 		}
 	}
 
 	userTrackButtons() {
 		const {track, currentUser, users} = this.props;
-		// const { likeButton, repostButton } = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'active' : '');
-		const likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
-		const likeText = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'Liked' : 'Like');
-		const repostButton = ((currentUser.reposts && track.id in currentUser.reposts) ? 'active' : '' );
+		const likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
+		const repostButton = (currentUser.repostedTrackIds.includes(track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
 		// console.log("trackindexitem");
 		// console.log("currentUser", currentUser);
 
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
 				<div className='button-bar'>
-					{/* <div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div> */}
 					<div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
-					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`}>Repost</div>
+					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts}</div>
 					<div className='controller-btn delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
+					<div className='controller-btn'> {track.timestamp}</div>
 				</div>
 			);
 		} else {
 			return (
 				<div className='button-bar'>
 					<div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)} >{track.numLikes}</div>
-					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`}>Repost</div>
+					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts} </div>
+					<div className='bc-btn timestamp'> {track.timestamp}</div>
 				</div>
 			);
 		}
@@ -116,7 +136,6 @@ class TrackIndexItem extends React.Component {
 		let { track, trackplayer } = this.props;
 		let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
 			'sound-title-play-btn' : 'ti-play';
-		let buttonBar = this.userTrackButtons();
 
 		return (
 			<div className='track-item-container'>
@@ -148,7 +167,7 @@ class TrackIndexItem extends React.Component {
 						</div>
 						<div className='ti-comment-bar'>
 						</div>
-						{buttonBar}
+							{this.userTrackButtons()}
 					</section>
 
 				</div>

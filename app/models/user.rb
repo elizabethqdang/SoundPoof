@@ -37,9 +37,15 @@ class User < ApplicationRecord
 		primary_key: :id,
 		foreign_key: :user_id
 
-	# has_many :commented_tracks,
-	# 	through: :comments,
-	# 	source: :track
+	has_many	:reposts,
+		dependent:	:destroy,
+		class_name:	:Repost,
+		primary_key:	:id,
+		foreign_key:	:user_id
+
+	has_many :reposted_tracks,
+		through: :reposts,
+		source: :track
 
 	def avatar_check user
       if user.profile_image.present?
