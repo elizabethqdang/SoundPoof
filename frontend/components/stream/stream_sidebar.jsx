@@ -12,14 +12,14 @@ class StreamSidebar extends React.Component {
 	followItem() {
 		return (
 		(this.props.users).map(user => {
-			return <StreamSidebarFollowItem key={user.id} user={user} />;
+			return <StreamSidebarFollowItem key={user.id} user={user} />
 		}))
 	}
 
 	likeItem() {
 		return (
 		(this.props.tracks).map(track => {
-			return <StreamSidebarLikeItem key={track.id} track={track} />;
+			return <StreamSidebarLikeItem key={track.id} track={track} />
 		}))
 	}
 
@@ -33,18 +33,31 @@ class StreamSidebar extends React.Component {
 				<section className="sidebar-module who-to-follow">
 					<a className="sidebar-header" href="#">
 						<h3 className="sidebar-header-title">
-							<span className="sidebar-header-follower-icon"></span>
+							<span className="sidebar-header-follow-icon"></span>
 							<span>Who To Follow</span>
 						</h3>
-						<span 
-						// onClick={} 
-						className="sidebar-header-refresh">Refresh</span>
+						{/* <span className="sidebar-header-refresh">Refresh</span> */}
 					</a>
 
 					<div className="sidebar-content">
 						<ul className="sidebar-list">
 							{this.followItem()}
-							{/* {this.likeItem()} */}
+						</ul>
+					</div>
+				{/* </section> */}
+
+				{/* <section className="sidebar-module who-to-follow"> */}
+					<a className="sidebar-header" href="#">
+						<h3 className="sidebar-header-title">
+							<span className="sidebar-header-likes-icon"></span>
+							<span>Likes</span>
+						</h3>
+						<span className="sidebar-header-refresh">View All</span>
+					</a>
+
+					<div className="sidebar-content">
+						<ul className="sidebar-list">
+							{this.likeItem()}
 						</ul>
 					</div>
 				</section>
@@ -101,24 +114,21 @@ const StreamSidebarLikeItem = ({ user, users, tracks, currentUser, track }) => {
 			><img src={track.artworkUrl} /></Link>
 			<div className="user-suggestion-content">
 				<div className="user-suggestion-title truncate">
-					<Link to={`/users/${track.user_id}`} className="user-suggestion-title-link truncate">{track.userEmail}</Link>
+					<Link to={`/users/${track.user_id}`} className="user-suggestion-artist-link truncate">{track.userEmail}</Link>
 					<Link to={`/tracks/${track.id}`} className="user-suggestion-title-link truncate">{track.title}</Link>
 				</div>
 
 				<div className="user-suggestion-meta">
 					<div className="user-suggestion-stats">
-						<div className="user-suggestion-followers">
+						<div className="user-suggestion-likes">
 							{track.numLikes}
 						</div>
-						<div className="user-suggestion-tracks">
+						<div className="user-suggestion-reposts">
+							{track.numReposts}
+						</div>
+						<div className="user-suggestion-comments">
 							{track.numComments}
 						</div>
-					</div>
-
-					<div className="user-suggestion-actions">
-						<button
-							// onClick={this.like} 
-							className={`bc-btn user-suggestion-follow-btn ${active}`} type="button">{likeButton}</button>;
 					</div>
 				</div>
 

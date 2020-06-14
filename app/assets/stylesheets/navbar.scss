@@ -1,5 +1,5 @@
 .nav {
-  display: block;
+  // display: flexbox;
   width: 90%;
   height: 46px;
   position: fixed;
@@ -256,11 +256,10 @@
   width: 100%;
   background-color: #111;
   height: 48px;
-  z-index: 5;
+  z-index: 1000;
 	border-top: 1px solid #b3b4a9;
 	border-right: 1px solid #b3b4a9;
 	color: #ccc;
-
 }
 
 #navbar-container {

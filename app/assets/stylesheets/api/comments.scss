@@ -67,25 +67,48 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    margin-left: 10px;
+		margin-left: 10px;
+		
+		.comment-email {
+			color: #999;
+			font-weight: 300px;
+			font-size: 12px;
+		}
+
+		.comment-body {
+			color: #333;
+			font-size: 14px;
+			font-weight: 100px;
+		}
   }
 }
 .pc-currentUser {
   background-color: #f2f2f2;
 }
 
-.comment-index-button {
-  width: 23px;
-  height: 22px;
-  border: 1px lightgray solid;
-  border-radius: 3px;
-  align-self: center;
-  position: absolute;
-  right: 0;
-  background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+SW1wb3J0ZWQgTGF5ZXJzPC90aXRsZT48cGF0aCBkPSJNOS45NjggM2gxLjAxNEMxMyAzIDEzIDUgMTMgNUgzcy4wOS0yIDIuMDg4LTJoLjk0M0M2LjU1MSAyLjM4NSA3LjM1NSAxLjk5OSA4IDEuOTk5Yy42NDMgMCAxLjQ0Ny4zODYgMS45NjggMS4wMDF6TTQgNnY2LjAwMkM0IDEzLjEwNSA0Ljg4NyAxNCA1Ljk5OCAxNGg0LjAwNEExLjk5MyAxLjk5MyAwIDAgMCAxMiAxMi4wMDJWNkg0eiIgZmlsbD0iIzIyMiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+)
-    no-repeat;
-  background-size: cover;
-  box-sizing: border-box;
+.comment-info {
+
+
+	.comment-timestamp {
+		color: #ccc;
+		font-size: 12px;
+		font-weight: 100;
+		line-height: 16px;
+		text-align: right;
+	}
+
+	.comment-index-button {
+		width: 23px;
+		height: 22px;
+		border: 1px lightgray solid;
+		border-radius: 3px;
+		align-self: center;
+		position: absolute;
+		right: 0;
+		background: image-url('delete-icon.svg');
+		background-size: cover;
+		box-sizing: border-box;
+	}
 }
 
 .tsc-container {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import moment from 'moment';
 
 class CommentIndexItem extends React.Component {
   constructor(props) {
@@ -17,14 +18,21 @@ class CommentIndexItem extends React.Component {
   }
 
   userTrackButtons() {
-    const { track, deleteComment, currentUser, id, comment } = this.props;
+		const { track, deleteComment, currentUser, id, comment } = this.props;
     
     if (currentUser.id === comment.user_id) {
       return (
-        <div className='comment-index-button' onClick={(e)=> this.deleteComment(e)}></div>
+				<div className='comment-info'>
+					<div className="comment-timestamp">
+						{moment(new Date(comment.created_at)).fromNow()}
+					</div>
+					<div className='comment-index-button' onClick={(e)=> this.deleteComment(e)}></div>
+				</div>
       );}else{
         return (
-          <div></div> 
+					<div className="comment-timestamp">
+						{moment(new Date(comment.created_at)).fromNow()}
+					</div>
         );}
   }
  
@@ -38,11 +46,13 @@ class CommentIndexItem extends React.Component {
       return (
             <div className='posted-comment'>
                 <a href={`/#/users/${comment.user_id}`}><div className='comment-uploader-img'>
-						<img src={comment.profileImgUrl}/> 
+						<img src={comment.profileImgUrl ? comment.profileImgUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg"}/> 
                 </div></a> 
                 <div className='comment-uploader-body'>
-                    <a href={`/#/users/${comment.user_id}`}><div>{comment.commenterEmail}</div></a> 
-                    <div>{comment.body}</div>
+                    <a href={`/#/users/${comment.user_id}`}>
+											<div className='comment-email'>{comment.commenterEmail}</div>
+										</a> 
+                    <div className='comment-email'>{comment.body}</div>
                 </div>
                 {this.userTrackButtons()}
             </div>

@@ -2,7 +2,7 @@ json.id track.id
 json.title track.title
 json.artist track.artist
 json.description track.description
-json.timestamp track.created_at
+json.created_at track.created_at
 json.user_id track.user.id
 json.user_id track.user_id
 json.audioUrl url_for(track.audio)

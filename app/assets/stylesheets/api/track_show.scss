@@ -5,7 +5,7 @@
 .track-show-page {
   display: inline-block;
   flex-direction: column;
-	width: 80%;
+	width: 1240px;
 	justify-content: center;
 	align-items: center;
 
@@ -20,7 +20,9 @@
   box-sizing: border-box;
   height: 380px;
 	width: 100%;
- background-image: linear-gradient(135deg, #70929c, #8e8485);
+//  background-image: linear-gradient(135deg, #70929c, #8e8485);
+//  background: linear-gradient(135deg, rgb(190, 182, 177) 0%, rgb(94, 124, 141) 100%);
+ background: linear-gradient(135deg, rgb(165, 113, 126) 0%, rgb(89, 54, 74) 100%);
 }
 
 .track-show-detail {
@@ -34,33 +36,81 @@
     display: flex;
     box-sizing: border-box;
     height: 63px;
-    align-items: center;
+		align-items: center;
+  	justify-content: space-between;
     .ts-play {
       box-sizing: border-box;
-      background-image: url();
+      background-image: image-url('play.svg');
       background-size: 35px 35px;
       background-repeat: no-repeat;
       background-position: center;
       border-radius: 50%;
       height: 60px;
       width: 60px;
-      background-color: #b3b4a9;
+      background-color: #f50;
       cursor: pointer;
     }
     .playing {
-      background-image: url();
-      background-color: rgb(255, 51, 0);
+      background-image: image-url('pause-white.svg');
+			background-color: rgb(255, 51, 0);
+			background-size: 30px 30px;
+      background-repeat: no-repeat;
+			background-position: center;
+			border-radius: 50%;
+      box-sizing: border-box;
+			height: 60px;
+			width: 60px;
+	   cursor: pointer;
     }
     .track-sd-info {
       display: flex;
       flex-direction: column;
-      margin-left: 10px;
+			margin-left: 10px;
+			justify-content: space-between;
+			align-items: flex-start;
+			align-self: flex-start;
+			flex-grow: 1;
+
+			.track-sd-uploader {
+				font-size: 16px;
+				color: lightgray;
+				font-weight: 300;
+				background-color: rgba(0, 0, 0, 0.75);
+				padding: 5px 8px;
+				margin-bottom: 5px;
+				width: fit-content;
+				align-items: flex-start;
+				align-self: flex-start;
+				flex-grow: 1;
+			}
+
+			.track-sd-title {
+				font-size: 25px;
+				font-weight: 300;
+				color: white;
+				background-color: rgba(0, 0, 0, 0.75);
+				text-align: center;
+				padding: 10px 9px;
+				width: fit-content;
+				align-items: flex-start;
+				align-self: flex-start;
+				flex-grow: 1;
+			}
     }
   }
   .track-sd-bott {
     width: 100%;
     height: 100px;
   }
+}
+
+
+.track-timestamp {
+  color: #ccc;
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 16px;
+  text-align: right;
 }
 
 .track-show-image-container {
@@ -78,7 +128,8 @@
   img {
     flex-shrink: 0;
     min-width: 100%;
-    max-width: 100%;
+		max-width: 100%;
+		box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -177,24 +228,7 @@
   border-top: 1px solid lightgray;
 }
 
-.track-sd-uploader {
-  font-size: 16px;
-  color: lightgray;
-  font-weight: 300;
-  background-color: rgba(0, 0, 0, 0.75);
-  padding: 5px 8px;
-  margin-bottom: 5px;
-  width: fit-content;
-}
 
-.track-sd-title {
-  font-size: 25px;
-  font-weight: 300;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.75);
-  text-align: center;
-  padding: 10px 9px;
-}
 
 
 

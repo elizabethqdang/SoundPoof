@@ -38,6 +38,7 @@ json.tracks do
 			json.user_id track.user.id
 			json.title track.title
 			json.artist track.artist
+			json.created_at track.created_at
 			json.numComments track.comments.length
 			json.numLikes track.likes.length
 			json.numReposts track.reposts.length

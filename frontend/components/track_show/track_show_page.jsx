@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import moment from 'moment';
 import NavbarContainer from "../navbar/navbar_container";
 import CommentIndexContainer from "../comments/comment_index_container";
 import CommentFormContainer from '../comments/comment_form_container';
@@ -76,30 +77,53 @@ class TrackShowPage extends React.Component {
 
 		if (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) {
 		// if (this.props.track.likerIds.includes(this.props.currentUser.id)) {
-			this.props.deleteLike(track.id);
+			this.props.deleteLike(track.id).then(
+				() => this.props.fetchTrack(track.id)
+			);;
 		} else {
-			this.props.createLike(track.id);
+			this.props.createLike(track.id).then(
+				() => this.props.fetchTrack(track.id)
+			);;
+		}
+	}
+
+	toggleRepost(e) {
+		e.preventDefault();
+		const { track, deleteRepost, createRepost, currentUser, users } = this.props;
+
+		if (this.props.currentUser.repostedTrackIds.includes(this.props.track.id)) {
+			deleteRepost(track.id).then(
+				() => this.props.fetchTrack(track.id)
+			);
+		} else {
+			createRepost(track.id).then(
+				() => this.props.fetchTrack(track.id)
+			);
 		}
 	}
 
 	userTrackButtons() {
-		const { currentUser, users, errors, track } = this.props;
-		// const user = users[currentUser.id];
-
-		const likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
-		// const likeButton = (this.props.track.likerIds.includes(this.props.currentUser.id)) ? 'controller-btn like-btn liked' : 'controller-btn like-btn';
+		const { track, currentUser, users, trackplayer } = this.props;
+		const likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
+		const repostButton = (currentUser.repostedTrackIds.includes(track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
 
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
 				<div className='button-bar'>
-					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
-					<div className='controller-btn delete-btn' onClick={(e) => this.deleteTrack(e)}>Delete</div>
+					<div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
+					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts}</div>
+					<div className='controller-btn delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
+					<div className='action-like'>{track.numLikes}</div>
+					<div className='action-like'>{track.numReposts}</div>
 				</div>
 			);
 		} else {
 			return (
 				<div className='button-bar'>
-					<div className={likeButton} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
+					<div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)} >{track.numLikes}</div>
+					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts} </div>
+					<div className='action-like'>{track.numLikes}</div>
+					<div className='action-like'>{track.numReposts}</div>
 				</div>
 			);
 		}
@@ -122,7 +146,7 @@ class TrackShowPage extends React.Component {
 				<CommentIndexItem key={comment.id} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} />
 			));
 			let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
-				'ts-play playing' : 'ts-play';
+				'ts-play' : 'playing';
 			let buttonBar = this.userTrackButtons();
 			
 			if (this.state.firstLoad || loading) return (<div>loading</div>);
@@ -139,6 +163,9 @@ class TrackShowPage extends React.Component {
 								<div className='track-sd-info'>
 									<a href={`/#/users/${track.user_id}`}><div className='track-sd-uploader'>{track.artist}</div></a>
 									<div className='track-sd-title'>{track.title}</div>
+								</div>
+								<div className="track-timestamp">
+									{moment(new Date(track.created_at)).fromNow()}
 								</div>
 							</div>
 							<div className='track-sd-bott'>
