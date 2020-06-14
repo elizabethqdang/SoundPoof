@@ -163,7 +163,7 @@
 	font-size: 12px;
   background-image: image-url('comment-icon.svg');
   background-repeat: no-repeat;
-	text-align: right;
+	// text-align: right;
   vertical-align: text-top;
   padding: 4px;
   margin: 0 5px;
@@ -171,7 +171,7 @@
   background-position: center center;
 	justify-self: right;
 	align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 	box-sizing: border-box;
 	flex-grow: auto;
 	display: inline-block;
@@ -181,7 +181,7 @@
 
 .button-bar {
 	flex-flow: row nowrap;;
-  margin-top: 10px;
+  margin: 10px 30px 0 30px;
   height: 22px;
 	text-align: right;
 	font-size: 11px;
@@ -206,7 +206,6 @@
 	border: 2px solid black;
 	font-size: 11px;
 	font-family: 'Lucida Grande';
-
 }
 
 .liked {

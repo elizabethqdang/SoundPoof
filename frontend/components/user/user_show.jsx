@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 import NavbarContainer from '../navbar/navbar_container';
 import TrackIndexItem from '../track_index/track_index_item';
-import StreamSidebar from '../stream/stream_sidebar';
+import UserSidebar from './user_sidebar';
 
 class UserShow extends React.Component {
   constructor(props) {
@@ -134,14 +134,18 @@ class UserShow extends React.Component {
 						<div className="border-right-light">
 							{/* <StreamSidebar /> */}
 							{/* <div className='tscb-sidebar'> */}
-								{/* <div className="ad-container">
+								<div className="ad-container">
 									<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src={this.props.currentUser.profileImgUrl} /></a>
 								</div>
-								<div className="ad-container">
+
+								<UserSidebar tracks={tracks} currentUser={currentUser || null} likes={user.likedTrackIds} user={user || {}} users={users}/>
+
+								{/* <div className="ad-container">
 									<a href="https://www.linkedin.com/in/elizabethqdang" target="_blank"><img src="" /></a>
-								</div>
+								</div> */}
+
 								<div className="extraspace"></div>
-							</div> */}
+							{/* </div> */}
 						</div>
 				</section>
       </div>

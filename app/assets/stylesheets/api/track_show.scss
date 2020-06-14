@@ -104,6 +104,37 @@
   }
 }
 
+.like-icon {
+	background-image: image-url('like-button.svg');
+	background-repeat: no-repeat;
+	align-self: flex-end;
+	// align-items: center;
+	// display: flex;
+	flex-flow: row nowrap;
+}
+
+.repost-icon {
+	background-image: image-url('repost-icon.svg');
+	background-repeat: no-repeat;
+	align-self: flex-end;
+	// align-items: center;
+	flex-flow: row nowrap;
+}
+
+.comment-icon {
+  background-image: image-url('comment-icon.svg');
+  background-repeat: no-repeat;
+	flex-flow: row nowrap;
+	line-height: 1.4;
+	height: 22px;
+	width: 70px;
+	box-sizing: border-box;
+		align-items: center;
+  justify-content: flex-end;
+	display: inline-block;
+	position: relative;
+	font-weight: 300;
+}
 
 .track-timestamp {
   color: #ccc;

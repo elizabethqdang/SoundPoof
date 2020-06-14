@@ -33,7 +33,15 @@
         border-radius: 3px;
         padding: 5px;
       }
-    }
+		}
+		
+		.comment-submit-btn {
+			visibility: hidden;
+			padding: 0;
+			margin: 0;
+			border: none;
+			width: 1px;
+		}
   }
 }
 
@@ -47,7 +55,8 @@
   width: 100%;
   padding: 10px 10px;
   box-sizing: border-box;
-  position: relative;
+	position: relative;
+	
   .comment-uploader-img {
     display: flex;
     justify-content: center;
@@ -95,19 +104,25 @@
 		font-weight: 100;
 		line-height: 16px;
 		text-align: right;
+		right: 0;
+		position: absolute;
+		box-sizing: border-box;
 	}
 
 	.comment-index-button {
 		width: 23px;
 		height: 22px;
-		border: 1px lightgray solid;
+		border: 1px transparent;
+		// border: 1px lightgray solid;
 		border-radius: 3px;
 		align-self: center;
 		position: absolute;
-		right: 0;
+		right: 10px;
+		bottom: 10px;
 		background: image-url('delete-icon.svg');
 		background-size: cover;
 		box-sizing: border-box;
+		align-items: flex-end;
 	}
 }
 
