@@ -112,9 +112,10 @@ class TrackShowPage extends React.Component {
 				<div className='button-bar'>
 					<div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
 					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts}</div>
-					<div className='controller-btn delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
-					<div className='action-like'>{track.numLikes}</div>
-					<div className='action-like'>{track.numReposts}</div>
+					<div className='bc-btn sound-actions-btn controller-btn delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
+					<div className='bc-btn sound-actions-btn like-icon'>{track.numLikes}</div>
+					<div className='bc-btn sound-actions-btn repost-icon'>{track.numReposts}</div>
+					<div className='comment-icon'>{track.numComments}</div>
 				</div>
 			);
 		} else {
@@ -122,8 +123,9 @@ class TrackShowPage extends React.Component {
 				<div className='button-bar'>
 					<div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)} >{track.numLikes}</div>
 					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts} </div>
-					<div className='action-like'>{track.numLikes}</div>
-					<div className='action-like'>{track.numReposts}</div>
+					<div className='bc-btn sound-actions-btn like-icon'>{track.numLikes}</div>
+					<div className='bc-btn sound-actions-btn repost-icon'>{track.numReposts}</div>
+					<div className='comment-icon'>{track.numComments}</div>
 				</div>
 			);
 		}
@@ -131,7 +133,6 @@ class TrackShowPage extends React.Component {
 
 	render() {
 		const { currentTrack, trackId, tracks, users, trackplayer, comments, comment, loading, currentUser, deleteTrack, track, deleteComment, user} = this.props;
-		// const user = users[currentUser.id];
 		console.log("trackShowPage", "tracks", tracks, "track", track, "comments", comments, "users", users, "user", user, "current", currentUser);
 
 		if (track === undefined) {

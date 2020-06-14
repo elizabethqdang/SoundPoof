@@ -36,7 +36,7 @@ class CommentForm extends React.Component {
 						<div className='comment-input-container'>
 							<input className='comment-input' type='text' onChange={this.updateBody()} value={this.state.body} placeholder='Write a Comment' />
 						</div>
-						<input type='submit' className='h-input' />
+						<input type='submit' className='comment-submit-btn' />
 					</form>
 				</div>
 				<div className='comment-buttons'></div>
