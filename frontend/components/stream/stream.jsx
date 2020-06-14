@@ -63,9 +63,9 @@ class Stream extends React.Component {
 						<div className="ad-container">
 							<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src="" /></a>
 						</div>
-						<div className="ad-container">
+						{/* <div className="ad-container"> */}
 							<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} />
-						</div>
+						{/* </div> */}
 						{/* <div className="ad-container">
 							<a href="" target="_blank"><img src="" /></a>
 						</div> */}

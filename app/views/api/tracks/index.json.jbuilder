@@ -2,9 +2,9 @@
     json.set! track.id do 
 				json.extract! track, :id, :title, :artist, :user_id, :description
 				json.id track.id
-				json.timestamp track.created_at
+				json.created_at track.created_at
 				json.user_id track.user_id
-				# json.comments track.comments
+				json.numComments track.comments.length
 				json.commenterIds track.comments.pluck(:user_id)
 				json.likerIds track.likes.pluck(:user_id)
 				json.numLikes track.likes.length

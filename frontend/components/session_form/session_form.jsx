@@ -13,6 +13,14 @@ class SessionForm extends React.Component {
 		this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
   }
 
+	// componentDidUpdate(prevProps) {
+	// 	if (this.props.currentUser === true || this.props.loggedIn === true) {
+	// 		this.props.history.push("/discover")
+	// 		this.props.closeModal();
+	// 	}
+	// 	this.setState({ errors: this.state.errors });
+	// }
+
   update(field) {
     return e =>
       this.setState({

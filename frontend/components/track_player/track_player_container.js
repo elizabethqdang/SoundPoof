@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import TrackPlayer from './track_player';
-import { setPlayPause, setTrackPlayer, seekPlayer, endCurrentTrack } from '../../actions/track_player_actions';
+import { setPlayPause, setTrackPlayer, seekPlayer, endCurrentTrack, next } from '../../actions/track_player_actions';
 import { fetchTrack } from '../../actions/track_actions';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -17,10 +17,11 @@ const mapDispatchToProps = (dispatch) => ({
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),
 	fetchTrack: (id) => dispatch(fetchTrack(id)),
 	setTrackPlayer: (trackplayer) => dispatch(setTrackPlayer(trackplayer)),
+	next: () => dispatch(next()),
 	seekPlayer: (progress) => dispatch(seekPlayer(progress)),
 	endCurrentTrack: (id) => dispatch(endCurrentTrack(id)),
 	createLike: (trackId) => dispatch(createLike(trackId)),
-	deleteLike: (trackId) => dispatch(deleteLike(trackId))
+	deleteLike: (trackId) => dispatch(deleteLike(trackId)),
 });
 
 

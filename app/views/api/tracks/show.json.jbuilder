@@ -7,8 +7,9 @@ json.track do
 			json.title @track.title
 			json.artist @track.artist
 			json.description @track.description
-			json.timestamp @track.created_at
+			json.created_at @track.created_at
 			json.comments @track.comments
+			json.numComments @track.comments.length
 			json.commentIds @track.comments.pluck(:id)
 			json.likerIds @track.likes.pluck(:user_id)
 			json.numLikes @track.likes.length
@@ -35,9 +36,10 @@ end
 json.comments do
   @track.comments.each do |comment|
 		json.set! comment.id do 
-			json.extract! comment, :id, :body, :user_id, :track_id
+			json.extract! comment, :id, :body, :user_id, :track_id, :created_at
 
 			json.id comment.id
+			json.created_at comment.created_at
 			json.comment_id comment.id
 			json.user_id comment.user.id
 			json.track_id comment.track.id

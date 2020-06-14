@@ -61,7 +61,6 @@ class UserShow extends React.Component {
 
   render() {
 		const { user, users, track, tracks, currentUser, trackplayer } = this.props;
-		// const currentUser = this.currentUser();
 		console.log("user", user, "users", users, "currentUser", currentUser, "track", track, "tracks", tracks);
 
 		if (user === undefined) {
@@ -81,27 +80,17 @@ class UserShow extends React.Component {
 		// const likeActive = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'active' : '');
 		// const likeText = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'Liked' : 'Like');
 
-
-    const tabs = [
-      {text: 'All', pathname: '', userShow: true},
-      // {text: 'Tracks', pathname: 'tracks', userShow: true},
-      // {text: 'Albums', pathname: 'albums', userShow: true},
-      // {text: 'Playlists', pathname: 'playlists', userShow: true},
-      // {text: 'Reposts', pathname: 'reposts', userShow: true},
-    ];
-
     if (!this.fetched) {
       return null;
 		}
 	
-			const profileIcon = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg" };
+		const profileIcon = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg" };
 		const bannerImg = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/banner.jpeg" };
 
     return (
       <div>
 				<NavbarContainer />
       <section className="user-hero">
-					{/* <NavbarContainer /> */}
 					<div className="user-header">
 						<div className="user-banner-image" style={bannerImg}>
 						</div>
@@ -145,15 +134,15 @@ class UserShow extends React.Component {
 						<div className="border-right-light">
 							{/* <StreamSidebar /> */}
 							{/* <div className='tscb-sidebar'> */}
-								<div className="ad-container">
+								{/* <div className="ad-container">
 									<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src={this.props.currentUser.profileImgUrl} /></a>
 								</div>
 								<div className="ad-container">
 									<a href="https://www.linkedin.com/in/elizabethqdang" target="_blank"><img src="" /></a>
 								</div>
 								<div className="extraspace"></div>
-							</div>
-						{/* </div> */}
+							</div> */}
+						</div>
 				</section>
       </div>
     )};
