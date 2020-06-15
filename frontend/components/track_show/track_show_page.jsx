@@ -5,6 +5,7 @@ import NavbarContainer from "../navbar/navbar_container";
 import CommentIndexContainer from "../comments/comment_index_container";
 import CommentFormContainer from '../comments/comment_form_container';
 import CommentIndexItem from "../comments/comment_index_item";
+import TrackSidebar from "./track_sidebar";
 
 class TrackShowPage extends React.Component {
 	constructor(props) {
@@ -202,10 +203,7 @@ class TrackShowPage extends React.Component {
 							<div className="ad-container">
 								<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src={this.props.currentUser.profileImgUrl} /></a>
 							</div>
-							<div className="ad-container">
-								<a href="https://www.linkedin.com/in/elizabethqdang" target="_blank"><img src="" /></a>
-							</div>
-							<div className="extraspace"></div>
+							<TrackSidebar users={users} currentUser={currentUser || null} tracks={tracks} track={track} />
 						</div>
 					</div>
 				</div>

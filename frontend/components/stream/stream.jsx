@@ -49,8 +49,8 @@ class Stream extends React.Component {
 							<li>
 								<NavLink to='/stream'>Stream</NavLink>
 							</li>
-							<li><Link to='/stream'>Charts</Link></li>
-							<li><Link to='/stream'>Discover</Link></li>
+							{/* <li><Link to='/stream'>Charts</Link></li>
+							<li><Link to='/stream'>Discover</Link></li> */}
 						</ul>
 					</nav>
 					<div className='nav-border' />

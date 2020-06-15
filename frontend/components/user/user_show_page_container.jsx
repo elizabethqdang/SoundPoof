@@ -3,7 +3,6 @@ import UserShowPage from './user_show_page';
 import { deleteTrack, updateTrack } from '../../actions/track_actions';
 import { setCurrentTrack, setPlayPause } from '../../actions/track_player_actions';
 import { fetchUser } from '../../actions/user_actions';
-// import { toggleLike } from '../../actions/like_actions';
 
 const mapStateToProps = (state, ownProps) => {
 	const tracks = Object.values(state.entities.tracks);
@@ -56,7 +55,6 @@ const mapDispatchToProps = (dispatch) => ({
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),
 	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),
 	updateTrack: (track, id) => dispatch(updateTrack(track, id)),
-	toggleLike: (trackId) => dispatch(toggleLike(trackId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserShowPage);

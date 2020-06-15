@@ -1,6 +1,10 @@
 const path = require('path');
 
 module.exports = {
+	mode: 'development'
+};
+
+module.exports = {
   entry: "./frontend/soundpoof.jsx",
   output: {
     path: path.resolve(__dirname, "app", "assets", "javascripts"),
