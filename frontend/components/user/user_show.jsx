@@ -35,12 +35,6 @@ class UserShow extends React.Component {
       }
     };
 	}
-
-	currentUser() {
-		const { users, sessionCurrentUser } = this.props;
-		if (sessionCurrentUser) { return users[sessionCurrentUser.id]; }
-		return null;
-	}
 	
 	handleToggleLike(e) {
 		e.preventDefault();
@@ -73,8 +67,6 @@ class UserShow extends React.Component {
 				<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} />
 			));
 
-			console.log("tracks", tracks, "user", user, "userStream", userStream);
-
 		// if (currentUser && !currentUser.likedTrackIds) { return null; }
 
 		// const likeActive = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'active' : '');
@@ -88,30 +80,25 @@ class UserShow extends React.Component {
 		const bannerImg = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/banner.jpeg" };
 
     return (
-      <div>
+      <div className="usershow-container">
 				<NavbarContainer />
-      <section className="user-hero">
-					<div className="user-header">
-						<div className="user-banner-image" style={bannerImg}>
-						</div>
-						<section className="user-header-details">
-							<div className="user-header-details-avatar">
-								{/* <div className="user-header-details-avatar-image" style={{["backgroundImage"]: user.profileImgUrl}}> */}
-									<img src={user.profileImgUrl} className="user-header-details-avatar-image" />
-								{/* </div> */}
+
+      	<div className="usershow-header-container">
+					{/* <div className="usershow-banner-img" style={bannerImg}></div> */}
+
+					<div className="usershow-profile-container">
+						<div className="usershow-profile-img">
+								<img src={user.profileImgUrl ? user.profileImgUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg"} className="usershow-profile-img" />
 								<div className="user-header-details-avatar-btn"></div>
-							</div>
-							<div className="user-header-details-content">
-								<div className="user-header-details-username">
-									{this.props.user.email}
-									</div>
-								<div className="user-header-details-location">
-									{this.props.user.location}</div>
-							</div>
-						</section>
-					</div>
-				</section>
-				<section className="user-info-bar">
+						</div>
+						<div className="usershow-profile-txt">
+							<div className="usershow-username">{this.props.user.email}</div>
+							<div className="usershow-location">{this.props.user.location || "Locaation"}</div>
+						</div>
+				</div>
+			</div>
+
+				<div className="usershow-btn-bar-container">
 					<ul className="user-info-tabs">
 						{/* {
 							this.props.tabs.map((tab, idx) => {
@@ -124,14 +111,13 @@ class UserShow extends React.Component {
 						{/* {this.followButton()} */}
 						{/* {this.editButton()} */}
 					</div>
-				</section>
-				<section>
-					<main className="user-main border-right-light">
-						<div className="user-main-stream">
+				</div>
+			
+				<div className="usershow-main-container">
+					<div className="usershow-stream-container">
 							{userStream}
-						</div>
-					</main>
-						<div className="border-right-light">
+					</div>
+					<div className="usershow-sidebar-container">
 							{/* <StreamSidebar /> */}
 							{/* <div className='tscb-sidebar'> */}
 								<div className="ad-container">
@@ -139,16 +125,9 @@ class UserShow extends React.Component {
 								</div>
 
 								<UserSidebar tracks={tracks} currentUser={currentUser || null} likes={user.likedTrackIds} user={user || {}} users={users}/>
-
-								{/* <div className="ad-container">
-									<a href="https://www.linkedin.com/in/elizabethqdang" target="_blank"><img src="" /></a>
-								</div> */}
-
-								<div className="extraspace"></div>
-							{/* </div> */}
 						</div>
-				</section>
-      </div>
+					</div>
+				</div>
     )};
   }
 }

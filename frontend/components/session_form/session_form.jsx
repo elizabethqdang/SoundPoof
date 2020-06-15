@@ -13,13 +13,13 @@ class SessionForm extends React.Component {
 		this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
   }
 
-	// componentDidUpdate(prevProps) {
-	// 	if (this.props.currentUser === true || this.props.loggedIn === true) {
-	// 		this.props.history.push("/discover")
-	// 		this.props.closeModal();
-	// 	}
-	// 	this.setState({ errors: this.state.errors });
-	// }
+	componentDidUpdate(prevProps) {
+		if (this.props.currentUser === true || this.props.loggedIn === true) {
+			this.props.history.push("/stream")
+			this.props.closeModal();
+		}
+		this.setState({ errors: this.state.errors });
+	}
 
   update(field) {
     return e =>
@@ -49,7 +49,10 @@ class SessionForm extends React.Component {
     e.preventDefault();
     const user = { email: "Demo-User", password: "password" };
 		this.props.demoSubmit(user)
-			.then(() => this.props.closeModal());
+			.then(
+				() => this.props.closeModal(),
+				this.props.history.push("/stream")
+			);
 			// 	this.props.history.push("/stream"),
 			// 	console.log(user));
     // this.props.processForm(user).then(() => this.props.history.push("/"));

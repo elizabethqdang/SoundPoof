@@ -1,9 +1,11 @@
 .nav {
   // display: flexbox;
-  width: 90%;
+  // width: 90%;
   height: 46px;
   position: fixed;
-  top: 0;
+	top: 0;
+	left: 0;
+	right: 0;
   color: #999;
   font-size: 14px;
   line-height: 1.5;
@@ -12,7 +14,10 @@
 }
 
 .inner-nav {
-  display: flex;
+	display: flex;
+	justify-content: center;
+	width: 1240px;
+	margin: 0 auto;
 }
 
 .nav-left {
@@ -74,10 +79,11 @@
 /* ---------------------- */
 
 .nav-middle {
-  width: 80%;
+	flex: auto;
 }
 
 .nav-search {
+	// width: 100%;
   padding: 9px 10px 8px;
   position: relative;
 }
@@ -110,7 +116,7 @@
   color: transparent;
   border: 0;
   padding: 0;
-  // background: image-url('search-button.svg') 0 0 no-repeat;
+  background: image-url('search-btn.svg') 0 0 no-repeat;
   width: 15px;
   height: 15px;
   position: absolute;
@@ -264,7 +270,8 @@
 
 #navbar-container {
 	// width: 91.75vw;
-	width: 80%;
+	max-width: 85%;
+	width: 1080px;
   // max-width: 1240px;
 	height: 48px;
 	max-height: 10%;
@@ -283,7 +290,7 @@
 }
 
 body {
-  font-family: 'Interstate';
+  font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
   font-weight: 200;
   background-color: rgb(242, 242, 242);
 }

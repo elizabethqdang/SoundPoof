@@ -99,9 +99,10 @@ class TrackIndexItem extends React.Component {
 			);
 		} else {
 			return (
-				<div className='button-bar'>
+				<div className='track-button-bar'>
 					<div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)} >{track.numLikes}</div>
 					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts} </div>
+					
 					<div className='comment-btn'>{track.numComments}</div>
 				</div>
 			);
@@ -147,8 +148,6 @@ class TrackIndexItem extends React.Component {
 							<span></span>
 							{/* <WaveFormContainer track={track} height={60} color={'#000'} /> */}
 						</div>
-						{/* <div className='ti-comment-bar'>
-						</div> */}
 							{this.userTrackButtons()}
 					</section>
 

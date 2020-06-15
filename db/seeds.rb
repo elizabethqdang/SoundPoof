@@ -152,7 +152,7 @@ artist: "Louis The Child",
 user_id: u6.id 
 })
 t11.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/fromhere.mp3"), filename: "fromhere.mp3")
-t11.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/logo.jpg"), filename: "logo.jpg")
+t11.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/logo.png"), filename: "logo.png")
 
 t12 = Track.create({
 title: "Middle", 
