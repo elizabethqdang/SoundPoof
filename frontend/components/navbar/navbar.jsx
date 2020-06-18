@@ -137,7 +137,7 @@ class Navbar extends React.Component {
 
     return (
 			<div id="navbar">
-			<div id="navbar-container">
+				<div id="navbar-container">
 				<nav className="nav">
 					<div className="inner-nav full-width transparent-background no-height">
 							{this.navLeft()}
@@ -145,7 +145,7 @@ class Navbar extends React.Component {
 							{nav}
 					</div>
 				</nav>
-			</div>
+				</div>
 			</div>
 		)
   }

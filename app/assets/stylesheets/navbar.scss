@@ -1,11 +1,43 @@
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #111;
+  height: 45px;
+  z-index: 1000;
+  border-top: 1px solid #b3b4a9;
+  border-right: 1px solid #b3b4a9;
+  color: #ccc;
+}
+
+#navbar-container {
+	width: 1240px;
+  height: 100%;
+  margin: 0 auto;
+	display: flex;
+	flex-flow: row nowrap;
+  align-items: center;
+  justify-content: stretch;
+  flex-flow: row nowrap;
+  font-size: 14px;
+  font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
+  color: #fff;
+  top: 0;
+  left: 0;
+	right: 0;
+	z-index: 1000;
+}
+
 .nav {
-  // display: flexbox;
-  // width: 90%;
+	// display: flexbox;
+	display: inline-flex;
+  width: 100%;
   height: 46px;
   position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
+  top: 0;
   color: #999;
   font-size: 14px;
   line-height: 1.5;
@@ -14,15 +46,22 @@
 }
 
 .inner-nav {
+	top: 0;
+	line-height: 1.5;
 	display: flex;
-	justify-content: center;
 	width: 1240px;
-	margin: 0 auto;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle;
+  background-color: rgb(51, 51, 51);
+	height: 100%;
 }
 
 .nav-left {
   // margin-left: px;
-  display: flex;
+	display: flex;
+	height: 100%;
+	flex-flow: row nowrap;
 }
 
 .no-height,
@@ -30,7 +69,6 @@
 .nav-middle,
 .nav-right {
   height: 46px;
-  min-height: 0px;
 }
 
 .nav-logo {
@@ -38,7 +76,7 @@
   color: transparent;
   background-size: 85px;
   width: 100px;
-  height: 49px;
+  height: 46px;
   background-color: #f50;
   background-image: image-url('logo.png');
   background-repeat: no-repeat;
@@ -79,11 +117,10 @@
 /* ---------------------- */
 
 .nav-middle {
-	flex: auto;
+  width: 80%;
 }
 
 .nav-search {
-	// width: 100%;
   padding: 9px 10px 8px;
   position: relative;
 }
@@ -254,43 +291,10 @@
 }
 
 
-#navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  background-color: #111;
-  height: 48px;
-  z-index: 1000;
-	border-top: 1px solid #b3b4a9;
-	border-right: 1px solid #b3b4a9;
-	color: #ccc;
-}
 
-#navbar-container {
-	// width: 91.75vw;
-	max-width: 85%;
-	width: 1080px;
-  // max-width: 1240px;
-	height: 48px;
-	max-height: 10%;
-  margin: 0 auto;
-	display: flex;
-	align-items: center;
-	align-content: center;
-	justify-content: center;
-	flex-flow: row nowrap;
-	font-size: 14px;
-  font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
-	color: #fff;
-	top: 0;
-	left: 0;
-	right: 0;
-}
 
 body {
-  font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
+  font-family: 'Interstate';
   font-weight: 200;
   background-color: rgb(242, 242, 242);
 }

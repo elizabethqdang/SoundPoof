@@ -73,9 +73,9 @@ const StreamSidebarFollowItem = ({ user, users, track, currentUser}) => {
 
   return (
 		<li className="user-suggestion-item">
-			<Link to={`/users/${user.id}`} className="user-suggestion-avatar"
-			// style={style}
-			><img src={user.profileImgUrl} /></Link>
+			<Link to={`/users/${user.id}`}>
+				<img src={user.profileImgUrl} className="user-suggestion-avatar"/>
+			</Link>
 			<div className="user-suggestion-content">
 				<div className="user-suggestion-title truncate">
 					<Link to={`/users/${user.id}`} className="user-suggestion-title-link truncate">{user.email}</Link>
