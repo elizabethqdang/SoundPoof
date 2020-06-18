@@ -437,10 +437,9 @@ h3.bl-header {
 	// background-color: lightgray;
 	justify-content: center;
 	display: flex;
-	width: 100%;
 	align-items: center;
 	margin: 0 auto;
-	// padding: 46px 20px 0;
+	padding: 46px 20px 0;
 }
 .content-container{
 	// width: 91.75vw;
@@ -456,11 +455,13 @@ h3.bl-header {
 }
 
 .sidebar-placeholder{
-  flex: 1;
+  // flex: 2;
   display: flex; 
   flex-direction: column; 
   border-left: 1px lightgray solid;
-  padding: 22px; 
+	padding-top: 50px; 
+	width: 300px;
+	float: right;
 }
 
 .track-index-page-container{

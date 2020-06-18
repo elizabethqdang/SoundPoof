@@ -6,6 +6,7 @@ import CommentIndexContainer from "../comments/comment_index_container";
 import CommentFormContainer from '../comments/comment_form_container';
 import CommentIndexItem from "../comments/comment_index_item";
 import TrackSidebar from "./track_sidebar";
+import WaveFormContainer from "../track_player/waveform_container";
 
 class TrackShowPage extends React.Component {
 	constructor(props) {
@@ -73,11 +74,9 @@ class TrackShowPage extends React.Component {
 	toggleLike(e) {
 		e.preventDefault();
 		const { track, deleteLike, createLike, currentUser, users } = this.props;
-		// const user = users[currentUser.id];
 		console.log("trackshow-toggleLike", "currentUser", currentUser, "track", track);
 
 		if (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) {
-		// if (this.props.track.likerIds.includes(this.props.currentUser.id)) {
 			this.props.deleteLike(track.id).then(
 				() => this.props.fetchTrack(track.id)
 			);;
@@ -142,7 +141,6 @@ class TrackShowPage extends React.Component {
 			)
 		} else {
 			const user = this.props.users[this.props.track.user_id];
-			// let currentUser = this.props.users[this.props.currentUser.id];
 			const { comments, track, users } = this.props;
 			let trackComments = (comments).map(comment => (
 				<CommentIndexItem key={comment.id} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} />
@@ -171,7 +169,7 @@ class TrackShowPage extends React.Component {
 								</div>
 							</div>
 							<div className='track-sd-bott'>
-								{/* <WaveFormContainer track={track} height={100} color={'#fff'} /> */}
+								<WaveFormContainer track={track} height={100} color={'#fff'} />
 							</div>
 						</div>
 						<div className='track-show-image-container'>
@@ -192,7 +190,7 @@ class TrackShowPage extends React.Component {
 									<a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a>
 								</div>
 								<div className='ts-uc-right'>
-									<div className='ts-track-description'>Description{track.description}</div>
+									<div className='ts-track-description'>{numComments} Ccomments</div>
 									<div className='track-show-comment-index'>
 										{trackComments}
 									</div>

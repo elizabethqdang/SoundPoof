@@ -124,6 +124,25 @@ class UserShow extends React.Component {
 									<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src={this.props.currentUser.profileImgUrl} /></a>
 								</div>
 
+						<table className="user-info-stats-table">
+							<tbody>
+								<tr>
+									<td className="info-stat">
+										<h3 className="info-stat-title">Tracks</h3>
+										<div className="info-stat-value">{user.trackIds.length}</div>
+									</td>
+									<td className="info-stat">
+										<h3 className="info-stat-title">Likes</h3>
+										<div className="info-stat-value">{user.likedTrackIds.length}</div>
+									</td>
+									<td className="info-stat">
+										<h3 className="info-stat-title">Reposts</h3>
+										<div className="info-stat-value">{user.repostedTrackIds.length}</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
 								<UserSidebar tracks={tracks} currentUser={currentUser || null} likes={user.likedTrackIds} user={user || {}} users={users}/>
 						</div>
 					</div>
