@@ -5,7 +5,7 @@ json.email user.email
 json.username user.username
 json.bio user.bio
 json.location user.location
-json.trackIds user.track_ids
+# json.trackIds user.track_ids
 json.likedTrackIds user.liked_track_ids
 json.repostedTrackIds user.reposted_track_ids
 # json.tracks user.tracks

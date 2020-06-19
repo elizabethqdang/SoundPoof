@@ -146,7 +146,7 @@ class TrackShowPage extends React.Component {
 				<CommentIndexItem key={comment.id} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} />
 			));
 			let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
-				'ts-play' : 'playing';
+				'playing' : 'ts-play';
 			let buttonBar = this.userTrackButtons();
 			
 			if (this.state.firstLoad || loading) return (<div>loading</div>);
@@ -190,7 +190,7 @@ class TrackShowPage extends React.Component {
 									<a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a>
 								</div>
 								<div className='ts-uc-right'>
-									<div className='ts-track-description'>{numComments} Ccomments</div>
+									<div className='ts-track-description'>{track.numComments} Comments</div>
 									<div className='track-show-comment-index'>
 										{trackComments}
 									</div>
