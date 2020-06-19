@@ -6,7 +6,7 @@ class TrackSidebar extends React.Component {
   constructor(props) {
 		super(props);
 		this.followItem = this.followItem.bind(this);
-		this.likeItem = this.likeItem.bind(this);
+		this.trackLikes = this.trackLikes.bind(this);
   }
 	
 	followItem() {
@@ -16,10 +16,10 @@ class TrackSidebar extends React.Component {
 		}))
 	}
 
-	likeItem() {
+	trackLikes() {
 		return (
 		(this.props.tracks).map(track => {
-			return <StreamSidebarLikeItem key={track.id} track={track} />;
+			return <TrackLikes key={track.id} track={track} />;
 		}))
 	}
 
@@ -37,15 +37,10 @@ class TrackSidebar extends React.Component {
 							<span className="sidebar-header-follower-icon"></span>
 							<span>Who To Follow</span>
 						</h3>
-						<span 
-						// onClick={} 
-						className="sidebar-header-refresh">Refresh</span>
 					</a>
 
 					<div className="sidebar-content">
 						<ul className="sidebar-list">
-							{this.followItem()}
-				
 							{/* {this.likeItem()} */}
 						</ul>
 					</div>
@@ -95,15 +90,15 @@ const StreamSidebarFollowItem = ({ user, users, track, currentUser}) => {
   );
 };
 
-const StreamSidebarLikeItem = ({ user, users, tracks, currentUser, track }) => {
+const TrackLikes = ({ user, users, tracks, currentUser, track }) => {
 	let active = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'active' : '');
 	let likeButton = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'Liked' : 'Like');
 
 	return (
 		<li className="user-suggestion-item">
-			<Link to={`/tracks/${track.id}`} className="user-suggestion-avatar"
-			// style={style}
-			><img src={track.artworkUrl} /></Link>
+			<Link to={`/tracks/${track.id}`}>
+				<img src={track.artworkUrl} className="user-suggestion-avatar"/>
+			</Link>
 			<div className="user-suggestion-content">
 				<div className="user-suggestion-title truncate">
 					<Link to={`/users/${track.user_id}`} className="user-suggestion-title-link truncate">{track.userEmail}</Link>
@@ -113,12 +108,10 @@ const StreamSidebarLikeItem = ({ user, users, tracks, currentUser, track }) => {
 				<div className="user-suggestion-meta">
 					<div className="user-suggestion-stats">
 						<div className="user-suggestion-followers">
-							{/* &nbsp;&nbsp;{FormatUtil.formatPlays(user.followerIds.size)} */}
 							{track.numLikes}
 						</div>
 						<div className="user-suggestion-tracks">
-							{/* &nbsp;&nbsp;{FormatUtil.formatPlays(user.songIds.length)} */}
-							{track.numComments}
+							{/* {track.numComments} */}
 						</div>
 					</div>
 

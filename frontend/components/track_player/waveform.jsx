@@ -22,7 +22,7 @@ class WaveForm extends React.Component {
 		});
 
 		//will set audio peaks if not stored yet. 
-		if (this.props.track.audioPeaks.length !== 0) {
+		if (this.props.track.audioPeaks === null ) {
 			let peaks = JSON.parse(this.props.track.audioPeaks);
 			this.wavesurfer.load(this.props.track.audioUrl, peaks);
 		} else {
@@ -32,12 +32,10 @@ class WaveForm extends React.Component {
 		this.wavesurfer.setMute(true);
 
 		let start;
-
 		start = this.props.prevProg ? this.props.prevProg : 0;
 
 
 		this.wavesurfer.on('ready', () => {
-
 			this.wavesurfer.seekTo(start);
 
 			this.forceUpdate();
@@ -47,7 +45,6 @@ class WaveForm extends React.Component {
 					this.props.setPlayPause(!this.props.playing, this.props.track.id, progress);
 				}
 			});
-
 
 		});
 
@@ -61,9 +58,6 @@ class WaveForm extends React.Component {
 		}
 	}
 
-
-
-
 	componentDidUpdate(prevProps) {
 		if (!this.wavesurfer) return;
 		if (this.props.playing !== this.wavesurfer.isPlaying()) {
@@ -75,7 +69,6 @@ class WaveForm extends React.Component {
 		}
 
 	}
-
 
 	render() {
 		return (

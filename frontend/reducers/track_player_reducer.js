@@ -3,7 +3,7 @@ import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 import merge from 'lodash/merge';
 
 const defaultState = {
-	currentTrack: {},
+	currentTrack: null,
 	playing: false,
 	player: null,
 	trackId: 0,
