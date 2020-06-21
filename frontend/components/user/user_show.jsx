@@ -54,7 +54,7 @@ class UserShow extends React.Component {
 	}
 
   render() {
-		const { user, users, track, tracks, currentUser, trackplayer } = this.props;
+		const { user, users, track, tracks, currentUser, trackplayer, setPlayPause } = this.props;
 		console.log("user", user, "users", users, "currentUser", currentUser, "track", track, "tracks", tracks);
 
 		if (user === undefined) {
@@ -62,9 +62,9 @@ class UserShow extends React.Component {
 				<div></div>
 			)
 		} else {
-			const { user, tracks, track, users, createLike, deleteLike, currentUser } = this.props;
+			const { user, tracks, track, users, createLike, deleteLike, currentUser, setPlayPause, setProg } = this.props;
 			let userStream = (tracks).map(track => (
-				<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} />
+				<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} setPlayPause={setPlayPause} setProg={setProg} />
 			));
 
 		// if (currentUser && !currentUser.likedTrackIds) { return null; }
@@ -143,7 +143,7 @@ class UserShow extends React.Component {
 							</tbody>
 						</table>
 
-								<UserSidebar tracks={tracks} currentUser={currentUser || null} likes={user.likedTrackIds} user={user || {}} users={users}/>
+						<UserSidebar currentUser={currentUser || null} likedTrackIds={user.likedTrackIds} user={user || {}} users={users}/>
 						</div>
 					</div>
 				</div>

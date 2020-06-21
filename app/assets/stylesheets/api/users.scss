@@ -8,7 +8,7 @@
 	justify-content: flex-start;
 	align-items: middle;
 	width: 1240px;
-	padding: 46px 20px 0;
+	padding: 0 20px 0;
 	margin: 0 auto;
 	height: fit-content;
 }
@@ -113,15 +113,16 @@
 			.usershow-stream-container {
 				flex-basis: 4;
 				float: left;
-				border: 1px solid #ccc;
+				// border: 1px solid #ccc;
 				width:  819px;
 			}
 
 			.usershow-sidebar-container {
 				flex-basis: 2;
 				float: right;
-				border: 1px solid #ccc;
+				border-left: 1px solid #ccc;
 				width: 300px;
+				padding-left: 15px;
 			}
 	}
 
