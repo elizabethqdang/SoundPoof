@@ -15,7 +15,7 @@ class TrackIndexItem extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		let { trackplayer, track } = this.props;
+		let { trackplayer, track, setProg } = this.props;
 		let trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
 
 		if ((trackplayer.playing) && (trackplayer.trackId === track.id) && (track.id !== prevProps.trackplayer.trackId)) {
@@ -88,7 +88,7 @@ class TrackIndexItem extends React.Component {
 
 		if (this.props.currentUser.id  === this.props.track.user_id) {
 			return (
-				<div className='button-bar'>
+				<div className='track-button-bar'>
 					<div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
 					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts}</div>
 					<div className='bc-btn sound-actions-btn controller-btn delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>

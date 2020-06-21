@@ -26,10 +26,10 @@ class Stream extends React.Component {
 	// }
 
 	render() {
-		const { tracks, users, errors, user, currentUser } = this.props;
+		const { tracks, users, errors, user, currentUser, setPlayPause, setProg } = this.props;
 
 		let stream = (this.props.tracks).map(track => (
-			<TrackIndexItem key={track.id} track={track} currentUser={this.props.currentUser || null} users={users} tracks={tracks} />
+			<TrackIndexItem key={track.id} track={track} currentUser={this.props.currentUser || null} users={users} tracks={tracks} setPlayPause={setPlayPause} setProg={setProg} />
 		));
 
 		return (
