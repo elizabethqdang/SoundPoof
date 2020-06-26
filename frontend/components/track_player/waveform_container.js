@@ -17,8 +17,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	seekTrack: (seconds) => dispatch(seekTrack(seconds)),
 	seekWaveForm: (progress) => dispatch(seekWaveForm(progress, ownProps.track.id)),
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),
-	updateTrack: (track, id) => dispatch(updateTrack(track, id))
+	updateTrack: (track, trackId) => dispatch(updateTrack(track, trackId))
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(WaveForm);

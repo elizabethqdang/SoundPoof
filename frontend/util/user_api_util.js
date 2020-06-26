@@ -1,52 +1,62 @@
 export const fetchAllUsers = () => (
-    $.ajax({
-        url: '/api/users',
-				method: 'GET',
-				dataType: 'json'
-    })
+  $.ajax({
+		method: 'GET',
+    url: '/api/users',
+		dataType: 'json'
+  })
 );
 
-export const fetchUser = userId => (
-    $.ajax({
-        method: 'GET',
-				url: `/api/users/${userId}`
-    })
+export const fetchUser = (userId) => (
+  $.ajax({
+    method: 'GET',
+		url: `/api/users/${userId}`
+  })
+);
+
+export const fetchUsers = (query) => (
+	$.ajax({
+		method: 'GET',
+		url: `/api/users`,
+		data: {
+			query: query.data
+		}
+	})
+)
+
+export const updateUser = (userId, formData) => (
+	$.ajax({
+		method: 'PATCH',
+		url: `/api/users/${userId}`,
+		contentType: false,
+		processData: false,
+		data: formData,
+	})
 );
 
 export const createLike = (trackId) => {
 	return $.ajax({
-		url: `/api/users/likes/${trackId}`,
-		method: 'post',
+		method: 'POST',
+		url: `/api/users/likes/${trackId}`
 	});
 };
 
 export const deleteLike = (trackId) => {
 	return $.ajax({
-		url: `/api/users/likes/${trackId}`,
-		method: 'delete',
+		method: 'DELETE',
+		url: `/api/users/likes/${trackId}`
 	});
 };
 
 export const createRepost = (trackId) => {
 	return $.ajax({
+		method: 'POST',
 		url: `/api/users/reposts/${trackId}`,
-		method: 'post',
 	});
 };
 
 export const deleteRepost = (trackId) => {
 	return $.ajax({
-		url: `/api/users/reposts/${trackId}`,
-		method: 'delete',
-	});
-};
-
-export const updateUser = (userId, formData) => {
-	return $.ajax({
-		url: `/api/users/${userId}`,
-		method: 'patch',
-		contentType: false,
-		processData: false,
-		data: formData,
+		method: 'DELETE',
+		url: `/api/users/reposts/${trackId}`
 	});
 };

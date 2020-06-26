@@ -1,4 +1,26 @@
 class Api::UsersController < ApplicationController
+	
+	def index
+		@users = User.all
+		# if (params[:userIds] && params[:userIds].length > 0)
+    #   @users = User.includes(:tracks, :liked_tracks, :comments, :commented_tracks).where(id: params[:userIds])
+    #   @all_info = true
+    # else
+    #   @users = User.includes(:tracks, :commented_tracks).all
+    # end
+    # @users = User.includes(:tracks, :liked_tracks, :comments, :commented_tracks).where(id: params[:userIds])
+    # render :index
+	end
+
+  def show
+		@user = User.find(params[:id])
+	
+		if @user
+			render "api/users/show"
+		else
+			render json: @user.errors.full_messages, status: 404
+		end
+	end
 
   def create
     @user = User.new(user_params)
@@ -25,29 +47,6 @@ class Api::UsersController < ApplicationController
       render json: @user.errors.full_messages, status: 422
     end
   end
-  
-  def show
-		@user = User.find(params[:id])
-	
-		if @user
-			render "api/users/show"
-		else
-			render json: @user.errors.full_messages, status: 404
-		end
-	end
-  
-	def index
-		@users = User.all
-		# if (params[:userIds] && params[:userIds].length > 0)
-    #   @users = User.includes(:tracks, :liked_tracks, :comments, :commented_tracks).where(id: params[:userIds])
-    #   @all_info = true
-    # else
-    #   @users = User.includes(:tracks, :commented_tracks).all
-    # end
-    # @users = User.includes(:tracks, :liked_tracks, :comments, :commented_tracks).where(id: params[:userIds])
-    # render :index
-	end
-	
 
 	def like
     @like = current_user.likes.new(track_id: params[:track_id])
