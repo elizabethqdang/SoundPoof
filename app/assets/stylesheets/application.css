@@ -13,3 +13,47 @@
  *= require_tree .
  *= require_self
  */
+
+ #app {
+	width: 1180px;
+	padding: 46px 30px 0;
+	margin: 0 auto;
+	display: flex;
+	min-height: 500px;
+	align-items: center;
+	justify-content: center;
+}
+
+@media (max-width: 1239px) {
+  #app {
+		width: 1020px;
+		padding: 0 20px;
+	}
+	#nav-container {
+		width: 1080px;
+	}
+	main.stream-main .stream-index {
+		 padding: 30px 30px 0 0;
+	}
+}
+
+@media (max-width: 1079px) {
+  #app {
+		width: 920px;
+		padding: 0 20px;
+	}
+	#nav-container {
+		width: 960px;
+	}
+	main.stream-main .stream-index {
+		 padding: 30px 20px 0 0;
+	}
+}
+
+.truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: normal;
+  letter-spacing: 0.02em;
+}

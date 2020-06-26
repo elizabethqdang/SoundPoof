@@ -1,23 +1,15 @@
-body {
-  font-family: 'Interstate';
-  font-weight: 200;
-	background-color: rgb(242, 242, 242);
-	font-family: 'Lucida Grande';
-	text-decoration-line: none;
-	overflow: scroll;
-}
-
-.stream-container {
-	width: 1180px;
+.stream-page-container {
+	width: 100%;
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
 	justify-content: space-between;
-	padding: 46px 30px 0;
+	// padding: 0 30px;
 	margin: 0 auto;
 	font-family: 'Lucida Grande';
 	text-decoration-line: none;
 	position: relative;
+	overflow: scroll;
 }
 
 div.loggedhome {
@@ -234,7 +226,7 @@ input.home-search {
 main.stream-main {
 	// top: 50px;
 // margin-top: 100px;
-  width: 1180px;
+  width: 100%;
   padding-bottom: 50px;
 	display: flex;
 	flex-flow: row;
@@ -245,11 +237,12 @@ main.stream-main {
 	// margin: 22px 330px 0 0;
 	z-index: 999;
 
-  div.stream-index {
-		// flex: 5;
+  .stream-index {
+		flex: 5;
 		// margin-top: 22px;
-		width: 818px;
+		width: 100%;
 		float: left;
+		padding: 30px 30px 0 0;
 		
     p {
       color: gray;
@@ -263,12 +256,11 @@ main.stream-main {
   }
 
   nav.stream-nav {
-    // margin: 15px;
-    margin-top: 30px;
+    margin: 0 0 25px;
 
     ul {
       display: flex;
-      margin: 20px 15px;
+      // margin: 20px 15px;
       border-bottom: 1px solid lavender;
     }
 

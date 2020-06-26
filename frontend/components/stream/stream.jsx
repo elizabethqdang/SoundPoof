@@ -33,7 +33,7 @@ class Stream extends React.Component {
 		));
 
 		return (
-			<div className="stream-container">
+			<div className="stream-page-container">
 				{/* <div className="loggedhome-header"> */}
 					<NavbarContainer />
 				{/* </div> */}
@@ -50,9 +50,10 @@ class Stream extends React.Component {
 						<ul className='homepage-tracks'>
 								{stream}
 						</ul>
-					</div>`
+					</div>
+
 					<div className="sidebar-placeholder">
-						<div className="ad-container">
+						<div className="sidebar-ad-container">
 							<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src="" /></a>
 						</div>
 						<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} />
