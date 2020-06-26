@@ -157,27 +157,12 @@
 }
 
 .comment-btn {
-	line-height: 1.4;
-	height: 22px;
-	width: 70px;
-  color: #999;
-	font-size: 12px;
-  background-image: image-url('comment-icon.svg');
-  background-repeat: no-repeat;
-	// text-align: right;
-  vertical-align: text-top;
-  padding: 4px;
-  margin: 0 5px;
-  background-size: 20px 14px;
-  background-position: center center;
-	justify-self: right;
-	align-items: center;
-  justify-content: center;
-	box-sizing: border-box;
-	flex-grow: auto;
-	display: inline-block;
-	position: relative;
-	font-weight: 300;
+	background-image: image-url('comment-icon.svg');
+	background-repeat: no-repeat;
+ 	-webkit-mask-position: 50% 50%;
+	background-size: 20px 14px;
+	background-position-y: center;
+	position: absolute;
 }
 
 .track-button-bar {
@@ -190,16 +175,47 @@
 	justify-content: space-between;
 
   .controller-btn {
-    border: 1px lightgray solid;
+    border: 1px solid #e5e5e5;
     margin: 0 5px;
-    width: 70px;
+    min-width: 26px;
     border-radius: 3px;
     box-sizing: border-box;
-    padding: 4px;
+		padding: 4px;
+		text-indent: 19px;
+		text-align: end;
+		position: relative;
+		vertical-align: baseline;
+		text-align: center;
+		white-space: nowrap;
+		line-height: 16px;
+		font-size: 11px;
   }
   .controller-btn:hover {
     border-color: gray;
-  }
+	}
+	
+	.track-right-btns {
+		line-height: 1.4;
+		height: 22px;
+		min-width: 25px;
+		color: #999;
+		font-size: 12px;
+		text-align: right;
+		vertical-align: text-top;
+		padding: 4px;
+		margin: 0 5px;
+		// justify-self: right;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+		flex-grow: auto;
+		display: inline-block;
+		position: relative;
+		font-weight: 300;
+		text-indent: 19px;
+		white-space: nowrap;
+	}
+
 }
 
 .like-btn {
@@ -214,7 +230,6 @@
 	border: 2px solid #f50;
 	font-size: 11px;
 	font-family: 'Lucida Grande';
-
 }
 
 .track-index-container {
@@ -224,7 +239,7 @@
   .track-index-tabs {
     display: flex;
     width: 100%;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid #e5e5e5;
     margin-bottom: 20px;
     .ti-tab {
       font-size: 24px;
@@ -245,7 +260,7 @@
   // height: 80vh;
 }
 ::-webkit-scrollbar {
-  width: 0px; /* remove scrollbar space */
+  // width: 0px; /* remove scrollbar space */
   // background: transparent;  /* optional: just make scrollbar invisible */
 }
 .ti-tab a:hover {

@@ -6,22 +6,23 @@ export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 export const RECEIVE_USER_INFO = "RECEIVE_USER_INFO";
 
-export const receiveCurrentUser = currentUser => ({
+export const receiveCurrentUser = (currentUser) => ({
   type: RECEIVE_CURRENT_USER,
   currentUser
 });
 
-export const logoutCurrentUser = () => ({
-  type: LOGOUT_CURRENT_USER
+export const logoutCurrentUser = (currentUser) => ({
+	type: LOGOUT_CURRENT_USER,
+	currentUser
 });
 
-export const receiveUserInfo = user => ({
+export const receiveUserInfo = (user) => ({
     type: RECEIVE_USER_INFO,
     email: user.email,
     formType: user.formType,
 })
 
-export const receiveSessionErrors = errors => ({
+export const receiveSessionErrors = (errors) => ({
   type: RECEIVE_SESSION_ERRORS,
   errors
 });
@@ -30,7 +31,6 @@ export const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS,
   errors: []
 });
-
 
 export const signup = user => dispatch => (
   SessionAPIUtil.signup(user)
@@ -49,7 +49,7 @@ export const login = user => dispatch => (
 export const logout = () => dispatch => (
   SessionAPIUtil.logout()
   .then(
-    () => dispatch(logoutCurrentUser())
+  	user => dispatch(logoutCurrentUser(null)), errors => dispatch(receiveSessionErrors(errors.responseJSON))
 ));
 
 export const otherForm = email => dispatch => (

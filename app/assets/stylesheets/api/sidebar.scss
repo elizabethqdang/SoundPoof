@@ -238,7 +238,7 @@
   height: 26px;
   margin: 0;
   padding: 2px 11px 2px 10px;
-  border: 1px solid #e5e5e5;
+  // border: 1px solid #e5e5e5;
   border-radius: 3px;
   background-color: #fff;
   cursor: pointer;
@@ -250,7 +250,8 @@
 	vertical-align: baseline;
 	align-items: center;
   box-sizing: border-box;
-  font-weight: 300;
+	font-weight: 300;
+	min-width: 26px;
 }
 
 .user-suggestion-follow-btn {

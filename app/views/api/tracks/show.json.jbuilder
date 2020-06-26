@@ -50,7 +50,7 @@ json.comments do
 			if comment.user.profile_image.attached?
 				json.profileImgUrl url_for(comment.user.profile_image)
 			else
-				json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jp'
+				json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
 			end
 
     end 

@@ -84,10 +84,10 @@ const StreamSidebarFollowItem = ({ user, users, track, currentUser}) => {
 				<div className="user-suggestion-meta">
 					<div className="user-suggestion-stats">
 						<div className="user-suggestion-followers">
-							{user.likedTrackIds.length}
+							{user.likedTrackIds ? user.likedTrackIds.length : "0"}
 						</div>
 						<div className="user-suggestion-tracks">
-							{user.trackIds.length}
+							{user.trackIds ? user.trackIds.length : "0"}
 						</div>
 					</div>
 

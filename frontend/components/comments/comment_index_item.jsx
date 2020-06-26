@@ -43,7 +43,7 @@ class CommentIndexItem extends React.Component {
         <div className='posted-comment'>
           <a href={`/#/users/${comment.user_id}`}>
 						<div className='comment-uploader-img'>
-						<img src={comment.profileImgUrl ? comment.profileImgUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg"}/> 
+						<img src={comment.profileImgUrl ? comment.profileImgUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"}/> 
             </div>
 					</a> 
 					<div className='comment-uploader-body'>

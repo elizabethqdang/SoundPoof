@@ -89,21 +89,20 @@ class TrackIndexItem extends React.Component {
 		if (this.props.currentUser.id  === this.props.track.user_id) {
 			return (
 				<div className='track-button-bar'>
-					<div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
-					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts}</div>
-					<div className='bc-btn sound-actions-btn controller-btn delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
+					<div className={`sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
+					<div className={`sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts}</div>
+					<div className='sound-actions-btn controller-btn delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
 					
-					<div className='comment-btn'>{track.numComments}</div>
-
+					<div className='track-right-btns comment-btn'>{track.numComments}</div>
 				</div>
 			);
 		} else {
 			return (
 				<div className='track-button-bar'>
-					<div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)} >{track.numLikes}</div>
-					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts} </div>
+					<div className={`sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)} >{track.numLikes}</div>
+					<div className={`sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts} </div>
 					
-					<div className='comment-btn'>{track.numComments}</div>
+					<div className='track-right-btns comment-btn'>{track.numComments}</div>
 				</div>
 			);
 		}
@@ -113,9 +112,9 @@ class TrackIndexItem extends React.Component {
 		let { track, trackplayer } = this.props;
 		let playButton = (trackplayer.playing && trackplayer.trackId === track.id) ?
 			'sound-title-play-btn' : 'ti-play';
-		console.log("track.id", track.id);
-		console.log("trackplayer.trackId", trackplayer.trackId);
-		console.log("trackplayer.playing", trackplayer.playing);
+		// console.log("track.id", track.id);
+		// console.log("trackplayer.trackId", trackplayer.trackId);
+		// console.log("trackplayer.playing", trackplayer.playing);
 
 		return (
 			<div className='track-item-container'>
