@@ -15,7 +15,10 @@ Rails.application.routes.draw do
 		delete 'users/likes/:track_id', to: 'users#unlike'
 		
 		post 'users/reposts/:track_id', to: 'users#repost'
-    delete 'users/reposts/:track_id', to: 'users#unrepost'
+		delete 'users/reposts/:track_id', to: 'users#unrepost'
+		
+		post 'users/followers/:track_id', to: 'users#follow'
+    delete 'users/followers/:track_id', to: 'users#unfollow'
 	end
 	
 

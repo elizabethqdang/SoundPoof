@@ -29,6 +29,16 @@ class Api::TracksController < ApplicationController
 		render "/api/tracks/show"
 	end
 	
+	def update
+		@track = current_user.tracks.find(params[:id])
+
+    if @track.update(track_params)
+			render "/api/tracks/show"
+    else
+      render json: @track.errors.full_messages, status: 422
+    end
+	end
+	
   def destroy
     # if (params[:track])
     #   AWS::S3::S3Object.find(params[:track], BUCKET).delete

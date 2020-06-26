@@ -68,8 +68,8 @@ export const createTrack = track => dispatch =>
     track => dispatch(receiveTrack(track)),
   );
 
-export const updateTrack = (track, id) => dispatch => (
-	TrackAPIUtil.updateTrack(track, id).then(track => (
+export const updateTrack = (track, trackId) => dispatch => (
+	TrackAPIUtil.updateTrack(track, trackId).then(track => (
 		dispatch(receiveTrack(track))
 	), err => (
 		dispatch(receiveTrackErrors(err.responseJSON))
