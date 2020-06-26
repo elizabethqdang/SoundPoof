@@ -28,8 +28,8 @@ class User < ApplicationRecord
 		foreign_key: :user_id
 
 	has_many :liked_tracks,
-		source: :likes,
-		through: :tracks
+		through: :likes,
+		source: :track
 
 	has_many :comments,
 		dependent: :destroy,
@@ -44,8 +44,8 @@ class User < ApplicationRecord
 		foreign_key:	:user_id
 	
 	has_many :reposted_tracks,
-		source: :reposts,
-		through: :tracks
+		through: :reposts,
+		source: :track
 
 	def avatar_check user
       if user.profile_image.present?

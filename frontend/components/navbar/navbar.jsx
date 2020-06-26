@@ -16,7 +16,7 @@ class Navbar extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
 		// this.navigateToSearch = this.navigateToSearch.bind(this);
 		this.navLeft = this.navLeft.bind(this);
-		this.navRight = this.navRight.bind(this);
+		this.navUserLinks = this.navUserLinks.bind(this);
 		this.navSessionLinks = this.navSessionLinks.bind(this);
   }
 
@@ -83,7 +83,7 @@ class Navbar extends React.Component {
 	navLeft() {
 		return (
 			<Fragment>
-			<section className="nav-left">
+			{/* <section className="nav-left"> */}
 				<Link to="/"className="nav-logo">
 					SoundPoof
 					{/* <img src='https://soundpoof.s3-us-west-2.amazonaws.com/logo.jpg' className="nav-logo" /> */}
@@ -94,21 +94,21 @@ class Navbar extends React.Component {
 				<NavLink className="nav-collection" activeClassName="nav-selected" exact to="/stream">
 					Stream
 				</NavLink>
-			</section>
+			{/* </section> */}
 			</Fragment>
 		)
 	}
 
-	navRight(currentUser, logout) {
+	navUserLinks(currentUser, logout) {
 		// const { currentUser, logout } = this.props;
 		return (
 			<Fragment>
-			<section className="nav-right">
+			{/* <section className="nav-right"> */}
 				<NavLink className="nav-upload hov-white" activeClassName="nav-selected" exact to="/upload" >
 					Upload
 				</NavLink>
-				<Link to={`/users/${currentUser.id}`} className="nav-user-menu">
-					<div className="nav-user-button">
+				<NavLink exact to={`/users/${currentUser.id}`} className="nav-user-menu" activeClassName="nav-selected">
+					<div className="nav-user-button" activeClassName="nav-selected">
 						<div className="nav-user-image">
 							{/* <Dropdown
 								currentUser={currentUser}
@@ -116,37 +116,41 @@ class Navbar extends React.Component {
 							/> */}
 								<span><img src={currentUser.profileImgUrl} /></span>
 						</div>
-						<div className="nav-user-username">{currentUser.email}</div>
+						<div className="nav-user-username truncate">{currentUser.email}</div>
 					</div>
-				</Link>
+				</NavLink>
 
- 				<div onClick={logout} className="nav-sign-out">Sign Out</div>
-			</section>
+				<div onClick={logout} className="nav-sign-out" activeClassName="nav-selected">Sign Out</div>
+			{/* </section> */}
 			</Fragment>
 		)
 	}
 
   render() {
 		const { currentUser, logout, openModal, loggedIn } = this.props;
-		let nav; 
+		let navRight; 
 		if (currentUser) {
-			nav = this.navRight(currentUser, logout)
+			navRight = this.navUserLinks(currentUser, logout)
 		} else if (!currentUser) {
-			nav = this.navSessionLinks(openModal)
+			navRight = this.navSessionLinks(openModal)
 		};
 
     return (
-			<div id="navbar">
-				<div id="navbar-container">
-				<nav className="nav">
-					<div className="inner-nav full-width transparent-background no-height">
-							{this.navLeft()}
-							<SearchBar />
-							{nav}
-					</div>
+			<nav id="navbar">
+				<nav id="nav-container">
+					{/* <nav className="nav"> */}
+						{/* <nav id="nav-btns-container"> */}
+					<section className="nav-left">
+						{this.navLeft()}
+					</section>
+					<SearchBar />
+					<section className="nav-right">
+						{navRight}
+					</section>
+						{/* </nav> */}
+					{/* </nav> */}
 				</nav>
-				</div>
-			</div>
+			</nav>
 		)
   }
 }
