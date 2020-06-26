@@ -26,10 +26,10 @@ class User < ApplicationRecord
 		class_name: :Like,
 		primary_key: :id,
 		foreign_key: :user_id
-		
-  has_many :liked_tracks,
-		through: :likes,
-		source: :track
+
+	has_many :liked_tracks,
+		source: :likes,
+		through: :tracks
 
 	has_many :comments,
 		dependent: :destroy,
@@ -42,14 +42,14 @@ class User < ApplicationRecord
 		class_name:	:Repost,
 		primary_key:	:id,
 		foreign_key:	:user_id
-
+	
 	has_many :reposted_tracks,
-		through: :reposts,
-		source: :track
+		source: :reposts,
+		through: :tracks
 
 	def avatar_check user
       if user.profile_image.present?
-        image_tag user.profile_image_url :thumb
+        image_tag user.profileImgUrl :thumb
       else
         image_tag 'placeholder.jpeg'
       end
@@ -76,7 +76,7 @@ class User < ApplicationRecord
 
   def reset_session_token!
     self.session_token = SecureRandom.urlsafe_base64(16)
-    self.save
+    self.save!
     self.session_token
   end
   

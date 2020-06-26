@@ -12,7 +12,7 @@ const mapStateToProps = (state, { errors }) => {
     formType: "signup",
 		// navLink: <Link to="/login">log in instead</Link>,
 		loggedIn: Boolean(state.session.id),
-		errors: state.errors.session,
+		errors: state.errors.session || [],
 		currentUser: state.session.currentUser,
   };
 };

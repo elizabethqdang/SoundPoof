@@ -6,7 +6,7 @@ import { endCurrentTrack, seekTrack, seekWaveForm, setPlayPause } from '../../ac
 const mapStateToProps = (state, ownProps) => ({
 	currentTrack: state.trackplayer.currentTrack,
 	playing: state.trackplayer.playing && state.trackplayer.trackId == ownProps.track.id,
-	trackId: state.trackplayer.trackId,
+	trackId: state.trackplayer.trackId || 0,
 	player: state.trackplayer.player,
 	prevSeek: state.trackplayer.playerSeek,
 	prevProg: state.trackplayer.progressTrackId[ownProps.track.id] || null

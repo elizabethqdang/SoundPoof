@@ -30,7 +30,7 @@ class Api::TracksController < ApplicationController
 	end
 	
 	def update
-		@track = current_user.tracks.find(params[:id])
+		@track = Track.find(params[:id])
 
     if @track.update(track_params)
 			render "/api/tracks/show"

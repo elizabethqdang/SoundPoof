@@ -57,7 +57,7 @@ class Splash extends React.Component {
         <div className="splash-search-container">
           <form className="splash-search-form">
             <input type="search" placeholder="Search for artists, bands, tracks, podcasts" className="splash-search-input"></input>
-						<button type="submit" className="splash-search-button"><i class="fas fa-search"></i></button>
+						<button type="submit" className="splash-search-button"><i className="fas fa-search"></i></button>
           </form>
 					or
           <div className="header-button"><Link to="/upload">Upload your own</Link>

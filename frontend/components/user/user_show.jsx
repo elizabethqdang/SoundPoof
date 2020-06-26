@@ -76,7 +76,7 @@ class UserShow extends React.Component {
       return null;
 		}
 	
-		const profileIcon = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg" };
+		const profileIcon = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg" };
 		const bannerImg = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/banner.jpeg" };
 
     return (
@@ -88,7 +88,7 @@ class UserShow extends React.Component {
 
 					<div className="usershow-profile-container">
 						<div className="usershow-profile-img">
-								<img src={user.profileImgUrl ? user.profileImgUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpg"} className="usershow-profile-img" />
+								<img src={user.profileImgUrl ? user.profileImgUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"} className="usershow-profile-img" />
 								<div className="user-header-details-avatar-btn"></div>
 						</div>
 						<div className="usershow-profile-txt">

@@ -7,19 +7,23 @@ class SessionForm extends React.Component {
     this.state = {
       email: "",
 			password: "",
-			errors: []
+			// errors: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
-  }
-
-	componentDidUpdate(prevProps) {
-		if (this.props.currentUser === true || this.props.loggedIn === true) {
-			this.props.history.push("/stream")
-			this.props.closeModal();
-		}
-		this.setState({ errors: this.state.errors });
 	}
+	
+	// componentWillMount() {
+
+	// }
+
+	// componentDidUpdate(prevProps) {
+	// 	if (this.props.currentUser === true || this.props.loggedIn === true) {
+	// 		this.props.history.push("/stream")
+	// 		this.props.closeModal();
+	// 	}
+	// 	this.setState({ errors: this.state.errors.session });
+	// }
 
   update(field) {
     return e =>
@@ -36,11 +40,12 @@ class SessionForm extends React.Component {
   }
 
   renderErrors() {
+		console.log("errors", this.props.errors);
+		const {errors} = this.props;
     return (
       <ul>
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>{error}</li>
-        ))}
+        {this.props.errors ? errors.map((error, i) => (<li key={`error-${i}`}>{error}</li>)) : {}
+				}
       </ul>
     );
   }
