@@ -69,9 +69,9 @@ export const fetchAllUsers = () => dispatch => (
 );
 
 export const createLike = (trackId) => (dispatch) => {
-	return UserAPIUtil.createLike(trackId).then(payload => {
-		dispatch(receiveLike(payload));
-		return payload;
+	return UserAPIUtil.createLike(trackId)
+		.then(payload => {dispatch(receiveLike(payload));
+	return payload;
 	}, errors => {
 		console.log(errors.responseJSON);
 		return errors;

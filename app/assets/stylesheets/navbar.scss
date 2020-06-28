@@ -19,7 +19,7 @@ nav#navbar {
 }
 
 nav#nav-container {
-	position: fixed;
+	position: absolute;
 	overflow-x: visible;
 	max-width: 1240px;
 	width: 100%;
@@ -59,7 +59,7 @@ nav#nav-btns-container{
 	line-height: 1.5;
 	display: inline-flex;
 	width: 1240px;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
 	vertical-align: middle;
 	background-color: #333;
@@ -72,7 +72,10 @@ nav#nav-btns-container{
 	display: flex;
 	height: 100%;
 	flex-flow: row nowrap;
- 	color: #ccc;
+	color: #ccc;
+	flex: 1;
+	justify-content: space-evenly;
+	 
 }
 
 .nav-logo {
@@ -80,12 +83,15 @@ nav#nav-btns-container{
   color: transparent;
   background-size: 68px auto;
 	min-width: 69px;
-	width: 100px;
+	max-width: 100px;
   height: 46px;
   background-color: #f50;
   background-image: image-url('logo.png');
   background-repeat: no-repeat;
-  background-position: center center;
+	background-position: center center;
+	white-space: nowrap;
+	word-break: break-word;
+	flex: 1;
 }
 
 .nav-collection, .nav-home, .nav-sign-out, .nav-upload {
@@ -97,11 +103,13 @@ nav#nav-btns-container{
   padding: 12px 10px;
   font-weight: 300;
 	max-width: 104px;
-	min-width: min-content;
+	min-width: fit-content;
   border-right: 1px solid #111;
   height: 46px;
 	box-sizing: border-box;
 	white-space: nowrap;
+	word-break: break-word;
+	flex: auto 1 1;
 }
 
 .nav-home:hover, .nav-upload:hover, .nav-sign-out:hover, .nav-collection:hover {
@@ -117,12 +125,16 @@ nav#nav-btns-container{
 /* ---------------------- */
 
 .nav-middle {
-  width: 100%;
+	width: 100%;
+	min-width: 46px;
+	flex: 1.5;
+	flex-basis: 1;
 }
 
 .nav-search {
   padding: 9px 10px 8px;
 	position: relative;
+	justify-content: center;
 	background-color: #333;
 	border-right: 1px solid #111;
 }
@@ -172,6 +184,7 @@ nav#nav-btns-container{
 	// margin-right: 30px;
 	border-right: 1px solid #111;
 	color: #CCC;
+	flex: 1;
 }
 
 .nav-upload {
@@ -203,6 +216,7 @@ nav#nav-btns-container{
 .nav-user-button {
 	display: flex;
 	min-width: 46px;
+	word-break: break-all;
 }
 
 .nav-user-image {
@@ -211,7 +225,12 @@ nav#nav-btns-container{
   height: 26px;
   width: 26px;
   /* background-image: image-url(); */
-  background-repeat: no-repeat;
+	background-repeat: no-repeat;
+	background-size: cover;
+  color: transparent;
+  background-position: 50% 50%;
+	box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px inset;
+  border-radius: 50%;
 }
 
 .nav-user-image span {
@@ -235,7 +254,7 @@ nav#nav-btns-container{
   background-color: #333;
   color: #ccc;
 	font-weight: 300;
-	word-wrap: none;
+	word-break: break-all;
 }
 
 .nav-user-menu:hover .nav-user-username {
@@ -279,12 +298,19 @@ nav#nav-btns-container{
   opacity: 1;
 }
 
-// .nav-sign-out {
+.nav-sign-out, .nav-upload {
+	min-width: 46px;
+	width: 104px;
+	padding: 12px 10px;
+	border-right: 1px solid #111;
+	white-space: nowrap;
+	word-break: break-word;
+	flex: 1;
 //   width: 92px;
 //   opacity: 0.75;
 //   cursor: pointer;
 //   border-right: 0;
-// }
+}
 
 
 

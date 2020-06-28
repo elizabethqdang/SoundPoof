@@ -17,9 +17,8 @@ const tracksReducer = (state = {}, action) => {
 					// nextState = { [action.track.id]: action.track };
 					// return Object.assign({}, state, nextState);	
 					// return Object.assign( nextState, {[action.track.id]: action.track} );
-				case RECEIVE_SINGLE_TRACK:
-					// return nextState[action.payload.track.id] = action.payload.track;
-					return Object.assign(nextState, action.payload.track);
+				// case RECEIVE_SINGLE_TRACK:
+				// 	return nextState[action.payload.track.id] = action.payload.track;
         case REMOVE_TRACK:
             delete nextState[action.trackId.id];
             return nextState;   
