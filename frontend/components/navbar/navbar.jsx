@@ -120,7 +120,7 @@ class Navbar extends React.Component {
 					</div>
 				</NavLink>
 
-				<div onClick={logout} className="nav-sign-out" activeClassName="nav-selected">Sign Out</div>
+				<div onClick={logout} className="nav-sign-out nav-menu" activeClassName="nav-selected">Sign Out</div>
 			{/* </section> */}
 			</Fragment>
 		)
@@ -139,7 +139,7 @@ class Navbar extends React.Component {
 			<nav id="navbar">
 				<nav id="nav-container">
 					{/* <nav className="nav"> */}
-						{/* <nav id="nav-btns-container"> */}
+						<nav id="nav-btns-container">
 					<section className="nav-left">
 						{this.navLeft()}
 					</section>
@@ -147,7 +147,7 @@ class Navbar extends React.Component {
 					<section className="nav-right">
 						{navRight}
 					</section>
-						{/* </nav> */}
+						</nav>
 					{/* </nav> */}
 				</nav>
 			</nav>

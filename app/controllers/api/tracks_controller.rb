@@ -18,7 +18,8 @@ class Api::TracksController < ApplicationController
 		# @track = Track.new(track_params)
 		# @track.user_id = current_user.id
 		if @track.save
-			render "/api/tracks/show"
+			# render "/api/tracks/show"
+			render :show
     else
       render json: @track.errors.full_messages, status: 401
     end

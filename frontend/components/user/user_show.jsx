@@ -54,10 +54,11 @@ class UserShow extends React.Component {
 	}
 
   render() {
-		const { user, users, track, tracks, currentUser, trackplayer, setPlayPause } = this.props;
-		console.log("user", user, "users", users, "currentUser", currentUser, "track", track, "tracks", tracks);
+		const { user, users, track, tracks, currentUser, trackplayer, setPlayPause, userTracks} = this.props;
+		// console.log("user", user, "users", users, "currentUser", currentUser, "track", track, "tracks", tracks);
+		console.log("tracks", tracks);
 
-		if (user === undefined) {
+		if (tracks === [] || undefined) {
 			return (
 				<div></div>
 			)

@@ -15,7 +15,6 @@ class UserShowPage extends React.Component {
 		this.togglePostLikes = this.togglePostLikes.bind(this);
 	}
 
-
 	componentWillMount() {
 		this.props.fetchUser(this.props.match.params.id);
 	}

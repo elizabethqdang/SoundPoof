@@ -1,27 +1,31 @@
-export const fetchAllTracks = () =>
+export const fetchAllTracks = () => (
   $.ajax({
     method: 'GET',
 		url: '/api/tracks',
 		dataType: 'json'
-  });
+	})
+);
 
-export const fetchTrack = trackId =>
+export const fetchTrack = trackId => (
   $.ajax({
     method: 'GET',
 		url: `/api/tracks/${trackId}`
-	});
+	})
+);
 	
 export const fetchTracks = (query) => (
 	$.ajax({
 		method: 'GET',
 		url: `/api/tracks`,
 		data: {
-			query: query.data
+			query: query.data,
+			trackTitle: query.trackTitle,
+			trackArtist: query.trackArtist
 		}
 	})
-)
+);
 
-export const createTrack = track =>
+export const createTrack = track => (
   $.ajax({
     method: 'POST',
     url: '/api/tracks',
@@ -29,12 +33,13 @@ export const createTrack = track =>
     contentType: false,
 		processData: false,
 		dataType: 'json'
-  });
+	})
+);
 
-export const updateTrack = (track, id) => (
+export const updateTrack = (track, trackId) => (
 	$.ajax({
 		method: 'PATCH',
-		url: `api/tracks/${id}`,
+		url: `api/tracks/${trackId}`,
 		processData: false,
 		contentType: false,
 		dataType: 'json',

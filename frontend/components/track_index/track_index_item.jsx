@@ -118,20 +118,20 @@ class TrackIndexItem extends React.Component {
 
 		return (
 			<div className='track-item-container'>
-				<div className='track-uploader-info'>
-					<aside className="track-uploader-circle">
+				<div className='track-item-header'>
+					<aside className="track-user-profile">
 						<img src={track.profileImgUrl} />
 					</aside>
-					<a href={`/#/users/${track.user_id}`}><aside className="track-uploader-name">{track.userEmail}</aside></a>
+					<a href={`/#/users/${track.user_id}`}><aside className="track-user-username">{track.userEmail}</aside></a>
 				</div>
 
-				<div className='track-item'>
-					<div className='track-image-box'>
+				<div className='track-item-main-container'>
+					<div className='track-artwork-box'>
 						<a href={`/#/tracks/${track.id}`}><img src={track.artworkUrl} /></a>
 					</div>
 
-					<section className='track-details'>
-						<div className='td-top'>
+					<section className='track-item-content-container'>
+						<div className='tic-header'>
 							<div className={playButton} onClick={(e) => this.playButton(e)}>
 
 							</div>

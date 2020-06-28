@@ -1,5 +1,5 @@
 .track-show {
-	width: 100%;
+	// width: 100%;
 }
 
 .track-show-page {
@@ -179,7 +179,7 @@
     height: inherit;
   }
 }
-.track-show-comment-bar {
+.track-show-comment-form {
   width: 100%;
   box-sizing: border-box;
   padding: 20px 30px 5px;
@@ -190,6 +190,10 @@
   .comment-container {
     margin-top: 25px;
   }
+}
+
+.button-bar .right-icons {
+	justify-content: flex-end;
 }
 
 .tscb-sidebar {

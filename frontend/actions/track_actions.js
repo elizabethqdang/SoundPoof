@@ -57,29 +57,37 @@ export const fetchAllTracks = () => dispatch => (
 
 export const fetchTrack = trackId => dispatch => {
 	dispatch(requestTrackFetch());
-	return TrackAPIUtil.fetchTrack(trackId)
-		.then(
-			payload => dispatch(receiveSingleTrack(payload))),
-			errors => dispatch(receiveTrackErrors(errors.responseJSON));
+	return TrackAPIUtil.fetchTrack(trackId).then(payload => {
+		dispatch(receiveSingleTrack(payload));
+		return payload;
+	}, errors => {
+		dispatch(receiveTrackErrors(errors.responseJSON));
+		return errors;
+	});
 };
 
-export const createTrack = track => dispatch =>
-  TrackAPIUtil.createTrack(track).then(
-    track => dispatch(receiveTrack(track)),
-  );
+export const createTrack = track => dispatch => {
+	TrackAPIUtil.createTrack(track).then(track => {
+		dispatch(receiveTrack(track));
+		return track;
+	}, errors => {
+		dispatch(receiveTrackErrors(errors.responseJSON));
+		return errors;
+	});
+};
 
 export const updateTrack = (track, trackId) => dispatch => (
 	TrackAPIUtil.updateTrack(track, trackId).then(payload => (
 		dispatch(receiveSingleTrack(payload))
-	), err => (
-		dispatch(receiveTrackErrors(err.responseJSON))
+	), errors => (
+		dispatch(receiveTrackErrors(errors.responseJSON))
 	))
 );
 
 export const deleteTrack = trackId => dispatch => (
 	TrackAPIUtil.deleteTrack(trackId).then(trackId => (
 		dispatch(removeTrack(trackId))
-	), err => (
-		dispatch(receiveTrackErrors(err.responseJSON))
+	), errors => (
+		dispatch(receiveTrackErrors(errors.responseJSON))
 	))
 );

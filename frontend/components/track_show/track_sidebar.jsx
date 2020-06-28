@@ -41,7 +41,7 @@ class TrackSidebar extends React.Component {
 
 					<div className="sidebar-content">
 						<ul className="sidebar-list">
-							{/* {this.likeItem()} */}
+							{this.trackLikes()}
 						</ul>
 					</div>
 				</section>

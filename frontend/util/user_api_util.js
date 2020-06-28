@@ -18,7 +18,9 @@ export const fetchUsers = (query) => (
 		method: 'GET',
 		url: `/api/users`,
 		data: {
-			query: query.data
+			query: query.data,
+			userId: query.userId,
+			userEmail: query.userEmail
 		}
 	})
 )

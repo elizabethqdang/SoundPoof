@@ -7,23 +7,26 @@
   font-weight: 300;
 	margin-bottom: 36px;
 	
-  .track-uploader-info {
+  .track-item-header {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 
-    .track-uploader-circle {
+    .track-user-profile {
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
       box-sizing: border-box;
-      border-radius: 50%;
       height: 30px;
       width: 30px;
       box-shadow: 1px 1px 5px lightgrey;
-      // background: image_url('missing.png');
-      // background-size: contain;
+			background-size: cover;
+			color: transparent;
+			background-position: 50% 50%;
+			box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px inset;
+			background-image: linear-gradient(135deg, #e6846e, #8e8485);
+			border-radius: 50%;
 
       img {
         flex-shrink: 0;
@@ -31,16 +34,17 @@
         max-width: 100%;
       }
     }
-    .track-uploader-name {
+    .track-user-username {
       color: black;
       margin-left: 6px;
     }
   }
 
-  .track-item {
-    display: flex;
-    .track-image-box {
-      flex: 1;
+  .track-item-main-container {
+		display: flex;
+		flex-direction: row nowrap;
+    .track-artwork-box {
+      // flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -48,24 +52,27 @@
       box-sizing: border-box;
       width: 160px;
       height: 160px;
-      min-width: 160px;
-      min-height: 160px;
+      // min-width: 160px;
+      // min-height: 160px;
       box-shadow: 1px 1px 5px lightgrey;
       // background: image_url('missing.png');
       // background-size: contain;
       img {
-        flex-shrink: 0;
-        min-width: 100%;
-        max-width: 100%;
+        // flex-shrink: 0;
+        width: 100%;
+				height: 100%;
+				max-width: 160px;
+				max-height: 160px;
       }
     }
-    .track-details {
-      flex: 4;
+    .track-item-content-container {
+			flex: 1;
+    	overflow-x: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
       margin-left: 15px;
-      .td-top {
+      .tic-header {
         box-sizing: border-box;
         display: flex;
         height: 50px;
@@ -156,17 +163,17 @@
   }
 }
 
-.comment-btn {
-	background-image: image-url('comment-icon.svg');
-	background-repeat: no-repeat;
- 	-webkit-mask-position: 50% 50%;
-	background-size: 20px 14px;
-	background-position-y: center;
-	position: absolute;
+
+
+/////////
+
+.track-show-button-bar {
+	margin: 7px 10px;
+	height: 26px;
 }
 
-.track-button-bar {
-	flex-flow: row nowrap;;
+.track-button-bar, .track-show-button-bar {
+	flex-flow: row nowrap;
   margin: 10px 0 0;
   height: 22px;
 	text-align: right;
@@ -217,6 +224,60 @@
 	}
 
 }
+
+.comment-btn {
+  background-image: image-url('comment-icon.svg');
+  background-repeat: no-repeat;
+  -webkit-mask-position: 50% 50%;
+  background-size: 20px 14px;
+  background-position-y: center;
+  position: absolute;
+}
+.repost-stat {
+  background-image: image-url('repost-icon.svg');
+  background-repeat: no-repeat;
+  -webkit-mask-position: 50% 50%;
+  background-size: 20px 14px;
+  background-position-y: center;
+  position: absolute;
+}
+.like-stat {
+  background-image: image-url('like-button.svg');
+  background-repeat: no-repeat;
+  -webkit-mask-position: 50% 50%;
+  background-size: 20px 14px;
+  background-position-y: center;
+  position: absolute;
+}
+
+
+.track-right-btns {
+  line-height: 1.4;
+  height: 22px;
+  min-width: 25px;
+  color: #999;
+  font-size: 12px;
+  text-align: right;
+  vertical-align: text-top;
+  padding: 4px;
+  margin: 0 5px;
+  // justify-self: right;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-grow: auto;
+  display: inline-block;
+  position: relative;
+  font-weight: 300;
+  text-indent: 19px;
+  white-space: nowrap;
+}
+
+
+
+
+///
+
 
 .like-btn {
   color: black;

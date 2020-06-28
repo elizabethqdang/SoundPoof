@@ -14,7 +14,7 @@ class TrackShowPage extends React.Component {
 		this.state = {
 			firstload: true,
 		};
-		this.songButton = this.songButton.bind(this);
+		this.trackButton = this.trackButton.bind(this);
 		this.userTrackButtons = this.userTrackButtons.bind(this);
 		this.toggleLike = this.toggleLike.bind(this);
 		this.deleteTrack = this.deleteTrack.bind(this);
@@ -45,7 +45,7 @@ class TrackShowPage extends React.Component {
 		// }
 	}
 
-	songButton(track, e) {
+	trackButton(track, e) {
 		e.preventDefault();
 		let { currentTrack, playing, trackId } = this.props.trackplayer;
 		let tplayer = this.props.trackplayer.player;
@@ -55,11 +55,11 @@ class TrackShowPage extends React.Component {
 		if (trackId == 0) {
 			// this.props.setCurrentTrack(track);
 			this.props.setPlayPause(!playing, track.id, 1);
-		} else if (track.id == trackId) { //if we are pausing the same song
+		} else if (track.id == trackId) { //if we are pausing the same track
 			// then we will update the progress of this track
 			prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
 			this.props.setPlayPause(!playing, track.id, prog);
-		} else { // track.id !== trackId - we are switching songs 
+		} else { // track.id !== trackId - we are switching tracks 
 			prog = trackProg ? trackProg : 0;
 			this.props.setPlayPause(!playing, track.id, prog);
 		}//
@@ -109,23 +109,27 @@ class TrackShowPage extends React.Component {
 
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
-				<div className='button-bar'>
-					<div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
-					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts}</div>
-					<div className='bc-btn sound-actions-btn controller-btn delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
-					<div className='bc-btn sound-actions-btn like-icon'>{track.numLikes}</div>
-					<div className='bc-btn sound-actions-btn repost-icon'>{track.numReposts}</div>
-					<div className='comment-icon'>{track.numComments}</div>
+				<div className='track-show-button-bar'>
+					<div className={`sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>Like</div>
+					<div className={`sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>Repost</div>
+					<div className='sound-actions-btn controller-btn delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
+					
+					<div className='track-right-btns like-stat'>{track.numLikes}</div>
+					<div className='track-right-btns repost-stat'>{track.numReposts}</div>
+					<div className='track-right-btns comment-btn'>{track.numComments}</div>
 				</div>
 			);
 		} else {
 			return (
-				<div className='button-bar'>
-					<div className={`bc-btn sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)} >{track.numLikes}</div>
-					<div className={`bc-btn sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts} </div>
-					<div className='bc-btn sound-actions-btn like-icon'>{track.numLikes}</div>
-					<div className='bc-btn sound-actions-btn repost-icon'>{track.numReposts}</div>
-					<div className='comment-icon'>{track.numComments}</div>
+				<div className='track-show-button-bar'>
+					<div className={`track-show sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>Like</div>
+					<div className={`track-show sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>Repost</div>
+					
+					{/* <div className='track-show-right-btns'> */}
+						<div className='track-right-btns like-stat'>{track.numLikes}</div>
+						<div className='track-right-btns repost-stat'>{track.numReposts}</div>
+						<div className='track-right-btns comment-btn'>{track.numComments}</div>
+					{/* </div> */}
 				</div>
 			);
 		}
@@ -133,7 +137,7 @@ class TrackShowPage extends React.Component {
 
 	render() {
 		const { currentTrack, trackId, tracks, users, trackplayer, comments, comment, loading, currentUser, deleteTrack, track, deleteComment, user} = this.props;
-		console.log("trackShowPage", "tracks", tracks, "track", track, "comments", comments, "users", users, "user", user, "current", currentUser);
+		// console.log("trackShowPage", "tracks", tracks, "track", track, "comments", comments, "users", users, "user", user, "current", currentUser);
 
 		if (track === undefined) {
 			return (
@@ -159,7 +163,7 @@ class TrackShowPage extends React.Component {
 					<div className='track-show-container'>
 						<div className='track-show-detail'>
 							<div className='track-sd-top'>
-								<div className={buttonPlaying} onClick={(e) => this.songButton(track, e)}></div>
+								<div className={buttonPlaying} onClick={(e) => this.trackButton(track, e)}></div>
 								<div className='track-sd-info'>
 									<a href={`/#/users/${track.user_id}`}><div className='track-sd-uploader'>{track.artist}</div></a>
 									<div className='track-sd-title'>{track.title}</div>
@@ -178,7 +182,7 @@ class TrackShowPage extends React.Component {
 					</div>
 					<div className='track-show-container-bottom'>
 						<div className='tscb-left'>
-							<div className='track-show-comment-bar'>
+							<div className='track-show-comment-form'>
 								<CommentFormContainer track={track} />
 							</div>
 							{buttonBar}

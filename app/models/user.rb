@@ -47,11 +47,11 @@ class User < ApplicationRecord
 		through: :reposts,
 		source: :track
 
-	def avatar_check user
-      if user.profile_image.present?
-        image_tag user.profileImgUrl :thumb
+	def require_user_profile(user)
+      if user.profile_image.attached?
+        user.profile_image
       else
-        image_tag 'placeholder.jpeg'
+        'placeholder.jpeg'
       end
   end
 

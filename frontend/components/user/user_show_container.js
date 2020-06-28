@@ -9,10 +9,13 @@ const mapStateToProps = (state, ownProps) => {
 	const currentUserId = ((state.session.currentUser) ? state.session.currentUser.id : null);
 	const user = state.entities.users[ownProps.match.params.userId];
 	const users = state.entities.users;
-	const tracks = (state.entities.users.tracks) || {};
-	// const trackIds = (tracks).map((id) => {
-			// (tracks[id] && (tracks[id]).user.id === userId) ? tracks[id] : {};
-	// })
+	const tracks = Object.values(state.entities.tracks) || {};
+	const userTrackIds = user.trackIds
+	const userTracks = (userTrackIds).map((id) => {
+			console.log("id", id, "tracks", tracks);
+			return tracks[id];
+	})
+
 	return {
 		currentUserId,
 		currentUser: state.session.currentUser || {},
@@ -20,7 +23,7 @@ const mapStateToProps = (state, ownProps) => {
 		// user: state.entities.users[userId],
 		// userId: ownProps.match.params.id,
 		// tracks: Object.values(state.entities.tracks || {},
-		tracks: Object.values(tracks),
+		tracks: userTracks,
 		users: state.entities.users || {},
 		trackplayer: state.trackplayer || {}
 	};
