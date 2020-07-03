@@ -14,6 +14,7 @@ class UserSearchResult extends React.Component {
 			<li className='search-show collection-show'>
 				<img onClick={this.userSearchResult} src={this.props.user.profileImgUrl || ""} />
 				<span onClick={this.userSearchResult}>{this.props.user.email}</span>
+				<div className="search-result-user-icon"></div>
 			</li>
 		);
 	}
