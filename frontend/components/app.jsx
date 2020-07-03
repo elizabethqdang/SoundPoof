@@ -5,6 +5,7 @@ import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import SplashContainer from "./splash/splash_container";
 import ModalContainer from "./modal/modal_container";
 import NavbarContainer from "./navbar/navbar_container";
+import SearchBarContainer from "./search/search_bar_container";
 // import UploadTrackContainer from "./track_form/upload_track_container";
 // import UploadTrackFormContainer from "./track_form/upload_track_form_container";
 import UploadPageContainer from "./track/upload_page_container";
@@ -31,6 +32,7 @@ const App = () => (
 				<Switch>
 					{/* <Route exact path="/discover" component={TrackIndexContainer} /> */}
 					<ProtectedRoute exact path="/stream" component={StreamContainer} />
+					<ProtectedRoute exact path="/search" component={SearchBarContainer} />
 					<ProtectedRoute exact path="/upload" component={UploadPageContainer} />
 					<ProtectedRoute exact path="/tracks/:trackId" component={TrackShowPageContainer} />
 					<ProtectedRoute exact path="/users/:userId" component={UserShow} />

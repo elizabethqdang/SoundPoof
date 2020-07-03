@@ -16,9 +16,9 @@ class TrackSearchResult extends React.Component {
 	render() {
 		return (
 			<li className='track-show search-show collection-show'>
-				<img onClick={this.showTrack} src={this.props.track.artworkUrl} />
+				<img onClick={this.showTrack} src={this.props.track.artworkUrl || ""} />
 				<span onClick={this.showTrack}>{this.props.track.title}</span>
-				<p onClick={this.showUser}>{this.props.track.user.email}</p>
+				{/* <p onClick={this.showUser}>{this.props.track.artist}</p> */}
 			</li>
 		);
 	}

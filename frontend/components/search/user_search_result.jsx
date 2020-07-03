@@ -12,7 +12,7 @@ class UserSearchResult extends React.Component {
 	render() {
 		return (
 			<li className='search-show collection-show'>
-				<img onClick={this.userSearchResult} src={this.props.user.profileImgUrl} />
+				<img onClick={this.userSearchResult} src={this.props.user.profileImgUrl || ""} />
 				<span onClick={this.userSearchResult}>{this.props.user.email}</span>
 			</li>
 		);

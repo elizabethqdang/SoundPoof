@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Link, withRouter, NavLink } from "react-router-dom";
 import Dropdown from "./dropdown";
-import SearchBar from "../search/search_bar";
+import SearchBar from "../search/search_bar_container";
 
 class Navbar extends React.Component {
   constructor(props) {
