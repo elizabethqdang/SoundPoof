@@ -1,26 +1,97 @@
 .search-results {
-	// overflow-y: scroll;
-	position: relative;
+	position: absolute;
+	width: 100%;
+	transition: opacity 0.2s linear;
 
-	.track-show.search-show.collection-show {
-		max-height: 45px;
-		padding: 8px;
-
-		img {
-			max-height: 30px;
-			border-radius: 50%;
-			height: 100%;
+	.search-result-item {
+		width: 95%;
+		display: block;
+		justify-content: space-between;
+		font-size: 14px;
+		font-weight: 300;
+		color: #ccc;
+		height: 30px;
+		background-color: #333;
+		cursor: pointer;
+		padding: 9px 10px 8px;		
+		transition: all 300ms ease-in-out;
+		
+		.search-result-content {
+			display: flex;
+			width: 100%;
+			background-color: #333;
+			vertical-align: baseline;
+			align-items: center;
+		
+			.search-result-text {
+				vertical-align: center;
+				align-items: center;
+				align-content: center;
+			}
 		}
 	}
 
-	.search-show.collection-show {
+	.track-show.search-show.collection-show, .search-show.collection-show {
+		// position: fixed;
 		max-height: 45px;
-		padding: 8px;
+		background-color: #111;
+		width: 95%;
+		display: flex;
+		justify-content: space-between;
+		padding: 9px 10px 8px;
+		transition: all 300ms ease-in-out;
+		align-items: center;
+		text-align: left; 
 
-		img {
-			height: 100%;
+		> img {
 			max-height: 30px;
+			max-width: 30px;
 			border-radius: 50%;
+			height: 100%;
+			display: inline-block;
+		}
+
+		span {
+			display: inline-block;
+			text-align: left;
+			background-color: #111;
+			flex: auto;
+			margin-left: 10px;
+		}
+
+		div:last-child {
+			display: inline-block;
+			border-radius: 50%;
+			background-image: linear-gradient(135deg, #846170, #e6846e);
+			background-size: 25px 25px;
+			height: 30px;
+			width: 30px; 
+			max-height: 100%;
+			max-width: 100%;
+			align-self: flex-end;
 		}
 	}
 }
+
+.search-result-track-icon {
+			display: inline-block;
+			background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZmlsbD0iIzMzMyIgZmlsbC1ydWxlPSJub256ZXJvIiBkPSJNOC42NjcgMnYxMkg3LjMzM1YyaDEuMzM0ek02IDR2OEg0LjY2N1Y0SDZ6bTUuMzMzIDEuMzMzdjUuMzM0SDEwVjUuMzMzaDEuMzMzem0tOCAxLjMzNHYyLjY2NkgyVjYuNjY3aDEuMzMzem0xMC42NjcgMHYyLjY2NmgtMS4zMzNWNi42NjdIMTR6Ii8+CiAgICA8L2c+Cjwvc3ZnPgo=);
+			background-size: 25px 25px;
+			max-height: 30px;
+			max-width: 30px;
+			// border-radius: 50%;
+			position: relative;
+			background-color: transparent;
+		}
+
+		.search-result-user-icon {
+			display: inline-block;
+			background-image: image-url('user-icon.svg') 0 0 no-repeat;
+			background-size: 25px 25px;
+			max-height: 30px;
+			max-width: 30px;
+			// border-radius: 50%;
+			// position: relative;
+			background-color: transparent;
+			background-position: center center;
+		}

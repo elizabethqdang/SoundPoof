@@ -11,9 +11,10 @@ class SearchBar extends React.Component {
 			searchInput: "",
 			searchResults: []
 		};
-		this.ready = true;
-		this.getReady = this.getReady.bind(this);
+		// this.ready = true;
+		// this.getReady = this.getReady.bind(this);
 		this.updateSearchResults = this.updateSearchResults.bind(this);
+		this.searchResultHeader = this.searchResultHeader.bind(this);
   }
 
 	// componentDidMount() {
@@ -22,12 +23,9 @@ class SearchBar extends React.Component {
 	// 	this.props.fetchTracks({search: query});
 	// }
 
-	componentDidUpdate(prevProps) {
-		if (prevProps.searchInput !== this.props.searchInput) {
-    	this.updateSearchResults();
-			// let query = this.state.searchInput;
-			// this.props.fetchUsers({ search: query });
-			// this.props.fetchTracks({ search: query });
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.searchInput !== this.state.searchInput) {
+			this.updateSearchResults();
 		}
 	}
 
@@ -47,9 +45,9 @@ class SearchBar extends React.Component {
   //   }
   // }
 
-  getReady() {
-    this.ready = true;
-  }
+  // getReady() {
+  //   this.ready = true;
+  // }
 
   updateSearchResults() {
 		const { users, tracks } = this.props;
@@ -60,12 +58,12 @@ class SearchBar extends React.Component {
 		// console.log("searchInput", searchInput);
 
     for (let i = 0; i < this.props.users.length; i++) {
-			const username = users[i].username.toLowerCase() || "";
+			const email = users[i].email.toLowerCase() || "";
 			const searchString = this.state.searchInput.toLowerCase() || "";
-			console.log("username", username);
+			console.log("email", email);
 			console.log("searchString", searchString);
 
-      if (searchInput.length > 0 && username.includes(searchString)) {
+      if (searchInput.length > 0 && email.includes(searchString)) {
         searchResults.push(users[i]);
       }
       if (searchResults.length > 3) { break; }
@@ -88,10 +86,12 @@ class SearchBar extends React.Component {
 
   searchResultHeader() {
     if (this.state.searchInput.length > 0) {
-      return (
+			// this.updateSearchResults();
+
+			return (
         <li className="search-result-item">
           <div className="search-result-content">
-            <div className="search-result-text no-margin">Search for "{this.state.searchInput}"</div>
+            <div className="search-result-text">Search for "{this.state.searchInput}"</div>
           </div>
         </li>
       );
@@ -120,18 +120,21 @@ class SearchBar extends React.Component {
 
 		return (
 			<section className="nav-middle">
-				<form className="nav-search" onChange={this.updateSearchResults}>
-					<input className="nav-search-input" onChange={this.updateInput('searchInput')} value={this.state.searchInput} type="search" placeholder="Search" />
+				<form className="nav-search">
+					<input className="nav-search-input" 
+						onChange={this.updateInput('searchInput')} 
+						// onChange={this.updateSearchResults}
+						value={this.state.searchInput} 
+						type="search" 
+						placeholder="Search" />
 					<ul className="search-results">
 						{this.searchResultHeader()}
+						{/* {this.updateSearchResults()} */}
 						{
 							this.state.searchResults.map((result, idx) => {
-								let type;
-								if (result.username) {
-									// type = USER;
+								if (result.email) {
 									return <UserSearchResult key={idx} user={result} />;
 								} else {
-									// type = TRACK;
 									return <TrackSearchResult key={idx} track={result} />;
 								}
 								// return <SearchResultItem key={idx} result={result} type={type} />;
