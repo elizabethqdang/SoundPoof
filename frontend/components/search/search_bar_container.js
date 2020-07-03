@@ -1,14 +1,16 @@
 import { connect } from 'react-redux';
 import { fetchTracks, fetchUsers } from '../../actions/search_actions';
-import SearchBar from './search_bar_container';
+import SearchBar from './search_bar';
 
 const mapStateToProps = (state) => ({
   currentUser: state.session.currentUser,
-  search: state.search
+	search: state.search,
+	tracks: Object.values(state.entities.tracks),
+	users: Object.values(state.entities.users)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchSongs: query => dispatch(fetchTracks(query)),
+  fetchTracks: query => dispatch(fetchTracks(query)),
   fetchUsers: query => dispatch(fetchUsers(query))
 });
 

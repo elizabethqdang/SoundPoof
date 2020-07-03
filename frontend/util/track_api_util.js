@@ -18,9 +18,11 @@ export const fetchTracks = (query) => (
 		method: 'GET',
 		url: `/api/tracks`,
 		data: {
-			query: query.data,
-			trackTitle: query.trackTitle,
-			trackArtist: query.trackArtist
+			query: query.query,
+			search: query.search,
+			track: query.track,
+			user: query.user,
+			title: query.title
 		}
 	})
 );

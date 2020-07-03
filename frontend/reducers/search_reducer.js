@@ -5,7 +5,7 @@ const _initialState = {
 	users: {}
 };
 
-const SearchReducer = (state = _initialState, action) => {
+const searchReducer = (state = _initialState, action) => {
 	Object.freeze(state);
 	let newState = Object.assign({}, state);
 
@@ -21,4 +21,4 @@ const SearchReducer = (state = _initialState, action) => {
 	}
 };
 
-export default SearchReducer;
+export default searchReducer;
