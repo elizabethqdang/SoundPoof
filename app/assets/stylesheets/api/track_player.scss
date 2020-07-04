@@ -15,19 +15,21 @@
   max-width: 1240px;
   height: 48px;
   margin: 0 auto;
-  display: flex;
+	display: flex;
+	
+	.controller-btn {
+		margin-left: 12px;
+		min-width: 24px;
+		width: 24px;
+		height: 100%;
+		cursor: pointer;
+	}
 }
 
 #tp-controller {
   display: flex;
 }
-.controller-btn {
-  margin-left: 12px;
-  min-width: 24px;
-  width: 24px;
-  height: 100%;
-  cursor: pointer;
-}
+
 
 #tp-progress {
   display: flex;

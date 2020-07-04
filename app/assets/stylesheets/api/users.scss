@@ -579,7 +579,8 @@
 
 .sound-waveform {
   height: 60px;
-  position: relative;
+	position: relative;
+	max-width: 820px;
 }
 
 .waveform {

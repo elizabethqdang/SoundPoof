@@ -11,14 +11,17 @@ class WaveForm extends React.Component {
 		this.wavesurfer = WaveSurfer.create({
 			container: `#track-${this.props.track.id}-waveform`,
 			progressColor: '#f50',
-			barHeight: 3,
-			barWidth: 3,
+			// barHeight: 3,
+			barWidth: 2,
+			// barMinHeight: 10, 
 			cursorWidth: 0,
 			height: this.props.height,
-			waveColor: this.props.color,
 			responsive: true,
 			normalize: true,
-			backend: 'MediaElement'
+			backend: 'MediaElement',
+			barGap: 1,
+			maxCanvasWidth: 820,
+			hideScrollbar: true,
 		});
 
 		//will set audio peaks if not stored yet. 
@@ -47,14 +50,14 @@ class WaveForm extends React.Component {
 
 		});
 
-		if (!this.props.track.audioPeaks) {
-			this.wavesurfer.on('waveform-ready', () => {
-				let string = JSON.stringify(this.wavesurfer.backend.getPeaks(40));
-				const formData = new FormData();
-				formData.append("track[audioPeaks]", string);
-				this.props.updateTrack(formData, this.props.track.id);
-			});
-		}
+		// if (!this.props.track.audioPeaks) {
+		// 	this.wavesurfer.on('waveform-ready', () => {
+		// 		let string = JSON.stringify(this.wavesurfer.backend.getPeaks(40));
+		// 		const formData = new FormData();
+		// 		formData.append("track[audioPeaks]", string);
+		// 		this.props.updateTrack(formData, this.props.track.id);
+		// 	});
+		// }
 	}
 
 	componentDidUpdate(prevProps) {

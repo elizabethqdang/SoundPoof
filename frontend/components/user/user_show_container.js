@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
 	const currentUserId = ((state.session.currentUser) ? state.session.currentUser.id : null);
 	const user = state.entities.users[ownProps.match.params.userId];
 	const users = state.entities.users;
-	const tracks = Object.values(state.entities.tracks) || {};
+	const tracks = Object.values(state.entities.tracks);
 	const userTrackIds = user.trackIds
 	const userTracks = (userTrackIds).map((id) => {
 			console.log("id", id, "tracks", tracks);
@@ -18,8 +18,11 @@ const mapStateToProps = (state, ownProps) => {
 
 	return {
 		currentUserId,
+		users: state.entities.users,
 		currentUser: state.session.currentUser || {},
-		user: state.entities.users[ownProps.match.params.userId],
+		// user: state.entities.users[ownProps.match.params.userId],
+		user,
+		userId,
 		// user: state.entities.users[userId],
 		// userId: ownProps.match.params.id,
 		// tracks: Object.values(state.entities.tracks || {},

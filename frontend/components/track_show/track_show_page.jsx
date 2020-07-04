@@ -25,6 +25,8 @@ class TrackShowPage extends React.Component {
 		this.props.fetchCurrentUser(this.props.currentUser.id);
 		this.setState({ 
 			// currentTrack: prevProps.trackId,
+			trackId: this.props.trackId,
+			track: this.props.track,
 			firstLoad: false 
 		});
 	}
@@ -149,6 +151,7 @@ class TrackShowPage extends React.Component {
 			let trackComments = (comments).map(comment => (
 				<CommentIndexItem key={comment.id} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} />
 			));
+			let commentLength = comments.length === 1 ? "1 Comment" : `${comments.length} Comments`;
 			let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
 				'playing' : 'ts-play';
 			let buttonBar = this.userTrackButtons();
@@ -192,9 +195,11 @@ class TrackShowPage extends React.Component {
 										<a href={`/#/users/${track.user_id}`}><img src={track.profileImgUrl} /></a>
 									</div>
 									<a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a>
+									<div className='ts-artist-stats user-suggestion-tracks'>{user.trackIds.length}</div>
 								</div>
 								<div className='ts-uc-right'>
-									<div className='ts-track-description'>{track.numComments} Comments</div>
+									<div className='ts-track-description'>DESCRIPTION</div>
+									<div className='ts-track-numComments comment-btn'>{commentLength}</div>
 									<div className='track-show-comment-index'>
 										{trackComments}
 									</div>

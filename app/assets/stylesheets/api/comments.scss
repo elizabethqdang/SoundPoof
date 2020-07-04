@@ -17,14 +17,18 @@
       width: 40px;
       img {
         flex-shrink: 0;
-        min-width: 100%;
         max-width: 100%;
+				max-width: 100%;
+				width: 40px;
+				height: 40px;
       }
     }
     .comment-input-container {
       display: flex;
       background-color: #f2f2f2;
-      width: 100%;
+			width: 100%;
+			border: 1px solid #e5e5e5;
+
       .comment-input {
         border: 1px lightgray solid;
         width: 100%;
@@ -47,13 +51,14 @@
 
 .cform {
   width: inherit;
-  display: flex;
+	display: flex;
+	// padding: 5px;
 }
 
 .posted-comment {
   display: flex;
   width: 100%;
-  padding: 10px 10px;
+  padding: 10px 0;
   box-sizing: border-box;
 	position: relative;
 	
@@ -110,8 +115,8 @@
 	}
 
 	.comment-index-button {
-		width: 23px;
-		height: 22px;
+		width: 20px;
+		height: 20px;
 		border: 1px transparent;
 		// border: 1px lightgray solid;
 		border-radius: 3px;
@@ -119,10 +124,11 @@
 		position: absolute;
 		right: 10px;
 		bottom: 10px;
-		background: image-url('delete-icon.svg');
+		background: image-url('delete-icon.svg') 0 0 no-repeat;
 		background-size: cover;
 		box-sizing: border-box;
 		align-items: flex-end;
+		background-size: 16px 16px;
 	}
 }
 

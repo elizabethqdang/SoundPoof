@@ -11,10 +11,9 @@ class SearchBar extends React.Component {
 			searchInput: "",
 			searchResults: []
 		};
-		// this.ready = true;
-		// this.getReady = this.getReady.bind(this);
 		this.updateSearchResults = this.updateSearchResults.bind(this);
 		this.searchResultHeader = this.searchResultHeader.bind(this);
+		this.toSearch = this.toSearch.bind(this);
   }
 
 	// componentDidMount() {
@@ -35,19 +34,6 @@ class SearchBar extends React.Component {
 			this.setState({ [searchInput]: e.target.value });
 		};
 	}
-
-  // componentDidUpdate(prevProps, prevState) {
-	// 	const { users, tracks } = this.props;
-  //   if (this.ready) {
-  //     this.ready = false;
-  //     this.updateSearchResults();
-  //     window.setTimeout(this.getReady, 50);
-  //   }
-  // }
-
-  // getReady() {
-  //   this.ready = true;
-  // }
 
   updateSearchResults() {
 		const { users, tracks } = this.props;
@@ -86,27 +72,34 @@ class SearchBar extends React.Component {
 
   searchResultHeader() {
     if (this.state.searchInput.length > 0) {
-			// this.updateSearchResults();
 
 			return (
         <li className="search-result-item">
           <div className="search-result-content">
-            <div className="search-result-text">Search for "{this.state.searchInput}"</div>
+            <div className="search-result-text" onClick={this.toSearch}>Search for "{this.state.searchInput}"</div>
           </div>
         </li>
       );
     } else {
       return null;
     }
-  }
+	}
+	
+	toSearch() {
+		// e.preventDefault();
+		// if (e.key === 'Enter' && e.target.value !== '') {
+			window.location.hash = `/search`;
+		// 	e.target.value = '';
+		// }
+	}
 
 	render() {
 		const { users, tracks } = this.props;
 		const { searchInput, searchResults } = this.state;
-		console.log("searchInput", searchInput);
-		console.log("searchResults", searchResults);
-		console.log("users", users);
-		console.log("tracks", tracks);
+		// console.log("searchInput", searchInput);
+		// console.log("searchResults", searchResults);
+		// console.log("users", users);
+		// console.log("tracks", tracks);
 
 		let close;
 		let className = "search-bar";
@@ -120,7 +113,7 @@ class SearchBar extends React.Component {
 
 		return (
 			<section className="nav-middle">
-				<form className="nav-search">
+				<form className="nav-search" onSubmit={this.toSearch}>
 					<input className="nav-search-input" 
 						onChange={this.updateInput('searchInput')} 
 						// onChange={this.updateSearchResults}
@@ -137,7 +130,6 @@ class SearchBar extends React.Component {
 								} else {
 									return <TrackSearchResult key={idx} track={result} />;
 								}
-								// return <SearchResultItem key={idx} result={result} type={type} />;
 							})
 						}
 					</ul>

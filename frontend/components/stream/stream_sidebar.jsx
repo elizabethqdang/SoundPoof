@@ -24,7 +24,7 @@ class StreamSidebar extends React.Component {
 	}
 
   render() {
-		const {users, currentUser, tracks, track} = this.props;
+		const {users, currentUser, tracks, track, cLikedTracks} = this.props;
 		const user = this.props.currentUser;
 		console.log("user", user, "users", users, "currentUser", currentUser);
 
@@ -50,9 +50,9 @@ class StreamSidebar extends React.Component {
 					<a className="sidebar-header" href="#">
 						<h3 className="sidebar-header-title">
 							<span className="sidebar-header-likes-icon"></span>
-							<span>Likes</span>
+							<span>{cLikedTracks.length} likes</span>
 						</h3>
-						<span className="sidebar-header-refresh">View All</span>
+						<span className="sidebar-header-refresh" >View All</span>
 					</a>
 
 					<div className="sidebar-content">
@@ -137,10 +137,25 @@ const StreamSidebarLikeItem = ({ user, users, tracks, currentUser, track }) => {
 	);
 };
 
-const mapStateToProps = (state) => ({
-	users: (Object.values(state.entities.users)).slice(0, 3) || {},
-	currentUser: state.session.currentUser || {},
-	tracks: (Object.values(state.entities.tracks)).slice(0, 3) || {}
-});
+const mapStateToProps = (state) => {
+	const currentUser = state.session.currentUser || {};
+	const cLikedTrackIds = currentUser.likedTrackIds;
+	const tracks = Object.values(state.entities.tracks) || {};
+	const cLikedTracks = cLikedTrackIds.map((id) => {
+		return tracks[id];
+	})
+	console.log("currentUser", currentUser);
+	console.log("cLikedTrackIds", cLikedTrackIds);
+	console.log("tracks", tracks);
+	console.log("cLikedTracks", cLikedTracks);
+
+	return {
+		currentUser,
+		cLikedTrackIds,
+		cLikedTracks,
+		tracks,
+		users: (Object.values(state.entities.users)).slice(0, 3) || {},
+	};
+};
 
 export default (connect)(mapStateToProps, null)(withRouter(StreamSidebar));

@@ -35,6 +35,9 @@
 	main.stream-main .stream-index {
 		 padding: 30px 30px 0 0;
 	}
+	/* #waveform {
+		max-width: 644px;
+	} */
 }
 
 @media (max-width: 1079px) {
@@ -48,6 +51,9 @@
 	main.stream-main .stream-index {
 		 padding: 30px 20px 0 0;
 	}
+	/* #waveform {
+		max-width: 644px;
+	} */
 }
 
 .truncate {

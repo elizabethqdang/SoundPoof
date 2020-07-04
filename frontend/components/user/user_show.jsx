@@ -15,7 +15,7 @@ class UserShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchUser(this.props.match.params.userId);
-    this.fetched = true;
+		this.fetched = true;
   }
 
 	componentDidUpdate(prevProps) {
@@ -73,9 +73,9 @@ class UserShow extends React.Component {
 		// const likeActive = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'active' : '');
 		// const likeText = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'Liked' : 'Like');
 
-    if (!this.fetched) {
-      return null;
-		}
+    // if (!this.fetched) {
+    //   return null;
+		// }
 	
 		const profileIcon = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg" };
 		const bannerImg = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/banner.jpeg" };
@@ -90,11 +90,11 @@ class UserShow extends React.Component {
 					<div className="usershow-profile-container">
 						<div className="usershow-profile-img">
 								<img src={user.profileImgUrl ? user.profileImgUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"} className="usershow-profile-img" />
-								<div className="user-header-details-avatar-btn"></div>
+								<div className="user-header-details-avatar-btn" onClick={this.updateImage}>Edit Profile Image</div>
 						</div>
 						<div className="usershow-profile-txt">
 							<div className="usershow-username">{this.props.user.email}</div>
-							<div className="usershow-location">{this.props.user.location || "Locaation"}</div>
+							<div className="usershow-location">{this.props.user.location || "Location"}</div>
 						</div>
 				</div>
 			</div>
