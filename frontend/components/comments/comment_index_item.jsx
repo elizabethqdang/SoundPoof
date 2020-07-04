@@ -30,8 +30,10 @@ class CommentIndexItem extends React.Component {
 				</div>
       );}else{
         return (
-					<div className="comment-timestamp">
-						{moment(new Date(comment.created_at)).fromNow()}
+					<div className='comment-info'>
+						<div className="comment-timestamp">
+							{moment(new Date(comment.created_at)).fromNow()}
+						</div>
 					</div>
         );}
   }
@@ -50,7 +52,7 @@ class CommentIndexItem extends React.Component {
 							<a href={`/#/users/${comment.user_id}`}>
 								<div className='comment-email'>{comment.commenterEmail}</div>
 							</a> 
-							<div className='comment-email'>{comment.body}</div>
+							<div className='comment-body'>{comment.body}</div>
 					</div>
 					{this.userTrackButtons()}
 			</div>

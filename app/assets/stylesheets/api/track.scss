@@ -10,7 +10,8 @@
   .track-item-header {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+		margin-bottom: 10px;
+		// justify-content: space-between;
 
     .track-user-profile {
       display: flex;
@@ -25,7 +26,8 @@
 			color: transparent;
 			background-position: 50% 50%;
 			box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px inset;
-			background-image: linear-gradient(135deg, #e6846e, #8e8485);
+			background-image: linear-gradient(135deg,#846170,#e6846e);
+			// linear-gradient(135deg, #e6846e, #8e8485);
 			border-radius: 50%;
 
       img {
@@ -35,9 +37,15 @@
       }
     }
     .track-user-username {
-      color: black;
-      margin-left: 6px;
-    }
+      color: #333;
+			margin-left: 6px;
+			font-size: 12px;
+		}
+		.track-timestamp {
+			color: #999999;
+			font-size: 12px;
+			margin-left: 6px;
+		}	
   }
 
   .track-item-main-container {
@@ -55,7 +63,7 @@
       // min-width: 160px;
       // min-height: 160px;
       box-shadow: 1px 1px 5px lightgrey;
-      // background: image_url('missing.png');
+      background-image: linear-gradient(135deg,#e6846e,#70929c);
       // background-size: contain;
       img {
         // flex-shrink: 0;
@@ -151,7 +159,8 @@
         position: relative;
         span {
           position: absolute;
-          width: 100%;
+					width: 100%;
+					// top: 70%;
           height: 30px;
           z-index: 4;
           background-color: rgba(255, 255, 255, 0.75);
@@ -168,28 +177,55 @@
 /////////
 
 .track-show-button-bar {
-	margin: 7px 10px;
-	height: 26px;
+	// margin-top: 10px;
+	// height: 26px;
+	min-height: 30px;
+	box-sizing: border-box;
+	// border-bottom: 1px lightgray solid;
+	margin: 0 0 20px 0;
+	padding: 5px 0;
+
+	.sound-actions-btn.action-like, .sound-actions-btn.action-repost, .sound-actions-btn.controller-btn.delete-btn {
+		height: 30px;
+		vertical-align: baseline;
+		padding: 2px 11px 2px 10px;
+		margin: 0 5px 0 0;
+		line-height: 20px;
+		font-size: 14px;
+		font-weight: 100;
+	}
+
+	.track-right-btns {
+		font-size: 12px;
+		line-height: 16px;
+		color: #999;
+	}
 }
+
+.track-button-bar {
+	margin: 10px 0 0;
+}
+
 
 .track-button-bar, .track-show-button-bar {
 	flex-flow: row nowrap;
-  margin: 10px 0 0;
+  // margin: 0 0 20px 0;
   height: 22px;
 	text-align: right;
 	font-size: 11px;
 	font-family: 'Lucida Grande';
 	justify-content: space-between;
 
+
   .controller-btn {
     border: 1px solid #e5e5e5;
-    margin: 0 5px;
-    min-width: 26px;
+    // margin: 0 5px;
+		min-width: 26px;
+		width: fit-content;
     border-radius: 3px;
-    box-sizing: border-box;
-		padding: 4px;
+		box-sizing: border-box;
+  	padding: 2px 9px 2px 8px;
 		text-indent: 19px;
-		text-align: end;
 		position: relative;
 		vertical-align: baseline;
 		text-align: center;
@@ -225,6 +261,84 @@
 
 }
 
+
+
+
+/// 
+.sound-actions {
+  z-index: 1;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  background-color: #fff;
+  margin: 0;
+  float: left;
+  clear: none;
+}
+
+.sound-actions-btn {
+  min-width: 25px;
+  float: left;
+  margin-right: 5px;
+  font-family: 'Lucida Grande';
+  text-indent: 19px;
+  font-size: 11px;
+  padding: 2px 9px 2px 8px;
+  height: 22px;
+  line-height: 1.4;
+  border-color: #e5e5e5;
+}
+
+.sound-actions-btn.active {
+  color: #f50;
+}
+
+.sound-actions-btn:hover {
+  color: #333;
+  outline: 0;
+  border-color: #ccc;
+}
+
+.sound-actions-btn.active:hover {
+  border-color: #f50;
+  color: #f50;
+}
+
+.sound-actions-btn:before {
+  content: '';
+  display: block;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center center;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  left: 5px;
+  height: 20px;
+  width: 20px;
+  background-size: 16px 16px;
+}
+
+.sound-actions-btn.action-like.active:before,
+.sound-actions-btn.action-repost.active:before {
+  background-color: #f50;
+}
+
+.action-like:before {
+  -webkit-mask-position: 50% 50%;
+  background-color: black;
+  -webkit-mask-image: image-url('like-button.svg');
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 16px 16px;
+}
+
+
+
+
+
+///
 .comment-btn {
   background-image: image-url('comment-icon.svg');
   background-repeat: no-repeat;
@@ -261,7 +375,6 @@
   vertical-align: text-top;
   padding: 4px;
   margin: 0 5px;
-  // justify-self: right;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
@@ -283,6 +396,7 @@
   color: black;
 	border: 2px solid black;
 	font-size: 11px;
+	line-height: 16px;
 	font-family: 'Lucida Grande';
 }
 
@@ -290,6 +404,7 @@
   color: #f50;
 	border: 2px solid #f50;
 	font-size: 11px;
+	line-height: 16px;
 	font-family: 'Lucida Grande';
 }
 

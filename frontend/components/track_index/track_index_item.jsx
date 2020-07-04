@@ -123,6 +123,9 @@ class TrackIndexItem extends React.Component {
 						<img src={track.profileImgUrl} />
 					</aside>
 					<a href={`/#/users/${track.user_id}`}><aside className="track-user-username">{track.userEmail}</aside></a>
+					<div className="track-timestamp">
+						posted a track {moment(new Date(track.created_at)).fromNow()}
+					</div>
 				</div>
 
 				<div className='track-item-main-container'>
@@ -136,16 +139,16 @@ class TrackIndexItem extends React.Component {
 
 							</div>
 							<div className="ti-upload-det">
-								<a href={`/#/users/${track.user_id}`}><aside className="ti-description">{track.artist}</aside></a>
+								<a href={`/#/users/${track.user_id}`}><aside className="ti-description">{track.userEmail}</aside></a>
 								<a href={`/#/tracks/${track.id}`} className="ti-title">{track.title}</a>
 							</div>
-							<div className="track-timestamp">
+							{/* <div className="track-timestamp">
 								{moment(new Date(track.created_at)).fromNow()}
-							</div>
+							</div> */}
 						</div>
 						<div className='sound-bar'>
 							<span></span>
-							<WaveFormContainer track={track} height={60} color={'#000'} />
+							<WaveFormContainer track={track} height={60} color={'#000'} width={820} />
 						</div>
 							{this.userTrackButtons()}
 					</section>
