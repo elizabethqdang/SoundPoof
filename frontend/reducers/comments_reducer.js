@@ -14,10 +14,10 @@ const commentsReducer = (oldState = {}, action) => {
 			delete newState[action.commentId.id];
 			return newState;
 		case RECEIVE_SINGLE_TRACK:
-			if (action.payload.comments === undefined) {
+			if (action.comments === undefined) {
 				return {};
 			} else {
-				return Object.assign({}, action.payload.comments);
+				return Object.assign({}, action.comments);
 			};
 		default:
 			return oldState;

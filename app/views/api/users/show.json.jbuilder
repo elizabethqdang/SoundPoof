@@ -1,7 +1,12 @@
 json.partial! "api/users/user", user: @user 
 
+# json.user do 
+	json.tracks @user.tracks
+# end
+
 # json.user do
-# 	# json.set! @user.id do
+# 		json.extract! user, :id, :username, :email, :likedTrackIds
+# 	 json.set! @user.id do
 # 		json.id @user.id
 # 		json.username @user.username
 # 		json.email @user.email
@@ -28,13 +33,13 @@ json.partial! "api/users/user", user: @user
 
 # 		json.bannerUrl asset_path(@user.banner.url)
 
-# 	# end
+# 	end
 # end
 
 # json.tracks do
 # 	@user.tracks.each do |track|
 # 		json.set! track.id do
-# 			json.extract! track, :id, :title, :artist, :user_id, :description
+# 			json.extract! track, :id, :title, :artist, :description
 
 # 			json.id track.id
 # 			json.user_id track.user.id

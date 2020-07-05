@@ -7,6 +7,12 @@ import CommentIndexContainer from '../comments/comment_index_container';
 class TrackIndexItem extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			// tracks: this.props.tracks,
+			// track: this.props.track,
+			// users: this.props.users,
+		};
+
 		this.playButton = this.playButton.bind(this);
 		this.toggleLike = this.toggleLike.bind(this);
 		this.toggleRepost = this.toggleRepost.bind(this);
@@ -120,9 +126,12 @@ class TrackIndexItem extends React.Component {
 			<div className='track-item-container'>
 				<div className='track-item-header'>
 					<aside className="track-user-profile">
-						<img src={track.profileImgUrl} />
+						<img src={track.profileImgUrl ? track.profileImgUrl : 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'} />
 					</aside>
-					<a href={`/#/users/${track.user_id}`}><aside className="track-user-username">{track.userEmail}</aside></a>
+					<Link to={`/users/${track.user_id}`}>
+						<aside className="track-user-username">{track.userEmail}</aside>
+					</Link>
+					{/* <a href={`/#/users/${track.user_id}`}><aside className="track-user-username">{track.userEmail}</aside></a> */}
 					<div className="track-timestamp">
 						posted a track {moment(new Date(track.created_at)).fromNow()}
 					</div>
@@ -130,7 +139,10 @@ class TrackIndexItem extends React.Component {
 
 				<div className='track-item-main-container'>
 					<div className='track-artwork-box'>
-						<a href={`/#/tracks/${track.id}`}><img src={track.artworkUrl} /></a>
+						<Link to={`/tracks/${track.id}`}>
+							<img src={track.artworkUrl} />
+						</Link>
+						{/* <a href={`/#/tracks/${track.id}`}><img src={track.artworkUrl} /></a> */}
 					</div>
 
 					<section className='track-item-content-container'>
@@ -139,8 +151,12 @@ class TrackIndexItem extends React.Component {
 
 							</div>
 							<div className="ti-upload-det">
-								<a href={`/#/users/${track.user_id}`}><aside className="ti-description">{track.userEmail}</aside></a>
-								<a href={`/#/tracks/${track.id}`} className="ti-title">{track.title}</a>
+								<Link to={`/users/${track.user_id}`}><aside className="ti-description">{track.userEmail}</aside>
+								</Link>
+								<Link to={`/tracks/${track.id}`} className="ti-title">{track.title}
+								</Link>
+								{/* <a href={`/#/users/${track.user_id}`}><aside className="ti-description">{track.userEmail}</aside></a>
+								<a href={`/#/tracks/${track.id}`} className="ti-title">{track.title}</a> */}
 							</div>
 							{/* <div className="track-timestamp">
 								{moment(new Date(track.created_at)).fromNow()}

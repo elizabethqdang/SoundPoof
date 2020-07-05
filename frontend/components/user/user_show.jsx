@@ -8,18 +8,18 @@ import UserSidebar from './user_sidebar';
 class UserShow extends React.Component {
   constructor(props) {
     super(props);
-		this.fetched = false;
+		// this.fetched = false;
 		this.handleToggleLike = this.handleToggleLike.bind(this);
 		this.updateImage = this.updateImage.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchUser(this.props.match.params.userId);
-		this.fetched = true;
+		// this.fetched = true;
   }
 
 	componentDidUpdate(prevProps) {
-		if (this.props.match.params.userId !== prevProps.match.params.userId) {
+		if (prevProps.match.params.userId !== this.props.match.params.userId) {
 			this.props.fetchUser(this.props.match.params.userId);
 		}
 	}
@@ -58,15 +58,20 @@ class UserShow extends React.Component {
 		// console.log("user", user, "users", users, "currentUser", currentUser, "track", track, "tracks", tracks);
 		console.log("tracks", tracks);
 
-		if (tracks === [] || undefined) {
+		if (this.props.user === undefined) {
 			return (
 				<div></div>
 			)
 		} else {
-			const { user, tracks, track, users, createLike, deleteLike, currentUser, setPlayPause, setProg } = this.props;
-			let userStream = (tracks).map(track => (
-				<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} setPlayPause={setPlayPause} setProg={setProg} />
-			));
+			const { user, tracks, userTracks, track, users, createLike, deleteLike, currentUser, setPlayPause, setProg } = this.props;
+			let trackIds = this.props.user.trackIds;
+			let userStream = (this.props.tracks).map(track => {
+				if (trackIds.includes(track.id)) {
+					return (
+						<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} setPlayPause={setPlayPause} setProg={setProg} />
+					)
+				}
+			});
 
 		// if (currentUser && !currentUser.likedTrackIds) { return null; }
 
@@ -77,7 +82,7 @@ class UserShow extends React.Component {
     //   return null;
 		// }
 	
-		const profileIcon = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg" };
+		const profileIcon = { ["backgroundImage"]:"https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg" };
 		const bannerImg = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/banner.jpeg" };
 
     return (
@@ -130,7 +135,9 @@ class UserShow extends React.Component {
 								<tr>
 									<td className="info-stat">
 										<h3 className="info-stat-title">Tracks</h3>
-										<div className="info-stat-value">{user.trackIds.length}</div>
+										<div className="info-stat-value">
+											{/* {user.trackIds.length} */}
+											</div>
 									</td>
 									<td className="info-stat">
 										<h3 className="info-stat-title">Likes</h3>

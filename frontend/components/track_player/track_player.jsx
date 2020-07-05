@@ -117,17 +117,20 @@ class TrackPlayer extends React.Component{
         linkToUploader: '/#/tracks'
     };} else {
       let liked; 
-      let cTrack = this.props.currentTrack;
-      if (this.props.liked){
-        liked = 'liked-button-t';}else{ liked = 'liked-button';}
+      const { currentTrack, currentUser } = this.props;
+      if (currentUser.likedTrackIds.has(currentTrack.id)) {
+				liked = 'liked-button-t';
+			} else { 
+				liked = 'liked-button';
+			}
       return {
-        trackToPlay: cTrack.audioUrl,
-        trackImage: cTrack.artworkUrl,
-        trackUploader: cTrack.user_id,
-        trackName: cTrack.title,
+        trackToPlay: currentTrack.audioUrl,
+        trackImage: currentTrack.artworkUrl,
+        trackUploader: currentTrack.userEmail,
+        trackName: currentTrack.title,
         likeButton: liked,
-        linkToTrack: `/#/tracks/${cTrack.id}`,
-        linkToUploader: `/#/users/${cTrack.user_id}`
+        linkToTrack: `/tracks/${currentTrack.id}`,
+        linkToUploader: `/users/${currentTrack.user_id}`
       };
     }
   }

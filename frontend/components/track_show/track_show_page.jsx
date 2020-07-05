@@ -17,22 +17,17 @@ class TrackShowPage extends React.Component {
 		this.trackButton = this.trackButton.bind(this);
 		this.userTrackButtons = this.userTrackButtons.bind(this);
 		this.toggleLike = this.toggleLike.bind(this);
+		this.toggleRepost = this.toggleRepost.bind(this);
 		this.deleteTrack = this.deleteTrack.bind(this);
 	}
 	
 	componentDidMount() {
 		this.props.fetchTrack(this.props.match.params.trackId);
-		this.props.fetchCurrentUser(this.props.currentUser.id);
-		this.setState({ 
-			// currentTrack: prevProps.trackId,
-			trackId: this.props.trackId,
-			track: this.props.track,
-			firstLoad: false 
-		});
+		// this.props.fetchCurrentUser(this.props.currentUser.id);
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.match.params.trackId !== prevProps.match.params.trackId) {
+		if (prevProps.match.params.trackId !== this.props.match.params.trackId) {
 			this.props.fetchTrack(this.props.match.params.trackId);
 		}
 
@@ -76,15 +71,17 @@ class TrackShowPage extends React.Component {
 	toggleLike(e) {
 		e.preventDefault();
 		const { track, deleteLike, createLike, currentUser, users } = this.props;
-		console.log("trackshow-toggleLike", "currentUser", currentUser, "track", track);
+		// console.log("trackshow-toggleLike", "currentUser", currentUser, "track", track);
 
 		if (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) {
 			this.props.deleteLike(track.id).then(
-				() => this.props.fetchTrack(track.id)
+				() => this.props.fetchTrack(track.id),
+				this.userTrackButtons()
 			);;
 		} else {
 			this.props.createLike(track.id).then(
-				() => this.props.fetchTrack(track.id)
+				() => this.props.fetchTrack(track.id),
+				this.userTrackButtons()
 			);;
 		}
 	}
@@ -95,11 +92,13 @@ class TrackShowPage extends React.Component {
 
 		if (this.props.currentUser.repostedTrackIds.includes(this.props.track.id)) {
 			deleteRepost(track.id).then(
-				() => this.props.fetchTrack(track.id)
+				() => this.props.fetchTrack(track.id),
+				this.userTrackButtons()
 			);
 		} else {
 			createRepost(track.id).then(
-				() => this.props.fetchTrack(track.id)
+				() => this.props.fetchTrack(track.id),
+				this.userTrackButtons()
 			);
 		}
 	}
@@ -108,6 +107,9 @@ class TrackShowPage extends React.Component {
 		const { track, currentUser, users, trackplayer } = this.props;
 		const likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
 		const repostButton = (currentUser.repostedTrackIds.includes(track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
+		const numLikes = (this.props.track.numLikes);
+		const numReposts = (this.props.track.numReposts);
+		const numComments = (this.props.track.numComments);
 
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
@@ -116,9 +118,9 @@ class TrackShowPage extends React.Component {
 					<div className={`sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>Repost</div>
 					<div className='sound-actions-btn controller-btn delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
 					
-					<div className='track-right-btns like-stat'>{track.numLikes}</div>
-					<div className='track-right-btns repost-stat'>{track.numReposts}</div>
-					<div className='track-right-btns comment-btn'>{track.numComments}</div>
+					<div className='track-right-btns like-stat'>{numLikes}</div>
+					<div className='track-right-btns repost-stat'>{numReposts}</div>
+					<div className='track-right-btns comment-btn'>{numComments}</div>
 				</div>
 			);
 		} else {
@@ -128,9 +130,9 @@ class TrackShowPage extends React.Component {
 					<div className={`track-show sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>Repost</div>
 					
 					{/* <div className='track-show-right-btns'> */}
-						<div className='track-right-btns like-stat'>{track.numLikes}</div>
-						<div className='track-right-btns repost-stat'>{track.numReposts}</div>
-						<div className='track-right-btns comment-btn'>{track.numComments}</div>
+						<div className='track-right-btns like-stat' update>{numLikes}</div>
+						<div className='track-right-btns repost-stat'>{numReposts}</div>
+						<div className='track-right-btns comment-btn'>{numComments}</div>
 					{/* </div> */}
 				</div>
 			);
@@ -141,12 +143,12 @@ class TrackShowPage extends React.Component {
 		const { currentTrack, trackId, tracks, users, trackplayer, comments, comment, loading, currentUser, deleteTrack, track, deleteComment, user} = this.props;
 		// console.log("trackShowPage", "tracks", tracks, "track", track, "comments", comments, "users", users, "user", user, "current", currentUser);
 
-		if (track === undefined) {
+		if (this.props.track === undefined) {
 			return (
 				<div></div>
 			)
 		} else {
-			const user = this.props.users[this.props.track.user_id];
+			let user = this.props.users[this.props.track.user_id];
 			const { comments, track, users } = this.props;
 			let trackComments = (comments).map(comment => (
 				<CommentIndexItem key={comment.id} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} />
@@ -156,8 +158,6 @@ class TrackShowPage extends React.Component {
 				'playing' : 'ts-play';
 			let buttonBar = this.userTrackButtons();
 			
-			if (this.state.firstLoad || loading) return (<div>loading</div>);
-
 			return (
 				<div className='track-show-page'>
 					<div className="track-show-navbar-container">
@@ -192,10 +192,18 @@ class TrackShowPage extends React.Component {
 							<div className='ts-uploader-ci'>
 								<div className='ts-uc-left'>
 									<div className='ts-artist-circle'>
-										<a href={`/#/users/${track.user_id}`}><img src={track.profileImgUrl} /></a>
+										<Link to={`/users/${track.user_id}`}>
+											<img src={track.profileImgUrl} />
+										</Link>
+										{/* <a href={`/#/users/${track.user_id}`}><img src={track.profileImgUrl} /></a> */}
 									</div>
-									<a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a>
-									<div className='ts-artist-stats user-suggestion-tracks'>{user.trackIds.length}</div>
+									<Link to={`/users/${track.user_id}`}>
+										<div className='ts-artist-name'>{track.userEmail}</div>
+									</Link>
+									{/* <a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a> */}
+									<div className='ts-artist-stats user-suggestion-tracks'>
+										{user.trackIds.length}
+									</div>
 								</div>
 								<div className='ts-uc-right'>
 									<div className='ts-track-description'>DESCRIPTION</div>
@@ -218,4 +226,4 @@ class TrackShowPage extends React.Component {
 	}
 }
 
-export default (TrackShowPage);
+export default withRouter(TrackShowPage);

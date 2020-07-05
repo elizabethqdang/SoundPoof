@@ -10,9 +10,8 @@ export const REMOVE_REPOST = "REMOVE_REPOST";
 
 const receiveUser = payload => ({
 	type: RECEIVE_USER,
-	payload
-  // user: payload.user,
-  // tracks: payload.tracks || {}
+	user: payload,
+  tracks: payload.tracks || {}
 });
 
 const receiveUserErrors = errors => ({

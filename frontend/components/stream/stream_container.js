@@ -8,7 +8,7 @@ import { fetchCurrentUser } from "../../actions/session_actions";
 import Stream from "./stream";
 
 const mapStateToProps = state => ({
-	tracks: Object.values(state.entities.tracks) || {},
+	tracks: state.entities.tracks || {},
 	trackplayer: state.trackplayer || {},
 	currentUser: state.session.currentUser || {},
 	// users: Object.values(state.entities.users) || {},

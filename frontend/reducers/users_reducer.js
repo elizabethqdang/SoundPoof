@@ -27,9 +27,10 @@ const usersReducer = (state = initialState, action) => {
 			// return newState;
 		case RECEIVE_USER:
 			// let newState = _.merge({}, state);
-			// newState[action.payload.user.id] = action.payload.user;
-			// newState[action.payload.tracks] = action.payload.tracks;
-			// newState[action.user.id].likedTrackIds = new Set(newState[action.user.id].likedTrackIds);
+			// newState[action.user] = action.user;
+			// newState[action.tracks] = action.tracks;
+			// return newState;
+			// newState[action.user.id].likedTrackIds = new Set(newState[action.user2	.id].likedTrackIds);
 			// newState[action.user.id].commentedTrackIds = new Set(newState[action.user.id].commentedTrackIds);
 			// return newState;
 			// return Object.assign(newState, { [action.payload.user.id]: action.payload.user });
@@ -42,7 +43,7 @@ const usersReducer = (state = initialState, action) => {
 			// 	return {};
 			// } else {
 				// return newState[action.user] = action.payload.user;
-				return Object.assign(newState, action.payload);
+				return Object.assign(newState, action.user);
 
 			// };
 		// case RECEIVE_CURRENT_USER:

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { fetchTrack, fetchAllTracks, deleteTrack, updateTrack } from "../../actions/track_actions";
-import { fetchAllUsers, fetchUser, createLike, deleteLike } from '../../actions/user_actions';
+import { fetchAllUsers, fetchUser, createLike, deleteLike, createRepost, deleteRepost } from '../../actions/user_actions';
 import { fetchCurrentUser } from '../../actions/session_actions';
 import TrackShowPage from './track_show_page';
 import { setCurrentTrack, setPlayPause, setProg, receiveCurrentTrack } from '../../actions/track_player_actions';
@@ -12,20 +12,21 @@ const mapStateToProps = (state, ownProps) => {
 	const track = state.entities.tracks[ownProps.match.params.trackId] || {};
 	return {
 		tracks: state.entities.tracks || {},
-		// trackId: ownProps.match.params.trackId,
+		trackId: ownProps.match.params.trackId,
 		track: state.entities.tracks[ownProps.match.params.trackId],
 		trackplayer: state.trackplayer || {},
 		// trackId: parseInt(match.params.trackId),
 		// currentTrack: state.currentTrack || {},
 		errors: state.errors.tracks || [],
 		currentUser: state.session.currentUser || {},
-		users: state.entities.users,
-		user: state.entities.users[track.user_id] || {},
+		users: state.entities.users || {},
+		user: state.entities.users[track.user_id],
 		// users: Object.values(state.entities.users) || {},
 		loading: state.ui.loading,
 		// currentTrack: state.entities.tracks[state.ui.currentTrack.id],
 		// playing: state.ui.currentTrack.playing,
 		comments: Object.values(state.entities.comments) || {},
+
 	};
 };
 
@@ -47,6 +48,8 @@ const mapDispatchToProps = dispatch => ({
 	updateTrack: (track, id) => dispatch(updateTrack(track, id)),
 	createLike: (trackId) => dispatch(createLike(trackId)),
 	deleteLike: (trackId) => dispatch(deleteLike(trackId)),
+	createRepost: (trackId) => dispatch(createRepost(trackId)),
+	deleteRepost: (trackId) => dispatch(deleteRepost(trackId)),
 	deleteComment: (trackId, commentId) => dispatch(deleteComment(trackId, commentId))
 });
 
