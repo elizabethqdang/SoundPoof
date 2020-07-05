@@ -32,9 +32,9 @@ export const receiveTrackErrors = errors => ({
 
 export const receiveSingleTrack = payload => ({
 	type: RECEIVE_SINGLE_TRACK,
-	payload
-	// user: payload.track.user_id,
-	// track: payload.track
+	// payload,
+	comments: payload.comments,
+	track: payload.track
 })
 
 export const requestTrackFetch = () => ({
@@ -59,7 +59,7 @@ export const fetchTrack = trackId => dispatch => {
 	dispatch(requestTrackFetch());
 	return TrackAPIUtil.fetchTrack(trackId).then(payload => {
 		dispatch(receiveSingleTrack(payload));
-		return payload;
+		return payload.track;
 	}, errors => {
 		dispatch(receiveTrackErrors(errors.responseJSON));
 		return errors;

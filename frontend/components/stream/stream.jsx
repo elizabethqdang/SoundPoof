@@ -21,16 +21,24 @@ class Stream extends React.Component {
 		this.props.fetchCurrentUser(this.props.currentUser.id);
 	}
 
-	// componentDidUpdate(newState) {
-		// this.setState({ tracks: newState.tracks, users: newState.users }); 
+	// componentDidUpdate(prevProps) {
+	// 	this.setState({ 
+	// 		tracks: prevProps.tracks, 
+	// 		users: prevProps.users
+	// 	}); 
 	// }
 
 	render() {
-		const { tracks, users, errors, user, currentUser, setPlayPause, setProg } = this.props;
+		const { users, errors, user, currentUser, setPlayPause, setProg } = this.props;
+		let tracks = Object.values(this.props.tracks);
 
-		let stream = (this.props.tracks).map(track => (
-			<TrackIndexItem key={track.id} track={track} currentUser={this.props.currentUser || null} users={users} tracks={tracks} setPlayPause={setPlayPause} setProg={setProg} />
+		let stream = ((tracks)).map(track => (
+			<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} tracks={tracks} setPlayPause={setPlayPause} setProg={setProg} />
 		));
+
+		let streamSidebar = (
+			<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} />
+		);
 
 		return (
 			<div className="stream-page-container">
@@ -56,7 +64,8 @@ class Stream extends React.Component {
 						<div className="sidebar-ad-container">
 							<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src="" /></a>
 						</div>
-						<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} />
+								{streamSidebar}
+						{/* <StreamSidebar users={users} currentUser={currentUser || null} tracks={this.props.tracks} /> */}
 					</div>
 				</main>
 			</div>

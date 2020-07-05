@@ -19,4 +19,10 @@ json.reposterIds track.reposts.pluck(:user_id)
 
 # json.userId track.user.id
 json.profileUrl asset_path(track.user.profile.url)
-json.profileImgUrl url_for(track.user.profile_image)
+# json.profileImgUrl url_for(track.user.profile_image)
+
+if track.user.profile_image.attached?
+		json.profileImgUrl url_for(track.user.profile_image)
+else
+		json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
+end
