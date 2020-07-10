@@ -1,4 +1,5 @@
 import { fetchUser, updateUser, createLike, deleteLike } from "../../actions/user_actions";
+import { fetchAllTracks } from "../../actions/track_actions";
 import { connect } from "react-redux";
 import { withRouter, Route } from "react-router-dom";
 import UserShow from "./user_show";
@@ -8,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
 	const userId = ownProps.match.params.userId;
 	const currentUserId = ((state.session.currentUser) ? state.session.currentUser.id : null);
 	const users = state.entities.users || {};
-	const user = state.entities.users[ownProps.match.params.userId];
+	const user = state.entities.users[ownProps.match.params.userId] || {};
 	const tracks = state.entities.tracks || {};
 	console.log(user);
 
@@ -19,7 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 		userId: ownProps.match.params.userId,
 		// user: state.entities.users[userId],
 		// userId: ownProps.match.params.id,
-		tracks: Object.values(state.entities.tracks) || {},
+		tracks: (state.entities.tracks) || {},
 		// userTracks: user.tracks || {},
 		// users: state.entities.users || {},
 		// tracks: user.tracks || {},
@@ -29,6 +30,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	fetchUser: (userId) => dispatch(fetchUser(userId)),
+	fetchAllTracks: () => dispatch(fetchAllTracks()),
 	updateUser: (formData) => dispatch(updateUser(ownProps.match.params.id, formData)),
 	setCurrentTrack: (track) => dispatch(setCurrentTrack(track)),
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),
@@ -37,4 +39,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	deleteLike: (trackId) => dispatch(deleteLike(trackId)),
 });
 
-export default (connect)(mapStateToProps, mapDispatchToProps)(UserShow);
+export default connect(mapStateToProps, mapDispatchToProps)(UserShow);

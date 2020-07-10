@@ -78,8 +78,8 @@ class Splash extends React.Component {
 									<img src='https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+8.26.54+PM.png' />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title'>Ty Dolla $ign - Blasé (Louis The Child Remix)</p>
-									<p className='trending-track artist'>Louis The Child</p>
+									<p className='trending-track title truncate'>Ty Dolla $ign - Blasé (Louis The Child Remix)</p>
+									<p className='trending-track artist truncate'>Louis The Child</p>
 								</div>
 							</li>
 						</a>
@@ -90,8 +90,8 @@ class Splash extends React.Component {
 									<img src="https://soundpoof.s3-us-west-2.amazonaws.com/tracks/neverbelikeyou.png" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title'>Never Be Like You</p>
-									<p className='trending-track artist'>Flume</p>
+									<p className='trending-track title truncate'>Never Be Like You</p>
+									<p className='trending-track artist truncate'>Flume</p>
 								</div>
 							</li>
 						</a>
@@ -102,8 +102,8 @@ class Splash extends React.Component {
 									<img src="" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title'> </p>
-									<p className='trending-track artist'> </p>
+									<p className='trending-track title truncate'> </p>
+									<p className='trending-track artist truncate'> </p>
 								</div>
 							</li>
 						</a>
@@ -114,7 +114,7 @@ class Splash extends React.Component {
 									<img src="" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title'> </p>
+									<p className='trending-track title truncate'> </p>
 									<p className='trending-track artist'> </p>
 								</div>
 							</li>
@@ -138,19 +138,21 @@ class Splash extends React.Component {
 									<img src="" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title'> </p>
+									<p className='trending-track title truncate'> </p>
 									<p className='trending-track artist'> </p>
 								</div>
 							</li>
 						</a>
+					</ul>
 {/* 7 */}
+					<ul className='splash-trending'>
 						<a className='trending-track-item-container' href="/#/signup">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
 									<img src="" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title'> </p>
+									<p className='trending-track title truncate'> </p>
 									<p className='trending-track artist'> </p>
 								</div>
 							</li>
@@ -162,7 +164,7 @@ class Splash extends React.Component {
 									<img src="" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title'> </p>
+									<p className='trending-track title truncate'> </p>
 									<p className='trending-track artist'> </p>
 								</div>
 							</li>

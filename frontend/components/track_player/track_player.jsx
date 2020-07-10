@@ -118,7 +118,7 @@ class TrackPlayer extends React.Component{
     };} else {
       let liked; 
       const { currentTrack, currentUser } = this.props;
-      if (currentUser.likedTrackIds.has(currentTrack.id)) {
+      if (currentUser && currentUser.likedTrackIds.includes(currentTrack.id)) {
 				liked = 'liked-button-t';
 			} else { 
 				liked = 'liked-button';
@@ -140,7 +140,7 @@ class TrackPlayer extends React.Component{
 			const { track, deleteLike, createLike, currentUser, users } = this.props;
 			const user = users[currentUser.id];
 
-			if (user.likedTrackIds.has(track.id)) {
+			if (currentUser.likedTrackIds.has(track.id)) {
 				deleteLike(track.id);
 			} else {
 				createLike(track.id);

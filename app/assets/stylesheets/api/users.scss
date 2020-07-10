@@ -24,7 +24,7 @@
 	// .usershow-banner-img {
 		width: 100%;
 		background-image: url('https:;//soundpoof.s3-us-west-2.amazonaws.com/tracks/banner.jpeg');
-		// background-image: linear-gradient(135deg, #70929c, #8e8485);
+		background: linear-gradient(315deg, rgb(231, 226, 223) 0%, rgb(145, 110, 107) 100%);
 		background-color: #666;
 		background-size: cover;
 		background-position: top left;
@@ -98,7 +98,7 @@
 		display: inline-flexbox;
 		width: 100%;
 		height: 46px;
-		border: 1px solid #CCC;
+		// border: 1px solid #CCC;
 	}
 
 
@@ -106,24 +106,51 @@
 			display: flex;
 			flex-flow: row nowrap;
 			width: 100%;
-			justify-content: space-around;
+			justify-content: space-between;
 			background: #f2f2f2;
 			padding-bottom: 50px;
+			position: relative;
 
 			.usershow-stream-container {
-				flex-basis: 4;
+				flex-basis: auto;
 				float: left;
 				// border: 1px solid #ccc;
 				max-width:  819px;
 				padding: 0 20px 0 0;
+				width: 580px;
+				display: inline-block;
+
+				div.track-item-container {
+					width: 100%;
+
+					.track-item-container {
+						width: 100%;
+					}
+				}
 			}
 
 			.usershow-sidebar-container {
-				flex-basis: 2;
-				float: right;
+				// flex-basis: 2;
 				border-left: 1px solid #ccc;
 				width: 300px;
 				padding-left: 15px;
+				display: flex;
+				// position: absolute;
+				float: right;
+
+				.ad-container {
+					width: 100%;
+					display: flex;
+
+					table.user-info-stats-table {
+						width: 100%;
+						margin-top: 0;
+					}
+				}
+
+				UserSidebar {
+					display: inline-block;
+				}
 			}
 	}
 
@@ -197,16 +224,30 @@
   visibility: visible;
 }
 
-.user-header-details-avatar {
+.user-updateImage-btn {
   margin-right: 30px;
   float: left;
-  height: 200px;
+  height: 26px;
   width: 200px;
   text-align: center;
-  position: relative;
-  border-radius: 50%;
+  position: absolute;
+  border-radius: 3px;
   cursor: pointer;
-  background: 0 0;
+	background: 0 0;
+	z-index: 1000;
+	opacity: 1;
+	border: 1px solid rgba(0,0,0,.1);
+	color: #333;
+	font-size: 14px;
+	line-height: 20px;
+	text-indent: 19px;
+	background-image: image-url('camera.svg') 0 0 no-repeat;
+	background-size: 15px 12px;
+	background-color: hsla(0,0%,100%,.8);
+	transition: background-color .2s ease-in-out,border-color .2s ease-in-out;
+	vertical-align: baseline;
+	box-sizing: border-box;
+	bottom: 26px;
 }
 
 

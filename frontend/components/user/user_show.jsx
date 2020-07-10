@@ -11,6 +11,7 @@ class UserShow extends React.Component {
 		// this.fetched = false;
 		this.handleToggleLike = this.handleToggleLike.bind(this);
 		this.updateImage = this.updateImage.bind(this);
+		this.updateImageBtn = this.updateImageBtn.bind(this);
   }
 
   componentDidMount() {
@@ -41,11 +42,6 @@ class UserShow extends React.Component {
 		const { track, deleteLike, createLike } = this.props;
 		const currentUser = this.currentUser();
 
-		if (!currentUser) {
-			this.props.history.push('/login');
-			return;
-		}
-
 		if (currentUser.likedTrackIds.includes(track.id)) {
 			deleteLike(track.id);
 		} else {
@@ -53,19 +49,31 @@ class UserShow extends React.Component {
 		}
 	}
 
+	updateImageBtn() {
+		if (this.props.user.id === this.props.currentUser.id) {
+			return (
+				<div className="user-updateImage-btn" onChange={this.updateImage}>
+					Update Image
+				</div>
+			);
+		}
+	}
+
   render() {
 		const { user, users, track, tracks, currentUser, trackplayer, setPlayPause, userTracks} = this.props;
-		// console.log("user", user, "users", users, "currentUser", currentUser, "track", track, "tracks", tracks);
-		console.log("tracks", tracks);
+		console.log(user.id, currentUser.id)
 
 		if (this.props.user === undefined) {
+			console.log("this.props.user", this.props.user);
 			return (
 				<div></div>
 			)
 		} else {
 			const { user, tracks, userTracks, track, users, createLike, deleteLike, currentUser, setPlayPause, setProg } = this.props;
 			let trackIds = this.props.user.trackIds;
-			let userStream = (this.props.tracks).map(track => {
+			// console.log("tracks", tracks);
+
+			let userStream = Object.values(tracks).map(track => {
 				if (trackIds.includes(track.id)) {
 					return (
 						<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} setPlayPause={setPlayPause} setProg={setProg} />
@@ -73,14 +81,8 @@ class UserShow extends React.Component {
 				}
 			});
 
-		// if (currentUser && !currentUser.likedTrackIds) { return null; }
-
 		// const likeActive = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'active' : '');
 		// const likeText = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'Liked' : 'Like');
-
-    // if (!this.fetched) {
-    //   return null;
-		// }
 	
 		const profileIcon = { ["backgroundImage"]:"https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg" };
 		const bannerImg = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/banner.jpeg" };
@@ -94,15 +96,15 @@ class UserShow extends React.Component {
 
 					<div className="usershow-profile-container">
 						<div className="usershow-profile-img">
-								<img src={user.profileImgUrl ? user.profileImgUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"} className="usershow-profile-img" />
-								<div className="user-header-details-avatar-btn" onClick={this.updateImage}>Edit Profile Image</div>
+							<img src={user.profileImgUrl ? user.profileImgUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"} className="usershow-profile-img" />
+							{this.updateImageBtn()}
 						</div>
 						<div className="usershow-profile-txt">
 							<div className="usershow-username">{this.props.user.email}</div>
 							<div className="usershow-location">{this.props.user.location || "Location"}</div>
 						</div>
+					</div>
 				</div>
-			</div>
 
 				<div className="usershow-btn-bar-container">
 					<ul className="user-info-tabs">
@@ -126,9 +128,9 @@ class UserShow extends React.Component {
 					<div className="usershow-sidebar-container">
 							{/* <StreamSidebar /> */}
 							{/* <div className='tscb-sidebar'> */}
-								<div className="ad-container">
-									<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src={this.props.currentUser.profileImgUrl} /></a>
-								</div>
+						<div className="ad-container">
+							{/* <a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src={this.props.currentUser.profileImgUrl} /></a> */}
+						{/* </div> */}
 
 						<table className="user-info-stats-table">
 							<tbody>
@@ -136,7 +138,7 @@ class UserShow extends React.Component {
 									<td className="info-stat">
 										<h3 className="info-stat-title">Tracks</h3>
 										<div className="info-stat-value">
-											{/* {user.trackIds.length} */}
+											{user.trackIds.length}
 											</div>
 									</td>
 									<td className="info-stat">
@@ -150,8 +152,10 @@ class UserShow extends React.Component {
 								</tr>
 							</tbody>
 						</table>
-
+						</div>
+					
 						<UserSidebar currentUser={currentUser || null} likedTrackIds={user.likedTrackIds} user={user || {}} users={users}/>
+
 						</div>
 					</div>
 				</div>
