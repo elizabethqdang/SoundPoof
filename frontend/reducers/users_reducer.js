@@ -7,8 +7,8 @@ const initialState = {};
 
 const usersReducer = (state = initialState, action) => {
 	Object.freeze(state);
-	// let newState = {};
-	let newState = Object.assign({}, state);
+	let newState = {};
+	// let newState = Object.assign({}, state);
 
 	switch (action.type) {
 			// if (action.doNotReplace) {
@@ -30,7 +30,12 @@ const usersReducer = (state = initialState, action) => {
 			// newState[action.user] = action.user;
 			// newState[action.tracks] = action.tracks;
 			// return newState;
-			// newState[action.user.id].likedTrackIds = new Set(newState[action.user2	.id].likedTrackIds);
+			// newState[action.user.id].trackIds = new Set(newState[action.user.id].trackIds);
+			// newState[action.user.id].likedTrackIds = new Set(newState[action.user.id].likedTrackIds);
+			newState = { [action.user.id]: action.user };
+			// newState = { [action.track.id]: action.track };
+			return Object.assign({}, state, newState);  
+			// return newState;
 			// newState[action.user.id].commentedTrackIds = new Set(newState[action.user.id].commentedTrackIds);
 			// return newState;
 			// return Object.assign(newState, { [action.payload.user.id]: action.payload.user });
@@ -43,7 +48,7 @@ const usersReducer = (state = initialState, action) => {
 			// 	return {};
 			// } else {
 				// return newState[action.user] = action.payload.user;
-				return Object.assign(newState, action.user);
+				// return Object.assign(newState, action.user);
 
 			// };
 		// case RECEIVE_CURRENT_USER:

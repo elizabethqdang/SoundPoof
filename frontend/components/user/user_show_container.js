@@ -20,7 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 		userId: ownProps.match.params.userId,
 		// user: state.entities.users[userId],
 		// userId: ownProps.match.params.id,
-		tracks: (state.entities.tracks) || {},
+		tracks: (state.entities.tracks),
 		// userTracks: user.tracks || {},
 		// users: state.entities.users || {},
 		// tracks: user.tracks || {},
