@@ -8,6 +8,7 @@ class TrackSearchResult extends React.Component {
 	}
 
 	showTrack() {
+		window.location.hash = '/tracks/${this.props.track.id}'
 	}
 
 	showUser() {

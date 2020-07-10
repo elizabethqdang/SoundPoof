@@ -74,7 +74,7 @@ class SignupForm extends React.Component {
 
 	render() {
 		let error = ((this.props.errors && this.props.errors.length > 0) ? 'error' : '');
-		let errors = this.renderErrors();
+		// let errors = this.renderErrors();
 		
 		return (
 			<div className="session-form-container">

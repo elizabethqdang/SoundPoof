@@ -15,13 +15,17 @@ class StreamSidebar extends React.Component {
   }
 	
 	followItem() {
-		let randomIdx = Math.floor(Math.random() * this.state.users.length);
-		let users = (this.state.users.slice(randomIdx, randomIdx + 3) || {});
-
+		let randomIdx = Math.floor(Math.random() * this.props.users.length);
+		let users = (this.props.users && this.props.users.length > 0 ? (this.props.users.slice(randomIdx, randomIdx + 3)) : {});
+		
+		if (users && users.length > 0) {
 		return (
 			(users).map((user, idx) => {
-			return <StreamSidebarFollowItem id={user.id} key={idx} user={user} currentUser={this.props.currentUser} toggleFollow={(e) => this.toggleFollow(e, user)} createFollow={this.props.createFollow} deleteFollow={this.props.deleteFollow} trackplayer={this.props.trackplayer || {}} />
+			return (
+				<StreamSidebarFollowItem id={user.id} key={idx} user={user} currentUser={this.props.currentUser} toggleFollow={(e) => this.toggleFollow(e, user)} createFollow={this.props.createFollow} deleteFollow={this.props.deleteFollow} trackplayer={this.props.trackplayer || {}} />
+			)
 		}))
+	}
 	}
 
 	likeItem() {
@@ -63,7 +67,9 @@ class StreamSidebar extends React.Component {
 	}
 
   render() {
-		const {users, currentUser, tracks, track, cLikedTracks, cLikedTrackIds} = this.props;
+	debugger
+		const { currentUser, tracks, track, cLikedTracks, cLikedTrackIds} = this.props;
+		let followItem = this.followItem();
 		// const user = this.props.currentUser;
 		// console.log("user", user, "users", users, "currentUser", currentUser);
 		// let ranNum = Math.floor(Math.random() * this.state.users.length);
@@ -84,7 +90,7 @@ class StreamSidebar extends React.Component {
 
 					<div className="sidebar-content">
 						<ul className="sidebar-list">
-							{this.followItem}
+							{followItem}
 
 						{/* {
 							(users).map((user, idx) => {

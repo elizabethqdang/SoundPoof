@@ -20,13 +20,14 @@ class UserSidebar extends React.Component {
 	}
 
   render() {
+		debugger
 		const {users, currentUser, tracks, track, user} = this.props;
-		let followingIds = (this.props.user.followingIds).slice(0, 3);
-		let likedTrackIds = (this.props.user.likedTrackIds).slice(0, 3);
-		let repostedTrackIds = (this.props.user.repostedTrackIds).slice(0, 3);
-		let numLikes = user.likedTrackIds.length;
-		let numReposts = user.repostedTrackIds.length;
-		let numFollowing = user.followingIds.length;
+		let followingIds = (user.followingIds ? (user.followingIds).slice(0, 3) : []);
+		let likedTrackIds = (user.likedTrackIds ? (user.likedTrackIds).slice(0, 3) : []);
+		let repostedTrackIds = (user.repostedTrackIds > 0 ? (user.repostedTrackIds).slice(0, 3) : []);
+		let numLikes = (user.likedTrackIds ? likedTrackIds.length : "0");
+		let numReposts = (user.repostedTrackIds ? repostedTrackIds.length : "0");
+		let numFollowing = (user.followingIds ? followingIds.length : "0");
 
 		let userSidebar = Object.values(tracks).map((track, idx) => {
 			if (likedTrackIds.includes(track.id)) {

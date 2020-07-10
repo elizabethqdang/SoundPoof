@@ -24,7 +24,6 @@ class TrackShowPage extends React.Component {
 		this.toggleFollow = this.toggleFollow.bind(this);
 		this.userFollowBtn = this.userFollowBtn.bind(this);
 	}
-	
 	componentDidMount() {
 		let trackId = this.props.match.params.trackId;
 		this.props.fetchTrack(trackId);
@@ -32,6 +31,7 @@ class TrackShowPage extends React.Component {
 	}
 		
 	componentDidUpdate(prevProps) {
+		debugger
 		// const trackId = this.props.trackId;
 		if (prevProps.match.params.trackId !== this.props.match.params.trackId) {
 			this.props.fetchTrack(this.props.match.params.trackId);

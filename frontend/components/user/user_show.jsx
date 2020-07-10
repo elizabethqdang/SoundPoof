@@ -137,12 +137,12 @@ class UserShow extends React.Component {
 			let stream;
 			let trackIds = (this.props.user.trackIds);
 			let likedTrackIds = this.props.user.likedTrackIds;
+			let repostedTrackIds = (user.repostedTrackIds ? user.repostedTrackIds : "0");
 			let editProfile = this.updateImageBtn();
 			let numFollowing = (user && user.numFollowing ? user.numFollowing : "0");
-
 			if (this.state.trackStream) {
 				stream = (Object.values(tracks).map((track, idx) => {
-					if (trackIds.includes(track.id)) {
+					if (trackIds && trackIds.includes(track.id)) {
 						return (
 							<UserTrackItem id={track.id} key={idx} track={track} currentUser={currentUser || {}} users={users} user={user} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} seekWaveForm={seekWaveForm} seekTrack={seekTrack} seekPlayer={seekPlayer} setTrackPlayer={setTrackPlayer} trackplayer={trackplayer || {}} />
 						)
@@ -171,16 +171,16 @@ class UserShow extends React.Component {
 			)}
 
 			let userSidebar = (Object.values(tracks)).slice(0,3).map(track => {
-				if (likedTrackIds.includes(track.id)) {
+				if (likedTrackIds > 0 && likedTrackIds.includes(track.id)) {
 					return (
 						<UserSidebar currentUser={currentUser || {}} tracks={tracks} user={user || {}} users={users} trackplayer={trackplayer || {}} />
 					)
 				}
 			});
 
-		const followActive = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'followed active' : 'user-follow-btn');
+		const followActive = ((currentUser.id !== user.id && currentUser.followingIds.includes(user.id)) ? 'followed active' : 'user-follow-btn');
 		const followText = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'Following' : 'Follow');
-	
+
     return (
       <div className="usershow-container">
 				{/* <NavbarContainer currentUser={currentUser || {}} /> */}
@@ -224,23 +224,22 @@ class UserShow extends React.Component {
 					<div className="usershow-sidebar-container">
 						<div className="ad-container">
 						{/* </div> */}
-
 						<table className="user-info-stats-table">
 							<tbody>
 								<tr>
 									<td className="info-stat">
 										<h3 className="info-stat-title">Tracks</h3>
 										<div className="info-stat-value">
-											{user.trackIds.length}
+											{user.trackIds ? user.trackIds.length : "0"}
 											</div>
 									</td>
 									<td className="info-stat">
 										<h3 className="info-stat-title">Likes</h3>
-										<div className="info-stat-value">{user.likedTrackIds.length}</div>
+										<div className="info-stat-value">{likedTrackIds > 0 ? likedTrackIds.length : ""}</div>
 									</td>
 									<td className="info-stat">
 										<h3 className="info-stat-title">Reposts</h3>
-										<div className="info-stat-value">{user.repostedTrackIds.length}</div>
+										<div className="info-stat-value">{user.repostedTrackId ? repostedTrackId.length : "0"}</div>
 									</td>
 								</tr>
 							</tbody>

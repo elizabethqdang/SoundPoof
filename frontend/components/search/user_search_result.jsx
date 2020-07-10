@@ -13,6 +13,7 @@ class UserSearchResult extends React.Component {
 	}
 
 	userSearchResult() {
+		window.location.hash = '/users/${this.props.user.id}'
 	}
 
 	render() {
