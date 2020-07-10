@@ -9,6 +9,8 @@ const _initialState = {
 		email: "Demo-User", 
 		password: "password",
 		repostedTrackIds: [],
+		likedTrackIds: [],
+		followingIds: []
 	}
 };
 
@@ -22,8 +24,9 @@ const usersReducer = (state = _initialState, action) => {
 			newState.user = action.user;
 			return newState;
 		case RECEIVE_SINGLE_USER:
-			newState = _.merge({}, state);
-			newState.user = action.user;
+			// newState = _.merge({}, state);
+			// newState.user = action.user;
+			return Object.assign({}, state, {[user]: action.user});
 		case RECEIVE_ALL_USERS:
 			return Object.assign({}, state, action.users);
 		default:
