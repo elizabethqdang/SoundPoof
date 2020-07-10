@@ -11,6 +11,7 @@ const mapStateToProps = (state, ownProps) => ({
 	seek: state.trackplayer.seek,
 	player: state.trackplayer.player,
 	trackplayer: state.trackplayer,
+	currentUser: state.session.currentUser || {}
 });
 
 const mapDispatchToProps = (dispatch) => ({

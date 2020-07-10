@@ -5,9 +5,9 @@
 	justify-content: center;
 	min-width: 960px;
 	width: 1180px;
-	padding: 0 30px;
+	// padding: 0 30px;
 	margin: 0 auto;
-	overflow: scroll;
+	// overflow: scroll;
 }
 .splash-header {
 	display: flex;
@@ -32,7 +32,13 @@
 	// margin: 0 auto;
 	// width: 91.75vw;
 	// max-width: 1240px;
-	border-top: 4px solid orange;
+	border-top: 4px solid #f50;
+	top: -46px;
+	margin-left: -30px;
+	margin-right: -30px;
+	box-sizing: border-box;
+	box-shadow: inset 0 120px 40px -40px rgba(5,5,5,.5);
+	background-color: #666;
 
 }
 
@@ -250,8 +256,8 @@
 
 
 #splashbottom {
-  width: 91.75vw;
-  max-width: 1240px;
+  width: 100%;
+  max-width: 1180px;
   padding-top: 46px;
   background: #fff;
   min-width: 960px;
@@ -269,10 +275,10 @@
 
 .splash-trending{
   list-style: none;
-  margin: 0 5px;
+  // margin: 0 5px;
   display: flex;
-  margin-left: 5px;
-  flex-wrap: wrap;
+	flex-wrap: nowrap;
+	width: 100%;
 }
 
 .trending-track-item {
@@ -316,11 +322,13 @@
 }
 
 .title {
-  color: gray;
+	color: gray;
+	width: 180px;
 }
 .artist {
   color: cloud-gray;
-  padding-top: 3px;
+	padding-top: 3px;
+	width: 180px;
 }
 
 .splash-title {

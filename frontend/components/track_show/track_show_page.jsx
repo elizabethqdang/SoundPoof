@@ -12,7 +12,7 @@ class TrackShowPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			firstload: true,
+			// firstload: true,
 		};
 		this.trackButton = this.trackButton.bind(this);
 		this.userTrackButtons = this.userTrackButtons.bind(this);
@@ -71,7 +71,6 @@ class TrackShowPage extends React.Component {
 	toggleLike(e) {
 		e.preventDefault();
 		const { track, deleteLike, createLike, currentUser, users } = this.props;
-		// console.log("trackshow-toggleLike", "currentUser", currentUser, "track", track);
 
 		if (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) {
 			this.props.deleteLike(track.id).then(
@@ -141,7 +140,6 @@ class TrackShowPage extends React.Component {
 
 	render() {
 		const { currentTrack, trackId, tracks, users, trackplayer, comments, comment, loading, currentUser, deleteTrack, track, deleteComment, user} = this.props;
-		// console.log("trackShowPage", "tracks", tracks, "track", track, "comments", comments, "users", users, "user", user, "current", currentUser);
 
 		if (this.props.track === undefined) {
 			return (
@@ -150,6 +148,7 @@ class TrackShowPage extends React.Component {
 		} else {
 			let user = this.props.users[this.props.track.user_id];
 			const { comments, track, users } = this.props;
+			console.log("comments", comments)
 			let trackComments = (comments).map(comment => (
 				<CommentIndexItem key={comment.id} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} />
 			));
