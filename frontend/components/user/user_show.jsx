@@ -15,7 +15,8 @@ class UserShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUser(this.props.match.params.userId);
+		this.props.fetchUser(this.props.match.params.userId);
+		this.props.fetchAllTracks();
 		// this.fetched = true;
   }
 
@@ -61,7 +62,7 @@ class UserShow extends React.Component {
 
   render() {
 		const { user, users, track, tracks, currentUser, trackplayer, setPlayPause, userTracks} = this.props;
-		console.log(user.id, currentUser.id)
+		// console.log(user.id, currentUser.id)
 
 		if (this.props.user === undefined) {
 			console.log("this.props.user", this.props.user);
@@ -71,12 +72,21 @@ class UserShow extends React.Component {
 		} else {
 			const { user, tracks, userTracks, track, users, createLike, deleteLike, currentUser, setPlayPause, setProg } = this.props;
 			let trackIds = this.props.user.trackIds;
+			let likedTrackIds = this.props.user.likedTrackIds;
 			// console.log("tracks", tracks);
 
 			let userStream = Object.values(tracks).map(track => {
 				if (trackIds.includes(track.id)) {
 					return (
 						<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} setPlayPause={setPlayPause} setProg={setProg} />
+					)
+				}
+			});
+
+			let userSidebar = (Object.values(tracks)).slice(0,3).map(track => {
+				if (likedTrackIds.includes(track.id)) {
+					return (
+						<UserSidebar currentUser={currentUser || null} tracks={tracks} user={user || {}} users={users} />
 					)
 				}
 			});
@@ -92,7 +102,7 @@ class UserShow extends React.Component {
 				<NavbarContainer />
 
       	<div className="usershow-header-container">
-					{/* <div className="usershow-banner-img" style={bannerImg}></div> */}
+					<div className="usershow-banner-img"></div>
 
 					<div className="usershow-profile-container">
 						<div className="usershow-profile-img">
@@ -126,10 +136,7 @@ class UserShow extends React.Component {
 							{userStream}
 					</div>
 					<div className="usershow-sidebar-container">
-							{/* <StreamSidebar /> */}
-							{/* <div className='tscb-sidebar'> */}
 						<div className="ad-container">
-							{/* <a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src={this.props.currentUser.profileImgUrl} /></a> */}
 						{/* </div> */}
 
 						<table className="user-info-stats-table">
@@ -153,9 +160,9 @@ class UserShow extends React.Component {
 							</tbody>
 						</table>
 						</div>
-					
-						<UserSidebar currentUser={currentUser || null} likedTrackIds={user.likedTrackIds} user={user || {}} users={users}/>
-
+						{/* {userSidebar} */}
+						<UserSidebar currentUser={currentUser || null} tracks={tracks} user={user || {}} users={users}/>
+{/* </div> */}
 						</div>
 					</div>
 				</div>

@@ -173,10 +173,10 @@ const mapStateToProps = (state) => {
 		return id;
 		// return tracks[id];
 	})
-	console.log("currentUser", currentUser);
-	console.log("cLikedTrackIds", cLikedTrackIds);
+	// console.log("currentUser", currentUser);
+	// console.log("cLikedTrackIds", cLikedTrackIds);
 	// console.log("tracks", tracks);
-	console.log("cLikedTracks", cLikedTracks);
+	// console.log("cLikedTracks", cLikedTracks);
 
 	return {
 		currentUser,

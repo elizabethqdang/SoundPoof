@@ -115,7 +115,7 @@ class TrackShowPage extends React.Component {
 				<div className='track-show-button-bar'>
 					<div className={`sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>Like</div>
 					<div className={`sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>Repost</div>
-					<div className='sound-actions-btn controller-btn delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
+					<div className='sound-actions-btn controller-btn action-delete delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
 					
 					<div className='track-right-btns like-stat'>{numLikes}</div>
 					<div className='track-right-btns repost-stat'>{numReposts}</div>
@@ -149,7 +149,7 @@ class TrackShowPage extends React.Component {
 			let user = this.props.users[this.props.track.user_id];
 			const { comments, track, users } = this.props;
 			console.log("comments", comments)
-			let trackComments = (comments).map(comment => (
+			let trackComments = (this.props.comments).map(comment => (
 				<CommentIndexItem key={comment.id} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} />
 			));
 			let commentLength = comments.length === 1 ? "1 Comment" : `${comments.length} Comments`;

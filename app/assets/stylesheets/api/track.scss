@@ -334,6 +334,16 @@
   background-size: 16px 16px;
 }
 
+.action-delete:before {
+	-webkit-mask-position: 50% 50%;
+  background-color: black;
+  -webkit-mask-image: image-url('delete-icon.svg');
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 16px 16px;
+}
+
 
 
 

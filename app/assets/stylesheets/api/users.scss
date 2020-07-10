@@ -8,30 +8,34 @@
 	justify-content: flex-start;
 	align-items: middle;
 	width: 1240px;
-	padding: 0 20px 0;
+	// padding: 0 20px 0;
 	margin: 0 auto;
 	height: fit-content;
+	// overflow-x: scroll;
+
 }
 
 .usershow-header-container {
 	display: inline-flexbox;
-	width: 100%;
+	// width: 100%;
+	width: 1240px;
 	height: 260px;
 	box-sizing: border-box;
-	overflow: hidden;
+	overflow: visible;
 	position: relative;
+	margin-left: -30px;
+	margin-right: -30px;
 
-	// .usershow-banner-img {
-		width: 100%;
-		background-image: url('https:;//soundpoof.s3-us-west-2.amazonaws.com/tracks/banner.jpeg');
+	// > .usershow-banner-img {
+		background-image: url('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/banner.jpeg') 0 0 no-repeat;
 		background: linear-gradient(315deg, rgb(231, 226, 223) 0%, rgb(145, 110, 107) 100%);
 		background-color: #666;
-		background-size: cover;
+		background-size: 1240px 260px;
 		background-position: top left;
 		background-repeat: no-repeat;
 		opacity: 1;
 		transition: opacity 0.2s linear;
-		color: transparent;
+		// color: transparent;
 	// }
 }
 
@@ -40,11 +44,13 @@
 	flex-flow: row;
 	justify-content: flex-start;
 	padding: 30px;
+	position: relative;
+	overflow-x: scroll;
 
 	.usershow-profile-img {
 		height: 200px;
 		width: 200px;
-		margin-right: 30px;
+		// margin-right: 30px;
 		// background-image: url("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg");
 		background-color: linear-gradient(135deg, #70929c, #8e8485);
 		color: transparent;
@@ -110,6 +116,7 @@
 			background: #f2f2f2;
 			padding-bottom: 50px;
 			position: relative;
+			overflow-x: visible;
 
 			.usershow-stream-container {
 				flex-basis: auto;
@@ -117,14 +124,18 @@
 				// border: 1px solid #ccc;
 				max-width:  819px;
 				padding: 0 20px 0 0;
-				width: 580px;
+				max-width: 850px;
+				width: 100%;
 				display: inline-block;
+				overflow-x: visible;
 
 				div.track-item-container {
 					width: 100%;
+					overflow-x: visible;
 
 					.track-item-container {
 						width: 100%;
+						overflow-x: visible;
 					}
 				}
 			}
@@ -137,10 +148,12 @@
 				display: flex;
 				// position: absolute;
 				float: right;
+				flex-flow: column;
 
 				.ad-container {
 					width: 100%;
 					display: flex;
+					margin: 0 0 30px;
 
 					table.user-info-stats-table {
 						width: 100%;
