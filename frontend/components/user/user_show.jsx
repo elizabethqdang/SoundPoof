@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 import NavbarContainer from '../navbar/navbar_container';
 import TrackIndexItem from '../track_index/track_index_item';
@@ -70,7 +69,7 @@ class UserShow extends React.Component {
 				<div></div>
 			)
 		} else {
-			const { user, tracks, userTracks, track, users, createLike, deleteLike, currentUser, setPlayPause, setProg } = this.props;
+			const { user, tracks, userTracks, track, users, createLike, deleteLike, createRepost, deleteRepost, deleteTrack, currentUser, setPlayPause, setProg } = this.props;
 			let trackIds = this.props.user.trackIds;
 			let likedTrackIds = this.props.user.likedTrackIds;
 			// console.log("tracks", tracks);
@@ -78,7 +77,7 @@ class UserShow extends React.Component {
 			let userStream = Object.values(tracks).map(track => {
 				if (trackIds.includes(track.id)) {
 					return (
-						<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} setPlayPause={setPlayPause} setProg={setProg} />
+						<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} />
 					)
 				}
 			});

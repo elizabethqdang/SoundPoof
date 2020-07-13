@@ -50,66 +50,37 @@ class UploadTrackDetails extends React.Component {
 		this.setState({ dragged: false });
 	}
 
-	handleSubmit(e) {
-		e.preventDefault();
-		// const track = new FormData();
-		// track.append("track[artist]", this.state.artist);
-		// track.append("track[title]", this.state.title);
-		// track.append("track[user_id]", this.state.user_id);
-		
-
-		// const {createTrack, clearModal} = this.props;
-		// createTrack(Object.assign({}, this.state).then(({track}) => {
-		// 		clearModal(); 
-		// 		this.props.history.push(`/tracks/${track.id}`);
-		// 		});
-
-		if (this.state.artworkFile && this.state.audioFile) {
-			const track = new FormData();
-			track.append("track[artwork]", this.state.artworkFile);
-			track.append("track[audio]", this.state.audioFile);
-			track.append("track[artist]", this.state.artist);
-			track.append("track[title]", this.state.title);
-			track.append("track[user_id]", this.state.user_id);
-			this.props.createTrack(track).then(
-				console.log(track),
-				// () => this.props.fetchAllTracks(),
-				() => this.props.history.push(`/tracks/${track.id}`)
-				// .then(({track}) =>
-					// this.props.history.push(`/tracks`)),
-				// (res) => {
-					// console.log(response)
-					// console.log(track)
-				);
-		} else {
-			this.setState({
-				errors: ["Please upload an image file"]
-			});
-		}
-	}
-
 	update(field) {
 		return e => this.setState({ [field]: e.target.value });
 	}
 
 	handleImageFile(e) {
 		e.preventDefault();
+		let file = e.currentTarget.files[0];
+		let fileReader = new FileReader();
 
-		const artworkFile = e.currentTarget.files[0];
-		let fileReader;
-
-		if (artworkFile.type === 'image/jpeg' || file.mimetype === 'image/png') {
-			fileReader = newFileReader();
+		if (file) {
+		// if (artworkFile.type === 'image/jpeg' || 'image/png') {
+			// fileReader = new FileReader();
 			fileReader.onloadend = () => {
 				this.setState({
-					artworkFile: fileReader.result
-				});
-			};
+					artworkFile: file,
+					artworkUrl: fileReader.result
+				})
+			}
 
-			fileReader.readAsDataUrl(file);
+		// if (file) {
+			fileReader.readAsDataURL(file);
+		} else {
+			this.setState({
+				errors: ["Please upload an image file"]
+			});
+		}
 		}
 		
-		this.setState({ artwork: artworkFile });
+		// this.setState({ 
+		// 	artworkUrl: fileReader.result
+		// });
 
 		// const artworkFile = e.currentTarget.files[0];
 		// const fileReader = new FileReader();
@@ -129,7 +100,7 @@ class UploadTrackDetails extends React.Component {
 		// 		errors: ["Please upload an image file"]
 		// 	});
 		// }
-	}
+	
 
 	renderErrors() {
 		return (
@@ -158,18 +129,63 @@ class UploadTrackDetails extends React.Component {
 		this.setState({ dragged: false });
 	}
 
-	render() {
-		const { user_id, userId, audioFile, audio, audioUrl } = this.props;
-		console.log("upload_track_details state", this.state);
-		console.log("upload_track_details user_id", user_id);
-		console.log("audioFile", audioFile);
-		// console.log("track", track);
-		console.log("audioUrl", audioUrl);
+	handleSubmit(e) {
+		e.preventDefault();
+		// const track = new FormData();
+		// track.append("track[artist]", this.state.artist);
+		// track.append("track[title]", this.state.title);
+		// track.append("track[user_id]", this.state.user_id);
+			let artworkFile = this.state.artworkFile;
+			let audioFile = this.state.audioFile;
+
+		// const {createTrack, clearModal} = this.props;
+		// createTrack(Object.assign({}, this.state).then(({track}) => {
+		// 		clearModal(); 
+		// 		this.props.history.push(`/tracks/${track.id}`);
+		// 		});
+
+		if (this.state.audioFile) {
+			let track = new FormData();
+			track.append("track[artworkUrl]", artworkFile);
+			track.append("track[audioUrl]", audioFile);
+			track.append("track[artist]", this.state.artist);
+			// track.append("track[description]", this.state.artist);
+			track.append("track[title]", this.state.title);
+			track.append("track[user_id]", this.state.user_id);
 		
+			this.props.createTrack(track).then(
+				console.log(track),
+				// () => this.props.fetchAllTracks(),
+				// (trackId) => this.props.fetchTrack(track),
+				// (track.id) => this.props.fetchSingleTrack(track),
+				() => this.props.history.push(`/tracks/${this.track.id}`),
+				// .then(({track}) =>
+					this.props.history.push('/stream'),
+				// (res) => {
+					// console.log(response)
+					// console.log(track)
+				);
+		// } else {
+		// 	this.setState({
+		// 		errors: ["Please upload an image file"]
+		// 	});
+		}
+	}
+
+	render() {
+		const { user_id, userId, audioFile, audioUrl, trackId } = this.props;
+		const { artworkFile, artworkUrl } = this.state;
+		console.log("upload_track_details state", this.state);
+		console.log("upload_track_details: trackId, user_id", trackId, user_id);
+		console.log("audioFile", audioFile);
+		console.log("audioUrl", audioUrl);
+		console.log("artworkFile", artworkFile);
+		console.log("artworkUrl", artworkUrl);
 
 		const preview = this.state.artworkUrl ? (
 			<img src={this.state.artworkUrl} className="stock-photo" />
 		) : <img src="" className="stock-photo" />;
+
 		return (
 			<div
 				className="upload-form-container"
@@ -201,13 +217,13 @@ class UploadTrackDetails extends React.Component {
 						/>
 
 						<label>
-							Artist<span className="errors">*</span>
+							Description<span className="errors"></span>
 						</label>
 						<input
 							type="text"
 							value={this.state.artist}
 							onChange={this.update("artist")}
-							placeholder="Artist Name"
+							placeholder="Description"
 						/>
 
 						{this.renderErrors()}

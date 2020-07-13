@@ -47,4 +47,4 @@ class UploadPage extends React.Component {
 		);
 	}
 }
-export default withRouter(UploadPage);
+export default (UploadPage);

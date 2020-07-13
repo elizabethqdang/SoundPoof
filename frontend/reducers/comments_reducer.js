@@ -1,5 +1,5 @@
-import { RECEIVE_SINGLE_TRACK } from '../actions/track_actions';
-import { REMOVE_COMMENT, RECEIVE_COMMENT } from '../actions/comment_actions';
+import { RECEIVE_SINGLE_TRACK, RECEIVE_TRACK } from '../actions/track_actions';
+import { REMOVE_COMMENT, RECEIVE_COMMENT, RECEIVE_COMMENT_ERRORS } from '../actions/comment_actions';
 import merge from 'lodash/merge';
 
 const commentsReducer = (oldState = {}, action) => {
@@ -19,6 +19,15 @@ const commentsReducer = (oldState = {}, action) => {
 			} else {
 				return Object.assign({}, action.comments);
 			};
+		// case RECEIVE_TRACK:
+		// 	if (action.comments === undefined) {
+		// 		return {};
+		// 	} else {
+		// 		return Object.assign({}, action.comments);
+		// 	};
+		case RECEIVE_COMMENT_ERRORS:
+			newState.errors = action.errors;
+			return newState;
 		default:
 			return oldState;
 	}

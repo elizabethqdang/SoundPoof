@@ -28,7 +28,8 @@ export const createComment = (comment, trackId) => dispatch => (
 
 export const deleteComment = (trackId, commentId) => dispatch => (
 	CommentAPIUtil.deleteComment(trackId, commentId).then(
-			commentId => (dispatch(removeComment(commentId)), 
-			errors => (console.log(errors.responseJSON))
+			commentId => (dispatch(removeComment(commentId))
+			// errors => (dispatch(receiveCommentErrors(errors)))
+			// errors => (console.log(errors.responseJSON))
 	))
 );

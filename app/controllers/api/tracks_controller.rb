@@ -18,16 +18,20 @@ class Api::TracksController < ApplicationController
 		# @track = Track.new(track_params)
 		# @track.user_id = current_user.id
 		if @track.save
-			# render "/api/tracks/show"
-			render :show
+			render "/api/tracks/show"
+			# render :show
+			# render :index
     else
       render json: @track.errors.full_messages, status: 401
     end
   end
  
 	def show
-		@track = Track.find(params[:id])
-		render "/api/tracks/show"
+		@track = Track.includes(:likes, :reposts, :comments).find_by(id: params[:id])
+		render :show
+		
+		# @track = Track.find(params[:id])
+		# render "/api/tracks/show"
 	end
 	
 	def update
@@ -50,7 +54,7 @@ class Api::TracksController < ApplicationController
 		
 		@track = Track.find(params[:id])
 		@track.destroy
-    render json: {}
+    render json: @track
   end
  
 	private

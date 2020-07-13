@@ -1,12 +1,14 @@
-import {connect} from 'react-redux';
-import {createTrack, fetchAllTracks} from "../../actions/track_actions";
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { createTrack, fetchAllTracks, fetchTrack, fetchSingleTrack } from "../../actions/track_actions";
 import UploadPage from "./upload_page";
 
 const mapStateToProps = (state) => ({
+
 		currentUser: state.session.currentUser,
 		user_id: state.session.currentUser.id,
 		// userId: users[session.id]
-		track: {
+		// track: {
 			title: '',
 			description: '',
 			user_id: state.session.currentUser.id,
@@ -14,13 +16,15 @@ const mapStateToProps = (state) => ({
 			artworkUrl: null,
 			audioFile: null,
 			audioUrl: null,
-		}
+		// },
+		// trackId: track.id,
 })
+
 const mapDispatchToProps = dispatch => ({
 		createTrack: (track) => dispatch(createTrack(track)),
 		fetchAllTracks: () => dispatch(fetchAllTracks()),
-
-    
+		fetchSingleTrack: (id) => dispatch(receiveTrack(track)),
+		fetchTrack: (id) => dispatch(receiveTrack(track))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(UploadPage);
+export default (connect)(mapStateToProps, mapDispatchToProps)(UploadPage);
