@@ -56,7 +56,7 @@ class Api::TracksController < ApplicationController
 	private
 	
 	def track_params
-    params.require(:track).permit(:title, :artwork, :audio, :artist, :description, :user_id)
+    params.require(:track).permit(:title, :artwork, :audio, :artist, :user_id, :audioPeaks)
   end
  
   def sanitize_filename(file_name)

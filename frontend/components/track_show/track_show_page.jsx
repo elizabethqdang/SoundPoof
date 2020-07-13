@@ -146,16 +146,22 @@ class TrackShowPage extends React.Component {
 				<div></div>
 			)
 		} else {
-			let user = this.props.users[this.props.track.user_id];
 			const { comments, track, users } = this.props;
-			console.log("comments", comments)
+			let user = (users)[this.props.track.user_id];
+			console.log("comments", comments);
+			console.log("users", users);
+			console.log("user", user);
+			console.log("user.trackIds", user.trackIds);
+			console.log("track", track);
+
 			let trackComments = (this.props.comments).map(comment => (
-				<CommentIndexItem key={comment.id} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} />
+				<CommentIndexItem key={comment.id} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} user={user} />
 			));
 			let commentLength = comments.length === 1 ? "1 Comment" : `${comments.length} Comments`;
 			let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
 				'playing' : 'ts-play';
 			let buttonBar = this.userTrackButtons();
+			let userTrackIds = user.trackIds ? user.trackIds.length : "0";
 			
 			return (
 				<div className='track-show-page'>
@@ -185,7 +191,7 @@ class TrackShowPage extends React.Component {
 					<div className='track-show-container-bottom'>
 						<div className='tscb-left'>
 							<div className='track-show-comment-form'>
-								<CommentFormContainer track={track} />
+								<CommentFormContainer track={track} user={user} currentUser={currentUser} />
 							</div>
 							{buttonBar}
 							<div className='ts-uploader-ci'>
@@ -201,7 +207,8 @@ class TrackShowPage extends React.Component {
 									</Link>
 									{/* <a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a> */}
 									<div className='ts-artist-stats user-suggestion-tracks'>
-										{user.trackIds.length}
+										{userTrackIds}
+										{/* {this.props.user.trackIds.length} */}
 									</div>
 								</div>
 								<div className='ts-uc-right'>

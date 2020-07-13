@@ -1,8 +1,14 @@
 import React from 'react';
+import Navbar from '../navbar/navbar_container';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchAllTracks, fetchTrack } from "../../actions/track_actions";
+import { fetchAllUsers, fetchUser, createLike, deleteLike } from "../../actions/user_actions";
 
 class UserSearchResult extends React.Component {
 	constructor(props) {
 		super(props);
+		
 		this.userSearchResult = this.userSearchResult.bind(this);
 	}
 
@@ -10,14 +16,30 @@ class UserSearchResult extends React.Component {
 	}
 
 	render() {
+		const user = this.props;
+
 		return (
-			<li className='search-show collection-show'>
-				<img onClick={this.userSearchResult} src={this.props.user.profileImgUrl || ""} />
-				<span onClick={this.userSearchResult}>{this.props.user.email}</span>
-				<div className="search-result-user-icon"></div>
-			</li>
+			<div className='search-result-container'>
+				<Navbar />
+				<li className='search-show collection-show'>
+					<img onClick={this.userSearchResult} src={this.props.user.profileImgUrl || ""} />
+					<span onClick={this.userSearchResult}>{this.props.user.email}</span>
+					<div className="search-result-user-icon"></div>
+				</li>
+			</div>
 		);
 	}
 }
 
-export default UserSearchResult;
+const mapStateToProps = (state) => ({
+	currentUser: state.session.currentUser,
+	tracks: Object.values(state.entities.tracks),
+	users: Object.values(state.entities.users)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	// fetchTracks: query => dispatch(fetchTracks(query)),
+	// fetchUsers: query => dispatch(fetchUsers(query))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserSearchResult);

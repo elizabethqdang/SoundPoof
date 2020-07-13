@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import TrackIndexItem from './track_index_item';
-import { fetchTrack, fetchSingleTrack, deleteTrack, updateTrack } from '../../actions/track_actions';
+import { fetchTrack, fetchAllTracks, fetchSingleTrack, deleteTrack, updateTrack } from '../../actions/track_actions';
 import { fetchUser, createLike, deleteLike, createRepost, deleteRepost } from '../../actions/user_actions';
 import { setCurrentTrack, setPlayPause, setProg } from '../../actions/track_player_actions';
 
@@ -16,6 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
 	fetchUser: (userId) => dispatch(fetchUser(userId)),
 	fetchCurrentUser: (userId) => dispatch(fetchUser(userId)),
 	fetchTrack: (trackId) => dispatch(fetchTrack(trackId)),
+	fetchAllTracks: () => dispatch(fetchAllTracks()),
 	setCurrentTrack: (track) => dispatch(setCurrentTrack(track)),
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),
 	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),

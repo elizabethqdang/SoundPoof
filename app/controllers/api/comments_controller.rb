@@ -8,7 +8,8 @@ class Api::CommentsController < ApplicationController
 				@comment.track_id = params[:track_id]
         if @comment.save
             # @track = Track.find(@comment.track_id)
-            render "api/comments/show"
+						# render "api/comments/show"
+						render :show
         else 
             render json: @comment.errors.full_messages, status: 401
         end

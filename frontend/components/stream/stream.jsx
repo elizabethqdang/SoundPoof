@@ -29,11 +29,13 @@ class Stream extends React.Component {
 	// }
 
 	render() {
-		const { users, errors, user, currentUser, setPlayPause, setProg } = this.props;
+		const { errors, user, currentUser, setPlayPause, setProg, deleteTrack } = this.props;
 		let tracks = Object.values(this.props.tracks);
+		let users = Object.values(this.props.users);
+
 
 		let stream = ((tracks)).map(track => (
-			<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} tracks={tracks} setPlayPause={setPlayPause} setProg={setProg} />
+			<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} tracks={tracks} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} />
 		));
 
 		let streamSidebar = (
