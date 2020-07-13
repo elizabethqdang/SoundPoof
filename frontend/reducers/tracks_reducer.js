@@ -12,11 +12,14 @@ const tracksReducer = (state = {}, action) => {
 				case RECEIVE_ALL_TRACKS:
 					return action.tracks;
 				case RECEIVE_TRACK:
-					return nextState[action.track.id] = action.track;
+					nextState[action.track.id] = action.track;
+					return nextState;
+					// return action.track;
 				// case RECEIVE_CURRENT_TRACK:
 					// nextState = { [action.track.id]: action.track };
 					// return Object.assign({}, state, nextState);	
-					// return Object.assign( nextState, {[action.track.id]: action.track} );
+					// return Object.assign( nextState, {[action.track]: action.track} );
+					// return action.track;
 				case RECEIVE_SINGLE_TRACK:
 					nextState[action.track.id] = action.track;
 					// nextState[action.comments] = action.comments;
@@ -25,13 +28,12 @@ const tracksReducer = (state = {}, action) => {
         case REMOVE_TRACK:
             delete nextState[action.trackId.id];
             return nextState;   
-        // case RECEIVE_USER:
-				// 	if (action.users === undefined) {
-				// 		return {};
-				// 	} else {
-						// return Object.assign(nextState, {trackIds: action.payload.tracks});
-				// 	};
-					// return nextState[action.payload.tracks];
+        case RECEIVE_USER:
+					if (action.user === undefined) {
+						return {};
+					} else {
+						return Object.assign({}, action.user);
+					};
         default:
             return state;
     }

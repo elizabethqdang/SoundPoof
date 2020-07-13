@@ -48,11 +48,19 @@ class TrackIndexItem extends React.Component {
 		}
 	}
 
-	deleteTrack(trackId, e) {
+	deleteTrack(e) {
 		e.preventDefault();
-		this.props.deleteTrack(trackId).then(
-			this.props.history.push('/stream')
-		);
+		const { track, trackId, deleteTrack, currentUser } = this.props;
+		console.log("deleteTrack", "track", track);
+
+		if (currentUser && currentUser.trackIds.includes(track.id)) {
+			this.props.deleteTrack(track.id).then(
+				() => this.props.fetchAllTracks(),
+				() => this.props.history.push("/")
+			);
+		} else {
+			return "delete unsuccessful";
+		}
 	}
 
 	toggleLike(e) {
@@ -97,7 +105,7 @@ class TrackIndexItem extends React.Component {
 				<div className='track-button-bar'>
 					<div className={`sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
 					<div className={`sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts}</div>
-					<div className='sound-actions-btn controller-btn action-delete delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
+					<div className='sound-actions-btn controller-btn action-delete delete-btn' onClick={(e) => this.deleteTrack(e)}>Delete</div>
 					
 					<div className='track-right-btns comment-btn'>{track.numComments}</div>
 				</div>

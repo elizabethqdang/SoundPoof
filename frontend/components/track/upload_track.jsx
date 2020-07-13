@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from 'react-router-dom';
 import UploadTrackDetails from "./upload_track_details";
 import NavbarContainer from "../navbar/navbar_container";
 
@@ -143,6 +144,8 @@ class UploadTrack extends React.Component {
 					audioUrl={this.state.audioUrl}
 					user_id={this.props.user_id}
 					createTrack={this.props.createTrack}
+					track={this.props.track}
+					fetchAllTracks={this.props.fetchAllTracks}
 				/>
 			);
 		} else {
@@ -196,4 +199,4 @@ class UploadTrack extends React.Component {
 	}
 }
 
-export default UploadTrack;
+export default withRouter(UploadTrack);

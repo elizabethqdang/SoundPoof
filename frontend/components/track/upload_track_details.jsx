@@ -1,9 +1,10 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class UploadTrackDetails extends React.Component {
 	constructor(props) {
 		super(props);
+		// this.state = this.props.track;
 		this.state = {
 			user_id: this.props.user_id,
 			title: this.props.title,
@@ -51,10 +52,10 @@ class UploadTrackDetails extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		const track = new FormData();
-		track.append("track[artist]", this.state.artist);
-		track.append("track[title]", this.state.title);
-		track.append("track[user_id]", this.state.user_id);
+		// const track = new FormData();
+		// track.append("track[artist]", this.state.artist);
+		// track.append("track[title]", this.state.title);
+		// track.append("track[user_id]", this.state.user_id);
 		
 
 		// const {createTrack, clearModal} = this.props;
@@ -64,19 +65,22 @@ class UploadTrackDetails extends React.Component {
 		// 		});
 
 		if (this.state.artworkFile && this.state.audioFile) {
-			let track = new FormData();
+			const track = new FormData();
 			track.append("track[artwork]", this.state.artworkFile);
 			track.append("track[audio]", this.state.audioFile);
 			track.append("track[artist]", this.state.artist);
 			track.append("track[title]", this.state.title);
-			// track.append("track[user_id]", this.state.user_id);
-			this.props.createTrack(track)
-				.then(res =>
-					this.props.history.push(`/stream`),
-				(response) => {
-					console.log(response)
-					console.log(track) 
-				});
+			track.append("track[user_id]", this.state.user_id);
+			this.props.createTrack(track).then(
+				console.log(track),
+				// () => this.props.fetchAllTracks(),
+				() => this.props.history.push(`/tracks/${track.id}`)
+				// .then(({track}) =>
+					// this.props.history.push(`/tracks`)),
+				// (res) => {
+					// console.log(response)
+					// console.log(track)
+				);
 		} else {
 			this.setState({
 				errors: ["Please upload an image file"]
@@ -89,24 +93,42 @@ class UploadTrackDetails extends React.Component {
 	}
 
 	handleImageFile(e) {
+		e.preventDefault();
+
 		const artworkFile = e.currentTarget.files[0];
-		const fileReader = new FileReader();
+		let fileReader;
 
-		fileReader.onloadend = () => {
-			this.setState({
-				artworkFile: artworkFile,
-				errors: [],
-				artworkUrl: fileReader.result
-			});
-		};
+		if (artworkFile.type === 'image/jpeg' || file.mimetype === 'image/png') {
+			fileReader = newFileReader();
+			fileReader.onloadend = () => {
+				this.setState({
+					artworkFile: fileReader.result
+				});
+			};
 
-		if (artworkFile) {
-			fileReader.readAsDataURL(artworkFile);
-		} else {
-			this.setState({
-				errors: ["Please upload an image file"]
-			});
+			fileReader.readAsDataUrl(file);
 		}
+		
+		this.setState({ artwork: artworkFile });
+
+		// const artworkFile = e.currentTarget.files[0];
+		// const fileReader = new FileReader();
+
+		// fileReader.onloadend = () => {
+		// 	this.setState({
+		// 		artworkFile: artworkFile,
+		// 		errors: [],
+		// 		artworkUrl: fileReader.result
+		// 	});
+		// };
+
+		// if (artworkFile) {
+		// 	fileReader.readAsDataURL(artworkFile);
+		// } else {
+		// 	this.setState({
+		// 		errors: ["Please upload an image file"]
+		// 	});
+		// }
 	}
 
 	renderErrors() {
@@ -141,12 +163,13 @@ class UploadTrackDetails extends React.Component {
 		console.log("upload_track_details state", this.state);
 		console.log("upload_track_details user_id", user_id);
 		console.log("audioFile", audioFile);
-		console.log("audio", audio);
+		// console.log("track", track);
 		console.log("audioUrl", audioUrl);
+		
 
 		const preview = this.state.artworkUrl ? (
 			<img src={this.state.artworkUrl} className="stock-photo" />
-		) : <img src="https://soundpoof.s3-us-west-2.amazonaws.com/logo.jpg" className="stock-photo" />;
+		) : <img src="" className="stock-photo" />;
 		return (
 			<div
 				className="upload-form-container"

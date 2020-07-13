@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import TrackSearchResult from "./track_search_result";
 import UserSearchResult from "./user_search_result";
+import SearchResults from "./search_results";
 
 class SearchBar extends React.Component {
 	constructor(props) {
@@ -86,11 +87,11 @@ class SearchBar extends React.Component {
 	}
 	
 	toSearch() {
-		// e.preventDefault();
-		// if (e.key === 'Enter' && e.target.value !== '') {
-			window.location.hash = `/search`;
-		// 	e.target.value = '';
-		// }
+
+		window.location.hash = `/search`;
+		return (
+			<SearchResults user={this.props.user} track={this.props.track} users={this.props.users} tracks={this.props.tracks} searchResults={this.state.searchResults} />
+		)
 	}
 
 	render() {
@@ -140,4 +141,4 @@ class SearchBar extends React.Component {
 	}
 }
 
-export default SearchBar;
+export default withRouter(SearchBar);

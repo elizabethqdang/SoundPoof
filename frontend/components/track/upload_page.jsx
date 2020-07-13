@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import UploadTrack from "./upload_track";
 // import { Footer } from "../footer/footer";
 import NavbarContainer from '../navbar/navbar_container';
@@ -38,6 +38,8 @@ class UploadPage extends React.Component {
 						createTrack={this.props.createTrack}
 						history={this.props.history}
 						openModal={this.props.openModal}
+						track={this.props.track}
+						fetchAllTracks={this.props.fetchAllTracks}
 					/>
 				</div>
 				{/* <Footer /> */}
@@ -45,4 +47,4 @@ class UploadPage extends React.Component {
 		);
 	}
 }
-export default UploadPage;
+export default withRouter(UploadPage);
