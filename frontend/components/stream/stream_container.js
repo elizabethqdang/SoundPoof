@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { fetchAllTracks, fetchTrack, deleteTrack } from "../../actions/track_actions";
 import { setCurrentTrack, setPlayPause, setProg } from '../../actions/track_player_actions';
-import { fetchAllUsers, fetchUser, createLike, deleteLike } from "../../actions/user_actions";
+import { fetchAllUsers, fetchUser, createLike, deleteLike, createRepost, deleteRepost } from "../../actions/user_actions";
 import { fetchCurrentUser } from "../../actions/session_actions";
 import Stream from "./stream";
 
@@ -30,7 +30,9 @@ const mapDispatchToProps = dispatch => ({
 	toggleLike: (trackId) => dispatch(toggleLike(trackId)),
 	setProg: (trackId, progress) => dispatch(setProg(trackId, progress)),
 	createLike: (trackId) => dispatch(createLike(trackId)),
-	deleteLike: (trackId) => dispatch(deleteLike(trackId))
+	deleteLike: (trackId) => dispatch(deleteLike(trackId)),
+	createRepost: (trackId) => dispatch(createRepost(trackId)),
+	deleteRepost: (trackId) => dispatch(deleteRepost(trackId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Stream);

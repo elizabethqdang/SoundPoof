@@ -23,9 +23,9 @@ class TrackShowPage extends React.Component {
 	
 	componentDidMount() {
 		this.props.fetchTrack(this.props.match.params.trackId);
-		// this.props.fetchCurrentUser(this.props.currentUser.id);
+		// this.props.fetchUser(this.props.track.user.id);
 	}
-
+		
 	componentDidUpdate(prevProps) {
 		if (prevProps.match.params.trackId !== this.props.match.params.trackId) {
 			this.props.fetchTrack(this.props.match.params.trackId);
@@ -106,16 +106,17 @@ class TrackShowPage extends React.Component {
 		const { track, currentUser, users, trackplayer } = this.props;
 		const likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
 		const repostButton = (currentUser.repostedTrackIds.includes(track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
-		const numLikes = (this.props.track.numLikes);
-		const numReposts = (this.props.track.numReposts);
-		const numComments = (this.props.track.numComments);
+		const numLikes = (track && track.numLikes ? `${track.numLikes.length}` : '0');
+		const numReposts = (track && track.numReposts ? `${track.numReposts.length}` : '0');
+		const numComments = (track && track.numComments ? `${track.numComments.length}` : '0');
+		console.log((Object.values(track)).numLikes);
 
 		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
 				<div className='track-show-button-bar'>
 					<div className={`sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>Like</div>
 					<div className={`sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>Repost</div>
-					<div className='sound-actions-btn controller-btn action-delete delete-btn' onClick={(e) => this.deleteTrack(trackId, e)}>Delete</div>
+					<div className='sound-actions-btn controller-btn action-delete delete-btn' onClick={(e) => this.deleteTrack(e)}>Delete</div>
 					
 					<div className='track-right-btns like-stat'>{numLikes}</div>
 					<div className='track-right-btns repost-stat'>{numReposts}</div>
@@ -139,7 +140,7 @@ class TrackShowPage extends React.Component {
 	}
 
 	render() {
-		const { currentTrack, trackId, tracks, users, trackplayer, comments, comment, loading, currentUser, deleteTrack, track, deleteComment, user} = this.props;
+		const { currentTrack, trackId, tracks, users, trackplayer, comments, comment, loading, currentUser, deleteTrack, track, deleteComment, createRepost, deleteRepost, user} = this.props;
 
 		if (this.props.track === undefined) {
 			return (
@@ -151,7 +152,7 @@ class TrackShowPage extends React.Component {
 			console.log("comments", comments);
 			console.log("users", users);
 			console.log("user", user);
-			console.log("user.trackIds", user.trackIds);
+			// console.log("user.trackIds", user.trackIds);
 			console.log("track", track);
 
 			let trackComments = (this.props.comments).map(comment => (

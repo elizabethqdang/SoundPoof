@@ -41,6 +41,7 @@ export const requestTrackFetch = () => ({
 	type: REQUEST_TRACK_FETCH
 });
 
+
 // Thunk actions
 export const fetchAllTracks = () => dispatch => (
 	TrackAPIUtil.fetchAllTracks().then(tracks => {
@@ -52,22 +53,33 @@ export const fetchTrack = trackId => dispatch => {
 	dispatch(requestTrackFetch());
 	return TrackAPIUtil.fetchTrack(trackId).then(payload => {
 		dispatch(receiveSingleTrack(payload));
-		return payload.track;
+		return payload;
 	}, errors => {
 		dispatch(receiveTrackErrors(errors.responseJSON));
-		return errors;
+		// console.log(errors.responseJSON);
 	});
 };
 
-export const createTrack = track => dispatch => (
-	TrackAPIUtil.createTrack(track).then(track => {
+export const fetchSingleTrack = trackId => dispatch =>(
+	TrackAPIUtil.fetchTrack(trackId)
+		.then(track => dispatch(receiveTrack(track))
+	)
+)
+
+export const createTrack = track => dispatch => {
+	return TrackAPIUtil.createTrack(track).then(track => {
 		dispatch(receiveTrack(track));
+	return track;
+	}, errors => {
+		dispatch(receiveTrackErrors(errors.responseJSON));
+		console.log(errors.responseJSON);
+		return errors;
+	});
+};
 		// return track;
 	// }, errors => {
 	// 	dispatch(receiveTrackErrors(errors.responseJSON));
 	// 	return errors;
-	})
-);
 
 export const updateTrack = (track, trackId) => dispatch => (
 	TrackAPIUtil.updateTrack(track, trackId).then(payload => (

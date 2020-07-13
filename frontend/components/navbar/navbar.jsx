@@ -108,7 +108,7 @@ class Navbar extends React.Component {
 					Upload
 				</NavLink>
 				<NavLink exact to={`/users/${currentUser.id}`} className="nav-user-menu" activeClassName="nav-selected">
-					<div className="nav-user-button" activeClassName="nav-selected">
+					<div className="nav-user-button">
 						<div className="nav-user-image">
 							{/* <Dropdown
 								currentUser={currentUser}
@@ -120,7 +120,7 @@ class Navbar extends React.Component {
 					</div>
 				</NavLink>
 
-				<div onClick={logout} className="nav-sign-out nav-menu" activeClassName="nav-selected">Sign Out</div>
+				<div onClick={logout} className="nav-sign-out nav-menu" activeclassname="nav-selected">Sign Out</div>
 			{/* </section> */}
 			</Fragment>
 		)

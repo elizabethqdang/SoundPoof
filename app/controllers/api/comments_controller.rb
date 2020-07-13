@@ -1,5 +1,10 @@
 class Api::CommentsController < ApplicationController
 
+		def index
+			@comments = Track.find_by(id: params[:track_id]).comments.includes(:user)
+			render :index
+		end
+
 		def create 
 				@comment = Comment.new(comment_params)
 				# @comment = current_user.comments.new(comment_params)

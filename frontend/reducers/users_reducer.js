@@ -7,8 +7,8 @@ const initialState = {};
 
 const usersReducer = (state = initialState, action) => {
 	Object.freeze(state);
-	let newState = {};
-	// let newState = Object.assign({}, state);
+	// let newState = {};
+	let newState = Object.assign({}, state);
 
 	switch (action.type) {
 			// if (action.doNotReplace) {
@@ -27,7 +27,7 @@ const usersReducer = (state = initialState, action) => {
 			// return newState;
 		case RECEIVE_USER:
 			// let newState = _.merge({}, state);
-			// newState[action.user] = action.user;
+			// newState[action.user.id] = action.user;
 			// newState[action.tracks] = action.tracks;
 			// return newState;
 			// newState[action.user.id].trackIds = new Set(newState[action.user.id].trackIds);

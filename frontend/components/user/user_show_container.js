@@ -1,9 +1,9 @@
-import { fetchUser, updateUser, createLike, deleteLike } from "../../actions/user_actions";
-import { fetchAllTracks } from "../../actions/track_actions";
 import { connect } from "react-redux";
+import { fetchUser, updateUser, createLike, deleteLike, createRepost, deleteRepost } from "../../actions/user_actions";
+import { fetchAllTracks, deleteTrack } from "../../actions/track_actions";
 import { withRouter, Route } from "react-router-dom";
-import UserShow from "./user_show";
 import { setCurrentTrack, setPlayPause, setProg } from '../../actions/track_player_actions';
+import UserShow from "./user_show";
 
 const mapStateToProps = (state, ownProps) => {
 	const userId = ownProps.match.params.userId;
@@ -37,6 +37,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	setProg: (trackId, progress) => dispatch(setProg(trackId, progress)),
 	createLike: (trackId) => dispatch(createLike(trackId)),
 	deleteLike: (trackId) => dispatch(deleteLike(trackId)),
+	createRepost: (trackId) => dispatch(createRepost(trackId)),
+	deleteRepost: (trackId) => dispatch(deleteRepost(trackId)),
+	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserShow);
