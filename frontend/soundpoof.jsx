@@ -2,15 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import configureStore from "./store/store";
 import Root from "./components/root";
-import { login, signup, logout } from "./actions/session_actions";
-import { getState, dispatch, store } from "./store/store";
 
-    // window.getState = getState;
-    // window.dispatch = dispatch;
-    // window.login = login;
-    // window.logout = logout;
-    // window.signup = signup;
-    
 document.addEventListener("DOMContentLoaded", () => {
 
   let store;
@@ -20,9 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // id: window.currentUser.id,
         currentUser: window.currentUser,
       },
-      entities: {
         users: { [window.currentUser.id]: window.currentUser }
-      }
     };
     store = configureStore(preloadedState);
     delete window.currentUser;

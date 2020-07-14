@@ -8,9 +8,9 @@ import TrackIndex from "./track_index";
 
 const mapStateToProps = state => ({
 	currentUser: state.session.currentUser || {},
-	tracks: Object.values(state.entities.tracks) || {},
+	tracks: Object.values(state. tracks) || {},
 	trackplayer: state.trackplayer || {},
-	users: Object.values(state.entities.users) || {},
+	users: Object.values(state. users) || {},
 	liked: currentUserLikes(state, ownProps.track.id)
 });
 

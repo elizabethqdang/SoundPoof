@@ -5,8 +5,8 @@ import { deleteComment } from '../../actions/comment_actions';
 const mapStateToProps = (state) => ({
   errors: state.errors.tracks || [],
   currentUser: state.session.currentUser || {},
-	comments: state.entities.comments || {},
-	users: state.entities.users || {}
+	comments: state.comments || {},
+	users: state.users || {}
 });
 
 const mapDispatchToProps = (dispatch) => ({

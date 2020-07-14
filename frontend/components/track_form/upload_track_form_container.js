@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { createTrack } from "../../actions/track_actions";
 import UploadTrackForm from "./upload_track_form";
 
-const mapStateToProps = ({ session, entities: { users } }) => ({
+const mapStateToProps = (state, { session, users }) => ({
 	uploader_id: users[session.id],
   // currentUserId: state.session.currentUser.id,
   // errors: state.errors.tracks || [],

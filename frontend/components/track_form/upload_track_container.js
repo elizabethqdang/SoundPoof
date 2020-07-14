@@ -4,7 +4,7 @@ import UploadTrack from "./upload_track";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import UploadTrackForm from "./upload_track_form";
 
-const mapStateToProps = ({ session, entities: { users } }) => {
+const mapStateToProps = (state, { session }) => {
 	return {
 		uploader_id: users[session.id],
 		currentUser: users[session.id],

@@ -9,10 +9,7 @@ class Stream extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			// tracks: [],
-			// users: []
 		}
-		this.fetched = false;
 	}
 
 	componentDidMount() {
@@ -29,36 +26,37 @@ class Stream extends React.Component {
 	// }
 
 	render() {
-		const { errors, user, currentUser, setPlayPause, setProg, deleteTrack, createRepost, deleteRepost, fetchTrack, fetchAllTracks } = this.props;
+		const { user, currentUser, setPlayPause, setProg, deleteTrack, createRepost, deleteRepost, fetchTrack, fetchAllTracks } = this.props;
 		let tracks = Object.values(this.props.tracks);
 		let users = Object.values(this.props.users);
 
-
-		let stream = ((tracks)).map(track => (
-			<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} tracks={tracks} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} />
+		let stream = ((tracks)).map((track, idx) => (
+			<TrackIndexItem key={idx} track={track} currentUser={currentUser || null} users={users} tracks={tracks} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} />
 		));
 
 		let streamSidebar = (
 			<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} />
 		);
 
+		let streamNavbar = (
+			<NavbarContainer currentUser={currentUser} />
+		);
+
 		return (
 			<div className="stream-page-container">
-				{/* <div className="loggedhome-header"> */}
-					<NavbarContainer />
-				{/* </div> */}
+				{streamNavbar}
 				<main className='stream-main'>
 					<div className='stream-index'>
 						<nav className='stream-nav'>
 							<ul>
-								<li><NavLink to='/stream'>Stream</NavLink></li>
+								<li><NavLink to='/stream' activeClassNamje='selected'>Stream</NavLink></li>
 								{/* <li><Link to='/stream'>Charts</Link></li>
 								<li><Link to='/stream'>Discover</Link></li> */}
 							</ul>
 						</nav>
 						<p>Hear the latest posts from the people you're following</p>
 						<ul className='homepage-tracks'>
-								{stream}
+							{stream}
 						</ul>
 					</div>
 
@@ -66,9 +64,9 @@ class Stream extends React.Component {
 						<div className="sidebar-ad-container">
 							<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src="" /></a>
 						</div>
-								{streamSidebar}
-						{/* <StreamSidebar users={users} currentUser={currentUser || null} tracks={this.props.tracks} /> */}
+						{streamSidebar}
 					</div>
+					
 				</main>
 			</div>
 		);

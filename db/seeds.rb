@@ -62,6 +62,10 @@ u16.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/
 u17 = User.create({ email: "Bassnectar", password: "password", bio: "", location: "", username: "Bassnectar" })
 u17.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/bassnectar.png'), filename: 'bassnectar.png')
 
+u18 = User.create({ email: "EMINEM", password: "password", bio: "", location: "", username: "EMINEM" })
+u18.profile_image.attach(io: open('/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/eminem.png'), filename: 'eminem.png')
+
+
 
 
 Track.destroy_all
@@ -266,7 +270,21 @@ user_id: u16.id,
 t24.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/ripndip.mp3"), filename: "ripndip.mp3" )
 t24.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/ripndip.png"), filename: "ripndip.png")
 
+t25 = Track.create({
+title: "Eminem - Godzilla ft. Juice WRLD", 
+artist: "EMINEM", 
+user_id: u18.id,
+})
+t25.audio.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/eminem-godzilla.mp3"), filename: "eminem-godzilla.mp3" )
+t25.artwork.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/musictobemurderedby.png"), filename: "musictobemurderedby.png")
 
+t26 = Track.create({
+title: "Eminem - I Will (ft. KXNG Crooked, Royce Da 5''9"" & Joell Ortiz)", 
+artist: "EMINEM", 
+user_id: u18.id,
+})
+t26.audio.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/eminem-iwill.mp3"), filename: "eminem-iwill.mp3" )
+t26.artwork.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/musictobemurderedby.png"), filename: "musictobemurderedby.png")
 
 
 

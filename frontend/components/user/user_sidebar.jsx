@@ -92,7 +92,7 @@ const UserSidebarLikeItem = ({ user, users, tracks, currentUser, track }) => {
 const mapStateToProps = (state) => {
 	const currentUser = state.session.currentUser || {};
 	// const cLikedTrackIds = user.likedTrackIds;
-	// const tracks = Object.values(state.entities.tracks);
+	// const tracks = Object.values(state. tracks);
 	// const cLikedTracks = (cLikedTrackIds.slice(0, 3)).map((id) => {
 		// return id;
 		// return tracks[id];
@@ -106,9 +106,9 @@ const mapStateToProps = (state) => {
 		currentUser,
 		// cLikedTrackIds,
 		// cLikedTracks,
-		// tracks: (Object.values(state.entities.tracks)),
-		tracks: state.entities.tracks,
-		// users: (Object.values(state.entities.users)).slice(0, 3) || {},
+		// tracks: (Object.values(state. tracks)),
+		tracks: state. tracks,
+		// users: (Object.values(state. users)).slice(0, 3) || {},
 	};
 };
 

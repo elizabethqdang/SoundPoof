@@ -25,7 +25,6 @@ class Splash extends React.Component {
           <div className="splash-bar">
             <div className="splash-left">
 							<div className="splash-logo">
-								<img src='https://soundpoof.s3-us-west-2.amazonaws.com/logo.jpg' className="splash-icon"/>
 							</div>
 							<div className="splash-text">SOUNDPOOF
 							</div>
@@ -99,7 +98,7 @@ class Splash extends React.Component {
 						<a className='trending-track-item-container' href="/#/signup">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
-									<img src="" />
+									<img src={'/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/eminem.png'} />
 								</div>
 								<div className='trending-track-info'>
 									<p className='trending-track title truncate'>Godzilla</p>

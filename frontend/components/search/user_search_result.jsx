@@ -33,8 +33,8 @@ class UserSearchResult extends React.Component {
 
 const mapStateToProps = (state) => ({
 	currentUser: state.session.currentUser,
-	tracks: Object.values(state.entities.tracks),
-	users: Object.values(state.entities.users)
+	tracks: Object.values(state. tracks),
+	users: Object.values(state. users)
 });
 
 const mapDispatchToProps = (dispatch) => ({

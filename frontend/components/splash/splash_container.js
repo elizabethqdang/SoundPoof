@@ -6,10 +6,10 @@ import Splash from "./splash";
 
 const mapStateToProps = (state) => {
 	return {
-		tracks: Object.values(state.entities.tracks),
-		// tracks: state.entities.tracks || {},
+		tracks: Object.values(state.tracks),
+		// tracks: state.tracks || {},
 		trackplayer: state.trackplayer || {},
-		users: state.entities.users,
+		users: state.users,
 		currentUser: state.session.currentUser,
 	};
 };
