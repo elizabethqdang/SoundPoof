@@ -5,7 +5,7 @@ import { fetchUser, createLike, deleteLike, createRepost, deleteRepost } from '.
 import { setCurrentTrack, setPlayPause, setProg } from '../../actions/track_player_actions';
 
 const mapStateToProps = (state, ownProps) => ({
-	comments: state.entities.comments,
+	comments: state. comments,
 	errors: state.errors.tracks || [],
 	trackplayer: state.trackplayer || {},
 	currentUser: state.session.currentUser || {},

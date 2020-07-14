@@ -110,17 +110,14 @@ class Navbar extends React.Component {
 				<NavLink exact to={`/users/${currentUser.id}`} className="nav-user-menu" activeClassName="nav-selected">
 					<div className="nav-user-button">
 						<div className="nav-user-image">
-							{/* <Dropdown
-								currentUser={currentUser}
-								logout={logout}
-							/> */}
 								<span><img src={currentUser.profileImgUrl} /></span>
 						</div>
 						<div className="nav-user-username truncate">{currentUser.email}</div>
 					</div>
 				</NavLink>
-
-				<div onClick={logout} className="nav-sign-out nav-menu" activeclassname="nav-selected">Sign Out</div>
+				<div className="nav-sign-out nav-menu">
+					<Dropdown currentUser={currentUser} logout={logout} />
+				</div>
 			{/* </section> */}
 			</Fragment>
 		)

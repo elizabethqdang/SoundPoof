@@ -47,8 +47,8 @@ class SearchBar extends React.Component {
     for (let i = 0; i < this.props.users.length; i++) {
 			const email = users[i].email.toLowerCase() || "";
 			const searchString = this.state.searchInput.toLowerCase() || "";
-			console.log("email", email);
-			console.log("searchString", searchString);
+			// console.log("email", email);
+			// console.log("searchString", searchString);
 
       if (searchInput.length > 0 && email.includes(searchString)) {
         searchResults.push(users[i]);
@@ -87,11 +87,15 @@ class SearchBar extends React.Component {
 	}
 	
 	toSearch() {
+		if (this.state.searchInput.length > 0) {
+			window.location.hash = `/search`;
 
-		window.location.hash = `/search`;
-		return (
-			<SearchResults user={this.props.user} track={this.props.track} users={this.props.users} tracks={this.props.tracks} searchResults={this.state.searchResults} />
-		)
+			return (
+				<SearchResults currentUser={currentUser} user={this.props.user} track={this.props.track} users={this.props.users} tracks={this.props.tracks} searchResults={this.state.searchResults} searchInput={this.state.searchInput} />
+			)
+		} else {
+			return <div></div>;
+		};
 	}
 
 	render() {
@@ -102,28 +106,16 @@ class SearchBar extends React.Component {
 		// console.log("users", users);
 		// console.log("tracks", tracks);
 
-		let close;
-		let className = "search-bar";
-		if (this.state.searchInput && this.state.searchInput.length > 0) {
-			close = (
-				<div className="close" onClick={this.handleClearSearch}>
-					<i className="close-icon"><img src='/images/navbar/close_icon.png' /></i>
-				</div>
-			);
-		}
-
 		return (
 			<section className="nav-middle">
 				<form className="nav-search" onSubmit={this.toSearch}>
 					<input className="nav-search-input" 
 						onChange={this.updateInput('searchInput')} 
-						// onChange={this.updateSearchResults}
 						value={this.state.searchInput} 
 						type="search" 
 						placeholder="Search" />
 					<ul className="search-results">
 						{this.searchResultHeader()}
-						{/* {this.updateSearchResults()} */}
 						{
 							this.state.searchResults.map((result, idx) => {
 								if (result.email) {
@@ -134,7 +126,7 @@ class SearchBar extends React.Component {
 							})
 						}
 					</ul>
-					<button type="submit">Search</button>
+					<button type="submit" />
 				</form>
 			</section>
 		);

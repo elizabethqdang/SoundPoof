@@ -5,10 +5,10 @@ import { login } from "../../actions/session_actions";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import LoginForm from "./login_form";
 
-const mapStateToProps = (state, { session, entities: { users } }) => {
+const mapStateToProps = (state) => {
 	return {
-		// currentUser: state.entities.users[state.session.id],
-		currentUser: users[session.id],
+		// currentUser: state. users[state.session.id],
+		currentUser: state.session.currentUser,
 		email: state.session.email,
 		userEmail: state.session.currentUserEmail,
 		errors: state.errors.session,

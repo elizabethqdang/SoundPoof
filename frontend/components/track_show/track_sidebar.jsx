@@ -128,9 +128,9 @@ const TrackLikes = ({ user, users, tracks, currentUser, track }) => {
 };
 
 const mapStateToProps = (state) => ({
-	users: (Object.values(state.entities.users)).slice(0, 3) || {},
+	users: (Object.values(state. users)).slice(0, 3) || {},
 	currentUser: state.session.currentUser || {},
-	tracks: (Object.values(state.entities.tracks)).slice(0, 3) || {}
+	tracks: (Object.values(state. tracks)).slice(0, 3) || {}
 });
 
 export default (connect)(mapStateToProps, null)(withRouter(TrackSidebar));

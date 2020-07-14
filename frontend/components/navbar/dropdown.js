@@ -63,14 +63,14 @@ class Dropdown extends React.Component {
 		const { currentUser, logout } = this.props;
 		const menu = this.state.showMenu ? (
 			<div className="">
-				<div className="user-dropdown-list">
-					<button className="dropdown-button">
+				<div className="">
+					<button className="">
 						<Link to={`/users/${currentUser.id}`} className="">
 							{" "}
-							Profile
+							LinkedIn
 					</Link>
 					</button>
-					<button onClick={logout} className="dropdown-button">
+					<button onClick={logout} className="">
 						Logout
 				</button>
 				</div>
@@ -79,18 +79,14 @@ class Dropdown extends React.Component {
 
 		return (
 			<div>
-				<button type="button" onClick={this.showMenu} className="header-item">
+				<button type="button" onClick={this.showMenu} className="nav-sign-out nav-menu">
 					<div
 						ref={el => {
 							this.dropdownElement = el;
 						}}
 					>
 					</div>
-					<img className="profile-pict" />
-					 <div className="creator-button">{currentUser.email}
-					</div>
 				</button>
-
 				{menu}
 			</div>
 		);

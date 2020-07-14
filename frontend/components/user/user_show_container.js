@@ -8,21 +8,21 @@ import UserShow from "./user_show";
 const mapStateToProps = (state, ownProps) => {
 	const userId = ownProps.match.params.userId;
 	const currentUserId = ((state.session.currentUser) ? state.session.currentUser.id : null);
-	const users = state.entities.users || {};
-	const user = state.entities.users[ownProps.match.params.userId] || {};
-	const tracks = state.entities.tracks || {};
+	const users = state. users || {};
+	const user = state. users[ownProps.match.params.userId] || {};
+	const tracks = state. tracks || {};
 	console.log(user);
 
 	return {
-		users: state.entities.users || {},
+		users: state. users || {},
 		currentUser: state.session.currentUser || {},
-		user: state.entities.users[ownProps.match.params.userId],
+		user: state. users[ownProps.match.params.userId],
 		userId: ownProps.match.params.userId,
-		// user: state.entities.users[userId],
+		// user: state. users[userId],
 		// userId: ownProps.match.params.id,
-		tracks: (state.entities.tracks),
+		tracks: (state. tracks),
 		// userTracks: user.tracks || {},
-		// users: state.entities.users || {},
+		// users: state. users || {},
 		// tracks: user.tracks || {},
 		trackplayer: state.trackplayer || {}
 	};

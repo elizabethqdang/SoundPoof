@@ -5,7 +5,7 @@ import { setCurrentTrack, setPlayPause } from '../../actions/track_player_action
 import { fetchUser } from '../../actions/user_actions';
 
 const mapStateToProps = (state, ownProps) => {
-	const tracks = Object.values(state.entities.tracks);
+	const tracks = Object.values(state. tracks);
 	const currentUser = state.session.currentUser;
 	const trackIds = tracks.map((track) => {
 			return (track.user_id);
@@ -13,9 +13,9 @@ const mapStateToProps = (state, ownProps) => {
 	const userId = ownProps.match.params.id;
 
 	let user;
-	Object.keys(state.entities.users).forEach(key => {
+	Object.keys(state. users).forEach(key => {
 		if (key == ownProps.match.params.id) {
-			user = state.entities.users[key];
+			user = state. users[key];
 		}
 	});
 

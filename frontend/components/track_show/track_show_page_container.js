@@ -7,26 +7,26 @@ import { setCurrentTrack, setPlayPause, setProg, receiveCurrentTrack } from '../
 import { deleteComment } from '../../actions/comment_actions';
 
 const mapStateToProps = (state, ownProps) => {
-	// const	tracks = state.entities.tracks;
+	// const	tracks = state. tracks;
 	// let trackId = parseInt(match.params.trackId);
-	const track = state.entities.tracks[ownProps.match.params.trackId] || {};
+	const track = state. tracks[ownProps.match.params.trackId] || {};
 	return {
-		tracks: state.entities.tracks || {},
+		tracks: state. tracks || {},
 		trackId: ownProps.match.params.trackId,
-		track: state.entities.tracks[ownProps.match.params.trackId],
+		track: state. tracks[ownProps.match.params.trackId],
 		trackplayer: state.trackplayer || {},
 		// trackId: parseInt(match.params.trackId),
 		// currentTrack: state.currentTrack || {},
 		errors: state.errors.tracks || [],
 		currentUser: state.session.currentUser || {},
-		users: state.entities.users || {},
-		// user: state.entities.users[track.user_id],
+		users: state. users || {},
+		// user: state. users[track.user_id],
 		user: track.id,
-		// users: Object.values(state.entities.users) || {},
+		// users: Object.values(state. users) || {},
 		loading: state.ui.loading,
-		// currentTrack: state.entities.tracks[state.ui.currentTrack.id],
+		// currentTrack: state. tracks[state.ui.currentTrack.id],
 		// playing: state.ui.currentTrack.playing,
-		comments: Object.values(state.entities.comments) || {},
+		comments: Object.values(state. comments) || {},
 
 	};
 };
