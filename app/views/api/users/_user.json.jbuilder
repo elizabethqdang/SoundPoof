@@ -6,7 +6,7 @@ json.username user.username
 json.bio user.bio
 json.location user.location
 
-# json.tracks user.tracks
+json.tracks user.tracks
 json.trackIds user.track_ids
 # json.trackIds user.tracks.pluck(:id)
 
@@ -27,8 +27,8 @@ json.numFollowers user.follower_ids.length
 json.bannerUrl asset_path(user.banner.url)
 json.profileUrl asset_path(user.profile.url)
 
-if user.profile_image.attached?
-	json.profileImgUrl url_for(user.profile_image)
-else
-	json.profileImgUrl "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"
-end
+# if user.profile_image.attached?
+# 	json.profileImgUrl url_for(user.profile_image)
+# else
+# 	json.profileImgUrl "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"
+# end

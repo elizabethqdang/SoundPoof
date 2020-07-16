@@ -2,7 +2,7 @@ class Api::TracksController < ApplicationController
 
   def index
 		# @tracks = AWS::S3::Bucket.find(BUCKET).objects
-		@tracks = Track.all.order(created_at: :desc)
+		@tracks = Track.all.order("created_at DESC")
 		# render "/api/tracks/index"
   end
  
@@ -14,9 +14,9 @@ class Api::TracksController < ApplicationController
     #   render :text => "Couldn't complete the upload"
 		# end
 
-		@track = current_user.tracks.new(track_params)
-		# @track = Track.new(track_params)
-		# @track.user_id = current_user.id
+		# @track = current_user.tracks.new(track_params)
+		@track = Track.new(track_params)
+		@track.user_id = current_user.id
 		if @track.save
 			render "/api/tracks/show"
 			# render :show
@@ -27,7 +27,7 @@ class Api::TracksController < ApplicationController
   end
  
 	def show
-		@track = Track.includes(:likes, :reposts, :comments).find_by(id: params[:id])
+		@track = Track.includes(:user, :likes, :reposts, :comments).find(params[:id])
 		render :show
 		
 		# @track = Track.find(params[:id])
