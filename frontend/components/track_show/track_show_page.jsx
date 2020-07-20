@@ -12,10 +12,9 @@ class TrackShowPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			// firstload: true,
 		};
-		this.trackButton = this.trackButton.bind(this);
-		this.userTrackButtons = this.userTrackButtons.bind(this);
+		this.playButton = this.playButton.bind(this);
+		this.trackButtonBar = this.trackButtonBar.bind(this);
 		this.toggleLike = this.toggleLike.bind(this);
 		this.toggleRepost = this.toggleRepost.bind(this);
 		this.deleteTrack = this.deleteTrack.bind(this);
@@ -42,24 +41,26 @@ class TrackShowPage extends React.Component {
 		// }
 	}
 
-	trackButton(track, e) {
+	playButton(track, e) {
 		e.preventDefault();
-		let { currentTrack, playing, trackId } = this.props.trackplayer;
-		let tplayer = this.props.trackplayer.player;
-		let trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
-		let prog;
+		const { setCurrentTrack, setPlayPause } = this.props; 
+		let { tpPlayer, tpCurrentTrack, tpPlaying, tpTrackId } = this.props.trackplayer;
+		// let tpPlayer = this.props.trackplayer.player;
+		let trackProg = this.props.trackplayer.progressTrackId[track.id];
 
-		if (trackId == 0) {
-			// this.props.setCurrentTrack(track);
-			this.props.setPlayPause(!playing, track.id, 1);
-		} else if (track.id == trackId) { //if we are pausing the same track
-			// then we will update the progress of this track
-			prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
-			this.props.setPlayPause(!playing, track.id, prog);
-		} else { // track.id !== trackId - we are switching tracks 
-			prog = trackProg ? trackProg : 0;
-			this.props.setPlayPause(!playing, track.id, prog);
-		}//
+		if (tpTrackId == 0) {
+			//  no track
+			setCurrentTrack(track);
+			setPlayPause(!tpPlaying, track.id, 1);
+		} else if (tpTrackId === track.id) { 
+			//  same track => play/pause
+			let progress = (trackProg ? trackProg : tpPlayer.getCurrentTime() / tpPlayer.getDuration());
+			setPlayPause(!tpPlaying, track.id, progress);
+		} else { 
+			// change to diff track
+			let progress = (trackProg ? trackProg : 0);
+			setPlayPause(!tpPlaying, track.id, progress);
+		}
 	}
 
 	deleteTrack(e) {
@@ -70,48 +71,48 @@ class TrackShowPage extends React.Component {
 
 	toggleLike(e) {
 		e.preventDefault();
-		const { track, deleteLike, createLike, currentUser, users } = this.props;
+		const { track, deleteLike, createLike, currentUser, fetchTrack} = this.props;
 
-		if (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) {
-			this.props.deleteLike(track.id).then(
-				() => this.props.fetchTrack(track.id),
-				this.userTrackButtons()
-			);;
+		if (currentUser.likedTrackIds.includes(track.id)) {
+			deleteLike(track.id).then(
+				() => fetchTrack(track.id),
+				this.trackButtonBar()
+			);
 		} else {
-			this.props.createLike(track.id).then(
-				() => this.props.fetchTrack(track.id),
-				this.userTrackButtons()
+			createLike(track.id).then(
+				() => fetchTrack(track.id),
+				this.trackButtonBar()
 			);;
 		}
 	}
 
 	toggleRepost(e) {
 		e.preventDefault();
-		const { track, deleteRepost, createRepost, currentUser, users } = this.props;
+		const { track, deleteRepost, createRepost, currentUser, fetchTrack } = this.props;
 
-		if (this.props.currentUser.repostedTrackIds.includes(this.props.track.id)) {
+		if (currentUser.repostedTrackIds.includes(track.id)) {
 			deleteRepost(track.id).then(
-				() => this.props.fetchTrack(track.id),
-				this.userTrackButtons()
+				() => fetchTrack(track.id),
+				this.trackButtonBar()
 			);
 		} else {
 			createRepost(track.id).then(
-				() => this.props.fetchTrack(track.id),
-				this.userTrackButtons()
+				() => fetchTrack(track.id),
+				this.trackButtonBar()
 			);
 		}
 	}
 
-	userTrackButtons() {
-		const { track, currentUser, users, trackplayer } = this.props;
+	trackButtonBar() {
+		const { track, currentUser } = this.props;
 		const likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
 		const repostButton = (currentUser.repostedTrackIds.includes(track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
-		const numLikes = (track && track.numLikes ? `${track.numLikes.length}` : '0');
-		const numReposts = (track && track.numReposts ? `${track.numReposts.length}` : '0');
-		const numComments = (track && track.numComments ? `${track.numComments.length}` : '0');
-		console.log((Object.values(track)).numLikes);
+		const numLikes = (track && track.numLikes ? `${(track.numLikes)}` : '0');
+		const numReposts = (track && track.numReposts ? `${(track.numReposts)}` : '0');
+		const numComments = (track && track.numComments ? `${(track.numComments)}` : '0');
+		// console.log((Object.values(track)).numLikes);
 
-		if (this.props.currentUser.id === this.props.track.user_id) {
+		if (currentUser.id === track.user_id) {
 			return (
 				<div className='track-show-button-bar'>
 					<div className={`sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>Like</div>
@@ -129,50 +130,50 @@ class TrackShowPage extends React.Component {
 					<div className={`track-show sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>Like</div>
 					<div className={`track-show sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>Repost</div>
 					
-					{/* <div className='track-show-right-btns'> */}
 						<div className='track-right-btns like-stat' update>{numLikes}</div>
 						<div className='track-right-btns repost-stat'>{numReposts}</div>
 						<div className='track-right-btns comment-btn'>{numComments}</div>
-					{/* </div> */}
 				</div>
 			);
 		}
 	}
 
 	render() {
-		const { currentTrack, trackId, tracks, users, trackplayer, comments, comment, loading, currentUser, deleteTrack, track, deleteComment, createRepost, deleteRepost, user} = this.props;
 
 		if (this.props.track === undefined) {
 			return (
 				<div></div>
 			)
 		} else {
-			const { comments, track, users } = this.props;
+			const { comments, track, tracks, users, currentUser, trackplayer, deleteComment } = this.props;
 			let user = (users)[this.props.track.user_id];
-			console.log("comments", comments);
-			console.log("users", users);
-			console.log("user", user);
-			// console.log("user.trackIds", user.trackIds);
-			console.log("track", track);
-
-			let trackComments = (this.props.comments).map(comment => (
-				<CommentIndexItem key={comment.id} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} user={user} />
-			));
-			let commentLength = comments.length === 1 ? "1 Comment" : `${comments.length} Comments`;
+			let commentLength = ((comments.length === 1) ? "1 Comment" : `${comments.length} Comments`);
 			let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
 				'playing' : 'ts-play';
-			let buttonBar = this.userTrackButtons();
-			let userTrackIds = user.trackIds ? user.trackIds.length : "0";
-			
+			let trackButtonBar = this.trackButtonBar();
+			let userTrackIds = ((user && user.trackIds )? user.trackIds : "0");
+			let trackNavbar = (
+				<NavbarContainer currentUser={currentUser} />
+			);
+			let commentForm = (
+				<CommentFormContainer track={track} user={user} currentUser={currentUser} />
+			);
+			let trackComments = (comments).map((comment, idx) => (
+				<CommentIndexItem key={idx} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} user={user} />
+			));
+			let waveForm = (
+				<WaveFormContainer track={track} height={100} color={'#fff'} />
+			)
+
 			return (
 				<div className='track-show-page'>
 					<div className="track-show-navbar-container">
-						<NavbarContainer />
+						{trackNavbar}
 					</div>
 					<div className='track-show-container'>
 						<div className='track-show-detail'>
 							<div className='track-sd-top'>
-								<div className={buttonPlaying} onClick={(e) => this.trackButton(track, e)}></div>
+								<div className={buttonPlaying} onClick={(e) => this.playButton(track, e)}></div>
 								<div className='track-sd-info'>
 									<a href={`/#/users/${track.user_id}`}><div className='track-sd-uploader'>{track.artist}</div></a>
 									<div className='track-sd-title'>{track.title}</div>
@@ -182,19 +183,20 @@ class TrackShowPage extends React.Component {
 								</div>
 							</div>
 							<div className='track-sd-bott'>
-								<WaveFormContainer track={track} height={100} color={'#fff'} />
+								{waveForm}
 							</div>
 						</div>
 						<div className='track-show-image-container'>
-							<img src={track.artworkUrl ? track.artworkUrl : ""} />
+							<img src={track.artworkUrl ? track.artworkUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"} />
 						</div>
 					</div>
 					<div className='track-show-container-bottom'>
 						<div className='tscb-left'>
 							<div className='track-show-comment-form'>
-								<CommentFormContainer track={track} user={user} currentUser={currentUser} />
+								{commentForm}
 							</div>
-							{buttonBar}
+							{this.trackButtonBar()}
+							{/* {trackButtonBar} */}
 							<div className='ts-uploader-ci'>
 								<div className='ts-uc-left'>
 									<div className='ts-artist-circle'>
@@ -209,7 +211,6 @@ class TrackShowPage extends React.Component {
 									{/* <a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a> */}
 									<div className='ts-artist-stats user-suggestion-tracks'>
 										{userTrackIds}
-										{/* {this.props.user.trackIds.length} */}
 									</div>
 								</div>
 								<div className='ts-uc-right'>

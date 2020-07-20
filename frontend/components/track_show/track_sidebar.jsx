@@ -11,22 +11,29 @@ class TrackSidebar extends React.Component {
 	
 	followItem() {
 		return (
-		(this.props.users).map(user => {
-			return <StreamSidebarFollowItem key={user.id} user={user} />;
+		(this.props.users).map((user, idx) => {
+			return <StreamSidebarFollowItem key={idx} user={user} />;
 		}))
 	}
 
 	trackLikes() {
 		return (
-		(this.props.tracks).map(track => {
-			return <TrackLikes key={track.id} track={track} />;
+		(this.props.tracks).map((track, idx) => {
+			return <TrackLikes key={idx} track={track} />;
+		}))
+	}
+
+	trackReposts() {
+		return (
+		(this.props.users).map((user, idx) => {
+			return <TrackReposts key={idx} user={user} />;
 		}))
 	}
 
   render() {
 		const {users, currentUser, tracks, track} = this.props;
 		const user = this.props.currentUser;
-		console.log("user", user, "users", users, "currentUser", currentUser);
+		// console.log("user", user, "users", users, "currentUser", currentUser);
 
     return (
 			<aside className="sidebar-right">
@@ -52,15 +59,13 @@ class TrackSidebar extends React.Component {
 }
 
 const StreamSidebarFollowItem = ({ user, users, track, currentUser}) => {
-	
 	let active = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'active' : '');
 	let likeButton = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'Following' : 'Follow');
 
   return (
 		<li className="user-suggestion-item">
-			<Link to={`/users/${user.id}`} className="user-suggestion-avatar"
-			// style={style}
-			><img src={user.profileImgUrl} /></Link>
+			<Link to={`/users/${user.id}`} className="user-suggestion-avatar"><img src={user.profileImgUrl} />
+			</Link>
 			<div className="user-suggestion-content">
 				<div className="user-suggestion-title truncate">
 					<Link to={`/users/${user.id}`} className="user-suggestion-title-link truncate">{user.email}</Link>
@@ -69,11 +74,9 @@ const StreamSidebarFollowItem = ({ user, users, track, currentUser}) => {
 				<div className="user-suggestion-meta">
 					<div className="user-suggestion-stats">
 						<div className="user-suggestion-followers">
-							{/* &nbsp;&nbsp;{FormatUtil.formatPlays(user.followerIds.size)} */}
 							{user.likedTrackIds.length}
 						</div>
 						<div className="user-suggestion-tracks">
-							{/* &nbsp;&nbsp;{FormatUtil.formatPlays(user.songIds.length)} */}
 							{user.trackIds.length}
 						</div>
 					</div>
@@ -81,7 +84,7 @@ const StreamSidebarFollowItem = ({ user, users, track, currentUser}) => {
 					<div className="user-suggestion-actions">
 						<button 
 						// onClick={this.like} 
-						className={`bc-btn user-suggestion-follow-btn ${active}`} type="button">{likeButton}</button>;
+						className={`bc-btn user-suggestion-follow-btn ${active}`} type="button">{likeButton}</button>
 					</div>
 				</div>
 
@@ -130,7 +133,8 @@ const TrackLikes = ({ user, users, tracks, currentUser, track }) => {
 const mapStateToProps = (state) => ({
 	users: (Object.values(state. users)).slice(0, 3) || {},
 	currentUser: state.session.currentUser || {},
-	tracks: (Object.values(state. tracks)).slice(0, 3) || {}
+	tracks: (Object.values(state. tracks)).slice(0, 3) || {},
+
 });
 
 export default (connect)(mapStateToProps, null)(withRouter(TrackSidebar));

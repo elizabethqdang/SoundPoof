@@ -11,9 +11,9 @@ class UserSidebar extends React.Component {
 	
 	likeItem() {
 		return (
-			(this.props.tracks).map(track => {
+			(Object.values(this.props.tracks)).map((track, idx) => {
 				if (track.user_id === user.id) {
-					return <UserSidebarLikeItem key={track.id} track={track} user={this.props.user}/>
+					return <UserSidebarLikeItem key={idx} track={track} user={this.props.user} currentUser={currentUser} />
 				}
 			})
 		)
@@ -22,13 +22,11 @@ class UserSidebar extends React.Component {
   render() {
 		const {users, currentUser, tracks, track, user} = this.props;
 		let likedTrackIds = (this.props.user.likedTrackIds).slice(0, 3);
-		// const user = this.props.currentUser;
-		// console.log("user", user, "users", users, "currentUser", currentUser);
 		let numLikes = user.likedTrackIds.length;
-		let userSidebar = Object.values(tracks).map(track => {
+		let userSidebar = Object.values(tracks).map((track, idx) => {
 			if (likedTrackIds.includes(track.id)) {
 				return (
-					<UserSidebarLikeItem currentUser={currentUser || null} tracks={tracks} user={user || {}} users={users} track={track} />
+					<UserSidebarLikeItem key={idx} currentUser={currentUser || null} tracks={tracks} user={user || {}} users={users} track={track} />
 				)
 			}
 		});
