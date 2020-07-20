@@ -49,7 +49,7 @@ class Stream extends React.Component {
 					<div className='stream-index'>
 						<nav className='stream-nav'>
 							<ul>
-								<li><NavLink to='/stream' activeClassNamje='selected'>Stream</NavLink></li>
+								<li><NavLink to='/stream' activeClassName='selected'>Stream</NavLink></li>
 								{/* <li><Link to='/stream'>Charts</Link></li>
 								<li><Link to='/stream'>Discover</Link></li> */}
 							</ul>

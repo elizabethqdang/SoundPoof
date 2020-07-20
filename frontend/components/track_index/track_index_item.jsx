@@ -14,18 +14,18 @@ class TrackIndexItem extends React.Component {
 		this.toggleLike = this.toggleLike.bind(this);
 		this.toggleRepost = this.toggleRepost.bind(this);
 		this.deleteTrack = this.deleteTrack.bind(this);
-		this.userTrackButtons = this.userTrackButtons.bind(this);
+		this.trackButtonBar = this.trackButtonBar.bind(this);
 	}
 
-	componentDidUpdate(prevProps) {
-		let { trackplayer, track, setProg } = this.props;
-		let trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
+	// componentDidUpdate(prevProps) {
+	// 	let { trackplayer, track, setProg } = this.props;
+	// 	let trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
 
 		// if ((trackplayer.playing) && (trackplayer.trackId === track.id) && (track.id !== prevProps.trackplayer.trackId)) {
 		// 	let prog = trackProg ? trackProg : trackplayer.player.getCurrentTime() / trackplayer.player.getDuration();
 		// 	this.props.setProg(track.id, prog);
 		// }
-	}
+	// }
 
 	playButton(e) {
 		e.preventDefault();
@@ -35,25 +35,28 @@ class TrackIndexItem extends React.Component {
 		let tplayer = this.props.trackplayer.player;
 
 		if (trackplayer.trackId === 0) {
+			// no track
 			this.props.setPlayPause(!trackplayer.playing, track.id, 0);
-		} else if (trackplayer.playing && trackplayer.trackId === track.id) {
-			let prog = trackProg ? trackProg : trackplayer.player.getCurrentTime() / trackplayer.player.getDuration();
-			this.props.setPlayPause(!trackplayer.playing, track.id, prog);
+		} else if ( trackplayer.trackId === track.id) {
+			// same track
+			let progress = (trackProg ? trackProg : trackplayer.player.getCurrentTime() / trackplayer.player.getDuration());
+			this.props.setPlayPause(!trackplayer.playing, track.id, progress);
 		} else {
-			let prog = trackProg ? trackProg : 0;
-			this.props.setPlayPause(!trackplayer.playing, track.id, prog);
+			// diff track
+			let progress = (trackProg ? trackProg : 0);
+			this.props.setPlayPause(!trackplayer.playing, track.id, progress);
 		}
 	}
 
 	deleteTrack(e) {
 		e.preventDefault();
-		const { track, trackId, deleteTrack, currentUser } = this.props;
-		console.log("deleteTrack", "track", track);
+		const { track, deleteTrack, currentUser } = this.props;
 
 		if (currentUser && currentUser.trackIds.includes(track.id)) {
-			this.props.deleteTrack(track.id).then(
+			deleteTrack(track.id).then(
 				() => this.props.fetchAllTracks(),
-				() => this.props.history.push("/")
+				() => this.props.history.push("/"),
+				window.location.hash = `/`,
 			);
 		} else {
 			return "delete unsuccessful";
@@ -62,40 +65,38 @@ class TrackIndexItem extends React.Component {
 
 	toggleLike(e) {
 		e.preventDefault();
-		const { track, deleteLike, createLike, currentUser, users } = this.props;
-		// console.log("togglelike", "track", track);
+		const { track, deleteLike, createLike, currentUser, fetchTrack } = this.props;
 
-		if (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) {
+		if (currentUser && currentUser.likedTrackIds.includes(track.id)) {
 			deleteLike(track.id).then(
-				() => this.props.fetchTrack(track.id)
+				() => fetchTrack(track.id)
 			);
 		} else {
 			createLike(track.id).then(
-				() => this.props.fetchTrack(track.id)
+				() => fetchTrack(track.id)
 			);
 		}
 	}
 
 	toggleRepost(e) {
 		e.preventDefault();
-		const { track, deleteRepost, createRepost, currentUser, users } = this.props;
-		// console.log("toggleRepost", "track", track);
+		const { track, deleteRepost, createRepost, fetchTrack, currentUser } = this.props;
 
-		if (this.props.currentUser.repostedTrackIds.includes(this.props.track.id)) {
-			deleteRepost(track.id).then(
-				() => this.props.fetchTrack(track.id)
+		if (currentUser && currentUser.repostedTrackIds.includes(track.id)) {
+				deleteRepost(track.id).then(
+				() => fetchTrack(track.id)
 			);
 		} else {
-			createRepost(track.id).then(
-				() => this.props.fetchTrack(track.id)
+				createRepost(track.id).then(
+				() => fetchTrack(track.id)
 			);
 		}
 	}
 
-	userTrackButtons() {
+	trackButtonBar() {
 		const {track, currentUser, users, trackplayer} = this.props;
-		const likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
-		const repostButton = (currentUser.repostedTrackIds.includes(track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
+		let likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
+		let repostButton = (currentUser.repostedTrackIds.includes(track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
 
 		if (this.props.currentUser.id  === this.props.track.user_id) {
 			return (
@@ -123,9 +124,9 @@ class TrackIndexItem extends React.Component {
 		let { track, trackplayer } = this.props;
 		let playButton = (trackplayer.playing && trackplayer.trackId === track.id) ?
 			'sound-title-play-btn' : 'ti-play';
-		// console.log("track.id", track.id);
-		// console.log("trackplayer.trackId", trackplayer.trackId);
-		// console.log("trackplayer.playing", trackplayer.playing);
+		let waveForm = (
+			<WaveFormContainer track={track} height={60} color={'#000'} width={820} />
+		);
 
 		return (
 			<div className='track-item-container'>
@@ -133,10 +134,10 @@ class TrackIndexItem extends React.Component {
 					<aside className="track-user-profile">
 						<img src={track.profileImgUrl ? track.profileImgUrl : 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'} />
 					</aside>
-					<Link to={`/users/${track.user_id}`}>
+					{/* <Link to={`/users/${track.user_id}`}>
 						<aside className="track-user-username">{track.userEmail}</aside>
-					</Link>
-					{/* <a href={`/#/users/${track.user_id}`}><aside className="track-user-username">{track.userEmail}</aside></a> */}
+					</Link> */}
+					<a href={`/#/users/${track.user_id}`}><aside className="track-user-username">{track.userEmail}</aside></a>
 					<div className="track-timestamp">
 						posted a track {moment(new Date(track.created_at)).fromNow()}
 					</div>
@@ -144,34 +145,33 @@ class TrackIndexItem extends React.Component {
 
 				<div className='track-item-main-container'>
 					<div className='track-artwork-box'>
-						<Link to={`/tracks/${track.id}`}>
+						{/* <Link to={`/tracks/${track.id}`}>
 							<img src={track.artworkUrl} />
-						</Link>
-						{/* <a href={`/#/tracks/${track.id}`}><img src={track.artworkUrl} /></a> */}
+						</Link> */}
+						<a href={`/#/tracks/${track.id}`}><img src={track.artworkUrl} /></a>
 					</div>
 
 					<section className='track-item-content-container'>
 						<div className='tic-header'>
 							<div className={playButton} onClick={(e) => this.playButton(e)}>
-
 							</div>
 							<div className="ti-upload-det">
-								<Link to={`/users/${track.user_id}`}><aside className="ti-description">{track.userEmail}</aside>
+								{/* <Link to={`/users/${track.user_id}`}><aside className="ti-description">{track.userEmail}</aside>
 								</Link>
 								<Link to={`/tracks/${track.id}`} className="ti-title">{track.title}
-								</Link>
-								{/* <a href={`/#/users/${track.user_id}`}><aside className="ti-description">{track.userEmail}</aside></a>
-								<a href={`/#/tracks/${track.id}`} className="ti-title">{track.title}</a> */}
+								</Link> */}
+								<a href={`/#/users/${track.user_id}`}><aside className="ti-description">{track.userEmail}</aside></a>
+								<a href={`/#/tracks/${track.id}`} className="ti-title">{track.title}</a>
 							</div>
-							{/* <div className="track-timestamp">
-								{moment(new Date(track.created_at)).fromNow()}
-							</div> */}
+							{/* span className="track-genre">
+								{track.Genre? }
+							</span> */}
 						</div>
 						<div className='sound-bar'>
 							<span></span>
-							<WaveFormContainer track={track} height={60} color={'#000'} width={820} />
+							{waveForm}
 						</div>
-							{this.userTrackButtons()}
+						{this.trackButtonBar()}
 					</section>
 
 				</div>

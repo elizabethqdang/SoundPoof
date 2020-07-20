@@ -40,15 +40,10 @@ class SearchBar extends React.Component {
 		const { users, tracks } = this.props;
     const searchResults = [];
 		const { searchInput } = this.state;
-		// console.log("searchResults", searchResults);
-		// console.log("users", users);
-		// console.log("searchInput", searchInput);
 
     for (let i = 0; i < this.props.users.length; i++) {
 			const email = users[i].email.toLowerCase() || "";
 			const searchString = this.state.searchInput.toLowerCase() || "";
-			// console.log("email", email);
-			// console.log("searchString", searchString);
 
       if (searchInput.length > 0 && email.includes(searchString)) {
         searchResults.push(users[i]);
@@ -101,10 +96,6 @@ class SearchBar extends React.Component {
 	render() {
 		const { users, tracks } = this.props;
 		const { searchInput, searchResults } = this.state;
-		// console.log("searchInput", searchInput);
-		// console.log("searchResults", searchResults);
-		// console.log("users", users);
-		// console.log("tracks", tracks);
 
 		return (
 			<section className="nav-middle">

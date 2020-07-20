@@ -1,17 +1,19 @@
 import { connect } from 'react-redux';
-import { fetchTracks, fetchUsers } from '../../actions/search_actions';
+import { withRouter } from 'react-router-dom';
+import { fetchAllTracks } from '../../actions/track_actions';
+import { fetchAllUsers } from '../../actions/user_actions';
 import SearchBar from './search_bar';
 
 const mapStateToProps = (state) => ({
   currentUser: state.session.currentUser,
 	search: state.search,
-	tracks: Object.values(state. tracks),
-	users: Object.values(state. users)
+	tracks: Object.values(state.tracks),
+	users: Object.values(state.users)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTracks: query => dispatch(fetchTracks(query)),
-  fetchUsers: query => dispatch(fetchUsers(query))
+  fetchAllTracks: () => dispatch(fetchAllTracks(tracks)),
+	fetchAllUsers: () => dispatch(fetchAllUsers(users))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default (connect)(mapStateToProps, mapDispatchToProps)(SearchBar);
