@@ -4,20 +4,10 @@ import Navbar from '../navbar/navbar_container';
 class SearchResults extends React.Component {
 	constructor(props) {
 		super(props);
-		this.showUser = this.showUser.bind(this);
-	}
-
-	showUser() {
-		let object = {};
-		object.preventDefault = function () { };
-		if (this.props.home) {
-			this.props.openSignIn(object);
-		} else {
-			window.location.hash = `/${this.props.user.username}`;
-		}
 	}
 
 	render() {
+		const { searchInput } = this.props;
 		// const searchResults = (
 		// 	this.props.searchResults.map((result, idx) => {
 		// 		if (result.email) {
@@ -51,3 +41,14 @@ class SearchResults extends React.Component {
 }
 
 export default SearchResults;
+
+// render() {
+
+// 	return (
+// 		<div className='search-page'>
+// 			<h1>Search results for {`"${this.props.searchInput.search.slice(3)}"`}</h1>
+// 			{results}
+// 		</div>
+// 	);
+// }
+// }

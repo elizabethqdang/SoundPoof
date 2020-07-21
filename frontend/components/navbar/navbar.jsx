@@ -11,7 +11,6 @@ class Navbar extends React.Component {
     };
 
     this.logoutUser = this.logoutUser.bind(this);
-    // this.getLinks = this.getLinks.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
 		// this.navigateToSearch = this.navigateToSearch.bind(this);
@@ -83,7 +82,6 @@ class Navbar extends React.Component {
 	navLeft() {
 		return (
 			<Fragment>
-			{/* <section className="nav-left"> */}
 				<Link to="/"className="nav-logo">
 					SoundPoof
 					{/* <img src='https://soundpoof.s3-us-west-2.amazonaws.com/logo.jpg' className="nav-logo" /> */}
@@ -94,7 +92,6 @@ class Navbar extends React.Component {
 				<NavLink className="nav-collection" activeClassName="nav-selected" exact to="/stream">
 					Stream
 				</NavLink>
-			{/* </section> */}
 			</Fragment>
 		)
 	}
@@ -112,12 +109,17 @@ class Navbar extends React.Component {
 						<div className="nav-user-image">
 								<span><img src={currentUser.profileImgUrl} /></span>
 						</div>
-						<div className="nav-user-username truncate">{currentUser.email}</div>
+						<div className="nav-user-username truncate">
+							{currentUser.email}
+						</div>
 					</div>
 				</NavLink>
-				<div className="nav-sign-out nav-menu">
-					<Dropdown currentUser={currentUser} logout={logout} />
+				<div onClick={logout} className="nav-sign-out">
+					Sign Out
 				</div>
+				{/* <div className="nav-sign-out nav-menu">
+					<Dropdown currentUser={currentUser} logout={logout} />
+				</div> */}
 			{/* </section> */}
 			</Fragment>
 		)
@@ -125,6 +127,7 @@ class Navbar extends React.Component {
 
   render() {
 		const { currentUser, logout, openModal, loggedIn } = this.props;
+		let navLeft = this.navLeft();
 		let navRight; 
 		if (currentUser) {
 			navRight = this.navUserLinks(currentUser, logout)
@@ -136,15 +139,15 @@ class Navbar extends React.Component {
 			<nav id="navbar">
 				<nav id="nav-container">
 					{/* <nav className="nav"> */}
-						<nav id="nav-btns-container">
+				<nav id="nav-btns-container">
 					<section className="nav-left">
-						{this.navLeft()}
+						{navLeft}
 					</section>
 					<SearchBar />
 					<section className="nav-right">
 						{navRight}
 					</section>
-						</nav>
+				</nav>
 					{/* </nav> */}
 				</nav>
 			</nav>
