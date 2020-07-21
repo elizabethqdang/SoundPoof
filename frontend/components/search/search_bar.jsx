@@ -124,4 +124,6 @@ class SearchBar extends React.Component {
 	}
 }
 
+// const userSearchPreview =
+
 export default withRouter(SearchBar);
