@@ -5,64 +5,66 @@
 #
 #   movies = Movie.create([ name: 'Star Wars' ,  name: 'Lord of the Rings' ])
 #   Character.create(name: 'Luke', movie: movies.first)
+# 
+# ActiveRecord::Base.connection.reset_pk_sequence!('users')
 
 require 'open-uri'
 
 
 User.destroy_all
 
-u1 = User.create({ email: "Demo-User", password: "password", bio: "", location: "", username: "" })
+u1 = User.create({ id: 1, email: "Demo-User", password: "password", bio: "", location: "", username: "" })
 u1.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'), filename: 'placeholder.jpeg')
 
-u2 = User.create({ email: "OWLSA", password: "password", bio: "", location: "", username: "" })
+u2 = User.create({ id: 2, email: "OWLSA", password: "password", bio: "", location: "", username: "" })
 u2.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/owsla.png'), filename: 'owsla.png')
 
-u3 = User.create({ email: "Skillex", password: "password", bio: "", location: "", username: "Skrillex" })
+u3 = User.create({ id: 3, email: "Skillex", password: "password", bio: "", location: "", username: "Skrillex" })
 u3.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+9.08.36+PM.png'), filename: 'skrillex.png')
 
-u4 = User.create({ email: "Flux Pavilion", password: "password", bio: "", location: "", username: "Flux Pavilion" })
+u4 = User.create({ id: 4, email: "Flux Pavilion", password: "password", bio: "", location: "", username: "Flux Pavilion" })
 u4.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/flux.png'), filename: 'flux.png')
 
-u5 = User.create({ email: "Flume", password: "password", bio: "", location: "", username: "Flume" })
+u5 = User.create({ id: 5, email: "Flume", password: "password", bio: "", location: "", username: "Flume" })
 u5.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/flume.png'), filename: 'flume.png')
 
-u6 = User.create({ email: "Louis The Child", password: "password", bio: "", location: "", username: "Louis The Child" })
+u6 = User.create({ id: 6, email: "Louis The Child", password: "password", bio: "", location: "", username: "Louis The Child" })
 u6.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'), filename: 'placeholder.jpeg')
 
-u7 = User.create({ email: "Kendrick Lamar", password: "password", bio: "", location: "", username: "Kendrick Lamar" })
+u7 = User.create({ id: 7, email: "Kendrick Lamar", password: "password", bio: "", location: "", username: "Kendrick Lamar" })
 u7.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/damn.png'), filename: 'damn.png')
 
-u8 = User.create({ email: "RL Grime", password: "password", bio: "", location: "Los Angeles", username: "RL Grime" })
+u8 = User.create({ id: 8, email: "RL Grime", password: "password", bio: "", location: "Los Angeles", username: "RL Grime" })
 u8.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'), filename: 'placeholder.jpeg')
 
-u9 = User.create({ email: "Adventure Club", password: "password", bio: "", location: "", username: "Adventure Club" })
+u9 = User.create({ id: 9, email: "Adventure Club", password: "password", bio: "", location: "", username: "Adventure Club" })
 u9.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/adventureclub.png'), filename: 'adventureclub.png')
 
-u10 = User.create({ email: "Seven Lions", password: "password", bio: "", location: "", username: "Seven Lions" })
+u10 = User.create({ id: 10, email: "Seven Lions", password: "password", bio: "", location: "", username: "Seven Lions" })
 u10.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/sevenlions.png'), filename: 'sevenlions.png')
 
-u11 = User.create({ email: "J Cole", password: "password", bio: "", location: "", username: "J Cole" })
+u11 = User.create({ id: 11, email: "J Cole", password: "password", bio: "", location: "", username: "J Cole" })
 u11.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/jcole.png'), filename: 'jcole.png')
 
-u12 = User.create({ email: "Cashmere Cat", password: "password", bio: "", location: "", username: "Cashmere Cat" })
+u12 = User.create({ id: 12, email: "Cashmere Cat", password: "password", bio: "", location: "", username: "Cashmere Cat" })
 u12.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/cashmerecat.png'), filename: 'cashmerecat.png')
 
-u13 = User.create({ email: "Excision", password: "password", bio: "", location: "", username: "Excision" })
+u13 = User.create({ id: 13, email: "Excision", password: "password", bio: "", location: "", username: "Excision" })
 u13.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/excision.png'), filename: 'excision.png')
 
-u14 = User.create({ email: "Odesza", password: "password", bio: "", location: "", username: "Odesza" })
+u14 = User.create({ id: 14, email: "Odesza", password: "password", bio: "", location: "", username: "Odesza" })
 u14.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'), filename: 'placeholder.jpeg')
 
-u15 = User.create({ email: "Louis Futon", password: "password", bio: "", location: "", username: "Louis Futon" })
+u15 = User.create({ id: 15, email: "Louis Futon", password: "password", bio: "", location: "", username: "Louis Futon" })
 u15.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'), filename: 'placeholder.jpeg')
 
-u16 = User.create({ email: "Kill The Noise", password: "password", bio: "", location: "", username: "Kill The Noise" })
+u16 = User.create({ id: 16, email: "Kill The Noise", password: "password", bio: "", location: "", username: "Kill The Noise" })
 u16.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/killthenoise.png'), filename: 'killthenoise.png')
 
-u17 = User.create({ email: "Bassnectar", password: "password", bio: "", location: "", username: "Bassnectar" })
+u17 = User.create({ id: 17, email: "Bassnectar", password: "password", bio: "", location: "", username: "Bassnectar" })
 u17.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/bassnectar.png'), filename: 'bassnectar.png')
 
-u18 = User.create({ email: "EMINEM", password: "password", bio: "", location: "", username: "EMINEM" })
+u18 = User.create({ id: 18, email: "EMINEM", password: "password", bio: "", location: "", username: "EMINEM" })
 u18.profile_image.attach(io: open('/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/eminem.png'), filename: 'eminem.png')
 
 
@@ -71,6 +73,7 @@ u18.profile_image.attach(io: open('/Users/eqdang/Desktop/app_academy/SoundPoof/a
 Track.destroy_all
 
 t1 = Track.create({
+	id: 1,
 	title: 'Blase', 
 	artist: 'Ty Dolla/Louis The Child Remix', 
 	user_id: u6.id,
@@ -79,6 +82,7 @@ t1.audio.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/lo
 t1.artwork.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+8.26.54+PM.png'), filename: 'blase.png')
 
 t2 = Track.create({
+id: 2,
 title: "Say My Name", 
 artist: "Odesza", 
 user_id: u14.id,
@@ -87,6 +91,7 @@ t2.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/od
 t2.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/saymyname.png"), filename: "saymyname.png")
 
 t3 = Track.create({
+id: 3,
 title: "Rush Over Me", 
 artist: "Seven Lions", 
 user_id: u10.id 
@@ -95,6 +100,7 @@ t3.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/ru
 t3.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/saidthesky.png"), filename: "saidthesky.png")
 
 t4 = Track.create({
+id: 4,
 title: "Crave You", 
 artist: "Flight Facilities-Adventure Club", 
 user_id: u9.id,
@@ -103,6 +109,7 @@ t4.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/ad
 t4.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/craveyou.png"), filename: "craveyou.png")
 
 t5 = Track.create({
+id: 5,
 title: "Throwin' Elbows", 
 artist: "Excision", 
 user_id: u13.id,
@@ -111,6 +118,7 @@ t5.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/ex
 t5.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/excision.png"), filename: "excision.png")
 
 t6 = Track.create({
+id: 6,
 title: "Bass Head", 
 artist: "Bassnectar", 
 user_id: u17.id 
@@ -119,6 +127,7 @@ t3.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/ba
 t3.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/basshead.png"), filename: "basshead.png")
 
 t7 = Track.create({
+id: 7,
 title: "We Rise", 
 artist: "San Holo", 
 user_id: u1.id,
@@ -127,6 +136,7 @@ t7.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/sa
 t7.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+9.23.46+PM.png"), filename: "werise.png")
 
 t8 = Track.create({
+id: 8,
 title: "Cannonball", 
 artist: "Flux Pavilion", 
 user_id: u4.id 
@@ -135,6 +145,7 @@ t8.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/ca
 t8.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"), filename: "placeholder.jpeg")
 
 t9 = Track.create({
+id: 9,
 title: "Drop The Game", 
 artist: "Flume & Chet Faker", 
 user_id: u5.id 
@@ -143,6 +154,7 @@ t9.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/dr
 t9.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/dropthegame.png"), filename: "dropthegame.png")
 
 t10 = Track.create({
+id: 10,
 title: "DNA", 
 artist: "Kendrick Lamar", 
 user_id: u7.id,
@@ -151,6 +163,7 @@ t10.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/k
 t10.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/damn.png"), filename: "damn.png")
 
 t11 = Track.create({
+id: 11,
 title: "From Here", 
 artist: "Louis The Child", 
 user_id: u6.id 
@@ -159,6 +172,7 @@ t11.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/f
 t11.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/logo.png"), filename: "logo.png")
 
 t12 = Track.create({
+id: 12,
 title: "Middle", 
 artist: "J Cole", 
 user_id: u11.id 
@@ -167,6 +181,7 @@ t12.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/m
 t12.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/middlechild.png"), filename: "middlechild.png")
 
 t13 = Track.create({
+id: 13,
 title: "Do You", 
 artist: "Cashmere Cat", 
 user_id: u12.id 
@@ -175,6 +190,7 @@ t13.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/d
 t13.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/doyou.png"), filename: "doyou.png")
 
 t14 = Track.create({
+id: 14,
 title: "My Way", 
 artist: "Fetty Wap/Floss", 
 user_id: u2.id 
@@ -183,6 +199,7 @@ t14.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/m
 t14.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/myway.png"), filename: "myway.png")
 
 t15 = Track.create({
+id: 15,
 title: "Never Be Like You", 
 artist: "Flume", 
 user_id: u5.id 
@@ -191,6 +208,7 @@ t15.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/n
 t15.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/neverbelikeyou.png"), filename: "neverbelikeyou.png")
 
 t16 = Track.create({
+id: 16,
 title: "You're On", 
 artist: "Louis The Child - Madeon", 
 user_id: u6.id,
@@ -199,6 +217,7 @@ t16.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/l
 t16.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+9.21.06+PM.png"), filename: "louisthechild.png" )
 
 t17 = Track.create({
+id: 17,
 title: "Humble", 
 artist: "Kendrick Lamar", 
 user_id: u7.id,
@@ -207,6 +226,7 @@ t17.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/k
 t17.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/damn.png"), filename: "damn.png")
 
 t18 = Track.create({
+id: 18,
 title: "Bangarang", 
 artist: "Skrillex", 
 user_id: u3.id,
@@ -215,6 +235,7 @@ t18.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/s
 t18.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+9.08.36+PM.png"), filename: "skrillex.png") 
 
 t19 = Track.create({
+id: 19,
 title: "Strobe", 
 artist: "Feed Me - Deadmau5", 
 user_id: u2.id,
@@ -223,6 +244,7 @@ t19.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/d
 t19.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/owsla.png"), filename: "placeholder.jpeg")
 
 t20 = Track.create({
+id: 20,
 title: "Busted", 
 artist: "DRAM - Herobust", 
 user_id: u2.id,
@@ -231,6 +253,7 @@ t20.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/h
 t20.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"), filename: "owsla.png")
 
 t21 = Track.create({
+id: 21,
 title: "You Were Right", 
 artist: "Rufus Du Sol - Louis Futon", 
 user_id: u1.id,
@@ -239,6 +262,7 @@ t21.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/l
 t21.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+8.49.07+PM.png"), filename: "rufusdusol.png" )
 
 t22 = Track.create({
+id: 22,
 title: "Feel The Volume", 
 artist: "Jauz - Joyryde", 
 user_id: u1.id,
@@ -247,6 +271,7 @@ t22.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/j
 t22.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+9.32.12+PM.png"), filename: "joyryde.png" ) 
 
 t23 = Track.create({
+id: 23,
 title: "Gold Dust", 
 artist: "Flux Pavilion", 
 user_id: u4.id,
@@ -255,6 +280,7 @@ t23.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/f
 t23.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/owsla.png"), filename: "owsla.png")
 
 t24 = Track.create({
+id: 24,
 title: "Levels", 
 artist: "Skrillex/Avicii", 
 user_id: u3.id,
@@ -262,29 +288,32 @@ user_id: u3.id,
 t24.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/skrillex-levels.mp3"), filename: "skrillex-levels.mp3" )
 t24.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/levels.png"), filename: "levels.png")
 
-t24 = Track.create({
+t25 = Track.create({
+id: 25,
 title: "Rip N Dip", 
 artist: "Kill The Noise/Getter", 
 user_id: u16.id,
 })
-t24.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/ripndip.mp3"), filename: "ripndip.mp3" )
-t24.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/ripndip.png"), filename: "ripndip.png")
+t25.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/ripndip.mp3"), filename: "ripndip.mp3" )
+t25.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/ripndip.png"), filename: "ripndip.png")
 
-t25 = Track.create({
+t26 = Track.create({
+id: 26,
 title: "Eminem - Godzilla ft. Juice WRLD", 
 artist: "EMINEM", 
 user_id: u18.id,
 })
-t25.audio.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/eminem-godzilla.mp3"), filename: "eminem-godzilla.mp3" )
-t25.artwork.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/musictobemurderedby.png"), filename: "musictobemurderedby.png")
+t26.audio.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/eminem-godzilla.mp3"), filename: "eminem-godzilla.mp3" )
+t26.artwork.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/musictobemurderedby.png"), filename: "musictobemurderedby.png")
 
-t26 = Track.create({
+t27 = Track.create({
+id: 27,
 title: "Eminem - I Will (ft. KXNG Crooked, Royce Da 5''9"" & Joell Ortiz)", 
 artist: "EMINEM", 
 user_id: u18.id,
 })
-t26.audio.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/eminem-iwill.mp3"), filename: "eminem-iwill.mp3" )
-t26.artwork.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/musictobemurderedby.png"), filename: "musictobemurderedby.png")
+t27.audio.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/eminem-iwill.mp3"), filename: "eminem-iwill.mp3" )
+t27.artwork.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/musictobemurderedby.png"), filename: "musictobemurderedby.png")
 
 
 
@@ -293,23 +322,105 @@ t26.artwork.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/ass
 
 Comment.destroy_all
 
+
 c1 = Comment.create({
+	id: 1,
 	body: 'asdfjkl;',
 	track_id: t1.id,
-	user_id: u1.id
+	user_id: u3.id
 })
 c2 = Comment.create({
+	id: 2,
 	body: 'asdfjkl;',
 	track_id: t2.id,
 	user_id: u2.id
 })
 c3 = Comment.create({
+	id: 3,
 	body: 'asdfjkl;',
 	track_id: t3.id,
-	user_id: u3.id
+	user_id: u9.id
 })
 c4 = Comment.create({
+	id: 4,
 	body: 'asdfjkl;',
 	track_id: t4.id,
-	user_id: u4.id
+	user_id: u13.id
+})
+c5 = Comment.create({
+	id: 5,
+	body: 'asdfjkl;',
+	track_id: t1.id,
+	user_id: u1.id
+})
+
+
+
+
+Repost.destroy_all
+
+r1 = Repost.create({
+	id: 1,
+	track_id: t2.id,
+	user_id: u1.id
+})
+r2 = Repost.create({
+	id: 2,
+	track_id: t3.id,
+	user_id: u1.id
+})
+r3 = Repost.create({
+	id: 3,
+	track_id: t16.id,
+	user_id: u1.id
+})
+r4 = Repost.create({
+	id: 4,
+	track_id: t23.id,
+	user_id: u1.id
+})
+
+
+
+Like.destroy_all
+
+l1 = Like.create({
+	id: 1,
+	track_id: t1.id,
+	user_id: u1.id
+})
+l2 = Like.create({
+	id: 2,
+	track_id: t3.id,
+	user_id: u1.id
+})
+l3 = Like.create({
+	id: 3,
+	track_id: t4.id,
+	user_id: u1.id
+})
+l4 = Like.create({
+	id: 4,
+	track_id: t12.id,
+	user_id: u1.id
+})
+l8 = Like.create({
+	id: 8,
+	track_id: t13.id,
+	user_id: u1.id
+})
+l5 = Like.create({
+	id: 5,
+	track_id: t15.id,
+	user_id: u1.id
+})
+l6 = Like.create({
+	id: 6,
+	track_id: t26.id,
+	user_id: u1.id
+})
+l7 = Like.create({
+	id: 7,
+	track_id: t7.id,
+	user_id: u1.id
 })

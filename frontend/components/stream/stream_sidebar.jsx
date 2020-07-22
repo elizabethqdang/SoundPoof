@@ -168,11 +168,13 @@ const StreamSidebarLikeItem = ({ user, users, tracks, currentUser, track, cLiked
 const mapStateToProps = (state) => {
 	const currentUser = state.session.currentUser || {};
 	const cLikedTrackIds = currentUser.likedTrackIds;
-	// const tracks = Object.values(state. tracks);
+	const users = Object.values(state.users);
 	const cLikedTracks = (cLikedTrackIds.slice(0, 3)).map((id) => {
 		return id;
 		// return tracks[id];
 	})
+	const randomIdx = Math.floor(Math.random() * users.length);
+	console.log(users.length, randomIdx, randomIdx+3);
 	// console.log("currentUser", currentUser);
 	// console.log("cLikedTrackIds", cLikedTrackIds);
 	// console.log("tracks", tracks);
@@ -184,7 +186,7 @@ const mapStateToProps = (state) => {
 		cLikedTracks,
 		// tracks: (Object.values(state. tracks)),
 		// tracks: state. tracks,
-		users: (Object.values(state. users)).slice(0, 3) || {},
+		users: (Object.values(state.users)).slice(randomIdx, randomIdx+3) || {},
 	};
 };
 

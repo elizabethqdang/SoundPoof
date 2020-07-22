@@ -243,6 +243,9 @@
     .ts-follow-btn, .ts-artist-stats {
 			margin: 10px 0px;
 			// justify-content: center;
+			position: relative;
+			display: flex;
+			flex-direction: row nowrap;
     }
     .ts-follow-btn {
       font-size: 11px;

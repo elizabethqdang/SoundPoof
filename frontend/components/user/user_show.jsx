@@ -7,7 +7,6 @@ import UserSidebar from './user_sidebar';
 class UserShow extends React.Component {
   constructor(props) {
     super(props);
-		// this.fetched = false;
 		this.handleToggleLike = this.handleToggleLike.bind(this);
 		this.updateImage = this.updateImage.bind(this);
 		this.updateImageBtn = this.updateImageBtn.bind(this);
@@ -16,7 +15,6 @@ class UserShow extends React.Component {
   componentDidMount() {
 		this.props.fetchUser(this.props.match.params.userId);
 		this.props.fetchAllTracks();
-		// this.fetched = true;
   }
 
 	componentDidUpdate(prevProps) {
