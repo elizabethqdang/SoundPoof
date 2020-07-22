@@ -14,7 +14,7 @@ json.commentIds user.comments.pluck(:id)
 
 json.trackIds user.tracks.pluck(:id)
 
-# json.profileImgUrl url_for(user.profile_image)
+json.profileImgUrl url_for(user.profile_image)
 json.bannerUrl asset_path(user.banner.url)
 json.profileUrl asset_path(user.profile.url)
 

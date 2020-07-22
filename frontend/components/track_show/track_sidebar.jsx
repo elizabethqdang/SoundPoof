@@ -5,34 +5,36 @@ import { NavLink, Link, withRouter } from 'react-router-dom';
 class TrackSidebar extends React.Component {
   constructor(props) {
 		super(props);
-		this.followItem = this.followItem.bind(this);
+		this.trackReposts = this.trackReposts.bind(this);
 		this.trackLikes = this.trackLikes.bind(this);
   }
 	
-	followItem() {
+	trackLikes() {
+		console.log(this.props.users);
 		return (
 		(this.props.users).map((user, idx) => {
-			return <StreamSidebarFollowItem key={idx} user={user} />;
-		}))
-	}
-
-	trackLikes() {
-		return (
-		(this.props.tracks).map((track, idx) => {
-			return <TrackLikes key={idx} track={track} />;
-		}))
+			if (this.props.track.likerIds.includes(user.id)) {
+				return <TrackLikes key={idx} user={user} currentUser={this.props.currentUser} />;
+				}
+			})
+		)
 	}
 
 	trackReposts() {
 		return (
 		(this.props.users).map((user, idx) => {
-			return <TrackReposts key={idx} user={user} />;
-		}))
+			if (this.props.track.reposterIds.includes(user.id)) {
+				return <TrackReposts key={idx} user={user} currentUser={this.props.currentUser} />;
+				}
+			})
+		)
 	}
 
   render() {
-		const {users, currentUser, tracks, track} = this.props;
-		const user = this.props.currentUser;
+		const {users, currentUser, tracks, track, user} = this.props;
+		const numLikes = (track.numLikes);
+		const numReposts = (track.numReposts);
+		const trackLikes = this.trackLikes();
 		// console.log("user", user, "users", users, "currentUser", currentUser);
 
     return (
@@ -41,99 +43,78 @@ class TrackSidebar extends React.Component {
 				<section className="sidebar-module who-to-follow">
 					<a className="sidebar-header" href="#">
 						<h3 className="sidebar-header-title">
-							<span className="sidebar-header-follower-icon"></span>
-							<span>Who To Follow</span>
+							<span className="sidebar-header-likes-icon"></span>
+							<span>{numLikes} Likes</span>
 						</h3>
+						<span className="sidebar-header-refresh" >View All</span>
 					</a>
 
-					<div className="sidebar-content">
+					<div className="sidebar-content track-likes">
 						<ul className="sidebar-list">
-							{this.trackLikes()}
+							{/* {this.trackLikes()} */}
+							{trackLikes}
 						</ul>
 					</div>
 				</section>
+
+				<section className="sidebar-module who-to-follow">
+					<a className="sidebar-header" href="#">
+						<h3 className="sidebar-header-title">
+							<span className="sidebar-header-reposts-icon"></span>
+							<span>{numReposts} Reposts</span>
+						</h3>
+						<span className="sidebar-header-refresh" >View All</span>
+					</a>
+
+					<div className="sidebar-content track-reposts">
+						<ul className="sidebar-list">
+							{this.trackReposts()}
+						</ul>
+					</div>
+				</section>
+
 			</aside>
 
     );
   }
 }
 
-const StreamSidebarFollowItem = ({ user, users, track, currentUser}) => {
-	let active = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'active' : '');
-	let likeButton = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'Following' : 'Follow');
-
-  return (
-		<li className="user-suggestion-item">
-			<Link to={`/users/${user.id}`} className="user-suggestion-avatar"><img src={user.profileImgUrl} />
-			</Link>
-			<div className="user-suggestion-content">
-				<div className="user-suggestion-title truncate">
-					<Link to={`/users/${user.id}`} className="user-suggestion-title-link truncate">{user.email}</Link>
-				</div>
-
-				<div className="user-suggestion-meta">
-					<div className="user-suggestion-stats">
-						<div className="user-suggestion-followers">
-							{user.likedTrackIds.length}
-						</div>
-						<div className="user-suggestion-tracks">
-							{user.trackIds.length}
-						</div>
-					</div>
-
-					<div className="user-suggestion-actions">
-						<button 
-						// onClick={this.like} 
-						className={`bc-btn user-suggestion-follow-btn ${active}`} type="button">{likeButton}</button>
-					</div>
-				</div>
-
-			</div>
-		</li>
-  );
-};
-
 const TrackLikes = ({ user, users, tracks, currentUser, track }) => {
-	let active = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'active' : '');
-	let likeButton = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'Liked' : 'Like');
+	// let active = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'active' : '');
+	// let likeButton = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'Liked' : 'Like');
+	console.log(user.profileImgUrl);
 
 	return (
-		<li className="user-suggestion-item">
-			<Link to={`/tracks/${track.id}`}>
-				<img src={track.artworkUrl} className="user-suggestion-avatar"/>
+		<li className="user-suggestion-item track-stat-container">
+			<Link to={`/users/${user.id}`} className="user-suggestion-avatar">
+				<img src={user.profileImgUrl} />
 			</Link>
-			<div className="user-suggestion-content">
-				<div className="user-suggestion-title truncate">
-					<Link to={`/users/${track.user_id}`} className="user-suggestion-title-link truncate">{track.userEmail}</Link>
-					<Link to={`/tracks/${track.id}`} className="user-suggestion-title-link truncate">{track.title}</Link>
-				</div>
+			<a href='/#/users/${user.id}' className="user-suggestion-artist-link truncate track-likes">{user.email}
+			</a>
+		</li>
+	);
+};
 
-				<div className="user-suggestion-meta">
-					<div className="user-suggestion-stats">
-						<div className="user-suggestion-followers">
-							{track.numLikes}
-						</div>
-						<div className="user-suggestion-tracks">
-							{/* {track.numComments} */}
-						</div>
-					</div>
+const TrackReposts = ({ user, users, tracks, currentUser, track }) => {
+	// let active = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'active' : '');
+	// let likeButton = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'Liked' : 'Like');
+	console.log(user, user.profileImgUrl);
 
-					<div className="user-suggestion-actions">
-						<button
-							// onClick={this.like} 
-							className={`bc-btn user-suggestion-follow-btn ${active}`} type="button">{likeButton}</button>;
-					</div>
-				</div>
-
-			</div>
+	return (
+		<li className="user-suggestion-item track-stat-container">
+			<Link to={`/users/${user.id}`} className="user-suggestion-avatar">
+				<img src={user.profileImgUrl} />
+				</Link>
+				<Link className="user-suggestion-artist-link truncate track-reposts">{user.email}
+			</Link>
 		</li>
 	);
 };
 
 const mapStateToProps = (state) => ({
-	users: (Object.values(state. users)).slice(0, 3) || {},
+	users: (Object.values(state.users)) || {},
 	currentUser: state.session.currentUser || {},
-	tracks: (Object.values(state. tracks)).slice(0, 3) || {},
+	tracks: (Object.values(state.tracks)).slice(0, 3) || {},
 
 });
 

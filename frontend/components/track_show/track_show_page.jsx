@@ -227,10 +227,10 @@ class TrackShowPage extends React.Component {
 								</div>
 							</div>
 						</div>
-						<div className='tscb-sidebar'>
-							<div className="ad-container">
+						<div className='trackshow-sidebar-right'>
+							{/* <div className="ad-container">
 								<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src={this.props.currentUser.profileImgUrl} /></a>
-							</div>
+							</div> */}
 							<TrackSidebar users={users} currentUser={currentUser || null} tracks={tracks} track={track} />
 						</div>
 					</div>

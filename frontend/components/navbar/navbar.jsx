@@ -98,6 +98,7 @@ class Navbar extends React.Component {
 
 	navUserLinks(currentUser, logout) {
 		// const { currentUser, logout } = this.props;
+		console.log(currentUser.profileUrl);
 		return (
 			<Fragment>
 			{/* <section className="nav-right"> */}
