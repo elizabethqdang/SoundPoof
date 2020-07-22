@@ -65,9 +65,9 @@ class StreamSidebar extends React.Component {
 							{this.followItem()}
 						</ul>
 					</div>
-				{/* </section> */}
+				</section>
 
-				{/* <section className="sidebar-module who-to-follow"> */}
+				<section className="sidebar-module who-to-follow">
 					<a className="sidebar-header" href="#">
 						<h3 className="sidebar-header-title">
 							<span className="sidebar-header-likes-icon"></span>

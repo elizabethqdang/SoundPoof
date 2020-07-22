@@ -70,7 +70,7 @@ class UserShow extends React.Component {
 			const { user, tracks, userTracks, track, users, createLike, deleteLike, createRepost, deleteRepost, deleteTrack, currentUser, setPlayPause, setProg } = this.props;
 			let trackIds = this.props.user.trackIds;
 			let likedTrackIds = this.props.user.likedTrackIds;
-			// console.log("tracks", tracks);
+			console.log("user", user.profile_image, user.profileImgUrl, user.profileUrl);
 
 			let userStream = Object.values(tracks).map(track => {
 				if (trackIds.includes(track.id)) {
@@ -96,7 +96,7 @@ class UserShow extends React.Component {
 
     return (
       <div className="usershow-container">
-				<NavbarContainer />
+				<NavbarContainer currentUser={currentUser} />
 
       	<div className="usershow-header-container">
 					<div className="usershow-banner-img"></div>

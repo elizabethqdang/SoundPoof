@@ -232,6 +232,15 @@ nav#nav-btns-container{
 	box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px inset;
   border-radius: 50%;
 }
+.nav-user-image span img {
+	height: 26px;
+	width: 26px;
+	color: transparent;
+	background: image-url('placeholder.jpeg') 0 0 no-repeat;
+	background-position: 50%;
+	background-size: 26px 26px;
+	border-radius: 50%;
+}
 
 .nav-user-image span {
   display: block;
