@@ -35,7 +35,7 @@
   right: 0;
 	// width: 300px;
 	display: flex;
-	flex-direction: column nowrap;
+	flex-direction: column;
 	// color: #999;
 	text-decoration-line: none;
 }
@@ -67,6 +67,7 @@
   font-size: 14px;
 	font-weight: 100;
 	text-decoration-line: none;
+	text-align: right;
 
 	span {
 		color: #999;
@@ -77,7 +78,8 @@
 }
 
 .sidebar-header-follow-icon,
-.sidebar-header-likes-icon {
+.sidebar-header-likes-icon,
+.sidebar-header-reposts-icon {
   // background-size: 25px 25px;
   width: 24px;
   margin-right: 4px;
@@ -101,14 +103,22 @@
 	background-image: image-url('follow-suggestions.svg');
 }
 
+.sidebar-header-reposts-icon {
+  background-size: 20px 20px;
+  margin-right: 6px;
+  background-image: image-url('repost-icon.svg');
+}
+
+
 .sidebar-header-refresh {
   // background: image-url('') no-repeat 0 center;
-  padding-left: 15px;
+  // padding-left: 15px;
   background-size: 13px 13px;
   opacity: 0.8;
   margin-top: 0;
   line-height: 24px;
-  font-size: 14px;
+	font-size: 14px;
+	text-align: right;
 }
 
 .sidebar-content {
@@ -130,7 +140,8 @@
   align-items: center;
   position: relative;
   min-height: 50px;
-	width: 100%;
+	width: 300px;
+	max-width: 100%;
 }
 
 .user-suggestion-avatar {
@@ -226,7 +237,8 @@
 }
 
 .user-suggestion-meta {
-  display: flex;
+	display: flex;
+	justify-content: space-between;
 }
 
 .user-suggestion-stats {
@@ -276,7 +288,7 @@
 
 .user-suggestion-followers:before {
   background-size: 16px 16px;
-  background-image: image-url('followers-icon.png');
+  background-image: image-url('follow-suggestions.svg');
 }
 
 .user-suggestion-tracks, .user-suggestion-likes, .user-suggestion-comments, .user-suggestion-reposts {
@@ -314,7 +326,10 @@
 
 .user-suggestion-actions {
   display: flex;
-  flex-shrink: 0;
+	flex-shrink: 0;
+	right: 20px;
+	border: 1px solid #e5e5e5;
+	margin-right: 20px;
 }
 
 .bc-btn {
@@ -344,10 +359,18 @@
 	font-family: 'Lucida Grande';
 	text-decoration: none;	
   font-size: 11px;
-  padding: 2px 9px 2px 8px;
+	padding: 2px 9px 2px 8px;
+	margin-left: 8px;
   height: 22px;
   line-height: 16px;
-  font-weight: 300;
+	font-weight: 300;
+	place-self: flex-end right;
+	background: image-url('follow-btn.svg') 0 0 no-repeat;
+	background-size: 14px 14px;
+	background-position: center left;
+	text-align: right;
+	text-indent: 14px;
+	border: 1px solid #e5e5e5;
 }
 
 .user-suggestion-follow-btn:hover {
@@ -362,6 +385,10 @@
 
 .user-suggestion-follow-btn.active {
   border-color: #f50;
+}
+
+button.user-suggestion-follow-btn {
+	margin-left: 0;
 }
 
 //
@@ -579,7 +606,9 @@
   font-size: 11px;
   padding: 2px 9px 2px 8px;
   height: 22px;
-  line-height: 16px;
+	line-height: 16px;
+	justify-self: right;
+	border: 1px solid #e5e5e5;
 }
 
 .floating-user-content-follow-btn.active {

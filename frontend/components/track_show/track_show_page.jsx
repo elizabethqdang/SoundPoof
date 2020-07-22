@@ -21,11 +21,13 @@ class TrackShowPage extends React.Component {
 	}
 	
 	componentDidMount() {
+		const trackId = this.props.match.params.trackId;
 		this.props.fetchTrack(this.props.match.params.trackId);
-		// this.props.fetchUser(this.props.track.user.id);
+		this.props.fetchUser(this.props.user);
 	}
 		
 	componentDidUpdate(prevProps) {
+		const trackId = this.props.trackId;
 		if (prevProps.match.params.trackId !== this.props.match.params.trackId) {
 			this.props.fetchTrack(this.props.match.params.trackId);
 		}
@@ -146,12 +148,13 @@ class TrackShowPage extends React.Component {
 			)
 		} else {
 			const { comments, track, tracks, users, currentUser, trackplayer, deleteComment } = this.props;
-			let user = (users)[this.props.track.user_id];
+			let user = (this.props.users)[this.props.track.user_id];
 			let commentLength = ((comments.length === 1) ? "1 Comment" : `${comments.length} Comments`);
 			let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
 				'playing' : 'ts-play';
 			let trackButtonBar = this.trackButtonBar();
-			let userTrackIds = ((user && user.trackIds )? user.trackIds : "0");
+			let numFollows = ((user && user.followIds) ? user.followIds.length : "0");
+			let userTrackIds = ((user && user.trackIds) ? user.trackIds.length : "0");
 			let trackNavbar = (
 				<NavbarContainer currentUser={currentUser} />
 			);
@@ -195,23 +198,25 @@ class TrackShowPage extends React.Component {
 							<div className='track-show-comment-form'>
 								{commentForm}
 							</div>
-							{this.trackButtonBar()}
-							{/* {trackButtonBar} */}
+							{/* {this.trackButtonBar()} */}
+							{trackButtonBar}
 							<div className='ts-uploader-ci'>
 								<div className='ts-uc-left'>
 									<div className='ts-artist-circle'>
-										<Link to={`/users/${track.user_id}`}>
+										{/* <Link to={`/users/${track.user_id}`}>
 											<img src={track.profileImgUrl} />
-										</Link>
-										{/* <a href={`/#/users/${track.user_id}`}><img src={track.profileImgUrl} /></a> */}
+										</Link> */}
+										<a href={`/#/users/${track.user_id}`}><img src={track.profileImgUrl} /></a>
 									</div>
-									<Link to={`/users/${track.user_id}`}>
+									{/* <Link to={`/users/${track.user_id}`}>
 										<div className='ts-artist-name'>{track.userEmail}</div>
-									</Link>
-									{/* <a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a> */}
-									<div className='ts-artist-stats user-suggestion-tracks'>
-										{userTrackIds}
+									</Link> */}
+									<a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a>
+									<div className='ts-artist-stats'> 
+										<div className='user-suggestion-followers'>{numFollows}</div>
+										<div className='user-suggestion-tracks'>{userTrackIds}</div>
 									</div>
+									<button className="user-suggestion-follow-btn" value="Follow">Follow</button>
 								</div>
 								<div className='ts-uc-right'>
 									<div className='ts-track-description'>DESCRIPTION</div>

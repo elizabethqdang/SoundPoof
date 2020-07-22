@@ -208,8 +208,8 @@ class Splash extends React.Component {
 									<img src="" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title truncate'></p>
-									<p className='trending-track artist truncate'></p>
+									<p className='trending-track title truncate'>J Cole</p>
+									<p className='trending-track artist truncate'>Middle</p>
 								</div>
 							</li>
 						</a>

@@ -21,10 +21,20 @@ class UserSidebar extends React.Component {
 
   render() {
 		const {users, currentUser, tracks, track, user} = this.props;
+		// let followingIds = (this.props.user.likedTrackIds).slice(0, );
 		let likedTrackIds = (this.props.user.likedTrackIds).slice(0, 3);
+		let repostedTrackIds = (this.props.user.repostedTrackIds).slice(0, 3);
 		let numLikes = user.likedTrackIds.length;
+		let numReposts = user.repostedTrackIds.length;
 		let userSidebar = Object.values(tracks).map((track, idx) => {
 			if (likedTrackIds.includes(track.id)) {
+				return (
+					<UserSidebarLikeItem key={idx} currentUser={currentUser || null} tracks={tracks} user={user || {}} users={users} track={track} />
+				)
+			}
+		});
+		let userReposts = Object.values(tracks).map((track, idx) => {
+			if (repostedTrackIds.includes(track.id)) {
 				return (
 					<UserSidebarLikeItem key={idx} currentUser={currentUser || null} tracks={tracks} user={user || {}} users={users} track={track} />
 				)
@@ -33,6 +43,21 @@ class UserSidebar extends React.Component {
 
 			return (
 				<aside className="sidebar-right">
+					<section className="sidebar-module who-to-follow">
+						<a className="sidebar-header" href="#">
+							<h3 className="sidebar-header-title">
+								<span className="sidebar-header-follow-icon"></span>
+								<span>Following</span>
+							</h3>
+							<span className="sidebar-header-refresh">View All</span>
+						</a>
+
+						{/* <div className="sidebar-content">
+							<ul className="sidebar-list">
+								
+							</ul>
+						</div> */}
+					</section>
 					<section className="sidebar-module who-to-follow">
 						<a className="sidebar-header" href="#">
 							<h3 className="sidebar-header-title">
@@ -46,6 +71,21 @@ class UserSidebar extends React.Component {
 							<ul className="sidebar-list">
 								{userSidebar}
 								{/* {this.likeItem()} */}
+							</ul>
+						</div>
+					</section>
+					<section className="sidebar-module who-to-follow">
+						<a className="sidebar-header" href="#">
+							<h3 className="sidebar-header-title">
+								<span className="sidebar-header-reposts-icon"></span>
+								<span>{numReposts} Reposts</span>
+							</h3>
+							<span className="sidebar-header-refresh">View All</span>
+						</a>
+
+						<div className="sidebar-content">
+							<ul className="sidebar-list">
+								{userReposts}
 							</ul>
 						</div>
 					</section>
