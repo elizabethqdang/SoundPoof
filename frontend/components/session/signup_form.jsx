@@ -37,10 +37,11 @@ class SignupForm extends React.Component {
 			email: this.state.email,
 			password: this.state.password,
 		}
-		this.props.signup(user, this.props.history)
-		.then(this.props.history.push("/discover"), 
-		() => this.props.closeModal(),
-		console.log(user, "user"));
+		this.props.signup(user).then(
+			// this.props.history.push("/stream"), 
+			// () => this.props.closeModal(),
+			console.log(user, "user")
+		);
 	}
 
 	renderErrors() {
@@ -129,9 +130,10 @@ class SignupForm extends React.Component {
 						
 						<input type="submit" value="Accept & continue" className="session-submit" />
 						{this.renderErrors()}
+						{errors}
 						<br />
 						<p className="session-text">
-							Are you trying to sign in? {this.props.login}
+							Are you trying to sign in? {this.props.otherForm}
 						</p>
 					</div>
 				</form>

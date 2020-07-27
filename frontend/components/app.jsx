@@ -26,7 +26,7 @@ const App = () => (
 				<Switch>
 					{/* <Route exact path="/discover" component={TrackIndexContainer} /> */}
 					<ProtectedRoute exact path="/stream" component={StreamContainer} />
-					<ProtectedRoute exact path="/search" component={SearchResults} />
+					<ProtectedRoute path="/search" component={SearchResults} />
 					<ProtectedRoute exact path="/upload" component={UploadPageContainer} />
 					<ProtectedRoute exact path="/tracks/:trackId" component={TrackShowPageContainer} />
 					<ProtectedRoute exact path="/users/:userId" component={UserShow} />

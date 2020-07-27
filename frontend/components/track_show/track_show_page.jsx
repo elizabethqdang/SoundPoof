@@ -165,7 +165,7 @@ class TrackShowPage extends React.Component {
 				<CommentIndexItem key={idx} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} user={user} />
 			));
 			let waveForm = (
-				<WaveFormContainer track={track} height={100} color={'#fff'} />
+				<WaveFormContainer track={track} height={100} color={'#fff'} currentUser={currentUser} />
 			)
 
 			return (
