@@ -53,10 +53,9 @@ class SessionForm extends React.Component {
   handleDemoSubmit(e){
     e.preventDefault();
     const user = { email: "Demo-User", password: "password" };
-		this.props.demoSubmit(user)
-			.then(
+		this.props.demoSubmit(user).then(
 				() => this.props.closeModal(),
-				this.props.history.push("/stream")
+				// this.props.history.push("/stream")
 			);
 			// 	this.props.history.push("/stream"),
 			// 	console.log(user));
