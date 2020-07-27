@@ -29,7 +29,6 @@ const tracksReducer = (state = {}, action) => {
 					nextState[action.track.id] = action.track;
 					// nextState[action.comments] = action.comments;
 					return nextState;
-
         case REMOVE_TRACK:
             delete nextState[action.trackId.id];
             return nextState;   

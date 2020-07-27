@@ -15,7 +15,7 @@ class Stream extends React.Component {
 	componentDidMount() {
 		this.props.fetchAllTracks();
 		this.props.fetchAllUsers();
-		this.props.fetchCurrentUser(this.props.currentUser.id);
+		// this.props.fetchCurrentUser(this.props.currentUser.id);
 	}
 
 	// componentDidUpdate(prevProps) {
@@ -73,4 +73,4 @@ class Stream extends React.Component {
 	}
 } 
 
-export default (Stream);
+export default withRouter(Stream);
