@@ -20,7 +20,7 @@ class UserSearchResult extends React.Component {
 
 		return (
 			<div className='search-result-container'>
-				<Navbar />
+				{/* <Navbar /> */}
 				<li className='search-show collection-show'>
 					<img onClick={this.userSearchResult} src={this.props.user.profileImgUrl || ""} />
 					<span onClick={this.userSearchResult}>{this.props.user.email}</span>
@@ -33,8 +33,8 @@ class UserSearchResult extends React.Component {
 
 const mapStateToProps = (state) => ({
 	currentUser: state.session.currentUser,
-	tracks: Object.values(state. tracks),
-	users: Object.values(state. users)
+	tracks: Object.values(state.tracks),
+	users: Object.values(state.users)
 });
 
 const mapDispatchToProps = (dispatch) => ({

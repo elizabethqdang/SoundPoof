@@ -63,6 +63,8 @@ class SessionForm extends React.Component {
   }
 
   render() {
+
+		let errors = this.renderErrors();
     
     return (
       <div className="loginFormContainer">
