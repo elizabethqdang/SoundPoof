@@ -23,7 +23,7 @@ class TrackShowPage extends React.Component {
 	componentDidMount() {
 		const trackId = this.props.match.params.trackId;
 		this.props.fetchTrack(this.props.match.params.trackId);
-		this.props.fetchUser(this.props.user);
+		// this.props.fetchUser(this.props.user);
 	}
 		
 	componentDidUpdate(prevProps) {

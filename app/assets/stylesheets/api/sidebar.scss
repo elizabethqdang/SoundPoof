@@ -138,6 +138,13 @@
 	width: 100%;
 }
 
+.sidebar-content.track-reposts > .sidebar-list, .sidebar-content.track-likes > .sidebar-list {
+  display: flex;
+	width: 100%;
+	justify-content: flex-start;
+}
+
+
 .user-suggestion-item {
   padding: 10px 0;
   display: flex;

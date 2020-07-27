@@ -25,7 +25,7 @@ class SearchResults extends React.Component {
 		// 		}
 		// 	})
 		// );
-		console.log(this.props.searchResults)
+		console.log("searchResults", "seachInput", this.props.searchInput, this.props.searchResults)
 
 		return (
 			<div className={'search-results-container'}>
@@ -35,20 +35,15 @@ class SearchResults extends React.Component {
 					<img onClick={this.showUser} src={this.props.user.profileImgUrl} />
 					<span onClick={this.showUser}>{this.props.user.username}</span>
 				</li> */}
+				<div className='search-page'>
+					<h1>Search results for {`"${this.state.searchInput}"`}</h1>
+					{/* {results} */}
+				{/* {' '} */}
+				</div>
+
 			</div>
 		);
 	}
 }
 
 export default SearchResults;
-
-// render() {
-
-// 	return (
-// 		<div className='search-page'>
-// 			<h1>Search results for {`"${this.props.searchInput.search.slice(3)}"`}</h1>
-// 			{results}
-// 		</div>
-// 	);
-// }
-// }

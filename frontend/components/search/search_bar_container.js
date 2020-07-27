@@ -5,7 +5,7 @@ import { fetchAllUsers } from '../../actions/user_actions';
 import SearchBar from './search_bar';
 
 const mapStateToProps = (state) => ({
-  currentUser: state.session.currentUser,
+  currentUser: state.session.currentUser || {},
 	search: state.search,
 	tracks: Object.values(state.tracks),
 	users: Object.values(state.users)

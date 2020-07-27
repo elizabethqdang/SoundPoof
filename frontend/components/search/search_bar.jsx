@@ -83,10 +83,10 @@ class SearchBar extends React.Component {
 	
 	toSearch() {
 		if (this.state.searchInput.length > 0) {
-			window.location.hash = `/search`;
+			window.location.hash = `/search?q=${this.state.searchInput}`;
 
 			return (
-				<SearchResults currentUser={currentUser} user={this.props.user} track={this.props.track} users={this.props.users} tracks={this.props.tracks} searchResults={this.state.searchResults} searchInput={this.state.searchInput} />
+				<SearchResults currentUser={this.props.currentUser} user={this.props.user} track={this.props.track} users={this.props.users} tracks={this.props.tracks} searchResults={this.state.searchResults} searchInput={this.state.searchInput} />
 			)
 		} else {
 			return <div></div>;
