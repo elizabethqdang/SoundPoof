@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { fetchUser, updateUser, createLike, deleteLike, createRepost, deleteRepost } from "../../actions/user_actions";
-import { fetchAllTracks, deleteTrack } from "../../actions/track_actions";
+import { fetchAllTracks, fetchTrack, deleteTrack } from "../../actions/track_actions";
 import { withRouter, Route } from "react-router-dom";
 import { setCurrentTrack, setPlayPause, setProg } from '../../actions/track_player_actions';
 import UserShow from "./user_show";
@@ -30,6 +30,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	fetchUser: (userId) => dispatch(fetchUser(userId)),
+	fetchTrack: (trackId) => dispatch(fetchTrack(trackId)),
 	fetchAllTracks: () => dispatch(fetchAllTracks()),
 	updateUser: (formData) => dispatch(updateUser(ownProps.match.params.id, formData)),
 	setCurrentTrack: (track) => dispatch(setCurrentTrack(track)),

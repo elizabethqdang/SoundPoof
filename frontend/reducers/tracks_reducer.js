@@ -34,10 +34,10 @@ const tracksReducer = (state = {}, action) => {
             delete nextState[action.trackId.id];
             return nextState;   
         case RECEIVE_USER:
-					if (action.user === undefined) {
+					if (action.user.tracks === undefined) {
 						return {};
 					} else {
-						return Object.assign({}, action.user);
+						return Object.assign({}, action.tracks);
 					};
         default:
             return state;

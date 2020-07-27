@@ -14,7 +14,9 @@ class CommentIndexItem extends React.Component {
 		const { comment, track, deleteComment } = this.props;
 		console.log("deleteComment", "comment", comment, "comment.id", comment.id);
 
-    deleteComment(track.id, this.props.comment.id); 
+    deleteComment(track.id, this.props.comment.id).then(
+			this.props.fetchTrack(this.props.track.id)
+		); 
   }
 
   userTrackButtons() {
