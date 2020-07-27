@@ -103,6 +103,7 @@
 	.usershow-btn-bar-container {
 		display: inline-flexbox;
 		width: 100%;
+		margin-top: 30px;
 		height: 46px;
 		// border: 1px solid #CCC;
 	}
@@ -278,7 +279,9 @@
   line-height: 1.8;
   list-style: none;
   margin: 0;
-  display: table;
+	display: table;
+
+	// vertical-align: text-bottom;
 }
 
 .user-info-tabs:before {
@@ -286,9 +289,11 @@
 }
 
 .user-info-tabs-item {
-  float: left;
+  // float: left;
   margin: 0 12px -1px;
-  letter-spacing: 0.001em;
+	letter-spacing: 0.001em;
+	display: flex;
+	flex-direction: row nowrap;
 }
 
 .user-info-tabs-item:first-child {
@@ -300,13 +305,18 @@
   color: #333;
   border-bottom: 1px solid transparent;
   display: block;
-  font-weight: 400;
+	font-weight: 400;
+	display: relative;
+	margin-left: 10px;
 }
 
-.user-info-tabs-link.active {
+ 
+.user-info-tabs-link.active, .user-info-tabs-link:after, .user-info-tabs-link.hover {
   border-color: #f50;
   color: #f50;
-  cursor: default;
+	cursor: pointer;
+ 	border-bottom: 1px solid #333;
+
 }
 
 .user-info-buttons {

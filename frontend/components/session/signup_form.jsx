@@ -7,7 +7,8 @@ class SignupForm extends React.Component {
 		this.state = {
 			email: this.props.userEmail,
 			password: "",
-			errors: {}
+			errors: {},
+			location: ""
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -124,6 +125,16 @@ class SignupForm extends React.Component {
 							</select>
 						</div>
 						<br />
+
+						<div>
+							<input
+								type="text"
+								value={this.state.location}
+								onChange={this.update('location')}
+								placeholder="Location"
+								className="session-input-password"
+							/>
+						</div>
 
 						<p className="session-instruct">By signing up I accept the Terms of Use. I have read and understood the Privacy Policy and Cookies Policy.</p>
 						<br />

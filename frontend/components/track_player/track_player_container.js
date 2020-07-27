@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import TrackPlayer from './track_player';
-import { setPlayPause, setTrackPlayer, seekPlayer, endCurrentTrack, next } from '../../actions/track_player_actions';
+import { setPlayPause, setTrackPlayer, seekPlayer, endCurrentTrack, next, seekTrack, seekWaveForm } from '../../actions/track_player_actions';
 import { fetchTrack } from '../../actions/track_actions';
 
 const mapStateToProps = (state, ownProps) => ({
 	// currentTrack: state.trackplayer.currentTrack,
-	currentTrack: state. tracks[state.trackplayer.trackId],
+	currentTrack: state.tracks[state.trackplayer.trackId],
 	playing: state.trackplayer.playing,
 	trackId: state.trackplayer.trackId,
 	seek: state.trackplayer.seek,
@@ -23,6 +23,9 @@ const mapDispatchToProps = (dispatch) => ({
 	endCurrentTrack: (id) => dispatch(endCurrentTrack(id)),
 	createLike: (trackId) => dispatch(createLike(trackId)),
 	deleteLike: (trackId) => dispatch(deleteLike(trackId)),
+	seekTrack: (seconds) => dispatch(seekTrack(seconds)),
+	seekWaveForm: (progress) => dispatch(seekWaveForm(progress, ownProps.track.id)),
+
 });
 
 

@@ -107,8 +107,8 @@ const TrackReposts = ({ user, users, tracks, currentUser, track }) => {
 			<Link to={`/users/${user.id}`} className="user-suggestion-avatar">
 				<img src={user.profileImgUrl} />
 				</Link>
-				<Link className="user-suggestion-artist-link truncate track-reposts">{user.email}
-			</Link>
+			<a href='/#/users/${user.id}' className="user-suggestion-artist-link truncate track-reposts">{user.email}
+			</a>
 		</li>
 	);
 };

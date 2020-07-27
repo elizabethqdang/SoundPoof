@@ -26,12 +26,12 @@ class Stream extends React.Component {
 	// }
 
 	render() {
-		const { user, currentUser, setPlayPause, setProg, deleteTrack, createRepost, deleteRepost, fetchTrack, fetchAllTracks } = this.props;
+		const { user, currentUser, setPlayPause, setProg, deleteTrack, createRepost, deleteRepost, fetchTrack, fetchAllTracks, seekWaveForm, seekTrack} = this.props;
 		let tracks = Object.values(this.props.tracks);
 		let users = Object.values(this.props.users);
 
 		let stream = ((tracks)).map((track, idx) => (
-			<TrackIndexItem key={idx} track={track} currentUser={currentUser || null} users={users} tracks={tracks} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} />
+			<TrackIndexItem key={idx} track={track} currentUser={currentUser || null} users={users} tracks={tracks} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} seekWaveForm={seekWaveForm} seekTrack={seekTrack} />
 		));
 
 		let streamSidebar = (

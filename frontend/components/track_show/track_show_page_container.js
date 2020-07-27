@@ -3,7 +3,7 @@ import { fetchTrack, fetchAllTracks, deleteTrack, updateTrack } from "../../acti
 import { fetchAllUsers, fetchUser, createLike, deleteLike, createRepost, deleteRepost } from '../../actions/user_actions';
 import { fetchCurrentUser } from '../../actions/session_actions';
 import TrackShowPage from './track_show_page';
-import { setCurrentTrack, setPlayPause, setProg, receiveCurrentTrack } from '../../actions/track_player_actions';
+import { setCurrentTrack, setPlayPause, setProg, receiveCurrentTrack, seekWaveForm, seekTrack } from '../../actions/track_player_actions';
 import { deleteComment } from '../../actions/comment_actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -46,6 +46,9 @@ const mapDispatchToProps = dispatch => ({
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),
 	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),
 	setProg: (trackId, progress) => dispatch(setProg(trackId, progress)),
+	endCurrentTrack: () => dispatch(endCurrentTrack()),
+	seekTrack: (seconds) => dispatch(seekTrack(seconds)),
+	seekWaveForm: (progress) => dispatch(seekWaveForm(progress, ownProps.track.id)),
 	updateTrack: (track, id) => dispatch(updateTrack(track, id)),
 	createLike: (trackId) => dispatch(createLike(trackId)),
 	deleteLike: (trackId) => dispatch(deleteLike(trackId)),

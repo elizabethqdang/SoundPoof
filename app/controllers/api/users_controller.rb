@@ -36,10 +36,10 @@ class Api::UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 
-    if @user.email == 'Demo-User'
-      render json: ['You do not have authority to edit the guest account.'], status: 401
-      return
-    end
+    # if @user.email == 'Demo-User'
+    #   render json: ['You do not have authority to edit the guest account.'], status: 401
+    #   return
+    # end
 
     if @user.update(user_params)
       render :show
@@ -88,12 +88,33 @@ class Api::UsersController < ApplicationController
     else
       render json: ['Already removed, not authorized, or reposted track does not exist'], status: 401
     end
+	end
+	
+	def follow
+    @follow = current_user.follows.new(user_id: params[:user_id])
+
+    if @follow.save
+      render :follow
+    else
+      render json: @follow.errors.full_messages, status: 422
+    end
+	end
+	
+  def unfollow
+    @follow = current_user.follows.find_by(user_id: params[:user_id])
+
+    if @follow
+      @follow.destroy
+      render :follow
+    else
+      render json: ['Already unfollowed, not authorized, or user does not exist'], status: 401
+    end
   end
   
   private
   
   def user_params
-    params.require(:user).permit(:email, :password, :bio, :location, :username)
+    params.require(:user).permit(:email, :password, :bio, :location, :username, :profile_image)
   end
 
 end

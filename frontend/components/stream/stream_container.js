@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { fetchAllTracks, fetchTrack, deleteTrack } from "../../actions/track_actions";
-import { setCurrentTrack, setPlayPause, setProg } from '../../actions/track_player_actions';
+import { setCurrentTrack, setPlayPause, setProg, endCurrentTrack, seekTrack, seekWaveForm } from '../../actions/track_player_actions';
 import { fetchAllUsers, fetchUser, createLike, deleteLike, createRepost, deleteRepost } from "../../actions/user_actions";
 import { fetchCurrentUser } from "../../actions/session_actions";
 import Stream from "./stream";
@@ -26,6 +26,9 @@ const mapDispatchToProps = dispatch => ({
 	setCurrentTrack: (track) => dispatch(setCurrentTrack(track)),
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),
 	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),
+	endCurrentTrack: () => dispatch(endCurrentTrack()),
+	seekTrack: (seconds) => dispatch(seekTrack(seconds)),
+	seekWaveForm: (progress) => dispatch(seekWaveForm(progress, ownProps.track.id)),
 	updateTrack: (track, id) => dispatch(updateTrack(track, id)),
 	toggleLike: (trackId) => dispatch(toggleLike(trackId)),
 	setProg: (trackId, progress) => dispatch(setProg(trackId, progress)),

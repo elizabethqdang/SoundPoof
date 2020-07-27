@@ -147,7 +147,7 @@ class TrackShowPage extends React.Component {
 				<div></div>
 			)
 		} else {
-			const { comments, track, tracks, users, currentUser, trackplayer, deleteComment } = this.props;
+			const { comments, track, tracks, users, currentUser, trackplayer, deleteComment, seekWaveForm, seekTrack } = this.props;
 			let user = (this.props.users)[this.props.track.user_id];
 			let commentLength = ((comments.length === 1) ? "1 Comment" : `${comments.length} Comments`);
 			let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
@@ -165,7 +165,7 @@ class TrackShowPage extends React.Component {
 				<CommentIndexItem key={idx} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} user={user} />
 			));
 			let waveForm = (
-				<WaveFormContainer track={track} height={100} color={'#fff'} currentUser={currentUser} />
+				<WaveFormContainer track={track} height={100} color={'#fff'} currentUser={currentUser} seekWaveForm={seekWaveForm} seekTrack={seekTrack} />
 			)
 
 			return (
