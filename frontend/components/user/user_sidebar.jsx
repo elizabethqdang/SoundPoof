@@ -59,7 +59,7 @@ class UserSidebar extends React.Component {
 						</div> */}
 					</section>
 					<section className="sidebar-module who-to-follow">
-						<a className="sidebar-header" href="#">
+						<a className="sidebar-header" onClick={() => this.props.showLikes()}>
 							<h3 className="sidebar-header-title">
 								<span className="sidebar-header-likes-icon"></span>
 								<span>{numLikes} Likes</span>
@@ -75,7 +75,7 @@ class UserSidebar extends React.Component {
 						</div>
 					</section>
 					<section className="sidebar-module who-to-follow">
-						<a className="sidebar-header" href="#">
+						<a className="sidebar-header" onClick={() => this.props.showReposts()}>
 							<h3 className="sidebar-header-title">
 								<span className="sidebar-header-reposts-icon"></span>
 								<span>{numReposts} Reposts</span>

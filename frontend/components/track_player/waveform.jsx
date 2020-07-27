@@ -1,5 +1,6 @@
 import React from 'react';
 import WaveSurfer from 'wavesurfer.js';
+import { withRouter} from 'react-router-dom';
 
 class WaveForm extends React.Component {
 	constructor(props) {
@@ -22,6 +23,7 @@ class WaveForm extends React.Component {
 			barGap: 1,
 			maxCanvasWidth: 820,
 			hideScrollbar: true,
+			mediaControls: false,
 		});
 
 		//will set audio peaks if not stored yet. 
@@ -60,17 +62,17 @@ class WaveForm extends React.Component {
 		// }
 	}
 
-	componentDidUpdate(prevProps) {
-		if (!this.wavesurfer) return;
-		if (this.props.playing !== this.wavesurfer.isPlaying()) {
-			this.wavesurfer.playPause();
-		}
-		if (!this.props.playing) return;
-		if (this.props.prevSeek !== prevProps.prevSeek) {
-			this.wavesurfer.seekTo(this.props.prevSeek);
-		}
+	// componentDidUpdate(prevProps) {
+	// 	if (!this.wavesurfer) return;
+	// 	if (this.props.playing !== this.wavesurfer.isPlaying()) {
+	// 		this.wavesurfer.playPause();
+	// 	}
+	// 	if (!this.props.playing) return;
+	// 	if (this.props.prevSeek !== prevProps.prevSeek) {
+	// 		this.wavesurfer.seekTo(this.props.prevSeek);
+	// 	}
 
-	}
+	// }
 
 	render() {
 		return (
@@ -82,4 +84,4 @@ class WaveForm extends React.Component {
 
 }
 
-export default WaveForm;
+export default withRouter(WaveForm);

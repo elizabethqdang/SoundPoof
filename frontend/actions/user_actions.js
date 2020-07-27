@@ -108,11 +108,13 @@ export const deleteRepost = (trackId) => (dispatch) => {
 };
 
 export const updateUser = (userId, formData) => (dispatch) => {
-	return UserApiUtil.updateUser(userId, formData).then(user => {
-		dispatch(receiveUser(user));
-		return user;
-	}, errors => {
-		dispatch(receiveUserErrors(errors.responseJSON));
-		return errors;
+	return UserApiUtil.updateUser(userId, formData).then(
+		user => {
+			dispatch(receiveUser(user));
+			return user;
+		}, 
+		errors => {
+			dispatch(receiveUserErrors(errors.responseJSON));
+			return errors;
 	});
 };
