@@ -67,15 +67,15 @@ class UserShow extends React.Component {
 				<div></div>
 			)
 		} else {
-			const { user, tracks, userTracks, track, users, createLike, deleteLike, createRepost, deleteRepost, deleteTrack, currentUser, setPlayPause, setProg } = this.props;
+			const { user, tracks, userTracks, track, users, createLike, deleteLike, createRepost, deleteRepost, deleteTrack, currentUser, setPlayPause, setProg, fetchTrack} = this.props;
 			let trackIds = this.props.user.trackIds;
 			let likedTrackIds = this.props.user.likedTrackIds;
-			console.log("user", user.profile_image, user.profileImgUrl, user.profileUrl);
+			// console.log("user", user.profile_image, user.profileImgUrl, user.profileUrl);
 
 			let userStream = Object.values(tracks).map(track => {
 				if (trackIds.includes(track.id)) {
 					return (
-						<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} />
+						<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} />
 					)
 				}
 			});
