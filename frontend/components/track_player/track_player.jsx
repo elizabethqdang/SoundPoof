@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import { withRouter } from 'react-router-dom';
 
 class TrackPlayer extends React.Component{
 
@@ -79,7 +78,7 @@ class TrackPlayer extends React.Component{
     let { currentTrack, playing, player, trackId} = this.props;
     if (trackId !== 0) { 
 			// it should be the same song 
-      let prog = this.props.trackplayer.progressTrackId[trackId] || 0;
+      let prog = this.props.trackplayer.progressTrackId[trackId] || 1;
       // let prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
       this.props.setPlayPause(!playing, trackId, prog); 
     } else if (trackId == 0) {
@@ -219,4 +218,4 @@ class TrackPlayer extends React.Component{
 
 }
 
-export default withRouter(TrackPlayer);
+export default TrackPlayer;

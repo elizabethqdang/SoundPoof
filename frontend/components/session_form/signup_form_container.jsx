@@ -10,12 +10,11 @@ import SignupForm from "../session/signup_form";
 
 const mapStateToProps = (state, { errors }) => {
   return {
-    errors: state.errors.session,
     formType: "signup",
 		// navLink: <Link to="/login">log in instead</Link>,
 		loggedIn: Boolean(state.session.currentUser),
 		errors: state.errors.session || [],
-		currentUser: state.session.currentUser,
+		currentUser: state.session.currentUser || {},
 		userEmail: state.session.currentUserEmail,
 		signedIn: state.session.isSignedIn,
   };

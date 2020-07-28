@@ -18,28 +18,65 @@
   }
 }
 
-.loginFormContainer {
-  display: flex;
-  justify-content: center;
+.session-header {
+	font-size: 32px;
+	font-weight: 400;
+	color: #333;
+	margin-bottom: 25px;
 }
 
-.loginForm {
+.loginFormContainer, .session-form-container {
+  display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: 450px;
+	top: 0;
+	left: 50%;
+	height: 620px;
+	padding: 25px;
+	background: #fff;
+ 	font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
+}
+
+.loginForm, .signup-form {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 
-.loginInput {
+.loginInput, .session-input {
+	font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
   box-sizing: border-box;
-	width: 400px;
+	// width: 400px;
 	font-size: 18px;
-  padding: 8px 7px;
+  // padding: 8px 7px;
   border-radius: 5px;
-  border: 1px lightgray solid;
+  line-height: 24px;
+  padding: 7px 8px;
+  border: 1px solid #ccc;
+  transition: border-color .1s;
+  background-color: #fff;
+  color: #333;
+  width: 100%;
+  font-weight: 300;
+  margin: 5px 0;
 }
 
-.loginFormBox {
-  padding: 20px;
+.loginForm input[type="text"]::placeholder, .loginForm input[type="password"]::placeholder, .session-input input[type="text"]::placeholder, .session-input input[type="password"]::placeholder  {
+  // box-sizing: border-box;
+  // width: 400px;
+  // font-size: 18px;
+  // padding: 8px 7px;
+  // border-radius: 5px;
+	// border: 1px lightgray solid;
+	color: #999;
+	font-weight: 300;
+
+}
+
+
+.loginFormBox, .session-form {
+  // padding: 20px;
   background: white;
   position: relative;
 }
@@ -49,8 +86,21 @@
   font-size: 16px;
   text-transform: capitalize;
   background-color: #f50;
-  border-color: #f50;
-  color: #fff;
+	color: #fff;
+	margin: 5px 0;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #f50;
+  padding: 10px 15px;
+  text-align: center;
+  white-space: nowrap;
+	font-weight: 300;
+ 	font-family: Interstate, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Garuda, Verdana, sans-serif;
+}
+
+.session-submit.demo {
+	// background-color: #fff;
+	// color: #f50;
 }
 
 .close-x {
@@ -61,12 +111,42 @@
 }
 
 .modalError {
-  height: 20px;
-  padding: 5px;
+	// height: 20px;
+	height: auto;
+  padding: 0 0 5px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   color: red;
-  font-size: 14px;
+	font-size: 12px;
+	text-align: left;
+	justify-self: left;
+}
+
+.session-errors {
+	color: red;
+  padding: 3px 0 5px;
+  transition: transform .12s,padding .12s,min-height .12s,opacity .2s;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.error {
+	border-color: #f50;
+}
+
+.session-text {
+	margin: 10px 0;
+  font-size: 12px;
+  font-family: "Lucida Grande";
+  line-height: 16.8px;
+	color: #999;
+	text-align: left;
+}
+
+.session-instruct {
+	text-align: left;
+	justify-self: left;
 }

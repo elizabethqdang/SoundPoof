@@ -8,7 +8,8 @@ class SessionForm extends React.Component {
       email: "",
 			password: "",
 			// errors: []
-    };
+		};
+		this.handleClear = this.handleClear.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
 	}
@@ -42,13 +43,24 @@ class SessionForm extends React.Component {
   renderErrors() {
 		console.log("errors", this.props.errors);
 		const {errors} = this.props;
-    return (
-      <ul>
-        {this.props.errors ? errors.map((error, i) => (<li key={`error-${i}`}>{error}</li>)) : {}
-				}
-      </ul>
-    );
-  }
+		// if (this.props.errors && this.props.errors > 0) {
+			return (
+				<ul className="session-errors">
+					{this.props.errors ? errors.map((error, i) => (<li key={`error-${i}`}>{error}</li>)) : {}
+					}
+				</ul>
+			)
+		// } else {
+		// 	return;
+		// }
+	}
+	
+	handleClear(e) {
+		e.preventDefault();
+		this.props.clearSessionErrors().then(
+			() => this.props.closeModal()
+		)
+	}
 
   handleDemoSubmit(e){
     e.preventDefault();
@@ -63,58 +75,58 @@ class SessionForm extends React.Component {
   }
 
   render() {
-
-		let errors = this.renderErrors();
+		let error = ((this.props.errors && this.props.errors.length > 0) ? 'error' : '');
     
     return (
       <div className="loginFormContainer">
-        <div className="">
+        {/* <div className=""> */}
+					<div onClick={this.props.closeModal} className="close-x">
+						X
+					</div>
+					
           <form onSubmit={this.handleSubmit} className="loginFormBox">
-
-            <h1>Welcome to SoundPoof!</h1>
+					
+            {/* <h1>Welcome to SoundPoof!</h1>
             <br /><br />
 
-            please {this.props.formType} or {this.props.otherForm}
+            please {this.props.formType} or {this.props.otherForm} */}
 
-            <div onClick={this.props.closeModal} className="close-x">
-              X
-            </div>
+						<button className="session-submit demo" onClick={this.handleDemoSubmit}>Continue as Demo User</button>
 
-            <div className="modalError">{this.renderErrors()}</div>
+						<br /><br /><p className="session-or">or</p><br />
+					
 
             <div className="loginForm">
               <br />
                 <input
                   type="text"
-                  placeholder="Your email address or profile URL *"
+                  placeholder="Your email address or username *"
                   value={this.state.email}
                   onChange={this.update('email')}
-                  className="loginInput"
+									className={`loginInput ${error}`}
                 />
-              <br />
                 <input
                   type="password"
                   placeholder="Your Password *"
                   value={this.state.password}
                   onChange={this.update('password')}
-                  className="loginInput"
+                  className={`loginInput ${error}`}
                 />
-              <br />
+								{/* {this.renderErrors()} */}
+								<div className="modalError">{this.renderErrors()}</div>
 
               <input
                 className="session-submit"
                 type="submit"
-                value={this.props.formType}
+                value="Sign in"
               />
-              <br />
-              or
+              
               <br /><br />
-
-              <button className="session-submit" onClick={this.handleDemoSubmit}>DEMO USER</button>
+							<p className="session-text">We may use your email and devices for updates and tips on SoundPoofs's products and services, and for activities notifications. You can unsubscribe for free at any time in your notification settings.</p>
 
             </div>
           </form>
-        </div>
+        {/* </div> */}
       </div>
     );
   }
