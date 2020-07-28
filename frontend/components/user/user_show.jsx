@@ -20,12 +20,11 @@ class UserShow extends React.Component {
 		this.showTracks = this.showTracks.bind(this);
 		this.showLikes = this.showLikes.bind(this);
 		this.showReposts = this.showReposts.bind(this);
-
   }
 
   componentDidMount() {
 		this.props.fetchUser(this.props.match.params.userId);
-		this.props.fetchAllTracks();
+		this.props.fetchAllTracks ();
   }
 
 	componentDidUpdate(prevProps) {
@@ -60,13 +59,13 @@ class UserShow extends React.Component {
 	
 	handleToggleLike(e) {
 		e.preventDefault();
-		const { track, deleteLike, createLike } = this.props;
+		const { track, deleteLike, createLike, fetchTrack } = this.props;
 		const currentUser = this.currentUser();
 
 		if (currentUser.likedTrackIds.includes(track.id)) {
-			deleteLike(track.id);
+			deleteLike(track.id).then(fetchTrack(track.id));
 		} else {
-			createLike(track.id);
+			createLike(track.id).then(fetchTrack(track.id));
 		}
 	}
 
@@ -129,30 +128,30 @@ class UserShow extends React.Component {
 			// console.log("user", user.profile_image, user.profileImgUrl, user.profileUrl);
 
 			if (this.state.trackStream) {
-				stream = (Object.values(tracks).map(track => {
+				stream = (Object.values(tracks).map((track, idx) => {
 					if (this.props.user.trackIds.includes(track.id)) {
 						return (
-							<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} seekWaveForm={seekWaveForm} seekTrack={seekTrack} />
+							<TrackIndexItem key={idx} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} seekWaveForm={seekWaveForm} seekTrack={seekTrack} />
 						)
 					}
 				})
 			)}
 
 			if (this.state.likedStream) {
-				stream = (Object.values(tracks).map(track => {
+				stream = (Object.values(tracks).map((track, idx) => {
 				if ((this.props.user.likedTrackIds).includes(track.id)) {
 					return (
-						<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} seekWaveForm={seekWaveForm} seekTrack={seekTrack} />
+						<TrackIndexItem key={idx} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} seekWaveForm={seekWaveForm} seekTrack={seekTrack} />
 					)
 				}
 			})
 			)}
 
 			if (this.state.repostedStream) {
-				stream = (Object.values(tracks).map(track => {
+				stream = (Object.values(tracks).map((track, idx) => {
 				if ((this.props.user.repostedTrackIds).includes(track.id)) {
 					return (
-						<TrackIndexItem key={track.id} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} seekWaveForm={seekWaveForm} seekTrack={seekTrack} />
+						<TrackIndexItem key={idx} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} seekWaveForm={seekWaveForm} seekTrack={seekTrack} />
 					)
 				}
 			})
@@ -161,7 +160,7 @@ class UserShow extends React.Component {
 			let userSidebar = (Object.values(tracks)).slice(0,3).map(track => {
 				if (likedTrackIds.includes(track.id)) {
 					return (
-						<UserSidebar currentUser={currentUser || null} tracks={tracks} user={user || {}} users={users} />
+						<UserSidebar currentUser={currentUser || null} tracks={tracks} user={user || {}} users={users} trackplayer={trackplayer || {}} />
 					)
 				}
 			});
@@ -174,7 +173,7 @@ class UserShow extends React.Component {
 
     return (
       <div className="usershow-container">
-				<NavbarContainer currentUser={currentUser} />
+				<NavbarContainer currentUser={currentUser || {}} trackplayer={trackplayer || {}}/>
 
       	<div className="usershow-header-container">
 					<div className="usershow-banner-img"></div>
@@ -194,9 +193,9 @@ class UserShow extends React.Component {
 				<div className="usershow-btn-bar-container">
 					<ul className="user-info-tabs">
 						<li className="user-info-tabs-item">
-							<NavLink to={`/users/${user.id}`} activeClassName="selected" onClick={() => this.showTracks()} className="user-info-tabs-link">Tracks</NavLink>
-							<NavLink to={`/users/${user.id}`}activeClassName="selected" onClick={() => this.showLikes()} className="user-info-tabs-link">Likes</NavLink>
-							<NavLink to={`/users/${user.id}`}activeClassName="selected" onClick={() => this.showReposts()} className="user-info-tabs-link">Reposts</NavLink>
+							<NavLink exact to={`/users/${user.id}`} activeClassName="selected" onClick={() => this.showTracks()} className="user-info-tabs-link">Tracks</NavLink>
+							<NavLink exact to={`/users/${user.id}/likes`} activeClassName="" onClick={() => this.showLikes()} className="user-info-tabs-link">Likes</NavLink>
+							<NavLink exact to={`/users/${user.id}/reposts`}activeClassName="" onClick={() => this.showReposts()} className="user-info-tabs-link">Reposts</NavLink>
 						</li>
 					</ul>
 					<div className="user-info-buttons">
@@ -239,7 +238,7 @@ class UserShow extends React.Component {
 						</table>
 						</div>
 						{/* {userSidebar} */}
-						<UserSidebar currentUser={currentUser || null} tracks={tracks} user={user || {}} users={users} showTracks={this.showTracks} showLikes={this.showLikes} showReposts={this.showReposts} />
+						<UserSidebar currentUser={currentUser || null} tracks={tracks} user={user || {}} users={users} showTracks={this.showTracks} showLikes={this.showLikes} showReposts={this.showReposts} trackplayer={trackplayer || {}} />
 						</div>
 					</div>
 				</div>

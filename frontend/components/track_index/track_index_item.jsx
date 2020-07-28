@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import moment from 'moment';
-import WaveFormContainer from '../track_player/waveform_container';
+import WaveFormContainer from '../track_player/waveform';
 import CommentIndexContainer from '../comments/comment_index_container';
 
 class TrackIndexItem extends React.Component {
@@ -17,22 +17,12 @@ class TrackIndexItem extends React.Component {
 		this.trackButtonBar = this.trackButtonBar.bind(this);
 	}
 
-	// componentDidUpdate(prevProps) {
-	// 	let { trackplayer, track, setProg } = this.props;
-	// 	let trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
-
-		// if ((trackplayer.playing) && (trackplayer.trackId === track.id) && (track.id !== prevProps.trackplayer.trackId)) {
-		// 	let prog = trackProg ? trackProg : trackplayer.player.getCurrentTime() / trackplayer.player.getDuration();
-		// 	this.props.setProg(track.id, prog);
-		// }
-	// }
-
+ 
 	playButton(e) {
 		e.preventDefault();
 		const { track, trackplayer } = this.props;
 		let { currentTrack, playing, trackId } = this.props.trackplayer;
 		const trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
-		let tplayer = this.props.trackplayer.player;
 
 		if (trackplayer.trackId === 0) {
 			// no track
@@ -125,8 +115,8 @@ class TrackIndexItem extends React.Component {
 		let playButton = (trackplayer.playing && trackplayer.trackId === track.id) ?
 			'sound-title-play-btn' : 'ti-play';
 		let waveForm = (
-			<WaveFormContainer track={track} height={60} color={'#000'} width={820} />
-		);
+			<WaveFormContainer track={track} height={60} color={'#000'} width={820} trackplayer={trackplayer || {}} />
+			);
 
 		return (
 			<div className='track-item-container'>
@@ -156,10 +146,6 @@ class TrackIndexItem extends React.Component {
 							<div className={playButton} onClick={(e) => this.playButton(e)}>
 							</div>
 							<div className="ti-upload-det">
-								{/* <Link to={`/users/${track.user_id}`}><aside className="ti-description">{track.userEmail}</aside>
-								</Link>
-								<Link to={`/tracks/${track.id}`} className="ti-title">{track.title}
-								</Link> */}
 								<a href={`/#/users/${track.user_id}`}><aside className="ti-description">{track.userEmail}</aside></a>
 								<a href={`/#/tracks/${track.id}`} className="ti-title">{track.title}</a>
 							</div>
@@ -169,7 +155,8 @@ class TrackIndexItem extends React.Component {
 						</div>
 						<div className='sound-bar'>
 							<span></span>
-							{waveForm}
+							{/* <WaveFormContainer track={track} height={60} color={'#000'} width={820} trackplayer={trackplayer || {}} /> */}
+							{/* {waveForm} */}
 						</div>
 						{this.trackButtonBar()}
 					</section>

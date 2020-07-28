@@ -10,17 +10,28 @@ class SearchBar extends React.Component {
 		super(props);
 		this.state = {
 			searchInput: "",
-			searchResults: []
+			searchResults: [],
+			showSearch: false
 		};
 		this.updateSearchResults = this.updateSearchResults.bind(this);
 		this.searchResultHeader = this.searchResultHeader.bind(this);
 		this.toSearch = this.toSearch.bind(this);
-  }
+		this.showSearch = this.showSearch.bind(this);
+	}
+
 
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState.searchInput !== this.state.searchInput) {
 			this.updateSearchResults();
 		}
+	}
+
+	showSearch() {
+		this.setState({
+			showSearch: true,
+		});
+		console.log("stream", this.state.showStream, this.state.showSearch, this.state.showProfile);
+
 	}
 
 	updateInput(searchInput) {
@@ -77,33 +88,40 @@ class SearchBar extends React.Component {
 	toSearch(e) {
 		if (e.key === 'Enter' && e.target.value !== '') {
 			window.location.hash = `/search?q=${e.target.value}`;
-			// return (
-		
-			// )
+			// console.log(this.state.searchInput);
+			// console.log(this.state.searchResults);
 		}
 	}
 
 	render() {
 		const { users, tracks } = this.props;
 		const { searchInput, searchResults } = this.state;
-
+		
+		if (this.state.showSearch) {
+			return (
+				// show = (
+				<SearchResults currentUser={currentUser || null} tracks={tracks} users={users} />
+			)
+		};
 		return (
-			<section className="nav-middle">
+			// <section className="nav-middle">
 				<form className="nav-search">
+					
 					<input className="nav-search-input" 
 						onChange={this.updateInput('searchInput')} 
 						value={this.state.searchInput} 
 						type="search" 
 						placeholder="Search"
-						onKeyPress={this.toSearch} />
+						onSubmit={(e) => this.toSearch(e)} />
 					<ul className="search-results">
+
 						{this.searchResultHeader()}
 						{
 							this.state.searchResults.map((result, idx) => {
 								if (result.email) {
 									// return <UserSearchResult key={idx} user={result} />;
 									return (
-											<li className='search-show collection-show'>
+											<li key={idx} className='search-show collection-show'>
 												<img src={result.profileImgUrl || ""} />
 												<span>{result.email}</span>
 												<div className="search-result-user-icon"></div>
@@ -112,7 +130,7 @@ class SearchBar extends React.Component {
 								} else {
 									// return <TrackSearchResult key={idx} track={result} />;
 									return (
-											<li className='track-show search-show collection-show'>
+										<li key={idx}className='track-show search-show collection-show'>
 												<img src={result.artworkUrl || ""} />
 												<span>{result.title}</span>
 												<div className="search-result-track-icon"></div>
@@ -124,7 +142,7 @@ class SearchBar extends React.Component {
 					</ul>
 					<button type="submit" />
 				</form>
-			</section>
+			// </section>
 		);
 	}
 }

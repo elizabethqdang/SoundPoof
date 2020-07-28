@@ -11,9 +11,9 @@ const mapStateToProps = (state, ownProps) => {
 	// let trackId = parseInt(match.params.trackId);
 	const track = state. tracks[ownProps.match.params.trackId] || {};
 	return {
-		tracks: state. tracks || {},
+		tracks: state.tracks || {},
 		trackId: ownProps.match.params.trackId,
-		track: state. tracks[ownProps.match.params.trackId],
+		track: state.tracks[ownProps.match.params.trackId],
 		trackplayer: state.trackplayer || {},
 		// trackId: parseInt(match.params.trackId),
 		// currentTrack: state.currentTrack || {},

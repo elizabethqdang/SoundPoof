@@ -4,8 +4,8 @@ import { setPlayPause, setTrackPlayer, seekPlayer, endCurrentTrack, next, seekTr
 import { fetchTrack } from '../../actions/track_actions';
 
 const mapStateToProps = (state, ownProps) => ({
-	// currentTrack: state.trackplayer.currentTrack,
-	currentTrack: state.tracks[state.trackplayer.trackId],
+	currentTrack: state.trackplayer.currentTrack,
+	// currentTrack: state.tracks[state.trackplayer.trackId],
 	playing: state.trackplayer.playing,
 	trackId: state.trackplayer.trackId,
 	seek: state.trackplayer.seek,
