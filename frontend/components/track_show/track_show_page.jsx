@@ -32,7 +32,6 @@ class TrackShowPage extends React.Component {
 			this.props.fetchTrack(this.props.match.params.trackId);
 		}
 
-		// if (this.state.firstLoad || this.props.loading) return;
 		// let { playing, trackId, player, progressTrackId } = this.props.trackplayer;
 		// let trackProg = progressTrackId[this.props.track.id];
 		// let thisId = this.props.track.id;

@@ -25,9 +25,9 @@ const commentsReducer = (oldState = {}, action) => {
 		// 	} else {
 		// 		return Object.assign({}, action.comments);
 		// 	};
-		case RECEIVE_COMMENT_ERRORS:
-			newState.errors = action.errors;
-			return newState;
+		// case RECEIVE_COMMENT_ERRORS:
+		// 	newState.errors = action.errors;
+		// 	return newState;
 		default:
 			return oldState;
 	}

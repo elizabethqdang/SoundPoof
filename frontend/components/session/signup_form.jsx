@@ -5,23 +5,23 @@ class SignupForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: this.props.userEmail,
+			email: "",
 			password: "",
-			errors: {},
+			// errors: {},
 			location: ""
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.renderErrors = this.renderErrors.bind(this);
+		// this.renderErrors = this.renderErrors.bind(this);
 		this.clearedErrors = false;
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.loggedIn === true || nextProps.currentUser === true) {
+	componentDidUpdate(prevProps) {
+		if (this.props.loggedIn === true || this.props.currentUser === true) {
 			// this.props.history.push("/");
 			this.props.closeModal();
 		}
-		this.setState({ errors: nextProps.errors });
+		// this.setState({ errors: this.state.errors.session });
 	}
 
 	update(field) {
@@ -47,75 +47,76 @@ class SignupForm extends React.Component {
 
 	renderErrors() {
 		return (
-			<ul>
-				{this.props.errors.map((error, i) => {
-					<li className="errors" key={i}>{error}</li>
-				})}
+			<ul className="session-errors">
+				{this.props.errors ? this.props.errors.map((error, i) => (
+					<li key={`error-${i}`}>{error}</li>)) : {}
+				}
 			</ul>
-		);
+		)
 	}
 
 	render() {
-		let errors;
-		if (this.props.errors) {
-			errors = this.props.errors;
-		} else {
-			errors = {};
-		}
-		let emailErrors = errors.email ? <div>{errors.email}.</div> : <></>;
-		let passwordErrors = errors.password ? (
-			<div>{errors.password}.</div>
-		) : (
-				<></>
-			);
-
+		let error = ((this.props.errors && this.props.errors.length > 0) ? 'error' : '');
+		let errors = this.renderErrors();
+		
 		return (
 			<div className="session-form-container">
+				<div onClick={this.props.closeModal} className="close-x">
+					X
+				</div>
+
+				<p className="session-header">Create your SoundPoof account</p>
+
 				<form onSubmit={this.handleSubmit} className="session-form">
-					<div onClick={this.props.closeModal} className="close-x">
-						X
-					</div>
-					<p className="session-header">Create your SoundPoof account</p>
 					<div className="signup-form">
-						<br />
 						<a href="#">
 							<span class="glyphicon glyphicon-triangle-left"></span>
 						</a>
 						<input
 							type="text"
-							value={this.props.userEmail}
+							value={this.state.email}
 							onChange={this.update('email')}
-							placeholder="Email address"
-							className="session-input-email"
+							placeholder="You e mail address or username"
+							className={`session-input email ${error}`}
 						/>
-						<div className="session-errors">{emailErrors}</div>
-						<br />
+						{/* <div className="modalError">{errors}</div> */}
+
+						<p className="session-instruct">
+							Choose a password
+						</p>
 						<input
 							type="password"
 							value={this.state.password}
 							onChange={this.update('password')}
-							placeholder="Password"
-							className="session-input-password"
+							placeholder=""
+							className={`session-input password ${error}`}
 						/>
-						<div className="session-errors">{passwordErrors}</div>
-						<br />
+						<div className="modalError">{errors}</div>
+
+						<div>
+							<input
+								type="text"
+								value={this.state.location}
+								onChange={this.update('location')}
+								placeholder="Your Location"
+								className="session-input password"
+							/>
+						</div>
 						
-						<p className="session-instruct">
-							Tell us your age *
-						</p>
+						{/* <p className="session-instruct">
+						</p> */}
 						<input
 							type="text"
 							value={this.state.birthdate}
 							onChange={this.update('birthdate')}
 							placeholder="Birthdate (mm/dd/yyyy)"
-							className="session-input-birthdate"
+							className="session-input birthdate"
 						/>
-						<br />
-						<p className="session-instruct">
+						{/* <p className="session-instruct">
 							Gender *
 						</p>
 						<br />
-						<div className="session-input-gender">
+						<div className="session-input gender">
 							<select onChange={this.update('gender')}>
 								<option value="0">Indicate your gender</option>
 								<option value="1">Female</option>
@@ -123,25 +124,12 @@ class SignupForm extends React.Component {
 								<option value="3">Prefer not to say</option>
 								<option value="4">Custom</option>
 							</select>
-						</div>
-						<br />
+						</div> */}
 
-						<div>
-							<input
-								type="text"
-								value={this.state.location}
-								onChange={this.update('location')}
-								placeholder="Location"
-								className="session-input-password"
-							/>
-						</div>
-
-						<p className="session-instruct">By signing up I accept the Terms of Use. I have read and understood the Privacy Policy and Cookies Policy.</p>
+						<p className="session-text">By signing up I accept the Terms of Use. I have read and understood the Privacy Policy and Cookies Policy.</p>
 						<br />
 						
 						<input type="submit" value="Accept & continue" className="session-submit" />
-						{this.renderErrors()}
-						{errors}
 						<br />
 						<p className="session-text">
 							Are you trying to sign in? {this.props.otherForm}

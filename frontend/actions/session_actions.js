@@ -33,23 +33,29 @@ export const clearSessionErrors = () => ({
 });
 
 export const signup = user => dispatch => (
-  SessionAPIUtil.signup(user)
-  .then(
+  SessionAPIUtil.signup(user).then(
     user => dispatch(receiveCurrentUser(user)),
-    errors => dispatch(receiveSessionErrors(errors.responseJSON))
+    errors => {
+			dispatch(receiveSessionErrors(errors.responseJSON));
+			console.log(errors.responseJSON);
+			return errors;
+		}
   ));
 
 export const login = user => dispatch => (
-  SessionAPIUtil.login(user)
-  .then(
+  SessionAPIUtil.login(user).then(
     user => dispatch(receiveCurrentUser(user)),
-    errors => dispatch(receiveSessionErrors(errors.responseJSON))
+    errors => {
+			dispatch(receiveSessionErrors(errors.responseJSON));
+			console.log(errors.responseJSON);
+			return errors;
+		}
   ));
 
 export const logout = () => dispatch => (
-  SessionAPIUtil.logout()
-  .then(
-  	user => dispatch(logoutCurrentUser(null)), errors => dispatch(receiveSessionErrors(errors.responseJSON))
+  SessionAPIUtil.logout().then(
+		user => dispatch(logoutCurrentUser(null)), 
+		errors => dispatch(receiveSessionErrors(errors.responseJSON))
 ));
 
 export const otherForm = email => dispatch => (

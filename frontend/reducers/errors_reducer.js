@@ -1,6 +1,7 @@
 import { RECEIVE_SESSION_ERRORS, RECEIVE_CURRENT_USER, CLEAR_SESSION_ERRORS } from '../actions/session_actions';
 import { RECEIVE_TRACK_ERRORS, RECEIVE_TRACK } from '../actions/track_actions';
 import { RECEIVE_USER_ERRORS, RECEIVE_USER } from '../actions/user_actions';
+import { RECEIVE_COMMENT, RECEIVE_COMMENT_ERRORS } from '../actions/comment_actions';
 import { CLOSE_MODAL } from "../actions/modal_actions";
 
 const errorsReducer = (state = {}, action) => {
@@ -21,6 +22,10 @@ const errorsReducer = (state = {}, action) => {
 		case RECEIVE_USER_ERRORS:
 			return { users: action.errors };
 		case RECEIVE_USER:
+			return [];
+		case RECEIVE_COMMENT_ERRORS:
+			return { comments: action.errors };
+		case RECEIVE_COMMENT:
 			return [];
 		default:
 			return state;
