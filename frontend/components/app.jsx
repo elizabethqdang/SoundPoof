@@ -30,7 +30,8 @@ const App = () => (
 					<ProtectedRoute exact path="/upload" component={UploadPageContainer} />
 					<ProtectedRoute exact path="/tracks/:trackId" component={TrackShowPageContainer} />
 					<ProtectedRoute exact path="/users/:userId" component={UserShow} />
-					{/* <ProtectedRoute exact path="/users/:userId/likes" component={} /> */}
+					<ProtectedRoute exact path="/users/:userId/likes" component={UserShow} />
+					<ProtectedRoute exact path="/users/:userId/reposts" component={UserShow} />
 
 				</Switch>
 

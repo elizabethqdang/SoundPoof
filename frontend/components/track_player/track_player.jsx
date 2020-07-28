@@ -14,7 +14,8 @@ class TrackPlayer extends React.Component{
         duration: 0,
         playbackRate: 1.0,
         loop: false,
-        startT: null
+				startT: null,
+				controls: false,
     };
 
     this.keepProgress = this.keepProgress.bind(this); 
@@ -78,8 +79,8 @@ class TrackPlayer extends React.Component{
     let { currentTrack, playing, player, trackId} = this.props;
     if (trackId !== 0) { 
 			// it should be the same song 
-      let prog = this.props.trackplayer.progressTrackId[trackId] || 1;
-      // let prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
+      // let prog = this.props.trackplayer.progressTrackId[trackId] || 0;
+      let prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
       this.props.setPlayPause(!playing, trackId, prog); 
     } else if (trackId == 0) {
 						this.props.setPlayPause(!playing, 1, 0);
@@ -137,8 +138,8 @@ class TrackPlayer extends React.Component{
 
   toggleLike(e){
     e.preventDefault();
-			const { track, deleteLike, createLike, currentUser, users } = this.props;
-			const user = users[currentUser.id];
+			const { track, deleteLike, createLike, currentUser, fetchTrack, users } = this.props;
+			// const user = users[currentUser.id];
 
 			if (currentUser.likedTrackIds.has(track.id)) {
 				deleteLike(track.id);
@@ -210,7 +211,8 @@ class TrackPlayer extends React.Component{
              onEnded={() => this.onEnded()}
              onProgress={this.onProgress()}
              onDuration={this.onDuration()}
-             onReady={() => this.keepProgress()}
+						 onReady={() => this.keepProgress()}
+						 controls={false}
            />
       </div>
     );

@@ -15,6 +15,11 @@ class SearchResults extends React.Component {
 		this.results = this.results.bind(this);
 	}
 
+	componentDidMount() {
+		// let search = this.props.searchInput;
+		// window.location.hash = `/search?q=${search}`;
+	}
+
 	results() {
 		const { users, tracks } = this.props;
 		console.log("users,tracks", users, tracks);

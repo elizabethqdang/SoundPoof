@@ -17,12 +17,12 @@ class SessionForm extends React.Component {
 		this.handleDemo = this.handleDemo.bind(this);
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.loggedIn === true || signedIn === true) {
+	componentDidUpdate(prevProps) {
+		if (this.props.loggedIn === true || signedIn === true) {
 			// this.props.history.push("/discover");
 			this.setState({ loggedIn: true });
 		}
-		this.setState({ errors: nextProps.errors });
+		// this.setState({ errors: prevProps.errors });
 	}
 
 	update(field) {
@@ -98,7 +98,8 @@ const mapStateToProps = (state, ownProps) => ({
     email: state.session.email,
     errors: state.errors.session,
 		formType: "session",
-		loggedIn: Boolean(state.session.isAuthenticated)
+		currentUser: state.session.currentUser || {},
+		loggedIn: Boolean(state.session.currentUser)
 });
 const mapDispatchToProps = dispatch => ({
     login: (user) => dispatch(login(user)),

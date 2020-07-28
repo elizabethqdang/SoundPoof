@@ -6,7 +6,7 @@ import CommentIndexContainer from "../comments/comment_index_container";
 import CommentFormContainer from '../comments/comment_form_container';
 import CommentIndexItem from "../comments/comment_index_item";
 import TrackSidebar from "./track_sidebar";
-import WaveFormContainer from "../track_player/waveform_container";
+import WaveFormContainer from "../track_player/waveform";
 
 class TrackShowPage extends React.Component {
 	constructor(props) {
@@ -21,7 +21,7 @@ class TrackShowPage extends React.Component {
 	}
 	
 	componentDidMount() {
-		const trackId = this.props.match.params.trackId;
+		// const trackId = this.props.match.params.trackId;
 		this.props.fetchTrack(this.props.match.params.trackId);
 		// this.props.fetchUser(this.props.user);
 	}
@@ -164,7 +164,7 @@ class TrackShowPage extends React.Component {
 				<CommentIndexItem key={idx} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} user={user} />
 			));
 			let waveForm = (
-				<WaveFormContainer track={track} height={100} color={'#fff'} currentUser={currentUser} seekWaveForm={seekWaveForm} seekTrack={seekTrack} />
+				<WaveFormContainer track={this.props.track} height={100} color={'#fff'} currentUser={currentUser} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer} />
 			)
 
 			return (

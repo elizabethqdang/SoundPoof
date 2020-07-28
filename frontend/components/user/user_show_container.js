@@ -14,13 +14,13 @@ const mapStateToProps = (state, ownProps) => {
 	console.log(user);
 
 	return {
-		users: state. users || {},
+		users: state.users || {},
 		currentUser: state.session.currentUser || {},
-		user: state. users[ownProps.match.params.userId],
+		user: state.users[ownProps.match.params.userId],
 		userId: ownProps.match.params.userId,
 		// user: state. users[userId],
 		// userId: ownProps.match.params.id,
-		tracks: (state. tracks),
+		tracks: (state.tracks),
 		// userTracks: user.tracks || {},
 		// users: state. users || {},
 		// tracks: user.tracks || {},

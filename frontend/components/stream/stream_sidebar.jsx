@@ -14,16 +14,16 @@ class StreamSidebar extends React.Component {
 	
 	followItem() {
 		return (
-		(this.props.users).map(user => {
-			return <StreamSidebarFollowItem key={user.id} user={user} />
+		(this.props.users).map((user, idx) => {
+			return <StreamSidebarFollowItem key={idx} user={user} />
 		}))
 	}
 
 	likeItem() {
 		return (
-			(this.props.tracks).map(track => {
+			(this.props.tracks).map((track, idx) => {
 				if (this.props.cLikedTracks.includes(track.id)) {
-					return <StreamSidebarLikeItem key={track.id} track={track} />
+					return <StreamSidebarLikeItem key={idx} track={track} />
 				} 
 			})
 		)
