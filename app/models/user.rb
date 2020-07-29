@@ -46,6 +46,19 @@ class User < ApplicationRecord
 	has_many :reposted_tracks,
 		through: :reposts,
 		source: :track
+	
+	has_many	:follows,
+		dependent:	:destroy,
+		class_name:	:User,
+		primary_key:	:id,
+		foreign_key:	:user_id
+
+	has_many	:followers,
+		dependent:	:destroy,
+		class_name:	:User,
+		primary_key:	:id,
+		foreign_key:	:following_id
+
 
 	def require_user_profile(user)
       if user.profile_image.attached?

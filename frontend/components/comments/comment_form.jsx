@@ -32,7 +32,7 @@ class CommentForm extends React.Component {
 				<div className='comment-form'>
 					<form onSubmit={this.handleSubmit} className='cform'>
 						<div className='comment-form-user'>
-							<img src={currentUser.profile_image_url ? currentUser.profile_image_url : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"} />
+							<img src={currentUser.profileImgUrl ? currentUser.profileImgUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"} />
 						</div>
 						<div className='comment-input-container'>
 							<input className='comment-input' type='text' onChange={this.updateBody()} value={this.state.body} placeholder='Write a Comment' />

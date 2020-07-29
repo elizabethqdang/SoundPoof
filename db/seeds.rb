@@ -65,7 +65,7 @@ u17 = User.create({ id: 17, email: "Bassnectar", password: "password", bio: "", 
 u17.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/bassnectar.png'), filename: 'bassnectar.png')
 
 u18 = User.create({ id: 18, email: "EMINEM", password: "password", bio: "", location: "", username: "EMINEM" })
-u18.profile_image.attach(io: open('/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/eminem.png'), filename: 'eminem.png')
+u18.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/eminem.png'), filename: 'eminem.png')
 
 
 

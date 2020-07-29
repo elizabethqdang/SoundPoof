@@ -24,7 +24,8 @@ class WaveForm extends React.Component {
 			maxCanvasWidth: 820,
 			hideScrollbar: true,
 			mediaControls: false,
-			controls: true
+			controls: true,
+			interact: false
 		});
 
 		//will set audio peaks if not stored yet. 
@@ -61,17 +62,17 @@ class WaveForm extends React.Component {
 		// 		this.props.updateTrack(formData, this.props.track.id);
 		// 	});
 		// }
-	}
+	// }
 
-	componentDidUpdate(prevProps) {
-		if (!this.wavesurfer) return;
-		if (this.props.playing !== this.wavesurfer.isPlaying()) {
-			this.wavesurfer.playPause();
-		}
-		if (!this.props.playing) return;
-		if (this.props.prevSeek !== prevProps.prevSeek) {
-			this.wavesurfer.seekTo(this.props.prevSeek);
-		}
+	// componentDidUpdate(prevProps) {
+	// 	if (!this.wavesurfer) return;
+	// 	if (this.props.playing !== this.wavesurfer.isPlaying()) {
+	// 		this.wavesurfer.playPause();
+	// 	}
+	// 	if (!this.props.playing) return;
+	// 	if (this.props.prevSeek !== prevProps.prevSeek) {
+	// 		this.wavesurfer.seekTo(this.props.prevSeek);
+	// 	}
 
 	}
 

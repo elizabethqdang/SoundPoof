@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../navbar/navbar_container';
-import { withRouter } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchAllTracks, fetchTrack } from "../../actions/track_actions";
 import { fetchAllUsers, fetchUser, createLike, deleteLike } from "../../actions/user_actions";

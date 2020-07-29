@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { NavLink } from "react-router-dom";
 import TrackSearchResult from "./track_search_result";
 import UserSearchResult from "./user_search_result";
 import SearchResults from "./search_results";
@@ -30,7 +31,7 @@ class SearchBar extends React.Component {
 		this.setState({
 			showSearch: true,
 		});
-		console.log("stream", this.state.showStream, this.state.showSearch, this.state.showProfile);
+		// console.log("stream", this.state.showStream, this.state.showSearch, this.state.showProfile);
 
 	}
 
@@ -74,11 +75,11 @@ class SearchBar extends React.Component {
   searchResultHeader() {
     if (this.state.searchInput.length > 0) {
 			return (
-        <li className="search-result-item">
-          <div className="search-result-content">
-            <div className="search-result-text" onClick={this.toSearch}>Search for "{this.state.searchInput}"</div>
-          </div>
-        </li>
+					<li className="search-result-item">
+						<div className="search-result-content">
+							<div className="search-result-text" onClick={this.toSearch}>Search for "{this.state.searchInput}"</div>
+						</div>
+					</li>
       );
     } else {
       return null;
@@ -88,25 +89,24 @@ class SearchBar extends React.Component {
 	toSearch(e) {
 		if (e.key === 'Enter' && e.target.value !== '') {
 			window.location.hash = `/search?q=${e.target.value}`;
-			// console.log(this.state.searchInput);
-			// console.log(this.state.searchResults);
 		}
 	}
 
 	render() {
-		const { users, tracks } = this.props;
+		const { users, tracks, currentUser } = this.props;
 		const { searchInput, searchResults } = this.state;
 		
-		if (this.state.showSearch) {
-			return (
-				// show = (
-				<SearchResults currentUser={currentUser || null} tracks={tracks} users={users} />
-			)
-		};
+		// if (this.state.showSearch) {
+		// 	window.location.hash = `/search?q=${this.state.searchInput}`;
+		// 	return (
+		// 		<SearchResults currentUser={currentUser || null} tracks={tracks} users={users} />
+		// 	)
+		// };
 		return (
 			// <section className="nav-middle">
 				<form className="nav-search">
-					
+				{/* <NavLink exact to={`/search?q=${this.state.searchInput}`} onClick={this.showSearch()}> */}
+
 					<input className="nav-search-input" 
 						onChange={this.updateInput('searchInput')} 
 						value={this.state.searchInput} 
@@ -119,19 +119,17 @@ class SearchBar extends React.Component {
 						{
 							this.state.searchResults.map((result, idx) => {
 								if (result.email) {
-									// return <UserSearchResult key={idx} user={result} />;
 									return (
-											<li key={idx} className='search-show collection-show'>
-												<img src={result.profileImgUrl || ""} />
+										<li key={idx} className='search-show collection-show'>
+											<img src={result.profileImgUrl} />
 												<span>{result.email}</span>
 												<div className="search-result-user-icon"></div>
 											</li>
 									)
 								} else {
-									// return <TrackSearchResult key={idx} track={result} />;
 									return (
-										<li key={idx}className='track-show search-show collection-show'>
-												<img src={result.artworkUrl || ""} />
+										<li key={idx} className='track-show search-show collection-show'>
+											<img src={result.artworkUrl} />
 												<span>{result.title}</span>
 												<div className="search-result-track-icon"></div>
 											</li>
