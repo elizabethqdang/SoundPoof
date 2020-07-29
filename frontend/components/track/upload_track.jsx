@@ -130,9 +130,9 @@ class UploadTrack extends React.Component {
 
 	render() {
 		const { user_id, userId, audioFile, audio, audioUrl } = this.props;
-		console.log("upload_track user_id", user_id);
-		console.log("audioFile", audioFile);
-		console.log("audioUrl", audioUrl);
+		// console.log("upload_track user_id", user_id);
+		// console.log("audioFile", audioFile);
+		// console.log("audioUrl", audioUrl);
 
 		if (this.state.audioFile) {
 			return (

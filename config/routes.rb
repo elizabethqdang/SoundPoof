@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     resources :tracks, only: [:index, :create, :show, :update, :destroy] do
 			resources :comments, only: [:index, :create, :show, :destroy]
 		end
-		resources :comments, only: [:update, :destroy]
 
 		post 'users/likes/:track_id', to: 'users#like'
 		delete 'users/likes/:track_id', to: 'users#unlike'

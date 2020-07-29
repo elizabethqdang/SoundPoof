@@ -34,15 +34,15 @@ class Navbar extends React.Component {
 
 	}
 
-	showSearch() {
-		this.setState({
-			showStream: false,
-			showSearch: true,
-			showProfile: false
-		});
-		console.log("stream", this.state.showStream, this.state.showSearch, this.state.showProfile);
+	// showSearch() {
+	// 	this.setState({
+	// 		showStream: false,
+	// 		showSearch: true,
+	// 		showProfile: false
+	// 	});
+	// 	console.log("stream", this.state.showStream, this.state.showSearch, this.state.showProfile);
 
-	}
+	// }
 
 	showProfile() {
 		this.setState({
@@ -103,7 +103,7 @@ class Navbar extends React.Component {
 				<NavLink className="nav-upload hov-white" activeClassName="nav-selected" exact to="/upload" >
 						Upload
 				</NavLink>
-				<Link to="/"className="nav-user-menu">
+				<Link to="/" className="nav-user-menu">
 					<div className="nav-user-button" onClick={() => openModal("signup")}>
 					</div>
 					<div className="nav-user-username">
@@ -136,17 +136,7 @@ class Navbar extends React.Component {
 	}
 
 	navSearch() {
-		let searchbar = (
-			 <SearchBar />
-		);
 
-		return (
-			<Fragment>
-				<NavLink exact to={`/search?q=${this.state.searchInput}`} onSubmit={() => this.showSearch()} >
-					{/* {search} */}
-				</NavLink>
-			</Fragment>
-		)
 	}
 
 	navUserLinks(currentUser, logout) {
@@ -197,12 +187,11 @@ class Navbar extends React.Component {
 			)
 		};
 
-		if (this.state.showSearch) {
-			return (
-			// show = (
-				<SearchResults currentUser={currentUser || null} tracks={tracks} users={users}/>
-			)
-		};
+		// if (this.state.showSearch) {
+		// 	return (
+		// 		<SearchResults currentUser={currentUser || null} tracks={tracks} users={users}/>
+		// 	)
+		// };
 
 		if (this.state.showProfile) {
 			return (

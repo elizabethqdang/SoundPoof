@@ -15,11 +15,11 @@ class UploadPage extends React.Component {
 
 	render() {
 		const {user_id, userId, audioFile, audio, audioUrl} = this.props;
-		console.log("upload_page user_id", user_id);
+		// console.log("upload_page user_id", user_id);
 		// console.log("userId", userId);
-		console.log("audioFile", audioFile);
-		console.log("audio", audio);
-		console.log("audioUrl", audioUrl);
+		// console.log("audioFile", audioFile);
+		// console.log("audio", audio);
+		// console.log("audioUrl", audioUrl);
 
 		return (
 			<>

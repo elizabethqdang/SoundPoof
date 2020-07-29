@@ -9,7 +9,6 @@ const mapStateToProps = (state, ownProps) => ({
 	playing: state.trackplayer.playing,
 	trackId: state.trackplayer.trackId,
 	seek: state.trackplayer.seek,
-	player: state.trackplayer.player,
 	trackplayer: state.trackplayer,
 	currentUser: state.session.currentUser || {}
 });
