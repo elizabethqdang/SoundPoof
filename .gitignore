@@ -24,19 +24,14 @@
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
-/config/master.key
+/config/master.key,
 config/master.key
-
+/.env
+.env
 node_modules/
 bundle.js
 bundle.js.map
 .byebug_history
 .DS_Store
 npm-debug.log
-
-.env
-/config/storage.yml
-storage.yml
-/storage.yml
-config/storage.yml
 /config/credentials.yml.enc

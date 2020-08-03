@@ -27,21 +27,20 @@
 				json.profileUrl asset_path(track.user.profile.url)
 				json.bannerUrl asset_path(track.user.banner.url)
 				
-				if track.audio.attached? 
-            json.audioUrl url_for(track.audio)
-        else 
-            json.audioUrl ''
-        end
-        if track.artwork.attached? 
-            json.artworkUrl url_for(track.artwork)
-        else 
-            json.artworkUrl ''
-				end
-gl				if track.user.profile_image.attached?
-					json.profileImgUrl url_for(track.user.profile_image)
-				else
-					json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
-				end
-				
+				# if track.audio.attached? 
+        #     json.audioUrl url_for(track.audio)
+        # else 
+        #     json.audioUrl ''
+        # end
+        # if track.artwork.attached? 
+        #     json.artworkUrl url_for(track.artwork)
+        # else 
+        #     json.artworkUrl ''
+				# end
+				# if track.user.profile_image.attached?
+				# 	json.profileImgUrl url_for(track.user.profile_image)
+				# else
+				# 	json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
+				# end
 		end
 end

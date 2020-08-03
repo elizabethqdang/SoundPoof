@@ -17,9 +17,9 @@ class SearchBar extends React.Component {
 
 		this.updateSearchResults = this.updateSearchResults.bind(this);
 		this.searchResultHeader = this.searchResultHeader.bind(this);
-		this.toSearch = this.toSearch.bind(this);
-		this.showSearch = this.showSearch.bind(this);	
-		this.clickResult = this.clickResult.bind(this);
+		// this.toSearch = this.toSearch.bind(this);
+		// this.showSearch = this.showSearch.bind(this);	
+		// this.clickResult = this.clickResult.bind(this);
 	}
 
 	componentDidUpdate(prevProps, prevState) {

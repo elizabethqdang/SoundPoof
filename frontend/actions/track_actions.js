@@ -43,13 +43,17 @@ export const requestTrackFetch = () => ({
 
 
 // Thunk actions
-export const fetchAllTracks = () => dispatch => (
-	TrackAPIUtil.fetchAllTracks().then(
-		tracks => {
+export const fetchAllTracks = () => dispatch => {
+	return TrackAPIUtil.fetchAllTracks()
+		.then(tracks => {
 			dispatch(receiveAllTracks(tracks));
-		}
-	)
-);
+			return tracks;
+		}, errors => {
+			dispatch(receiveTrackErrors(errors.responseJSON));
+			console.log(errors.responseJSON);
+			return errors.responseJSON;
+		})
+	};
 
 export const fetchTrack = trackId => dispatch => {
 	return TrackAPIUtil.fetchTrack(trackId).then(payload => {

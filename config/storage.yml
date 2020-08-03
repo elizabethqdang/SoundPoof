@@ -1,0 +1,13 @@
+amazon_dev:
+  service: S3
+  access_key_id: <%= Rails.application.credentials.amazon_dev[:access_key_id] %>
+  secret_access_key: <%= Rails.application.credentials.amazon_dev[:secret_access_key] %>
+  region: <%= Rails.application.credentials.amazon_dev[:region] %>
+  bucket: <%= Rails.application.credentials.amazon_dev[:bucket] %>
+
+amazon_prod:
+  service: S3
+  access_key_id: <%= Rails.application.credentials.amazon_pro[:access_key_id] %>
+  secret_access_key: <%= Rails.application.credentials.amazon_pro[:secret_access_key] %>
+  region: <%= Rails.application.credentials.amazon_pro[:region] %>
+  bucket: <%= Rails.application.credentials.amazon_pro[:bucket] %>

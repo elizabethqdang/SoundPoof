@@ -15,7 +15,7 @@ class Splash extends React.Component {
 	
 	componentDidMount() {
 		// this.props.fetchAllTracks();
-		// this.props.fetchAllUsers();
+		this.props.fetchAllUsers();
 		// this.state.splash;
 		// console.log(this.state.splash);
 	}

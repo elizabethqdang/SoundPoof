@@ -16,14 +16,14 @@ json.commentIds user.comment_ids
 json.likedTrackIds user.liked_track_ids
 json.repostedTrackIds user.reposted_track_ids
 
-# json.followingIds user.follows.pluck(:id)
+json.followingIds user.follows.pluck(:id)
 json.followingIds user.following_ids
 json.followerIds user.follower_ids
 json.numFollowing user.following_ids.length
 json.numFollowers user.follower_ids.length
 
 
-json.profileImgUrl url_for(user.profile_image)
+# json.profileImgUrl url_for(user.profile_image)
 json.bannerUrl asset_path(user.banner.url)
 json.profileUrl asset_path(user.profile.url)
 

@@ -24,11 +24,11 @@
 		json.bannerUrl asset_path(user.banner.url)
 		json.profileUrl asset_path(user.profile.url)
 
-		if user.profile_image.attached?
-			json.profileImgUrl url_for(user.profile_image)
-		else
-			json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
-		end
+		# if user.profile_image.attached?
+		# 	json.profileImgUrl url_for(user.profile_image)
+		# else
+		# 	json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
+		# end
 	
 	end
 end

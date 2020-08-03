@@ -47,8 +47,9 @@ export const login = user => dispatch => (
     user => dispatch(receiveCurrentUser(user)),
     errors => {
 			dispatch(receiveSessionErrors(errors.responseJSON));
-			console.log(errors.responseJSON);
-			return errors;
+		// errors => (console.log(errors))
+			// console.log(errors.responseJSON, errors);
+			// return errors;
 		}
   ));
 

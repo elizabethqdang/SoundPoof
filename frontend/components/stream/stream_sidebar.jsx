@@ -7,7 +7,7 @@ import { fetchTrack } from '../../actions/track_actions';
 class StreamSidebar extends React.Component {
   constructor(props) {
 		super(props);
-		let randomIdx = Math.floor(Math.random() * this.state.users.length);
+		let randomIdx = Math.floor(Math.random() * 18);
 		this.followItem = this.followItem.bind(this);
 		this.likeItem = this.likeItem.bind(this);
 		// this.toggleLike = this.toggleLike.bind(this);

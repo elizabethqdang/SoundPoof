@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 	trackplayer: state.trackplayer || {},
 	currentUser: state.session.currentUser || {},
 	// users: Object.values(state.users) || {},
-	users: state.users,
+	users: state.users || {},
 	errors: state.errors.tracks || [],
 	loggedIn: Boolean(state.session.currentUser),
 });

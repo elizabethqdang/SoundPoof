@@ -23,8 +23,8 @@ json.reposterIds track.reposters_ids
 json.profileUrl asset_path(track.user.profile.url)
 # json.profileImgUrl url_for(track.user.profile_image)
 
-if track.user.profile_image.attached?
-		json.profileImgUrl url_for(track.user.profile_image)
-else
-		json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
-end
+# if track.user.profile_image.attached?
+# 		json.profileImgUrl url_for(track.user.profile_image)
+# else
+# 		json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
+# end

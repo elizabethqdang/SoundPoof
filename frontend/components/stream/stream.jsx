@@ -13,13 +13,11 @@ class Stream extends React.Component {
 			showSearch: false,
 	 		showProfile: false,
 		}
-		this.streamSidebar = this.streamSidebar.bind(this);
-		this.stream = this.stream.bind(this);
 	}
 
 	componentDidMount() {
 		this.props.fetchAllTracks();
-		this.props.fetchAllUsers();
+		// this.props.fetchAllUsers();
 		// this.props.fetchCurrentUser(this.props.currentUser.id);
 	}
 
@@ -30,14 +28,15 @@ class Stream extends React.Component {
 	// 	}); 
 	// }
 
-	stream() {
-		return (
-		 (tracks).map((track, idx) => (
-				<TrackIndexItem id={track.id} key={idx} track={track} currentUser={currentUser || {}} users={users} tracks={tracks} user={users[track.user_id]} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} createLike={createLike} deleteLike={deleteLike} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer || {}} setTrackPlayer={setTrackPlayer} seekPlayer={seekPlayer} endCurrentTrack={endCurrentTrack} />
-			)))
-		 }
+	// stream() {
+	// 	const { tracks } = this.props;
+	// 	return (
+	// 	 (tracks).map((track, idx) => (
+	// 			<TrackIndexItem id={track.id} key={idx} track={track} currentUser={currentUser || {}} users={users} tracks={tracks} user={users[track.user_id]} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} createLike={createLike} deleteLike={deleteLike} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer || {}} setTrackPlayer={setTrackPlayer} seekPlayer={seekPlayer} endCurrentTrack={endCurrentTrack} />
+	// 		)))
+	// 	 }
 
-	StreamSidebar() {
+	streamSidebar() {
 		return (
 		<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} trackplayer={trackplayer} createFollow={createFollow} deleteFollow={deleteFollow} randomNum={randomNum} />
 		)
@@ -48,13 +47,13 @@ class Stream extends React.Component {
 		let tracks = Object.values(this.props.tracks);
 		let users = Object.values(this.props.users);
 
-		// let stream = ((tracks)).map((track, idx) => (
-		// 	<TrackIndexItem id={track.id} key={idx} track={track} currentUser={currentUser || {}} users={users} tracks={tracks} user={users[track.user_id]} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} createLike={createLike} deleteLike={deleteLike} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer || {}} setTrackPlayer={setTrackPlayer} seekPlayer={seekPlayer} endCurrentTrack={endCurrentTrack} />
-		// ));
+		let stream = ((tracks)).map((track, idx) => (
+			<TrackIndexItem id={track.id} key={idx} track={track} currentUser={currentUser || {}} users={users} tracks={tracks} user={users[track.user_id]} setPlayPause={this.props.setPlayPause} setProg={this.props.setProg} deleteTrack={this.props.deleteTrack} createRepost={this.props.createRepost} deleteRepost={this.props.deleteRepost} createLike={this.props.createLike} deleteLike={this.props.deleteLike} fetchTrack={this.props.fetchTrack} fetchAllTracks={this.props.fetchAllTracks} seekWaveForm={this.props.seekWaveForm} seekTrack={this.props.seekTrack} trackplayer={trackplayer || {}} setTrackPlayer={this.props.setTrackPlayer} seekPlayer={this.props.seekPlayer} endCurrentTrack={this.props.endCurrentTrack} />
+		));
 
-		// let streamSidebar = (
-		// 	<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} trackplayer={trackplayer} createFollow={createFollow} deleteFollow={deleteFollow} />
-		// );
+		let streamSidebar = (
+			<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} trackplayer={this.props.trackplayer} createFollow={this.props.createFollow} deleteFollow={this.props.deleteFollow} />
+		);
 
 		let streamNavbar = (
 			<NavbarContainer currentUser={currentUser} tracks={tracks} trackplayer={trackplayer} users={users} />
@@ -68,15 +67,14 @@ class Stream extends React.Component {
 						<nav className='stream-nav'>
 							<ul>
 								<li><NavLink to='/stream' activeClassName='selected'>Stream</NavLink></li>
-								{/* <li><Link to='/stream'>Charts</Link></li>
-								<li><Link to='/stream'>Discover</Link></li> */}
+								<li><Link to='/stream'>All</Link></li>
+								{/* <li><Link to='/stream'>Discover</Link></li> */}
 							</ul>
 						</nav>
 						<p>Hear the latest posts from the people you're following</p>
 						<ul className='homepage-tracks'>
-							{/* {stream} */}
+							{stream}
 							{/* {this.stream()} */}
-							<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} trackplayer={trackplayer} createFollow={createFollow} deleteFollow={deleteFollow} /> */}
 						</ul>
 					</div>
 
@@ -84,7 +82,8 @@ class Stream extends React.Component {
 						<div className="sidebar-ad-container">
 							<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src="" /></a>
 						</div>
-						{this.streamSidebar()}
+						{streamSidebar}
+
 						{/* {streamSidebar} */}
 						{/* <StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} trackplayer={trackplayer} createFollow={createFollow} deleteFollow={deleteFollow} randomNum={randomNum} /> */}
 					</div>

@@ -152,7 +152,7 @@ class TrackIndexItem extends React.Component {
 						</div>
 						<div className='sound-bar'>
 							<span></span>
-							<WaveFormContainer track={track} height={60} color={'#000'} width={820} trackplayer={trackplayer || {}} />
+							{/* <WaveFormContainer track={track} height={60} color={'#000'} width={820} trackplayer={trackplayer || {}} /> */}
 							{/* {waveForm} */}
 						</div>
 						{this.trackButtonBar()}

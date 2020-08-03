@@ -3,7 +3,7 @@ class Api::TracksController < ApplicationController
   def index
 		# @tracks = AWS::S3::Bucket.find(BUCKET).objects
 		@tracks = Track.all.order(created_at: :desc)
-		render "api/tracks/index"
+		# render "/api/tracks/index"
   end
  
   def create
