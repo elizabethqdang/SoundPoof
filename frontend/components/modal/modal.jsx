@@ -1,9 +1,7 @@
 import React from "react";
-// import LoginFormContainer from "../session/login_form_container";
 import LoginFormContainer from "../session_form/login_form_container";
 import SignupFormContainer from "../session_form/signup_form_container";
-// import SignupFormContainer from "../session/signup_form_container";
-import SessionForm from "../session/session_form";
+import SessionForm from "../session_form/session_form";
 import Dropdown from "../navbar/dropdown";
 import UploadTrackFormContainer from "../track_form/upload_track_form_container";
 
