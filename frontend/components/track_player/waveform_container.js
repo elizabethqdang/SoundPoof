@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import WaveForm from './waveform';
 import { updateTrack } from '../../actions/track_actions';
-import { endCurrentTrack, seekTrack, seekWaveForm, setPlayPause } from '../../actions/track_player_actions';
+import { endCurrentTrack, seekTrack, seekWaveForm, setPlayPause } from '../../actions/trackplayer_actions';
 
 const mapStateToProps = (state, ownProps) => ({
 	currentTrack: state.trackplayer.currentTrack,

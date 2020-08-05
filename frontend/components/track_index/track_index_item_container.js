@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import TrackIndexItem from './track_index_item';
 import { fetchTrack, fetchAllTracks, fetchSingleTrack, deleteTrack, updateTrack } from '../../actions/track_actions';
 import { fetchUser, createLike, deleteLike, createRepost, deleteRepost } from '../../actions/user_actions';
-import { setCurrentTrack, setPlayPause, setProg } from '../../actions/track_player_actions';
+import { setCurrentTrack, setPlayPause, setProg, setTrackPlayer, seekPlayer, seekWaveForm, seekTrack } from '../../actions/trackplayer_actions';
 
 const mapStateToProps = (state, ownProps) => ({
 	comments: state.comments,
@@ -25,6 +25,11 @@ const mapDispatchToProps = (dispatch) => ({
 	deleteLike: (trackId) => dispatch(deleteLike(trackId)),
 	createRepost: (trackId) => dispatch(createRepost(trackId)),
 	deleteRepost: (trackId) => dispatch(deleteRepost(trackId)),
+	setTrackPlayer: (trackplayer) => dispatch(setTrackPlayer(trackplayer)),
+	endCurrentTrack: () => dispatch(endCurrentTrack()),
+	seekTrack: (seconds) => dispatch(seekTrack(seconds)),
+	seekWaveForm: (progress) => dispatch(seekWaveForm(progress, ownProps.track.id)),
+	seekPlayer: (progress) => dispatch(seekPlayer(progress)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackIndexItem);

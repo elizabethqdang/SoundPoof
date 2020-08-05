@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { fetchUser, updateUser, createLike, deleteLike, createRepost, deleteRepost } from "../../actions/user_actions";
 import { fetchAllTracks, fetchTrack, deleteTrack } from "../../actions/track_actions";
 import { withRouter, Route } from "react-router-dom";
-import { setCurrentTrack, setPlayPause, setProg, seekTrack, seekWaveForm, seekPlayer } from '../../actions/track_player_actions';
+import { setCurrentTrack, setPlayPause, setProg, seekTrack, seekWaveForm, seekPlayer } from '../../actions/trackplayer_actions';
 import UserShow from "./user_show";
 
 const mapStateToProps = (state, ownProps) => {

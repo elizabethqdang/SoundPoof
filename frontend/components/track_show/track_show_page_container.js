@@ -3,7 +3,7 @@ import { fetchTrack, fetchAllTracks, deleteTrack, updateTrack } from "../../acti
 import { fetchAllUsers, fetchUser, createLike, deleteLike, createRepost, deleteRepost } from '../../actions/user_actions';
 import { fetchCurrentUser } from '../../actions/session_actions';
 import TrackShowPage from './track_show_page';
-import { setCurrentTrack, setPlayPause, setProg, receiveCurrentTrack, seekWaveForm, seekTrack } from '../../actions/track_player_actions';
+import { setCurrentTrack, setPlayPause, setProg, receiveCurrentTrack, seekWaveForm, seekTrack } from '../../actions/trackplayer_actions';
 import { deleteComment } from '../../actions/comment_actions';
 
 const mapStateToProps = (state, ownProps) => {
