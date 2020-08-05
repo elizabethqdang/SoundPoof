@@ -3,9 +3,9 @@ class Follow < ApplicationRecord
 
 		belongs_to :user,
 			class_name: :User,
-			foreign_key: user_id
+			foreign_key: :user_id
 	
 		belongs_to :user,
 			class_name: :User,
-			foreign_key: following_id
+			foreign_key: :following_id
 end
