@@ -174,7 +174,7 @@ const mapStateToProps = (state) => {
 		// return tracks[id];
 	})
 	const randomIdx = Math.floor(Math.random() * users.length);
-	console.log(users.length, randomIdx, randomIdx+3);
+	// console.log(users.length, randomIdx, randomIdx+3);
 	// console.log("currentUser", currentUser);
 	// console.log("cLikedTrackIds", cLikedTrackIds);
 	// console.log("tracks", tracks);

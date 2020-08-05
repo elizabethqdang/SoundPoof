@@ -39,8 +39,7 @@ class WaveForm extends React.Component {
 
 		this.wavesurfer.setMute(true);
 
-		let start;
-		start = this.props.prevProg ? this.props.prevProg : 0;
+		let start = this.props.prevProg ? this.props.prevProg : 0;
 
 		this.wavesurfer.on('ready', () => {
 			this.wavesurfer.seekTo(start);
@@ -67,9 +66,9 @@ class WaveForm extends React.Component {
 
 	componentDidUpdate(prevProps) {
 		if (!this.wavesurfer) return;
-		if (this.props.playing !== this.wavesurfer.isPlaying()) {
-			this.wavesurfer.playPause();
-		}
+		// if (this.props.playing !== this.wavesurfer.isPlaying()) {
+		// 	this.wavesurfer.playPause();
+		// }
 		if (!this.props.playing) return;
 		if (this.props.prevSeek !== prevProps.prevSeek) {
 			this.wavesurfer.seekTo(this.props.prevSeek);

@@ -86,7 +86,7 @@ class UserShow extends React.Component {
 			likedStream: false,
 			repostedStream: false
 		});
-		console.log("stream", this.state.trackStream, this.state.likedStream, this.state.repostedStream);
+		// console.log("stream", this.state.trackStream, this.state.likedStream, this.state.repostedStream);
 
 	}
 
@@ -96,7 +96,7 @@ class UserShow extends React.Component {
 			likedStream: true,
 			repostedStream: false
 		});
-		console.log("stream", this.state.trackStream, this.state.likedStream, this.state.repostedStream);
+		// console.log("stream", this.state.trackStream, this.state.likedStream, this.state.repostedStream);
 
 	}
 
@@ -106,7 +106,7 @@ class UserShow extends React.Component {
 			likedStream: false,
 			repostedStream: true
 		});
-		console.log("stream", this.state.trackStream, this.state.likedStream,this.state.repostedStream);
+		// console.log("stream", this.state.trackStream, this.state.likedStream,this.state.repostedStream);
 	}
 
   render() {
@@ -115,7 +115,7 @@ class UserShow extends React.Component {
 		// console.log(user.id, currentUser.id)
 
 		if (this.props.user === undefined) {
-			console.log("this.props.user", this.props.user);
+			// console.log("this.props.user", this.props.user);
 			return (
 				<div></div>
 			)

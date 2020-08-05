@@ -22,8 +22,8 @@ class TrackIndex extends React.Component {
 	
 	render() {
 		const { tracks, currentUser, users, track } = this.props;
-		console.log("track-index");
-		console.log("track-index", "tracks", tracks, "track", track, "currentUser", currentUser, "users", users);
+		// console.log("track-index");
+		// console.log("track-index", "tracks", tracks, "track", track, "currentUser", currentUser, "users", users);
 		
 		return (
 			<div className="discover-container">

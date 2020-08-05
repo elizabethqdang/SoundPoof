@@ -2,7 +2,6 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 
 class TrackPlayer extends React.Component{
-
   constructor(props){
     super(props);
     this.state = {
@@ -18,7 +17,7 @@ class TrackPlayer extends React.Component{
 				controls: false,
     };
 
-    this.keepProgress = this.keepProgress.bind(this); 
+    // this.keepProgress = this.keepProgress.bind(this); 
     this.onDuration = this.onDuration.bind(this); 
     this.onProgress = this.onProgress.bind(this); 
     this.onEnded = this.onEnded.bind(this); 
@@ -36,31 +35,31 @@ class TrackPlayer extends React.Component{
     if (this.props.trackId !== prevProps.trackId) {
 		// different track => find progress and waveform of new track
       let progress = this.props.trackplayer.waveSeek; 
-      let trackProg = progress ? progress : 0; 
+			let trackProg = (this.props.trackplayer.waveSeek ? this.props.trackplayer.waveSeek : 0); 
       this.setState({startT: trackProg});
-			// this.props.player.seekTo(trackProg * this.state.duration);
-			console.log("progress", progress);
-			console.log("trackProg", trackProg);
-			console.log("player", this.props.player);
-			console.log("startT", this.state.startT);
+			// this.props.player.seekTo(trackProg ? (trackProg * this.state.duration) : 0);
+			// console.log("progress", progress);
+			// console.log("trackProg", trackProg);
+			// console.log("player", this.props.player);
+			// console.log("startT", this.state.startT);
     } else if ((this.props.trackId == prevProps.trackId) && (this.props.trackplayer.waveSeek !== prevProps.trackplayer.waveSeek)) {
 		// same track => seek track progress
       let seek = (this.props.trackplayer.progressTrackId[this.props.trackId] * this.state.duration);
 			this.props.player.seekTo(seek);
 			
-			console.log("seek", seek);
-			console.log("trackplayer", this.props.trackplayer);
-			console.log("trackId", this.props.trackId);
+			// console.log("seek", seek);
+			// console.log("trackplayer", this.props.trackplayer);
+			// console.log("trackId", this.props.trackId);
     } 
   }
 
-  keepProgress() {
-    if (this.state.startT !== null) {
-      const startTime = this.state.startT; 
-      this.setState({ startT: null }); 
-      this.props.player.seekTo(startTime * this.state.duration); 
-    }
-  }
+  // keepProgress() {
+  //   if (this.state.startT !== null) {
+  //     const startTime = this.state.startT; 
+  //     this.setState({ startT: null }); 
+	// 		this.props.player.seekTo(this.state.startT * this.state.duration); 
+  //   }
+  // }
 
   onDuration(){
     return ((duration) => {
@@ -173,7 +172,7 @@ class TrackPlayer extends React.Component{
             <div id={playButton} className='controller-btn' onClick={(e) => this.playPause(e) }></div>
             <div id='next-btn' className='controller-btn non-active-btn' ></div>
             <div className='shuffle-btn controller-btn non-active-btn'></div>
-            <div className='loop-btn controller-btn non-active-btn' onClick={() => this.setState({loop: !loop}) }></div>
+            <div id={loopActive} className='loop-btn controller-btn non-active-btn' onClick={() => this.setState({loop: !loop}) }></div>
           </div>
           <div id='tp-progress'>
             <div id='tp-timepassed'>{playedTime}</div>
@@ -212,7 +211,7 @@ class TrackPlayer extends React.Component{
              onEnded={() => this.onEnded()}
              onProgress={this.onProgress()}
              onDuration={this.onDuration()}
-						 onReady={() => this.keepProgress()}
+						//  onReady={() => this.keepProgress()}
 						 controls={controls}
            />
       </div>

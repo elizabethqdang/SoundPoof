@@ -100,7 +100,7 @@ const TrackLikes = ({ user, users, tracks, currentUser, track }) => {
 const TrackReposts = ({ user, users, tracks, currentUser, track }) => {
 	// let active = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'active' : '');
 	// let likeButton = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'Liked' : 'Like');
-	console.log(user, user.profileImgUrl);
+	// console.log(user, user.profileImgUrl);
 
 	return (
 		<li className="user-suggestion-item track-stat-container">

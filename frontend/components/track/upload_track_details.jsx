@@ -160,7 +160,7 @@ class UploadTrackDetails extends React.Component {
 				// (track.id) => this.props.fetchSingleTrack(track),
 				() => this.props.history.push(`/tracks/${this.track.id}`),
 				// .then(({track}) =>
-					this.props.history.push('/stream'),
+					// this.props.history.push('/stream'),
 				// (res) => {
 					// console.log(response)
 					// console.log(track)
