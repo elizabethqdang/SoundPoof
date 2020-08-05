@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import TrackPlayer from './track_player';
-import { setPlayPause, setTrackPlayer, seekPlayer, endCurrentTrack, next, seekTrack, seekWaveForm } from '../../actions/track_player_actions';
+import { setPlayPause, setTrackPlayer, seekPlayer, endCurrentTrack, next, seekTrack, seekWaveForm } from '../../actions/trackplayer_actions';
 import { fetchTrack } from '../../actions/track_actions';
 import { fetchUser, createLike, deleteLike, createRepost, deleteRepost } from '../../actions/user_actions';
 

@@ -31,7 +31,7 @@ class Stream extends React.Component {
 		let users = Object.values(this.props.users);
 
 		let stream = ((tracks)).map((track, idx) => (
-			<TrackIndexItem key={idx} track={track} currentUser={currentUser || null} users={users} tracks={tracks} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} createLike={createLike} deleteLike={deleteLike} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer || {}} setTrackPlay={setTrackPlayer} seekPlayer={seekPlayer} endCurrentTrack={endCurrentTrack} />
+			<TrackIndexItem key={idx} track={track} currentUser={currentUser || null} users={users} tracks={tracks} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} createLike={createLike} deleteLike={deleteLike} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer || {}} setTrackPlayer={setTrackPlayer} seekPlayer={seekPlayer} endCurrentTrack={endCurrentTrack} />
 		));
 
 		let streamSidebar = (

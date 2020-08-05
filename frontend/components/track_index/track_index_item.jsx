@@ -17,34 +17,49 @@ class TrackIndexItem extends React.Component {
 		this.trackButtonBar = this.trackButtonBar.bind(this);
 	}
 
-	componentDidUpdate(prevProps) {
-		let { playing, trackId, player } = prevProps.trackplayer;
-		let trackProg = prevProps.trackplayer.progressTrackId[this.props.track.id];
-		let track = this.props.track;
+	// componentDidUpdate(prevProps) {
+	// 	let { playing, trackId, player } = this.props.trackplayer;
+	// 	let trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
+	// 	let track = this.props.track;
 
-		if (playing && (trackId == track.id) && (track.id !== prevProps.trackplayer.trackId)) {
-			let prog = trackProg ? trackProg : player.getCurrentTime() / player.getDuration();
-			this.props.setProg(track.id, prog);
-		}
-	}
+	// 	if (playing && (trackId === track.id) && (track.id !== prevProps.trackplayer.trackId)) {
+	// 		let progress = trackProg ? trackProg : prevProps.trackplayer.player.getCurrentTime() / prevProps.trackplayer.player.getDuration();
+	// 		this.props.setProg(prevProps.trackplayer.trackId, progress);
+	// 	}
+	// }
+
+	// componentWillReceiveProps(nextProps) {
+
+	// 	//this is for the circumstance whree 
+	// 	let { playing, trackId, player } = this.props.trackplayer;
+	// 	let trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
+	// 	let thisId = this.props.track.id;
+
+	// 	if (playing && (trackId == thisId) && (thisId !== nextProps.trackplayer.trackId)) {
+	// 		let prog = trackProg ? trackProg : player.getCurrentTime() / player.getDuration();
+	// 		this.props.setProg(thisId, prog);
+	// 	} //if song is currently playing and it switches update the progress of left song
+
+	// }
  
 	playButton(e) {
 		e.preventDefault();
-		const { track, trackplayer } = this.props;
+		let { track, trackplayer } = this.props;
 		let { currentTrack, playing, trackId } = this.props.trackplayer;
-		const trackProg = this.props.trackplayer.progressTrackId[this.props.track.id];
+		let trackProgress = this.props.trackplayer.progressTrackId[this.props.track.id];
 
 		if (trackplayer.trackId === 0) {
 			// no track
-			this.props.setPlayPause(!trackplayer.playing, track.id, 0);
+			this.props.setPlayPause(!trackplayer.playing, track.id, 1);
 		} else if ( trackplayer.trackId === track.id) {
 			// same track
-			let progress = (trackProg ? trackProg : trackplayer.player.getCurrentTime() / trackplayer.player.getDuration());
+			let progress = (trackProgress ? trackProgress : trackplayer.player.getCurrentTime() / trackplayer.player.getDuration());
 			this.props.setPlayPause(!trackplayer.playing, track.id, progress);
 		} else {
 			// diff track
-			let progress = (trackProg ? trackProg : 0);
+			let progress = (trackProgress ? trackProgress : 0);
 			this.props.setPlayPause(!trackplayer.playing, track.id, progress);
+			console.log("progress", progress);
 		}
 	}
 

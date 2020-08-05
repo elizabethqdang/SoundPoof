@@ -32,17 +32,25 @@ class TrackPlayer extends React.Component{
 
   componentDidUpdate(prevProps) {
     if (prevProps.trackId === 0 || this.props.trackId === 0) return;
-    
-    if (this.props.trackId !== prevProps.trackId) { //new track is being played, look at waveseek 
+		
+    if (this.props.trackId !== prevProps.trackId) {
+		// different track => find progress and waveform of new track
       let progress = this.props.trackplayer.waveSeek; 
-      progress = progress ? progress : 0; 
-      this.setState({startT: progress});
-      this.props.player.seekTo(progress * this.state.duration);
-    } else if (
-      (this.props.trackId == prevProps.trackId) && (this.props.trackplayer.waveSeek !== prevProps.trackplayer.waveSeek)
-    ) {
-      let seek = this.props.trackplayer.progressTrackId[this.props.trackId] * this.state.duration;
-      this.props.player.seekTo(seek);
+      let trackProg = progress ? progress : 0; 
+      this.setState({startT: trackProg});
+			// this.props.player.seekTo(trackProg * this.state.duration);
+			console.log("progress", progress);
+			console.log("trackProg", trackProg);
+			console.log("player", this.props.player);
+			console.log("startT", this.state.startT);
+    } else if ((this.props.trackId == prevProps.trackId) && (this.props.trackplayer.waveSeek !== prevProps.trackplayer.waveSeek)) {
+		// same track => seek track progress
+      let seek = (this.props.trackplayer.progressTrackId[this.props.trackId] * this.state.duration);
+			this.props.player.seekTo(seek);
+			
+			console.log("seek", seek);
+			console.log("trackplayer", this.props.trackplayer);
+			console.log("trackId", this.props.trackId);
     } 
   }
 
@@ -71,18 +79,19 @@ class TrackPlayer extends React.Component{
     let tplayer = this.props.trackplayer.player; 
     let trackProg = this.props.trackplayer.progressTrackId[this.props.trackId];
     let { currentTrack, playing, player, trackId} = this.props;
-    if (trackId !== 0) { 
+	 
+		if (trackId !== 0) { 
       let prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
       this.props.setPlayPause(!playing, trackId, prog); 
-    } else if (trackId == 0) {
-						this.props.setPlayPause(!playing, 1, 0);
-				} else if (track.id == trackId) { //if we are pausing the same song
-					let prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
-					this.props.setPlayPause(!playing, track.id, prog);
-				} else { // not same track 
-					let prog = trackProg ? trackProg : 0; // if previous pause ,pick that, if never played start at 0 
+    // } else if (trackId == 0) {
+		// 				this.props.setPlayPause(!playing, 1, 0);
+		// 		} else if (track.id == trackId) { //if we are pausing the same song
+		// 			let prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
+		// 			this.props.setPlayPause(!playing, track.id, prog);
+		// 		} else { // not same track 
+		// 			let prog = trackProg ? trackProg : 0; // if previous pause ,pick that, if never played start at 0 
 
-					this.props.setPlayPause(!playing, track.id, prog);
+		// 			this.props.setPlayPause(!playing, track.id, prog);
 				}
 	}
 	

@@ -39,8 +39,8 @@ class WaveForm extends React.Component {
 
 		this.wavesurfer.setMute(true);
 
-		// let start;
-		// start = this.props.prevProg ? this.props.prevProg : 0;
+		let start;
+		start = this.props.prevProg ? this.props.prevProg : 0;
 
 		this.wavesurfer.on('ready', () => {
 			this.wavesurfer.seekTo(start);
