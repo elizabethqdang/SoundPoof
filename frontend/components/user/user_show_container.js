@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 	const users = state. users || {};
 	const user = state. users[ownProps.match.params.userId] || {};
 	const tracks = state. tracks || {};
-	console.log(user);
+	// console.log(user);
 
 	return {
 		users: state.users || {},

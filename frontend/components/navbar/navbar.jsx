@@ -30,7 +30,7 @@ class Navbar extends React.Component {
 			showSearch: false,
 			showProfile: false
 		});
-		console.log("stream", this.state.showStream, this.state.showSearch, this.state.showProfile);
+		// console.log("stream", this.state.showStream, this.state.showSearch, this.state.showProfile);
 
 	}
 
@@ -50,7 +50,7 @@ class Navbar extends React.Component {
 			showSearch: false,
 			showProfile: true
 		});
-		console.log("stream", this.state.showStream, this.state.showSearch, this.state.showProfile);
+		// console.log("stream", this.state.showStream, this.state.showSearch, this.state.showProfile);
 	}
 
   logoutUser(e) {
@@ -141,7 +141,7 @@ class Navbar extends React.Component {
 
 	navUserLinks(currentUser, logout) {
 		// const { currentUser, logout } = this.props;
-		console.log(currentUser.profileUrl);
+		// console.log(currentUser.profileUrl);
 		return (
 			<Fragment>
 			{/* <section className="nav-right"> */}

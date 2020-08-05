@@ -1,4 +1,4 @@
-	import { RECEIVE_CURRENT_TRACK, PLAY_PAUSE_TRACK, PREVIOUS, NEXT,END_CURRENT_TRACK, TOGGLE_SHUFFLE, TOGGLE_LOOP, SEEK_TRACK, SET_TRACK_PLAYER, SEEK_WAVE_FORM, SEEK_PLAYER, SET_PROGRESS } from '../actions/trackplayer_actions';
+import { RECEIVE_CURRENT_TRACK, PLAY_PAUSE_TRACK, PREVIOUS, NEXT,END_CURRENT_TRACK, TOGGLE_SHUFFLE, TOGGLE_LOOP, SEEK_TRACK, SET_TRACK_PLAYER, SEEK_WAVE_FORM, SEEK_PLAYER, SET_PROGRESS } from '../actions/trackplayer_actions';
 import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 import merge from 'lodash/merge';
 
@@ -18,7 +18,7 @@ const _defaultState = {
 const trackplayerReducer = (state = _defaultState, action) => {
 
 	Object.freeze(state);
-	let newState;
+	let newTrackId;
 
 	switch (action.type) {
 		case RECEIVE_CURRENT_TRACK:
