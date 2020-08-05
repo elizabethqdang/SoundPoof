@@ -10,7 +10,6 @@ const commentsReducer = (oldState = {}, action) => {
 		case RECEIVE_COMMENT:
 			return Object.assign(newState, {[action.comment.id]: action.comment});
 		case REMOVE_COMMENT:
-			// newState = merge({}, oldState);
 			delete newState[action.commentId.id];
 			return newState;
 		case RECEIVE_SINGLE_TRACK:
@@ -19,15 +18,6 @@ const commentsReducer = (oldState = {}, action) => {
 			} else {
 				return Object.assign({}, action.comments);
 			};
-		// case RECEIVE_TRACK:
-		// 	if (action.comments === undefined) {
-		// 		return {};
-		// 	} else {
-		// 		return Object.assign({}, action.comments);
-		// 	};
-		// case RECEIVE_COMMENT_ERRORS:
-		// 	newState.errors = action.errors;
-		// 	return newState;
 		default:
 			return oldState;
 	}
