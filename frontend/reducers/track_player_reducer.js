@@ -2,7 +2,7 @@
 import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 import merge from 'lodash/merge';
 
-const defaultState = {
+const _defaultState = {
 	currentTrack: null,
 	playing: false,
 	player: null,
@@ -15,39 +15,43 @@ const defaultState = {
 	unshuffled: []
 };
 
-const trackplayerReducer = (oldState = defaultState, action) => {
+const trackPlayerReducer = (state = _defaultState, action) => {
 
-	Object.freeze(oldState);
-	let change;
-	let newtrackId;
+	Object.freeze(state);
+	let newState;
 
 	switch (action.type) {
 		case RECEIVE_CURRENT_TRACK:
-			change = { currentTrack: action.track, playing: true, trackId: action.track.id, seek: 0 };
-			return merge({}, oldState, change);
+			newState = { 
+				currentState: action.track, 
+				playing: true, 
+				trackId: action.track.id, 
+				seek: 0 
+			};
+			return merge({}, state, newTrack);
 		case PLAY_PAUSE_TRACK:
-			if (action.trackId !== oldState.trackId) { // if play_paused track is not whats currently playing
-				return merge({}, oldState, {
-					playing: true, //action.boolean,
+			if (action.trackId !== state.trackId) {
+				return merge({}, state, {
+					playing: true, 
 					trackId: action.trackId,
-					waveSeek: oldState.progressTrackId[action.trackId] || 0,
-					playerSeek: oldState.progressTrackId[action.trackId] || 0,
-					progressTrackId: { [action.trackId]: action.progress } //setting leaving track progress out
+					waveSeek: state.progressTrackId[action.trackId] || 0,
+					playerSeek: state.progressTrackId[action.trackId] || 0,
+					progressTrackId: {[action.trackId]: action.progress}
 				});
-			} else if (!action.trackId || action.trackId === 0) {
-				return merge({}, oldState, {
-					playing: true,
-					trackId: 1
-				});
+			// } else if (!action.trackId || action.trackId === 0) {
+			// 	return merge({}, state, {
+			// 		playing: true,
+			// 		trackId: 1
+			// 	});
 			} else {
-				return merge({}, oldState, {
-					playing: !oldState.playing,
+				return merge({}, state, {
+					playing: !state.playing,
 					progressTrackId: { [action.trackId]: action.progress },
 				});
 			}
 		case NEXT:
 			if (action.trackId === tracks.length - 1 || !action.trackId) {
-				return merge({}, oldState, {
+				return merge({}, state, {
 					trackId: 1,
 					playing: true,
 					// progressTrackId: {[ac0,
@@ -55,8 +59,8 @@ const trackplayerReducer = (oldState = defaultState, action) => {
 					// playerSeek: 0,
 				})
 			} else {
-				newtrackId = oldState.trackId += 1
-				return merge({}, oldState, {
+				newtrackId = state.trackId += 1
+				return merge({}, state, {
 					trackId: newtrackId,
 					playing: true,
 					progressTrackId: 0,
@@ -66,10 +70,10 @@ const trackplayerReducer = (oldState = defaultState, action) => {
 			}
 		case PREVIOUS:
 			if (action.trackId <= 1 || !action.trackId) {
-				return defaultState;
+				return _defaultState;
 			} else {
-				newtrackId = oldState.trackId -= 1;
-				return merge({}, oldState, {
+				newtrackId = state.trackId -= 1;
+				return merge({}, state, {
 					trackId: newtrackId,
 					playing: true,
 					progressTrackId: 0,
@@ -78,36 +82,44 @@ const trackplayerReducer = (oldState = defaultState, action) => {
 				});
 			}
 		case END_CURRENT_TRACK:
-			return merge({}, oldState, {
+			return merge({}, state, {
 				playing: false,
 				progressTrackId: { [action.trackId]: 0 },
 				waveSeek: 0,
 				playerSeek: 0,
 			});
 		case SET_PROGRESS:
-			return merge({}, oldState, {
+			return merge({}, state, {
 				progressTrackId: { [action.trackId]: action.progress }
 			});
 		case LOGOUT_CURRENT_USER:
-			return defaultState;
+			return _defaultState;
 		case SEEK_TRACK:
-			return merge({}, oldState, { seek: action.seconds });
+			return merge({}, state, { 
+				seek: action.seconds 
+			});
 		case SEEK_PLAYER:
-			return Object.assign({}, oldState, { playerSeek: action.progress });
+			return Object.assign({}, state, { 
+				playerSeek: action.progress 
+			});
 		case SET_TRACK_PLAYER:
-			return merge({}, oldState, { player: action.trackplayer });
+			return merge({}, state, { 
+				player: action.trackplayer 
+			});
 		case SEEK_WAVE_FORM:
-			if (action.trackId && (action.trackId !== oldState.trackId)) { // if new track is not current track
-				return merge({}, oldState, {
-					progressTrackId: { [action.trackId]: action.progress } //save progress of leaving track 
+			if (action.trackId && (action.trackId !== state.trackId)) {
+				return merge({}, state, {
+					progressTrackId: { [action.trackId]: action.progress }
 				});
-			} else { //it is the same track 
-				// return Object.assign({}, oldState, { waveSeek: action.progress }); 
-				return merge({}, oldState, { progressTrackId: { [action.trackId]: action.progress }, waveSeek: action.progress });
+			} else { 
+				return merge({}, state, {
+					progressTrackId: { [action.trackId]: action.progress }, 
+					waveSeek: action.progress 
+				});
 			}
 		default:
-			return oldState;
+			return state;
 	}
 };
 
-export default trackplayerReducer;
+export default trackPlayerReducer;

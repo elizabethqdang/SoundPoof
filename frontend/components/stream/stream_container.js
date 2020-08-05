@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { fetchAllTracks, fetchTrack, deleteTrack } from "../../actions/track_actions";
-import { setCurrentTrack, setPlayPause, setProg, endCurrentTrack, seekTrack, seekWaveForm } from '../../actions/track_player_actions';
+import { setCurrentTrack, setPlayPause, setProg, endCurrentTrack, seekTrack, seekWaveForm, setTrackPlayer, seekPlayer } from '../../actions/track_player_actions';
 import { fetchAllUsers, fetchUser, createLike, deleteLike, createRepost, deleteRepost } from "../../actions/user_actions";
 import { fetchCurrentUser } from "../../actions/session_actions";
 import Stream from "./stream";
@@ -19,11 +19,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	fetchAllTracks: () => dispatch(fetchAllTracks()),
-	fetchTrack: id => dispatch(fetchTrack(id)),
+	fetchTrack: (id) => dispatch(fetchTrack(id)),
 	fetchAllUsers: () => dispatch(fetchAllUsers()),
 	fetchUser: (userId) => dispatch(fetchUser(userId)),
 	fetchCurrentUser: (id) => dispatch(fetchCurrentUser(id)),
 	setCurrentTrack: (track) => dispatch(setCurrentTrack(track)),
+	setTrackPlayer: (trackplayer) => dispatch(setTrackPlayer(trackplayer)),
+	seekPlayer: (progress) => dispatch(seekPlayer(progress)),
 	setPlayPause: (boolean, trackId, progress) => dispatch(setPlayPause(boolean, trackId, progress)),
 	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),
 	endCurrentTrack: () => dispatch(endCurrentTrack()),

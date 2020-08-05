@@ -17,6 +17,16 @@ class TrackIndexItem extends React.Component {
 		this.trackButtonBar = this.trackButtonBar.bind(this);
 	}
 
+	componentDidUpdate(prevProps) {
+		let { playing, trackId, player } = prevProps.trackplayer;
+		let trackProg = prevProps.trackplayer.progressTrackId[this.props.track.id];
+		let track = this.props.track;
+
+		if (playing && (trackId == track.id) && (track.id !== prevProps.trackplayer.trackId)) {
+			let prog = trackProg ? trackProg : player.getCurrentTime() / player.getDuration();
+			this.props.setProg(track.id, prog);
+		}
+	}
  
 	playButton(e) {
 		e.preventDefault();
