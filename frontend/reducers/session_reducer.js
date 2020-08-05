@@ -2,8 +2,6 @@ import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from "../actions/session_ac
 import { RECEIVE_LIKE, REMOVE_LIKE, RECEIVE_REPOST, REMOVE_REPOST } from '../actions/user_actions';
 
 const _nullUser = {
-	// isAuthenticated: false,
-	// user: {},
 	currentUser: null,
 };
 
@@ -14,18 +12,11 @@ const sessionReducer = (state = _nullUser, action) => {
 
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
-				// return { currentUser: action.currentUser };
 				newState = _.merge({}, state);
 				newState.currentUser = action.currentUser;
-				// newState[action.currentUser].commentIds = new Set(newState[action.currentUser].commentIds);
-				// newState[action.currentUser].likedTrackIds = new Set(newState[action.currentUser].likedTrackIds);
 			return newState;
     case LOGOUT_CURRENT_USER:
       return {
-				// isAuthenticated: false,
-				// user: undefined,
-				// id: null,
-				// _nullUser
 				currentUser: action.currentUser
 			}
 		case RECEIVE_LIKE:
