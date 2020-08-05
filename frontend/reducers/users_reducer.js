@@ -7,13 +7,10 @@ const initialState = {};
 
 const usersReducer = (state = initialState, action) => {
 	Object.freeze(state);
-	// let newState = {};
 	let newState = Object.assign({}, state);
 
 	switch (action.type) {
 		case RECEIVE_USER:
-			// newState = { [action.user.id]: action.user };
-			// return Object.assign({}, state, newState);  
 			newState.user = action.user;
 			return newState;
 		case RECEIVE_ALL_USERS:
