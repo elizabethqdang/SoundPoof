@@ -26,12 +26,12 @@ class Stream extends React.Component {
 	// }
 
 	render() {
-		const { user, currentUser, trackplayer, setPlayPause, setProg, deleteTrack, createRepost, deleteRepost, fetchTrack, fetchAllTracks, seekWaveForm, seekTrack} = this.props;
+		const { user, currentUser, trackplayer, setPlayPause, setProg, deleteTrack, createRepost, deleteRepost, createLike, deleteLike,fetchTrack, fetchAllTracks, seekWaveForm, seekTrack, seekPlayer, setTrackPlayer, endCurrentTrack } = this.props;
 		let tracks = Object.values(this.props.tracks);
 		let users = Object.values(this.props.users);
 
 		let stream = ((tracks)).map((track, idx) => (
-			<TrackIndexItem key={idx} track={track} currentUser={currentUser || null} users={users} tracks={tracks} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer || {}} />
+			<TrackIndexItem key={idx} track={track} currentUser={currentUser || null} users={users} tracks={tracks} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} createLike={createLike} deleteLike={deleteLike} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer || {}} setTrackPlay={setTrackPlayer} seekPlayer={seekPlayer} endCurrentTrack={endCurrentTrack} />
 		));
 
 		let streamSidebar = (

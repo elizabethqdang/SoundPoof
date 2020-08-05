@@ -39,7 +39,7 @@ class TrackPlayer extends React.Component{
       this.setState({startT: progress});
       this.props.player.seekTo(progress * this.state.duration);
     } else if (
-      (this.props.trackId == prevProps.trackId) && this.props.trackplayer.waveSeek !== prevProps.trackplayer.waveSeek
+      (this.props.trackId == prevProps.trackId) && (this.props.trackplayer.waveSeek !== prevProps.trackplayer.waveSeek)
     ) {
       let seek = this.props.trackplayer.progressTrackId[this.props.trackId] * this.state.duration;
       this.props.player.seekTo(seek);
@@ -53,12 +53,6 @@ class TrackPlayer extends React.Component{
       this.props.player.seekTo(startTime * this.state.duration); 
     }
   }
-
-  // componentWillReceiveProps(newProps){
-  //   if (newProps.seek !== this.props.seek ){
-  //     this.reactplayer.current.seekTo(newProps.seek);
-  //   }
-  // }
 
   onDuration(){
     return ((duration) => {
@@ -78,8 +72,6 @@ class TrackPlayer extends React.Component{
     let trackProg = this.props.trackplayer.progressTrackId[this.props.trackId];
     let { currentTrack, playing, player, trackId} = this.props;
     if (trackId !== 0) { 
-			// it should be the same song 
-      // let prog = this.props.trackplayer.progressTrackId[trackId] || 0;
       let prog = trackProg ? trackProg : tplayer.getCurrentTime() / tplayer.getDuration();
       this.props.setPlayPause(!playing, trackId, prog); 
     } else if (trackId == 0) {
@@ -150,7 +142,7 @@ class TrackPlayer extends React.Component{
 
   render() {
     let { currentTrack, playing } = this.props;
-    let { loop, volume, muted } = this.state;
+    let { loop, volume, muted, controls } = this.state;
     let { trackToPlay, trackImage, trackUploader, trackName, likeButton, linkToTrack, linkToUploader } = this.testFunction();
 
     let playButton = (playing) ?
@@ -212,7 +204,7 @@ class TrackPlayer extends React.Component{
              onProgress={this.onProgress()}
              onDuration={this.onDuration()}
 						 onReady={() => this.keepProgress()}
-						 controls={false}
+						 controls={controls}
            />
       </div>
     );
