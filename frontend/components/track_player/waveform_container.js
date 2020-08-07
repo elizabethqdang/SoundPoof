@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import WaveForm from './waveform';
 import { updateTrack } from '../../actions/track_actions';
-import { endCurrentTrack, seekTrack, seekWaveForm, setPlayPause } from '../../actions/trackplayer_actions';
+import { endCurrentTrack, seekTrack, seekWaveForm, setPlayPause, seekPlayer, setCurrentTrack, setTrackPlayer } from '../../actions/trackplayer_actions';
 
 const mapStateToProps = (state, ownProps) => ({
 	currentTrack: state.trackplayer.currentTrack,
@@ -9,7 +9,8 @@ const mapStateToProps = (state, ownProps) => ({
 	trackId: state.trackplayer.trackId,
 	player: state.trackplayer.player,
 	prevSeek: state.trackplayer.playerSeek,
-	prevProg: state.trackplayer.progressTrackId[ownProps.track.id] || null
+	prevProg: state.trackplayer.progressTrackId[ownProps.track.id] || null,
+	trackplayer: state.trackplayer || {},
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

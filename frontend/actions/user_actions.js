@@ -60,12 +60,12 @@ export const fetchUser = userId => dispatch => {
 		// return errors;
 };
 
-export const fetchAllUsers = () => dispatch => (
-	UserAPIUtil.fetchAllUsers().then(users => 
+export const fetchAllUsers = () => dispatch => {
+	return UserAPIUtil.fetchAllUsers().then(users => 
 		dispatch(receiveAllUsers(users))
 		// return users;
 	)
-);
+};
 
 export const createLike = (trackId) => (dispatch) => {
 	return UserAPIUtil.createLike(trackId)
