@@ -3,7 +3,7 @@ import LoginFormContainer from "../session_form/login_form_container";
 import SignupFormContainer from "../session_form/signup_form_container";
 import SessionForm from "../session_form/session_form";
 import Dropdown from "../navbar/dropdown";
-import UploadTrackFormContainer from "../track_form/upload_track_form_container";
+import Upload from "../track/upload_page_container";
 
 const Modal = ({ modal, closeModal }) => {
   if (!modal) {
@@ -21,7 +21,7 @@ const Modal = ({ modal, closeModal }) => {
 			component = <SessionForm />;
 			break;
 		case "upload":
-			component = <UploadTrackFormContainer />;
+			component = <Upload />;
 			break;
 		case "dropdown":
 			component = <Dropdown />;
