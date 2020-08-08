@@ -1,6 +1,5 @@
 import React from 'react';
 import WaveSurfer from 'wavesurfer.js';
-import { withRouter} from 'react-router-dom';
 
 class WaveForm extends React.Component {
 	constructor(props) {
@@ -44,7 +43,7 @@ class WaveForm extends React.Component {
 		this.wavesurfer.on('ready', () => {
 			this.wavesurfer.seekTo(start);
 
-			this.forceUpdate();
+			// this.forceUpdate();
 			this.wavesurfer.on("seek", progress => {
 				this.props.seekWaveForm(progress);
 				if (!this.props.playing) {

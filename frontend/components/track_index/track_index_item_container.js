@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => ({
 	errors: state.errors.tracks || [],
 	trackplayer: state.trackplayer || {},
 	currentUser: state.session.currentUser || {},
+	loggedIn: Boolean(state.session.currentUser),
 });
 
 const mapDispatchToProps = (dispatch) => ({

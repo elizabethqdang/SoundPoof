@@ -25,8 +25,8 @@ class TrackPlayer extends React.Component{
   }
 
   ref(player) {
-    this.player = player; 
-    this.props.setTrackPlayer(player); 
+    // this.player = player; 
+    this.props.setTrackPlayer(this.player); 
   }
 
   componentDidUpdate(prevProps) {

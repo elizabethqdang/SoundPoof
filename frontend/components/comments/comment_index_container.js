@@ -7,7 +7,8 @@ const mapStateToProps = (state) => ({
   errors: state.errors.tracks || [],
   currentUser: state.session.currentUser || {},
 	comments: state.comments || {},
-	users: state.users || {}
+	users: state.users || {},
+	loggedIn: Boolean(state.session.currentUser),
 });
 
 const mapDispatchToProps = (dispatch) => ({

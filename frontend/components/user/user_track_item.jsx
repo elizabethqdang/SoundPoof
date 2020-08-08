@@ -4,7 +4,7 @@ import moment from 'moment';
 import WaveFormContainer from '../track_player/waveform_container';
 import CommentIndexContainer from '../comments/comment_index_container';
 
-class TrackIndexItem extends React.Component {
+class UserTrackItem extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -26,7 +26,7 @@ class TrackIndexItem extends React.Component {
 		if (trackplayer.trackId === 0) {
 			// no track
 			this.props.setPlayPause(!trackplayer.playing, track.id, 1);
-		} else if ( trackplayer.trackId === track.id) {
+		} else if (trackplayer.trackId === track.id) {
 			// same track
 			let progress = (trackProgress ? trackProgress : trackplayer.player.getCurrentTime() / trackplayer.player.getDuration());
 			this.props.setPlayPause(!trackplayer.playing, track.id, progress);
@@ -34,7 +34,7 @@ class TrackIndexItem extends React.Component {
 			// diff track
 			let progress = (trackProgress ? trackProgress : 0);
 			this.props.setPlayPause(!trackplayer.playing, track.id, progress);
-			console.log("progress", progress);
+			// console.log("progress", progress);
 		}
 	}
 
@@ -73,28 +73,28 @@ class TrackIndexItem extends React.Component {
 		const { track, deleteRepost, createRepost, fetchTrack, currentUser } = this.props;
 
 		if (currentUser && currentUser.repostedTrackIds.includes(track.id)) {
-				deleteRepost(track.id).then(
+			deleteRepost(track.id).then(
 				() => fetchTrack(track.id)
 			);
 		} else {
-				createRepost(track.id).then(
+			createRepost(track.id).then(
 				() => fetchTrack(track.id)
 			);
 		}
 	}
 
 	trackButtonBar() {
-		const {track, currentUser, users, trackplayer} = this.props;
+		const { track, currentUser, users, trackplayer } = this.props;
 		let likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
 		let repostButton = (currentUser.repostedTrackIds.includes(track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
 
-		if (this.props.currentUser.id  === this.props.track.user_id) {
+		if (this.props.currentUser.id === this.props.track.user_id) {
 			return (
 				<div className='track-button-bar'>
 					<div className={`sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>{track.numLikes}</div>
 					<div className={`sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts}</div>
 					<div className='sound-actions-btn controller-btn action-delete delete-btn' onClick={(e) => this.deleteTrack(e)}>Delete</div>
-					
+
 					<div className='track-right-btns comment-btn'>{track.numComments}</div>
 				</div>
 			);
@@ -103,7 +103,7 @@ class TrackIndexItem extends React.Component {
 				<div className='track-button-bar'>
 					<div className={`sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)} >{track.numLikes}</div>
 					<div className={`sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>{track.numReposts} </div>
-					
+
 					<div className='track-right-btns comment-btn'>{track.numComments}</div>
 				</div>
 			);
@@ -121,13 +121,14 @@ class TrackIndexItem extends React.Component {
 		return (
 			<div className='track-item-container'>
 				<div className='track-item-header'>
-					<aside className="track-user-profile">
+					{/* <aside className="track-user-profile">
 						<img src={track.profileImgUrl ? track.profileImgUrl : 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'} />
 					</aside>
+						<aside className="track-user-username">{track.userEmail}</aside>
 					<a href={`/#/users/${track.user_id}`}><aside className="track-user-username">{track.userEmail}</aside></a>
 					<div className="track-timestamp">
 						posted a track {moment(new Date(track.created_at)).fromNow()}
-					</div>
+					</div> */}
 				</div>
 
 				<div className='track-item-main-container'>
@@ -152,7 +153,7 @@ class TrackIndexItem extends React.Component {
 						</div>
 						<div className='sound-bar'>
 							<span></span>
-							<WaveFormContainer track={track} height={60} color={'#000'} width={820} trackplayer={trackplayer || {}} />
+							{/* <WaveFormContainer track={track} height={60} color={'#000'} width={820} /> */}
 							{/* {waveForm} */}
 						</div>
 						{this.trackButtonBar()}
@@ -165,4 +166,4 @@ class TrackIndexItem extends React.Component {
 	}
 }
 
-export default withRouter(TrackIndexItem);
+export default withRouter(UserTrackItem);

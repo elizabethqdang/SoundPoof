@@ -1,3 +1,19 @@
+#app > .splash-page-background {
+	background-color: #fff;
+	width: 100%;
+	// position: fixed;
+	z-index: 1001;
+	top: 0;
+	left: 0;
+	right: 0;
+	opacity: 1;
+	width: 100%;
+}
+#app > #splash-page.splash-page-background #navbar {
+	visibility: hidden;
+}
+
+
 #splash-page {
 	display: flex;
 	flex-flow: column nowrap;
@@ -10,6 +26,9 @@
 	// padding: 0 30px;
 	// margin: 0 -30px;
 	// overflow: scroll;
+	z-index: 1001;
+	opacity: 1;
+	background-color: #fff;
 }
 .splash-header {
 	display: flex;

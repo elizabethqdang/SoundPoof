@@ -11,33 +11,86 @@ input[type='file'] {
 .upload-page {
   margin-top: 50px;
   width: 100%;
-  margin-bottom: 120px;
+	margin-bottom: 120px;
+	height: 650px;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;;
+	// background-image: image-url('upload-piano.jpg') 0 0 no-repeat;
+	// background-position: center;
+  // background-size: 1240px 800px;
+}
+
+.upload-page-container {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	align-content: space-around;
+	width: 100%;
+}
+.upload-page-background {
+		width: 1240px;
+		height: 650px;
+		content: '';
+		background-image: image-url('upload-piano.jpg') ;
+	  position: absolute;
+    right: 0;
+		left: 0;
+    margin: 50px auto 120px;
+    transition: opacity .3s ease-in-out;
+    background-size: 1240px 750px;
+		background-position: center bottom;
+    opacity: .78;
+    pointer-events: none;
+    // min-height: calc(100vh - 46px);
+    overflow: hidden;
+    z-index: -2;
 }
 
 .upload-page-nav {
   padding: 15px;
-
   width: 100%;
   margin: 0;
   left: 0;
   display: flex;
   color: grey;
-  justify-content: space-between;
-  font-size: 14px;
+	justify-content: left;
+	justify-items: flex-start;
+	font-size: 14px;
+	justify-self: flex-start;
 }
 .upload-page-link {
-  margin-left: 15px;
+ 	color: grey;
+  margin-left: 10px;
   margin-right: 40px;
   box-sizing: border-box;
 }
-.upload-page-links:hover {
+.upload-page-link:hover {
   color: grey;
-  padding: 15px;
+  padding-bottom: 10px;
   box-sizing: border-box;
-  border-bottom: 1px solid orange;
+  border-bottom: 1px solid #F50;
 }
-.upload-page-nav a {
+.selected {
+	color: #f50;
+ border-bottom: 1px solid #F50;
+ border-color: #f50;
+	cursor: default;
+	padding-bottom: 10px;
+
+}
+.upload-page-nav > NavLink {
   text-decoration: none;
+}
+.upload-page-footer {
+	width: 75%;
+	height: 75px;
+	position: absolute;
+	border-color: #f2f2f2;
+	background-color: hsla(0, 0%, 94.9%, 0.9);
+	transition: background-color .3s ease-in-out;
+	justify-content: center;
 }
 
 .upload-form-container {
@@ -55,9 +108,13 @@ input[type='file'] {
   border-radius: 2px;
   background-color: #fff;
   text-align: center;
-  position: relative;
+  position: absolute;
   padding: 60px;
-  box-sizing: border-box;
+	box-sizing: border-box;
+	opacity: 1;
+	align-self: center;
+	justify-self: center;
+	align-items: stretch;;
 }
 
 .upload-form-container h1 {
@@ -67,12 +124,18 @@ input[type='file'] {
 }
 .upload-form-content {
   margin-bottom: 50px;
-  align-content: center;
+	align-content: center;
 }
 .upload-form-container p {
   margin-top: 35px;
   line-height: 13px;
-  color: #333;
+	color: #333;
+	align-content: flex-end;
+	align-self: flex-end;
+}
+.upload-form-container div {
+	line-height: 13px;
+	height: 20px;
 }
 .circle-image {
   background-image: image-url('imageStock.png');

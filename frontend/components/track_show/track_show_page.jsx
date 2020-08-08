@@ -12,6 +12,9 @@ class TrackShowPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			showStream: false,
+			showSearch: false,
+			showProfile: false,
 		};
 		this.playButton = this.playButton.bind(this);
 		this.trackButtonBar = this.trackButtonBar.bind(this);
@@ -21,8 +24,8 @@ class TrackShowPage extends React.Component {
 	}
 	
 	componentDidMount() {
-		// const trackId = this.props.match.params.trackId;
-		this.props.fetchTrack(this.props.match.params.trackId);
+		let trackId = this.props.match.params.trackId;
+		this.props.fetchTrack(trackId);
 		// this.props.fetchUser(this.props.user);
 	}
 		
@@ -32,9 +35,11 @@ class TrackShowPage extends React.Component {
 			this.props.fetchTrack(this.props.match.params.trackId);
 		}
 
+		if (this.props.track === undefined || this.props.trackplayer === undefined) return;
+		
 		let { playing, trackId, player, progressTrackId } = this.props.trackplayer;
 		let trackProg = progressTrackId[this.props.track.id];
-		let thisId = this.props.track.id;
+		let thisId = (this.props.track ? this.props.track.id : prevProps.match.params.trackId);
 
 		if (playing && (trackId == thisId) && (thisId !== prevProps.trackplayer.trackId)) {
 			let prog = trackProg ? trackProg : player.getCurrentTime() / player.getDuration();
@@ -131,7 +136,7 @@ class TrackShowPage extends React.Component {
 					<div className={`track-show sound-actions-btn action-like ${likeButton}`} onClick={(e) => this.toggleLike(e)}>Like</div>
 					<div className={`track-show sound-actions-btn action-repost ${repostButton}`} onClick={(e) => this.toggleRepost(e)}>Repost</div>
 					
-						<div className='track-right-btns like-stat' update>{numLikes}</div>
+						<div className='track-right-btns like-stat'>{numLikes}</div>
 						<div className='track-right-btns repost-stat'>{numReposts}</div>
 						<div className='track-right-btns comment-btn'>{numComments}</div>
 				</div>
@@ -140,37 +145,43 @@ class TrackShowPage extends React.Component {
 	}
 
 	render() {
+		const { track, currentUser } = this.props;
+		let trackNavbar = (
+				<NavbarContainer currentUser={currentUser} />
+			);
 
-		if (this.props.track === undefined) {
+		if (track === undefined) {
+			console.log("track", track);
 			return (
 				<div></div>
 			)
 		} else {
-			const { comments, track, tracks, users, currentUser, trackplayer, deleteComment, seekWaveForm, seekTrack } = this.props;
-			let user = (this.props.users)[this.props.track.user_id];
+			const { comments, track, tracks, users, currentUser, trackplayer, deleteComment, seekWaveForm, seekTrack, trackId } = this.props;
+			let user = (users[this.props.track.user_id]);
 			let commentLength = ((comments.length === 1) ? "1 Comment" : `${comments.length} Comments`);
 			let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
 				'playing' : 'ts-play';
 			let trackButtonBar = this.trackButtonBar();
 			let numFollows = ((user && user.followIds) ? user.followIds.length : "0");
 			let userTrackIds = ((user && user.trackIds) ? user.trackIds.length : "0");
-			let trackNavbar = (
-				<NavbarContainer currentUser={currentUser} />
-			);
+			// let trackNavbar = (
+			// 	<NavbarContainer currentUser={currentUser} />
+			// );
 			let commentForm = (
 				<CommentFormContainer track={track} user={user} currentUser={currentUser} />
 			);
-			let trackComments = (comments).map((comment, idx) => (
-				<CommentIndexItem key={idx} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} user={user} />
-			));
+			let trackComments = (
+				(comments).map((comment, idx) => (
+				<CommentIndexItem id={comment.id} key={idx} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} />
+			)));
 			let waveForm = (
-				<WaveFormContainer track={this.props.track} height={100} color={'#fff'} currentUser={currentUser} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer} />
-			)
+				<WaveFormContainer track={track} height={100} color={'#fff'} currentUser={currentUser} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer} />
+			);
 
 			return (
 				<div className='track-show-page'>
 					<div className="track-show-navbar-container">
-						{trackNavbar}
+						{/* {trackNavbar} */}
 					</div>
 					<div className='track-show-container'>
 						<div className='track-show-detail'>
@@ -230,7 +241,7 @@ class TrackShowPage extends React.Component {
 							{/* <div className="ad-container">
 								<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src={this.props.currentUser.profileImgUrl} /></a>
 							</div> */}
-							<TrackSidebar users={users} currentUser={currentUser || null} tracks={tracks} track={track} />
+							<TrackSidebar users={users} currentUser={currentUser || {}} tracks={tracks} track={track} user={user} />
 						</div>
 					</div>
 				</div>

@@ -49,22 +49,24 @@ class User < ApplicationRecord
 	
 	has_many	:follows,
 		dependent:	:destroy,
-		class_name:	:User,
+		class_name:	:Follow,
 		primary_key:	:id,
 		foreign_key:	:user_id
 
-	has_many	:followers,
-		dependent:	:destroy,
-		class_name:	:User,
-		primary_key:	:id,
-		foreign_key:	:following_id
+	has_many	:user_followings,
+		through: :follows,
+		source: :follower
 
+	has_many :user_followers,
+		through: :follows,
+		source: :following
 
 	def require_user_profile(user)
       if user.profile_image.attached?
         user.profile_image
       else
-        'placeholder.jpeg'
+				'placeholder.jpeg'
+				# user.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'), filename: 'placeholder.jpeg')
       end
   end
 

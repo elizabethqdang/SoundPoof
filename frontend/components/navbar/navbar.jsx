@@ -12,9 +12,9 @@ class Navbar extends React.Component {
     this.state = {
 			searchInput: "",
 			searchResults: [],
-			showStream: false,
-			showSearch: false,
-			showProfile: false,
+			// showStream: false,
+			// showSearch: false,
+			// showProfile: false,
     };
 
 		// this.showStream = this.showStream.bind(this);
@@ -38,6 +38,7 @@ class Navbar extends React.Component {
 	}
 	
 	showStream() {
+		window.location.hash = '/stream';
 		this.setState({
 			showStream: true,
 			showSearch: false,
@@ -190,12 +191,11 @@ class Navbar extends React.Component {
 	}
 
   render() {
-		console.log("navbar", this.state);
+		// console.log("navbar", this.state);
 		const { currentUser, logout, openModal, loggedIn, tracks, users, trackplayer } = this.props;
 		let navLeft = this.navLeft();
 		let navSearch = this.navSearch();
 		let navRight; 
-		let showPage;
 		if (loggedIn) {
 			navRight = this.navUserLinks(currentUser, logout)
 		} else if (!loggedIn) {
@@ -204,22 +204,19 @@ class Navbar extends React.Component {
 
 		if (this.state.showStream) {
 			// return (
-			showPage = (
-				<Stream currentUser={currentUser || {}} tracks={tracks} users={users} trackplayer={trackplayer || {}} />
-			)
-		};
-
-		// if (this.state.showSearch) {
+				// <Stream currentUser={currentUser || {}} tracks={tracks} users={users} trackplayer={trackplayer || {}} />
+			// )
+			window.location.hash = '/stream';
+		// } else if (this.state.showSearch) {
 		// 	return (
 		// 		<SearchResults currentUser={currentUser || null} tracks={tracks} users={users}/>
 		// 	)
-		// };
-
-		if (this.state.showProfile) {
+		} else if (this.state.showProfile) {
 			// return (
-			showPage = (
-				<UserShow currentUser={currentUser || {}} tracks={tracks} users={users} fetchUser={this.props.fetchUser} fetchAllTracks={this.props.fetchAllTracks} trackplayer={trackplayer || {}} />
-			);
+			// 	<UserShow currentUser={currentUser || {}} tracks={tracks} users={users} fetchUser={this.props.fetchUser} fetchAllTracks={this.props.fetchAllTracks} trackplayer={trackplayer || {}} />
+			// );
+			window.location.hash = '/stream';
+
 		};
 
     return (
@@ -242,7 +239,6 @@ class Navbar extends React.Component {
 					{/* </nav> */}
 				</nav>
 			</nav>
-			{this.showPage}
 			</Fragment>
 		)
   }

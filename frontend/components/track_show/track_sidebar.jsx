@@ -10,10 +10,10 @@ class TrackSidebar extends React.Component {
   }
 	
 	trackLikes() {
-		// console.log(this.props.users);
+		// console.log(this.props.track);
 		return (
 		(this.props.users).map((user, idx) => {
-			if (this.props.track.likerIds.includes(user.id)) {
+			if (this.props.track && this.props.track.likerIds.includes(user.id)) {
 				return <TrackLikes key={idx} user={user} currentUser={this.props.currentUser} />;
 				}
 			})
@@ -21,9 +21,10 @@ class TrackSidebar extends React.Component {
 	}
 
 	trackReposts() {
+		// console.log(this.props.track);
 		return (
 		(this.props.users).map((user, idx) => {
-			if (this.props.track.reposterIds.includes(user.id)) {
+			if (this.props.track && this.props.track.reposterIds.includes(user.id)) {
 				return <TrackReposts key={idx} user={user} currentUser={this.props.currentUser} />;
 				}
 			})

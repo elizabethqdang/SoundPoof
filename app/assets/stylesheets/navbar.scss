@@ -6,7 +6,7 @@ nav#navbar {
   width: 100%;
   background-color: #111;
   height: 46px;
-  z-index: 1000;
+  z-index: 999;
   // border-top: 1px solid #b3b4a9;
   border-right: 1px solid #111;
 	color: #ccc;
@@ -38,7 +38,7 @@ nav#nav-container {
   top: 0;
   left: 0;
 	right: 0;
-	z-index: 1000;
+	z-index: 999;
 }
 
 nav.nav {
@@ -51,7 +51,7 @@ nav.nav {
   font-size: 14px;
   line-height: 1.5;
   background-color: rgb(51, 51, 51);
-  z-index: 1000;
+  z-index: 999;
 }
 
 nav#nav-btns-container{
@@ -211,6 +211,7 @@ nav#nav-btns-container{
 	background-color: #333;
 	border-right: 1px solid #111;
 	min-width: 46px;
+	z-index: 10
 }
 
 .nav-user-button {

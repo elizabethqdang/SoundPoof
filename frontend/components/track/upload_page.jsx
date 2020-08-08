@@ -22,17 +22,22 @@ class UploadPage extends React.Component {
 		// console.log("audioUrl", audioUrl);
 
 		return (
-			<>
-				<div className="upload-page" onDragOver={this.dragOverHandler}>
-					<NavbarContainer />
-					<nav className="upload-page-nav">
-						<NavLink className="content_nav" to="/upload">
-							Upload
+			<div className="upload-page-container">
+				<NavbarContainer />
+				<nav className="upload-page-nav">
+					<NavLink className="upload-page-link" activeClassName="selected" to="/upload">
+						Upload
 						</NavLink>
-						<a className="upload-page-link" to="/upload">
+					<NavLink className="upload-page-link" to="/upload">
+						Your Tracks
+						</NavLink>
+					{/* <a className="upload-page-link" to="/upload">
 							For Creators on SoundPoof
-						</a>
-					</nav>
+						</a> */}
+				</nav>
+				<div className="upload-page-background">
+				<div className="upload-page" onDragOver={this.dragOverHandler}>
+					
 					<UploadTrack
 						user_id={this.props.user_id}
 						createTrack={this.props.createTrack}
@@ -41,9 +46,15 @@ class UploadPage extends React.Component {
 						track={this.props.track}
 						fetchAllTracks={this.props.fetchAllTracks}
 					/>
+
+				{/* <div className="upload-page-footer">
+					<p>Supported file types and sizes ⁃ Upload troubleshooting tips ⁃ Copyright FAQs</p>
+					<p>By uploading, you confirm that your sounds comply with our Terms of Use and you don't infringe anyone else's rights.</p>
+				</div> */}
+
 				</div>
-				{/* <Footer /> */}
-			</>
+				</div>
+			</div>
 		);
 	}
 }
