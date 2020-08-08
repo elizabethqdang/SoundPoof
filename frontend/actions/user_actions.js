@@ -1,17 +1,25 @@
 import * as UserAPIUtil from "../util/user_api_util";
 
 export const RECEIVE_USER = "RECEIVE_USER";
+export const RECEIVE_SINGLE_USER = "RECEIVE_SINGLE_USER";
 export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
 export const RECEIVE_USER_ERRORS = "RECEIVE_USER_ERRORS";
 export const RECEIVE_LIKE = "RECEIVE_LIKE";
 export const REMOVE_LIKE = "REMOVE_LIKE";
 export const RECEIVE_REPOST = "RECEIVE_REPOST";
 export const REMOVE_REPOST = "REMOVE_REPOST";
+export const RECEIVE_FOLLOW = "RECEIVE_FOLLOW";
+export const REMOVE_FOLLOW = "REMOVE_FOLLOW";
 
 const receiveUser = payload => ({
 	type: RECEIVE_USER,
 	user: payload,
   tracks: payload.tracks || {}
+});
+
+const receiveSingleUser = user => ({
+	type: RECEIVE_SINGLE_USER,
+	user
 });
 
 const receiveUserErrors = errors => ({
@@ -50,6 +58,18 @@ export const removeRepost = (payload) => ({
 	trackId: payload.trackId
 });
 
+export const receiveFollow = (payload) => ({
+	type: RECEIVE_FOLLOW,
+	userId: payload.userId,
+	followingId: payload.followingId
+});
+
+export const removeFollow = (payload) => ({
+	type: REMOVE_FOLLOW,
+	userId: payload.userId,
+	followingId: payload.followingId
+});
+
 export const fetchUser = userId => dispatch => {
   return UserAPIUtil.fetchUser(userId).then(payload => 
 		dispatch(receiveUser(payload))
@@ -60,10 +80,26 @@ export const fetchUser = userId => dispatch => {
 		// return errors;
 };
 
+export const fetchSingleUser = userId => dispatch => {
+	return UserAPIUtil.fetchUser(userId).then(
+		user => {
+			dispatch(receiveUser(user));
+			return user;
+		},
+		errors => {
+			dispatch(receiveUserErrors(errors.responseJSON));
+		return errors;
+		});
+};
+
 export const fetchAllUsers = () => dispatch => {
-	return UserAPIUtil.fetchAllUsers().then(users => 
-		dispatch(receiveAllUsers(users))
-		// return users;
+	return UserAPIUtil.fetchAllUsers().then(users => {
+			dispatch(receiveAllUsers(users));
+			return users;
+		}, errors => {
+			dispatch(receiveUserErrors(errors.responseJSON));
+			console.log(errors.responseJSON);
+		}
 	)
 };
 
@@ -103,7 +139,31 @@ export const deleteRepost = (trackId) => (dispatch) => {
 		return payload;
 	}, errors => {
 		console.log(errors.responseJSON);
-		return errors;
+		// return errors;
+	});
+};
+
+export const createFollow = (followingId) => (dispatch) => {
+	return UserAPIUtil.createFollow(followingId).then(
+		payload => {
+			dispatch(receiveFollow(payload));
+			return payload;
+		}, errors => {
+			dispatch(receiveUserErrors(errors.responseJSON));
+			console.log(errors.responseJSON);
+			// return errors;
+	});
+};
+
+export const deleteFollow = (followingId) => (dispatch) => {
+	return UserAPIUtil.deleteFollow(followingId).then(
+	payload => {
+		dispatch(removeFollow(payload));
+		return payload;
+	}, errors => {
+		dispatch(receiveUserErrors(errors.responseJSON));
+		console.log(errors.responseJSON);
+		// return errors;
 	});
 };
 

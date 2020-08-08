@@ -1,5 +1,5 @@
 import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from "../actions/session_actions";
-import { RECEIVE_LIKE, REMOVE_LIKE, RECEIVE_REPOST, REMOVE_REPOST } from '../actions/user_actions';
+import { RECEIVE_LIKE, REMOVE_LIKE, RECEIVE_REPOST, REMOVE_REPOST, RECEIVE_FOLLOW, REMOVE_FOLLOW} from '../actions/user_actions';
 
 const _nullUser = {
 	currentUser: null,
@@ -36,6 +36,20 @@ const sessionReducer = (state = _nullUser, action) => {
 			newState = _.merge({}, state);
 			idx = newState.currentUser.repostedTrackIds.indexOf(action.trackId);
 			newState.currentUser.repostedTrackIds.splice(idx, 1);
+			return newState;
+		case RECEIVE_FOLLOW:
+			newState = _.merge({}, state);
+			user = newState[action.userId];
+			following = newState[action.followerId];
+			user.followingIds.add(action.followingId);
+			following.follerIds.add(action.userId);
+			return newState;
+		case REMOVE_FOLLOW:
+			newState = _.merge({}, state);
+			user = newState[action.userId];
+			following = newState[action.followerId];
+			user.followingIds.delete(action.followingId);
+			following.follerIds.delete(action.userId);
 			return newState;
 		default:
 			return state;
