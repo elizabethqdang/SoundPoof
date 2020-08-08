@@ -64,3 +64,17 @@ export const deleteRepost = (trackId) => {
 		url: `/api/users/reposts/${trackId}`
 	});
 };
+
+export const createFollow = (followingId) => {
+	return $.ajax({
+		method: 'POST',
+		url: `/api/users/following/${followingId}`,
+	});
+};
+
+export const deleteFollow = (followingId) => {
+	return $.ajax({
+		method: 'DELETE',
+		url: `/api/users/following/${followingId}`
+	});
+};

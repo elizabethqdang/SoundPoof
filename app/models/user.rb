@@ -53,11 +53,11 @@ class User < ApplicationRecord
 		primary_key:	:id,
 		foreign_key:	:user_id
 
-	has_many	:user_followings,
+	has_many	:followings,
 		through: :follows,
 		source: :follower
 
-	has_many :user_followers,
+	has_many :followers,
 		through: :follows,
 		source: :following
 

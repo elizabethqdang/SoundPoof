@@ -91,7 +91,7 @@ class Api::UsersController < ApplicationController
 	end
 	
 	def follow
-    @follow = current_user.follows.new(user_id: params[:user_id])
+    @follow = current_user.follows.new(following_id: params[:following_id])
 
     if @follow.save
       render :follow
@@ -101,7 +101,7 @@ class Api::UsersController < ApplicationController
 	end
 	
   def unfollow
-    @follow = current_user.follows.find_by(user_id: params[:user_id])
+    @follow = current_user.follows.find_by(following_id: params[:following_id])
 
     if @follow
       @follow.destroy
