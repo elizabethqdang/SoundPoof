@@ -42,12 +42,14 @@ class CommentIndexItem extends React.Component {
  
   render() {
 			const { track, id, comment, currentUser, users } = this.props;
+			let user = users[this.props.comment.user_id];
+			console.log(user, users, comment);
 
       return (
         <div className='posted-comment'>
           <a href={`/#/users/${comment.user_id}`}>
 						<div className='comment-uploader-img'>
-						<img src={comment.profileImgUrl ? comment.profileImgUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"}/> 
+						<img src={comment ? comment.profileImgUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"}/> 
             </div>
 					</a> 
 					<div className='comment-uploader-body'>

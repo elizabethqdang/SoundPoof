@@ -9,11 +9,12 @@ import { deleteComment } from '../../actions/comment_actions';
 const mapStateToProps = (state, ownProps) => {
 	// const	tracks = state. tracks;
 	// let trackId = parseInt(match.params.trackId);
-	const track = state. tracks[ownProps.match.params.trackId] || {};
+	let track = state.tracks[ownProps.match.params.trackId] || {};
 	return {
 		tracks: state.tracks || {},
 		trackId: ownProps.match.params.trackId,
 		track: state.tracks[ownProps.match.params.trackId],
+		// track: track,
 		trackplayer: state.trackplayer || {},
 		// trackId: parseInt(match.params.trackId),
 		// currentTrack: state.currentTrack || {},
@@ -23,11 +24,10 @@ const mapStateToProps = (state, ownProps) => {
 		user: state.users[track.user_id],
 		// user: track.id,
 		// users: Object.values(state. users) || {},
-		loading: state.ui.loading,
 		// currentTrack: state. tracks[state.ui.currentTrack.id],
 		// playing: state.ui.currentTrack.playing,
-		comments: Object.values(state. comments) || {},
-
+		comments: Object.values(state.comments) || {},
+		loggedIn: Boolean(state.session.currentUser),
 	};
 };
 

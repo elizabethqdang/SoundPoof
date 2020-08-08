@@ -11,6 +11,8 @@ const mapStateToProps = (state) => {
 		trackplayer: state.trackplayer || {},
 		users: state.users,
 		currentUser: state.session.currentUser,
+		// splash: state.splash,
+		loggedIn: Boolean(state.session.currentUser),
 	};
 };
 

@@ -15,7 +15,7 @@ amazon_dev:
 
 amazon_pro:
   service: S3
-  access_key_id: AKIAIB76BJPJFZGGGFYQ
-  secret_access_key: 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
+  access_key_id: AKIA6HDAWGJERW4UNEI5
+  secret_access_key: C5PwkUn7AWy0f2qoKCykbMTDS3nyHFdhl8HaMv
   region: us-west-2
   bucket: soundpoof-pro

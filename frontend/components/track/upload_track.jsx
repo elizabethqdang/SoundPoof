@@ -161,16 +161,6 @@ class UploadTrack extends React.Component {
 						</label>
 					</form>
 					{this.renderErrors()}
-					<p>
-						Provide FLAC, WAV, ALAC or AIFF for best audio quality.{" "}
-						<a
-							href="https://help.soundcloud.com/hc/en-us/articles/115003452847-Uploading-requirements#typeOfFile"
-							target="_blank"
-						>
-							Learn more about high quality audio (HQ).
-						</a>
-					</p>
-
 					<div
 						className={`drag-over-modal-background ${
 							this.state.dragged ? "show-drag-over" : ""
@@ -187,10 +177,20 @@ class UploadTrack extends React.Component {
 									this.state.dragged ? "show-drag-over" : ""
 								}`}
 							>
-								Drop your files here
+								{/* Drop your files here */}
 							</div>
 						</div>
 					</div>
+					<p>
+						Provide FLAC, WAV, ALAC or AIFF for best audio quality.{" "}
+						<a
+							href="https://help.soundcloud.com/hc/en-us/articles/115003452847-Uploading-requirements#typeOfFile"
+							target="_blank"
+						>
+							Learn more about high quality audio (HQ).
+						</a>
+					</p>
+
 				</div>
 			);
 		}

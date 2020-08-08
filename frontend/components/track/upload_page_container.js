@@ -18,6 +18,8 @@ const mapStateToProps = (state) => ({
 			audioUrl: null,
 		// },
 		// trackId: track.id,
+			loggedIn: Boolean(state.session.currentUser),
+
 })
 
 const mapDispatchToProps = dispatch => ({

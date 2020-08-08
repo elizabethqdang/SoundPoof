@@ -30,7 +30,7 @@ p.auth-errors {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 999;
 
   .navigation {
     width: 1100px;
@@ -38,7 +38,7 @@ p.auth-errors {
     align-items: flex-start;
     display: flex;
     justify-content: center;
-		z-index: 1000;
+		z-index: 999;
     font-weight: 300;
 
     ul li a {

@@ -4,22 +4,28 @@ import { NavLink, Link, Route, Switch } from 'react-router-dom';
 class Splash extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			splash: true,
+		}
+		console.log(this.state.splash);
 	}
 	
 	componentDidMount() {
 		// this.props.fetchAllTracks();
 		// this.props.fetchAllUsers();
+		// this.state.splash;
+		// console.log(this.state.splash);
 	}
 
   render() {
 		const {openModal} = this.props;
-		const {tracks, users, currentUser} = this.props;
-		// console.log("tracks", tracks);
+		const {tracks, users, currentUser, splash} = this.props;
+		console.log("render splash", splash);
 		// console.log("users", users);
 		// console.log("currentUser", currentUser);
 
     return (
-      <div id="splash-page">
+      <div id="splash-page" className="splash-page-background">
         <div id="splash-header">
           <div className="splash-bar">
             <div className="splash-left">

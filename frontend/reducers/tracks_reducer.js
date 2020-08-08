@@ -7,17 +7,21 @@ const tracksReducer = (state = {}, action) => {
 
 		Object.freeze(state);
 		let nextState = Object.assign({}, state);
-		let newState = merge({}, state);
+		let newState = _.merge({}, state);
 		
     switch (action.type) {
 				case RECEIVE_ALL_TRACKS:
-					return action.tracks;
+					// return action.tracks;
+					// return nextState;
+					newState = action.tracks;
+					return newState;
 				case RECEIVE_TRACK:
 					newState[action.track.id] = action.track;
 					return newState;
 				case RECEIVE_SINGLE_TRACK:
-					nextState[action.track.id] = action.track;
-					return nextState;
+					// nextState[action.track.id] = action.track;
+					newState.track = action.track;
+					return newState;
         case REMOVE_TRACK:
             delete nextState[action.trackId.id];
             return nextState;   

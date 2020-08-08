@@ -8,15 +8,23 @@ json.track do
 			json.artist @track.artist
 			json.description @track.description
 			json.created_at @track.created_at
+
 			# json.comments @track.comments
+			# json.commentIds @track.comments.pluck(:id)
 			json.numComments @track.comments.length
-			json.commentIds @track.comments.pluck(:id)
-			json.likerIds @track.likes.pluck(:user_id)
+			json.commentIds @track.comment_ids
+			
+			# json.likerIds @track.likes.pluck(:user_id)
 			json.numLikes @track.likes.length
-			json.reposterIds @track.reposts.pluck(:user_id)
+			json.likerIds @track.liker_ids
+
+			# json.reposterIds @track.reposts.pluck(:user_id)
 			json.numReposts @track.reposts.length
+			json.reposterIds @track.reposter_ids
+
 			# json.profileImgUrl url_for(@track.user.profile_image)
 			json.profileUrl asset_path(@track.user.profile.url)
+			
 			json.userEmail @track.user.email
 			json.userUsername @track.user.username
 
@@ -60,20 +68,16 @@ json.comments do
 		json.set! comment.id do 
 			json.extract! comment, :id, :body, :user_id, :track_id, :created_at
 
-			json.id comment.id
-			json.created_at comment.created_at
 			json.comment_id comment.id
-			json.user_id comment.user.id
-			json.track_id comment.track.id
 			json.commenterEmail comment.user.email
 			json.commenterUsername comment.user.username
-			# json.profileImgUrl url_for(comment.user.profile_image)
+			json.profileImgUrl url_for(comment.user.profile_image)
 			
-			if comment.user.profile_image.attached?
-				json.profileImgUrl url_for(comment.user.profile_image)
-			else
-				json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
-			end
+			# if comment.user.profile_image.attached?
+			# 	json.profileImgUrl url_for(comment.user.profile_image)
+			# else
+			# 	json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
+			# end
 
     end 
 	end

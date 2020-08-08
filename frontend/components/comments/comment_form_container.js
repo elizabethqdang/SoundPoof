@@ -6,7 +6,8 @@ import { fetchTrack } from '../../actions/track_actions';
 const mapStateToProps = (state, ownProps) => ({
 	errors: state.errors.tracks || [],
 	currentUser: state.session.currentUser || {},
-	users: state.users || {}
+	users: state.users || {},
+	loggedIn: Boolean(state.session.currentUser),
 });
 
 const mapDispatchToProps = (dispatch) => ({

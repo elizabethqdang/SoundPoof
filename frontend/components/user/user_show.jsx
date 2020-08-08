@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Route, withRouter } from 'react-router-dom';
 import NavbarContainer from '../navbar/navbar_container';
 import TrackIndexItem from '../track_index/track_index_item';
+import UserTrackItem from './user_track_item'
 import UserSidebar from './user_sidebar';
 
 class UserShow extends React.Component {
@@ -12,9 +13,12 @@ class UserShow extends React.Component {
 			profileUrl: "",
 			trackStream: true,
 			likedStream: false,
-			repostedStream: false
+			repostedStream: false,
+			showStream: false,
+			showSearch: false,
+			showProfile: false,
 		}
-		this.handleToggleLike = this.handleToggleLike.bind(this);
+		this.toggleFollow = this.toggleFollow.bind(this);
 		this.updateImage = this.updateImage.bind(this);
 		this.updateImageBtn = this.updateImageBtn.bind(this);
 		this.showTracks = this.showTracks.bind(this);
@@ -24,12 +28,20 @@ class UserShow extends React.Component {
 
   componentDidMount() {
 		this.props.fetchUser(this.props.match.params.userId);
-		this.props.fetchAllTracks ();
+		this.props.fetchAllTracks();
   }
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.match.params.userId !== this.props.match.params.userId) {
 			this.props.fetchUser(this.props.match.params.userId);
+		}
+
+		let { playing, trackId, player, progressTrackId } = this.props.trackplayer;
+		let trackProg = progressTrackId[prevProps.trackId];
+
+		if (playing && (trackplayer.trackId !== prevProps.trackplayer.trackId)) {
+			let prog = trackProg ? trackProg : player.getCurrentTime() / player.getDuration();
+			this.props.setProg(trackId, prog);
 		}
 	}
 
@@ -57,20 +69,19 @@ class UserShow extends React.Component {
 		}
 	}
 	
-	handleToggleLike(e) {
+	toggleFollow(e) {
 		e.preventDefault();
-		const { track, deleteLike, createLike, fetchTrack } = this.props;
-		const currentUser = this.currentUser();
+		const { user, deleteFollow, createFollow, fetchUser } = this.props;
 
-		if (currentUser.likedTrackIds.includes(track.id)) {
-			deleteLike(track.id).then(fetchTrack(track.id));
+		if (currentUser && currentUser.followingIds.includes(user.id)) {
+			deleteFollow(user.id).then(fetchUser(user.id));
 		} else {
-			createLike(track.id).then(fetchTrack(track.id));
+			createFollow(user.id).then(fetchUser(user.id));
 		}
 	}
 
 	updateImageBtn() {
-		if (this.props.user.id === this.props.currentUser.id) {
+		if (this.props.match.params.trackId === this.props.currentUser.id) {
 			return (
 					<div className="user-updateImage-btn">
 						Update Image
@@ -86,8 +97,6 @@ class UserShow extends React.Component {
 			likedStream: false,
 			repostedStream: false
 		});
-		// console.log("stream", this.state.trackStream, this.state.likedStream, this.state.repostedStream);
-
 	}
 
 	showLikes() {
@@ -96,8 +105,6 @@ class UserShow extends React.Component {
 			likedStream: true,
 			repostedStream: false
 		});
-		// console.log("stream", this.state.trackStream, this.state.likedStream, this.state.repostedStream);
-
 	}
 
 	showReposts() {
@@ -106,7 +113,6 @@ class UserShow extends React.Component {
 			likedStream: false,
 			repostedStream: true
 		});
-		// console.log("stream", this.state.trackStream, this.state.likedStream,this.state.repostedStream);
 	}
 
   render() {
@@ -114,13 +120,17 @@ class UserShow extends React.Component {
 		let editProfile = this.updateImageBtn();
 		// console.log(user.id, currentUser.id)
 
+		let userShowNavbar = (
+			<NavbarContainer currentUser={currentUser} trackplayer={trackplayer || {}} />
+		);
+
 		if (this.props.user === undefined) {
 			// console.log("this.props.user", this.props.user);
 			return (
 				<div></div>
 			)
 		} else {
-			const { user, tracks, userTracks, track, users, createLike, deleteLike, createRepost, deleteRepost, deleteTrack, currentUser, setPlayPause, setProg, fetchTrack, seekWaveForm, seekTrack } = this.props;
+			const { user, tracks, userTracks, track, users, createLike, deleteLike, createRepost, deleteRepost, deleteTrack, currentUser, setPlayPause, setProg, fetchTrack, seekWaveForm, seekTrack, seekPlayer, setTrackPlayer } = this.props;
 			let stream;
 			let trackIds = this.props.user.trackIds;
 			let likedTrackIds = this.props.user.likedTrackIds;
@@ -131,7 +141,7 @@ class UserShow extends React.Component {
 				stream = (Object.values(tracks).map((track, idx) => {
 					if (this.props.user.trackIds.includes(track.id)) {
 						return (
-							<TrackIndexItem key={idx} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} seekWaveForm={seekWaveForm} seekTrack={seekTrack} />
+							<UserTrackItem id={track.id} key={idx} track={track} currentUser={currentUser || {}} users={users} user={user} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} seekWaveForm={seekWaveForm} seekTrack={seekTrack} seekPlayer={seekPlayer} setTrackPlayer={setTrackPlayer} trackplayer={trackplayer || {}} />
 						)
 					}
 				})
@@ -141,7 +151,7 @@ class UserShow extends React.Component {
 				stream = (Object.values(tracks).map((track, idx) => {
 				if ((this.props.user.likedTrackIds).includes(track.id)) {
 					return (
-						<TrackIndexItem key={idx} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} seekWaveForm={seekWaveForm} seekTrack={seekTrack} />
+						<UserTrackItem id={track.id} key={idx} track={track} currentUser={currentUser || {}} users={users} user={user} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} seekWaveForm={seekWaveForm} seekTrack={seekTrack} seekPlayer={seekPlayer} setTrackPlayer={setTrackPlayer} trackplayer={trackplayer || {}} />
 					)
 				}
 			})
@@ -151,7 +161,7 @@ class UserShow extends React.Component {
 				stream = (Object.values(tracks).map((track, idx) => {
 				if ((this.props.user.repostedTrackIds).includes(track.id)) {
 					return (
-						<TrackIndexItem key={idx} track={track} currentUser={currentUser || null} users={users} user={user} trackplayer={trackplayer || {}} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} seekWaveForm={seekWaveForm} seekTrack={seekTrack} />
+						<UserTrackItem id={track.id} key={idx} track={track} currentUser={currentUser || {}} users={users} user={user} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} seekWaveForm={seekWaveForm} seekTrack={seekTrack} seekPlayer={seekPlayer} setTrackPlayer={setTrackPlayer} trackplayer={trackplayer || {}} />
 					)
 				}
 			})
@@ -160,21 +170,21 @@ class UserShow extends React.Component {
 			let userSidebar = (Object.values(tracks)).slice(0,3).map(track => {
 				if (likedTrackIds.includes(track.id)) {
 					return (
-						<UserSidebar currentUser={currentUser || null} tracks={tracks} user={user || {}} users={users} trackplayer={trackplayer || {}} />
+						<UserSidebar currentUser={currentUser || {}} tracks={tracks} user={user || {}} users={users} trackplayer={trackplayer || {}} />
 					)
 				}
 			});
 
-		// const likeActive = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'active' : '');
-		// const likeText = ((currentUser && currentUser.likedTrackIds.includes(track.id)) ? 'Liked' : 'Like');
+		// const followActive = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'active' : '');
+		// const followText = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'Following' : 'Follow');
 	
 		const profileIcon = { ["backgroundImage"]:"https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg" };
 		const bannerImg = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/banner.jpeg" };
 
     return (
       <div className="usershow-container">
-				<NavbarContainer currentUser={currentUser || {}} trackplayer={trackplayer || {}}/>
-
+				{/* <NavbarContainer currentUser={currentUser || {}} /> */}
+				{userShowNavbar}
       	<div className="usershow-header-container">
 					<div className="usershow-banner-img"></div>
 
@@ -195,7 +205,9 @@ class UserShow extends React.Component {
 						<li className="user-info-tabs-item">
 							<NavLink exact to={`/users/${user.id}`} activeClassName="selected" onClick={() => this.showTracks()} className="user-info-tabs-link">Tracks</NavLink>
 							<NavLink exact to={`/users/${user.id}/likes`} activeClassName="" onClick={() => this.showLikes()} className="user-info-tabs-link">Likes</NavLink>
-							<NavLink exact to={`/users/${user.id}/reposts`}activeClassName="" onClick={() => this.showReposts()} className="user-info-tabs-link">Reposts</NavLink>
+							<NavLink exact to={`/users/${user.id}/reposts`} activeClassName="" onClick={() => this.showReposts()} className="user-info-tabs-link">Reposts</NavLink>
+							<NavLink exact to={`/users/${user.id}/playlists`} activeClassName="" className="user-info-tabs-link">Playlists</NavLink>
+							<NavLink exact to={`/users/${user.id}/comments`} activeClassName="" className="user-info-tabs-link">Comments</NavLink>
 						</li>
 					</ul>
 					<div className="user-info-buttons">
@@ -208,9 +220,6 @@ class UserShow extends React.Component {
 				<div className="usershow-main-container">
 					<div className="usershow-stream-container">
 							{stream}
-							{/* {userTracksStream} */}
-							{/* {userLikedStream} */}
-							{/* {userRepostedStream} */}
 					</div>
 					<div className="usershow-sidebar-container">
 						<div className="ad-container">
@@ -238,7 +247,7 @@ class UserShow extends React.Component {
 						</table>
 						</div>
 						{/* {userSidebar} */}
-						<UserSidebar currentUser={currentUser || null} tracks={tracks} user={user || {}} users={users} showTracks={this.showTracks} showLikes={this.showLikes} showReposts={this.showReposts} trackplayer={trackplayer || {}} />
+						<UserSidebar currentUser={currentUser || {}} tracks={tracks} user={user || {}} users={users} showTracks={this.showTracks} showLikes={this.showLikes} showReposts={this.showReposts} trackplayer={trackplayer || {}} />
 						</div>
 					</div>
 				</div>

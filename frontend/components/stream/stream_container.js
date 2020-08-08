@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
 	// users: Object.values(state.users) || {},
 	users: state.users,
 	errors: state.errors.tracks || [],
-	
+	loggedIn: Boolean(state.session.currentUser),
 });
 
 const mapDispatchToProps = dispatch => ({

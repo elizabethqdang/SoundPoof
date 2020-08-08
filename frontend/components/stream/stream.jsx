@@ -9,13 +9,16 @@ class Stream extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			showStream: true,
+			showSearch: false,
+			showProfile: false,
 		}
 	}
 
 	componentDidMount() {
 		this.props.fetchAllTracks();
 		this.props.fetchAllUsers();
-		// this.props.fetchCurrentUser(this.props.currentUser.id);
+		this.props.fetchCurrentUser(this.props.currentUser.id);
 	}
 
 	// componentDidUpdate(prevProps) {
@@ -31,7 +34,7 @@ class Stream extends React.Component {
 		let users = Object.values(this.props.users);
 
 		let stream = ((tracks)).map((track, idx) => (
-			<TrackIndexItem key={idx} track={track} currentUser={currentUser || null} users={users} tracks={tracks} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} createLike={createLike} deleteLike={deleteLike} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer || {}} setTrackPlayer={setTrackPlayer} seekPlayer={seekPlayer} endCurrentTrack={endCurrentTrack} />
+			<TrackIndexItem id={track.id} key={idx} track={track} currentUser={currentUser || {}} users={users} tracks={tracks} user={users[track.user_id]} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} createLike={createLike} deleteLike={deleteLike} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer || {}} setTrackPlayer={setTrackPlayer} seekPlayer={seekPlayer} endCurrentTrack={endCurrentTrack} />
 		));
 
 		let streamSidebar = (

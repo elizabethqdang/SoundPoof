@@ -1,15 +1,21 @@
 @tracks.each do |track|
     json.set! track.id do 
-				json.extract! track, :id, :title, :artist, :user_id, :description
-				json.id track.id
-				json.created_at track.created_at
-				json.user_id track.user_id
+				json.extract! track, :id, :title, :artist, :user_id, :description, :created_at, :audio, :artwork
+
+				json.user_id track.user.id
+
+				# json.commenterIds track.comments.pluck(:user_id)
 				json.numComments track.comments.length
-				json.commenterIds track.comments.pluck(:user_id)
-				json.likerIds track.likes.pluck(:user_id)
+				json.commentIds track.comment_ids
+
+				# json.likerIds track.likes.pluck(:user_id)
 				json.numLikes track.likes.length
-				json.reposterIds track.reposts.pluck(:user_id)
+				json.likerIds track.liker_ids
+
+				# json.reposterIds track.reposts.pluck(:user_id)
 				json.numReposts track.reposts.length
+				json.reposterIds track.reposter_ids
+
 				json.profileImgUrl url_for(track.user.profile_image)
 				json.userEmail track.user.email
 				json.userUsername track.user.username
