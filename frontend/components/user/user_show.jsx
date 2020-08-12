@@ -124,10 +124,6 @@ class UserShow extends React.Component {
 		let editProfile = this.updateImageBtn();
 		// console.log(user.id, currentUser.id)
 
-		let userShowNavbar = (
-			<NavbarContainer currentUser={currentUser} trackplayer={trackplayer || {}} />
-		);
-
 		if (this.props.user === undefined) {
 			// console.log("this.props.user", this.props.user);
 			return (
@@ -135,6 +131,10 @@ class UserShow extends React.Component {
 			)
 		} else {
 			const { user, tracks, userTracks, track, users, createLike, deleteLike, createRepost, deleteRepost, deleteTrack, currentUser, setPlayPause, setProg, fetchTrack, seekWaveForm, seekTrack, seekPlayer, setTrackPlayer } = this.props;
+
+			let userShowNavbar = (
+				<NavbarContainer currentUser={currentUser} trackplayer={trackplayer || {}} tracks={tracks} users={users} />
+			);
 			let stream;
 			let trackIds = (this.props.user.trackIds);
 			let likedTrackIds = this.props.user.likedTrackIds;
