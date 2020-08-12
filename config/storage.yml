@@ -21,4 +21,4 @@ amazon_dev:
 #   bucket: soundpoof-pro
 
 amazon_pro:
-	secret_access_key: <%= ENV["secret_access_key"] %>
+	secret_key_base: <%= ENV["secret_key_base"] %>
