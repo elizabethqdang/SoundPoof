@@ -8,15 +8,17 @@
 		json.location user.location
 		json.bio user.bio
 
-		# json.trackIds user.tracks.pluck(:id)
 		# json.commentIds user.comments.pluck(:id)
 		json.trackIds user.track_ids
+		json.trackIds user.tracks.pluck(:id)
 		json.commentIds user.comment_ids
 
 		json.likedTrackIds user.liked_track_ids
 		json.repostedTrackIds user.reposted_track_ids
-		json.followingIds user.user_following_ids
-		json.followerIds user.user_follower_ids
+		
+		json.numFollowing user.followings.length
+		json.followingIds user.following_ids
+		json.followerIds user.follower_ids
 
 		# json.profileImgUrl url_for(user.profile_image)
 		json.bannerUrl asset_path(user.banner.url)

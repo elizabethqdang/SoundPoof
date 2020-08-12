@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import moment from 'moment';
 
 class CommentIndexItem extends React.Component {
@@ -64,4 +64,4 @@ class CommentIndexItem extends React.Component {
   }
 }
 
-export default CommentIndexItem;
+export default withRouter(CommentIndexItem);

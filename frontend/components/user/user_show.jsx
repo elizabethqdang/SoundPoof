@@ -81,13 +81,15 @@ class UserShow extends React.Component {
 	}
 
 	updateImageBtn() {
-		if (this.props.match.params.trackId === this.props.currentUser.id) {
+		if (this.props.user === this.props.currentUser.id) {
 			return (
 					<div className="user-updateImage-btn">
 						Update Image
 					<input type="file" onChange={(e) => this.updateImage(e)} className="" />
 					</div>
 			)
+		} else {
+			return <div></div>;
 		}
 	}
 
@@ -132,14 +134,16 @@ class UserShow extends React.Component {
 		} else {
 			const { user, tracks, userTracks, track, users, createLike, deleteLike, createRepost, deleteRepost, deleteTrack, currentUser, setPlayPause, setProg, fetchTrack, seekWaveForm, seekTrack, seekPlayer, setTrackPlayer } = this.props;
 			let stream;
-			let trackIds = this.props.user.trackIds;
+			let trackIds = (this.props.user.trackIds);
 			let likedTrackIds = this.props.user.likedTrackIds;
 			let editProfile = this.updateImageBtn();
-			// console.log("user", user.profile_image, user.profileImgUrl, user.profileUrl);
+			let numFollowing = (user && user.numFollowing ? user.numFollowing : "0");
+			console.log("user", user);
+			// console.log("trackIds", trackIds);
 
 			if (this.state.trackStream) {
 				stream = (Object.values(tracks).map((track, idx) => {
-					if (this.props.user.trackIds.includes(track.id)) {
+					if (trackIds.includes(track.id)) {
 						return (
 							<UserTrackItem id={track.id} key={idx} track={track} currentUser={currentUser || {}} users={users} user={user} createLike={createLike} deleteLike={deleteLike} createRepost={createRepost} deleteRepost={deleteRepost} deleteTrack={deleteTrack} setPlayPause={setPlayPause} setProg={setProg} fetchTrack={fetchTrack} seekWaveForm={seekWaveForm} seekTrack={seekTrack} seekPlayer={seekPlayer} setTrackPlayer={setTrackPlayer} trackplayer={trackplayer || {}} />
 						)
@@ -175,8 +179,8 @@ class UserShow extends React.Component {
 				}
 			});
 
-		// const followActive = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'active' : '');
-		// const followText = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'Following' : 'Follow');
+		const followActive = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'active' : '');
+		const followText = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'Following' : 'Follow');
 	
 		const profileIcon = { ["backgroundImage"]:"https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg" };
 		const bannerImg = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/banner.jpeg" };
@@ -208,12 +212,12 @@ class UserShow extends React.Component {
 							<NavLink exact to={`/users/${user.id}/reposts`} activeClassName="" onClick={() => this.showReposts()} className="user-info-tabs-link">Reposts</NavLink>
 							<NavLink exact to={`/users/${user.id}/playlists`} activeClassName="" className="user-info-tabs-link">Playlists</NavLink>
 							<NavLink exact to={`/users/${user.id}/comments`} activeClassName="" className="user-info-tabs-link">Comments</NavLink>
+
 						</li>
 					</ul>
+
 					<div className="user-info-buttons">
-					{/* <button type="button" className={`bc-btn sound-actions-btn action-like`}>Follow</button>; */}
-						{/* {this.followButton()} */}
-						{/* {this.editButton()} */}
+						<button type="button" className={`user-info-follow-btn ${followActive}`} onClick={(e) => this.toggleFollow(e)}>${followText}</button>;
 					</div>
 				</div>
 			

@@ -22,6 +22,11 @@ json.track do
 			json.numReposts @track.reposts.length
 			json.reposterIds @track.reposter_ids
 
+			json.numFollowing @track.user.followings.length
+			json.numFollowers @track.user.followers.length
+			json.followingIds @track.user.following_ids
+			json.numTrackIds @track.user.track_ids.length
+
 			# json.profileImgUrl url_for(@track.user.profile_image)
 			json.profileUrl asset_path(@track.user.profile.url)
 			

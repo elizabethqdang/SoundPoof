@@ -51,15 +51,21 @@ class User < ApplicationRecord
 		dependent:	:destroy,
 		class_name:	:Follow,
 		primary_key:	:id,
-		foreign_key:	:user_id
+		foreign_key:	:follower_id
 
+	has_many	:followed_by,
+		dependent:	:destroy,
+		class_name:	:Follow,
+		primary_key:	:id,
+		foreign_key:	:following_id
+	
 	has_many	:followings,
 		through: :follows,
-		source: :follower
+		source: :following
 
 	has_many :followers,
-		through: :follows,
-		source: :following
+		through: :followed_by,
+		source: :follower
 
 	def require_user_profile(user)
       if user.profile_image.attached?

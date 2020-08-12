@@ -9,11 +9,12 @@ json.tracks @user.tracks
 # 	json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
 # end
 
-# json.tracks |do|
+# json.tracks do
 # 	@user.tracks.each do |track|
 # 		json.set! track.id do
-# 			json.extract! track, :id, :user_id, :title, :description, :created_at, :audio, :artwork
+# 			json.extract! track, :id, :user_id, :title, 
 
+# 			json.trackIds @user.tracks.pluck(:id)
 # 			json.numLikes track.likes.length
 # 			json.likerIds track.likers_ids
 # 			json.numReposts track.reposts.length

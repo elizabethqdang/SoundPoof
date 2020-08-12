@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchUser, updateUser, createLike, deleteLike, createRepost, deleteRepost } from "../../actions/user_actions";
+import { fetchUser, updateUser, createLike, deleteLike, createRepost, deleteRepost, createFollow, deleteFollow} from "../../actions/user_actions";
 import { fetchAllTracks, fetchTrack, deleteTrack } from "../../actions/track_actions";
 import { withRouter, Route } from "react-router-dom";
 import { setCurrentTrack, setPlayPause, setProg, seekTrack, seekWaveForm, seekPlayer } from '../../actions/trackplayer_actions';
@@ -44,6 +44,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	deleteLike: (trackId) => dispatch(deleteLike(trackId)),
 	createRepost: (trackId) => dispatch(createRepost(trackId)),
 	deleteRepost: (trackId) => dispatch(deleteRepost(trackId)),
+	createFollow: (followingId) => dispatch(createFollow(followingId)),
+	deleteFollow: (followingId) => dispatch(deleteFollow(followingId)),
 	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),
 });
 

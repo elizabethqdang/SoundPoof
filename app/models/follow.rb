@@ -1,10 +1,10 @@
 class Follow < ApplicationRecord
-		validates :following_id, presence: true, uniqueness: { scope: :user_id, message: "already followed" }
+		validates :follower_id, presence: true, uniqueness: { scope: :following_id, message: "already followed" }
 		validate :exclude_following_self
 
 		belongs_to :follower,
 			class_name: :User,
-			foreign_key: :user_id,
+			foreign_key: :follower_id,
 			primary_key: :id
 
 		belongs_to :following,
@@ -13,8 +13,8 @@ class Follow < ApplicationRecord
 			primary_key: :id
 
 	  def exclude_following_self
-			if user_id == following_id
-				errors.add(:user_id, "oops, you can't follow yourself")
+			if follower_id == following_id
+				errors.add(:follower_id, "oops, you can't follow yourself")
 			end
   	end
 	
