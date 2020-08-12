@@ -11,10 +11,10 @@ class TrackIndex extends React.Component {
 		}
 	}
 
-	componentWillMount() {
+	// componentWillMount() {
 		// this.props.fetchAllTracks();
 		// this.props.fetchAllUsers();
-	}
+	// }
 
 	// componentWillReceiveProps(newState) {
   //   this.setState({ tracks: newState.tracks }); 

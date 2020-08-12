@@ -10,7 +10,9 @@ const mapStateToProps = (state) => ({
 	loggedIn: Boolean(state.session.currentUser),
 	// loggedIn: Boolean(state.session.id),
 	currentUser: state.session.currentUser || {},
-	trackplayer: state.trackplayer || {}
+	trackplayer: state.trackplayer || {},
+	tracks: state.tracks,
+	users: state.users,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -21,11 +21,13 @@ class UserSidebar extends React.Component {
 
   render() {
 		const {users, currentUser, tracks, track, user} = this.props;
-		// let followingIds = (this.props.user.likedTrackIds).slice(0, );
+		let followingIds = (this.props.user.followingIds).slice(0, 3);
 		let likedTrackIds = (this.props.user.likedTrackIds).slice(0, 3);
 		let repostedTrackIds = (this.props.user.repostedTrackIds).slice(0, 3);
 		let numLikes = user.likedTrackIds.length;
 		let numReposts = user.repostedTrackIds.length;
+		let numFollowing = user.followingIds.length;
+
 		let userSidebar = Object.values(tracks).map((track, idx) => {
 			if (likedTrackIds.includes(track.id)) {
 				return (
@@ -47,7 +49,7 @@ class UserSidebar extends React.Component {
 						<a className="sidebar-header" href="#">
 							<h3 className="sidebar-header-title">
 								<span className="sidebar-header-follow-icon"></span>
-								<span>Following</span>
+								<span>{numFollowing} Following</span>
 							</h3>
 							<span className="sidebar-header-refresh">View All</span>
 						</a>

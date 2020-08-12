@@ -21,6 +21,7 @@ class TrackShowPage extends React.Component {
 		this.toggleLike = this.toggleLike.bind(this);
 		this.toggleRepost = this.toggleRepost.bind(this);
 		this.deleteTrack = this.deleteTrack.bind(this);
+		this.toggleFollow = this.toggleFollow.bind(this);
 	}
 	
 	componentDidMount() {
@@ -109,6 +110,22 @@ class TrackShowPage extends React.Component {
 		}
 	}
 
+	toggleFollow(e) {
+		e.preventDefault();
+		const { track, deleteFollow, createFollow, currentUser, fetchUser, user } = this.props;
+		let followingId = track.user_id;
+
+		if (currentUser.followingIds.includes(track.user_id)) {
+			deleteFollow(track.user_id).then(
+				() => fetchUser(track.user_id),
+			);
+		} else {
+			createFollow(track.user_id).then(
+				() => fetchUser(track.user_id),
+			);
+		}
+	}
+
 	trackButtonBar() {
 		const { track, currentUser } = this.props;
 		const likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
@@ -146,12 +163,8 @@ class TrackShowPage extends React.Component {
 
 	render() {
 		const { track, currentUser } = this.props;
-		let trackNavbar = (
-				<NavbarContainer currentUser={currentUser} />
-			);
-
 		if (track === undefined) {
-			console.log("track", track);
+			// console.log("track", track);
 			return (
 				<div></div>
 			)
@@ -162,11 +175,14 @@ class TrackShowPage extends React.Component {
 			let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
 				'playing' : 'ts-play';
 			let trackButtonBar = this.trackButtonBar();
-			let numFollows = ((user && user.followIds) ? user.followIds.length : "0");
-			let userTrackIds = ((user && user.trackIds) ? user.trackIds.length : "0");
-			// let trackNavbar = (
-			// 	<NavbarContainer currentUser={currentUser} />
-			// );
+			let numTrackIds = ((track.numTrackIds ? track.numTrackIds : "0"));
+			// console.log(numTrackIds);
+			let numFollowerIds = ((track.numFollowers ? track.numFollowers: "0"));
+			let followBtn = (currentUser.followingIds.includes(track.user_id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
+
+			let trackNavbar = (
+				<NavbarContainer currentUser={currentUser} />
+			);
 			let commentForm = (
 				<CommentFormContainer track={track} user={user} currentUser={currentUser} />
 			);
@@ -181,7 +197,7 @@ class TrackShowPage extends React.Component {
 			return (
 				<div className='track-show-page'>
 					<div className="track-show-navbar-container">
-						{/* {trackNavbar} */}
+						{trackNavbar}
 					</div>
 					<div className='track-show-container'>
 						<div className='track-show-detail'>
@@ -213,20 +229,16 @@ class TrackShowPage extends React.Component {
 							<div className='ts-uploader-ci'>
 								<div className='ts-uc-left'>
 									<div className='ts-artist-circle'>
-										{/* <Link to={`/users/${track.user_id}`}>
 											<img src={track.profileImgUrl} />
-										</Link> */}
 										<a href={`/#/users/${track.user_id}`}><img src={track.profileImgUrl} /></a>
 									</div>
-									{/* <Link to={`/users/${track.user_id}`}>
 										<div className='ts-artist-name'>{track.userEmail}</div>
-									</Link> */}
 									<a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a>
 									<div className='ts-artist-stats'> 
-										<div className='user-suggestion-followers'>{numFollows}</div>
-										<div className='user-suggestion-tracks'>{userTrackIds}</div>
+										<div className='user-suggestion-followers'>{numFollowerIds}</div>
+										<div className='user-suggestion-tracks'>{numTrackIds}</div>
 									</div>
-									<button className="user-suggestion-follow-btn" value="Follow">Follow</button>
+									<button className={`user-suggestion-follow-btn ${followBtn}`} value="Follow" onClick={(e) => this.toggleFollow(e)}>Follow</button>
 								</div>
 								<div className='ts-uc-right'>
 									<div className='ts-track-description'>DESCRIPTION</div>

@@ -71,46 +71,56 @@ export const removeFollow = (payload) => ({
 });
 
 export const fetchUser = userId => dispatch => {
-  return UserAPIUtil.fetchUser(userId).then(payload => 
-		dispatch(receiveUser(payload))
-		// return payload;
-	), 
-	errors => 
-		dispatch(receiveUserErrors(errors.responseJSON));
-		// return errors;
+  return UserAPIUtil.fetchUser(userId).then(
+		payload => {
+			dispatch(receiveUser(payload));
+			return payload;
+		}, 
+		errors => {
+			dispatch(receiveUserErrors(errors.responseJSON));
+			console.log(errors.responseJSON);
+			return errors;
+		}
+	);
 };
 
 export const fetchSingleUser = userId => dispatch => {
 	return UserAPIUtil.fetchUser(userId).then(
 		user => {
-			dispatch(receiveUser(user));
+			dispatch(receiveSingleUser(user));
 			return user;
 		},
 		errors => {
 			dispatch(receiveUserErrors(errors.responseJSON));
-		return errors;
+			return errors;
 		});
 };
 
 export const fetchAllUsers = () => dispatch => {
-	return UserAPIUtil.fetchAllUsers().then(users => {
+	return UserAPIUtil.fetchAllUsers().then(
+		users => {
 			dispatch(receiveAllUsers(users));
 			return users;
-		}, errors => {
+		}, 
+		errors => {
 			dispatch(receiveUserErrors(errors.responseJSON));
 			console.log(errors.responseJSON);
+			return errors.responseJSON;
 		}
 	)
 };
 
 export const createLike = (trackId) => (dispatch) => {
-	return UserAPIUtil.createLike(trackId)
-		.then(payload => {dispatch(receiveLike(payload));
-	return payload;
-	}, errors => {
+	return UserAPIUtil.createLike(trackId).then(
+		payload => {
+			dispatch(receiveLike(payload));
+			return payload;
+		}, 
+		errors => {
 		console.log(errors.responseJSON);
 		return errors;
-	});
+		}
+	);
 };
 
 export const deleteLike = (trackId) => (dispatch) => {

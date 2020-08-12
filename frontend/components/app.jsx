@@ -30,6 +30,8 @@ const App = () => (
 					<ProtectedRoute exact path="/users/:userId" component={UserShow} />
 					<ProtectedRoute exact path="/users/:userId/likes" component={UserShow} />
 					<ProtectedRoute exact path="/users/:userId/reposts" component={UserShow} />
+					<ProtectedRoute exact path="/users/:userId/playlists" component={UserShow} />
+					<ProtectedRoute exact path="/users/:userId/comments" component={UserShow} />
 				</Switch>
 
 				<Route path="/" component={TrackPlayerContainer} />
