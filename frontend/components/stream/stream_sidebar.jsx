@@ -66,7 +66,7 @@ class StreamSidebar extends React.Component {
     return (
 			<aside className="sidebar-right">
 				<section className="sidebar-module who-to-follow">
-					<a className="sidebar-header" href="#">
+					<a className="sidebar-header" href="">
 						<h3 className="sidebar-header-title">
 							<span className="sidebar-header-follow-icon"></span>
 							<span>Who To Follow</span>
@@ -82,7 +82,7 @@ class StreamSidebar extends React.Component {
 				</section>
 
 				<section className="sidebar-module who-to-follow">
-					<a className="sidebar-header" href="#">
+					<a className="sidebar-header" href={`/#/users/${currentUser.id}/likes`}>
 						<h3 className="sidebar-header-title">
 							<span className="sidebar-header-likes-icon"></span>
 							<span>{cLikedTrackIds.length} likes</span>
