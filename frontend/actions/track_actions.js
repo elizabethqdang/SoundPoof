@@ -33,7 +33,7 @@ export const receiveTrackErrors = errors => ({
 export const receiveSingleTrack = payload => ({
 	type: RECEIVE_SINGLE_TRACK,
 	// payload,
-	comments: payload.comments,
+	comments: payload.comments || {},
 	track: payload.track
 })
 
@@ -44,13 +44,14 @@ export const requestTrackFetch = () => ({
 
 // Thunk actions
 export const fetchAllTracks = () => dispatch => (
-	TrackAPIUtil.fetchAllTracks().then(tracks => {
-		dispatch(receiveAllTracks(tracks));
-	})
+	TrackAPIUtil.fetchAllTracks().then(
+		tracks => {
+			dispatch(receiveAllTracks(tracks));
+		}
+	)
 );
 
 export const fetchTrack = trackId => dispatch => {
-	// dispatch(requestTrackFetch());
 	return TrackAPIUtil.fetchTrack(trackId).then(payload => {
 		dispatch(receiveSingleTrack(payload));
 		return payload;
@@ -60,9 +61,10 @@ export const fetchTrack = trackId => dispatch => {
 	});
 };
 
-export const fetchSingleTrack = trackId => dispatch =>(
-	TrackAPIUtil.fetchTrack(trackId)
-		.then(track => dispatch(receiveTrack(track))
+export const fetchSingleTrack = trackId => dispatch => (
+	TrackAPIUtil.fetchTrack(trackId).then(
+		track => dispatch(receiveTrack(track)),
+		errors => dispatch(receiveTrackErrors(errors.responseJSON))
 	)
 )
 

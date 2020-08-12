@@ -16,7 +16,7 @@ class CommentForm extends React.Component {
 		formData.append("comment[body]", this.state.body);
 		this.props.createComment(formData, this.props.track.id);
 		this.setState({ body: '' });
-		this.props.fetchTrack(this.props.track.id);
+		// this.props.fetchTrack(this.props.track.id);
 	}
 
 	updateBody() {

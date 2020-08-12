@@ -5,18 +5,16 @@ import moment from 'moment';
 class CommentIndexItem extends React.Component {
   constructor(props) {
     super(props);
-		this.deleteComment = this.deleteComment.bind(this);
+		this.deleteBtn = this.deleteBtn.bind(this);
 		this.userTrackButtons = this.userTrackButtons.bind(this);
   }
 
-  deleteComment(e) {
+  deleteBtn(e) {
 		e.preventDefault(); 
 		const { comment, track, deleteComment } = this.props;
-		console.log("deleteComment", "comment", comment, "comment.id", comment.id);
+		// console.log("deleteComment", "comment", comment, "comment.id", comment.id);
 
-    deleteComment(track.id, this.props.comment.id).then(
-			this.props.fetchTrack(this.props.track.id)
-		); 
+		this.props.deleteComment(this.props.comment.id);
   }
 
   userTrackButtons() {
@@ -28,7 +26,7 @@ class CommentIndexItem extends React.Component {
 					<div className="comment-timestamp">
 						{moment(new Date(comment.created_at)).fromNow()}
 					</div>
-					<div className='comment-index-button' onClick={(e)=> this.deleteComment(e)}></div>
+					<div className='comment-index-button' onClick={(e)=> this.props.deleteComment(this.props.comment.id)}></div>
 				</div>
       );}else{
         return (
@@ -43,7 +41,8 @@ class CommentIndexItem extends React.Component {
   render() {
 			const { track, id, comment, currentUser, users } = this.props;
 			let user = users[this.props.comment.user_id];
-			console.log(user, users, comment);
+			let deleteCommentBtn = this.userTrackButtons();
+			// console.log(user, users, comment);
 
       return (
         <div className='posted-comment'>
@@ -58,6 +57,7 @@ class CommentIndexItem extends React.Component {
 							</a> 
 							<div className='comment-body'>{comment.body}</div>
 					</div>
+					{/* {deleteCommentBtn} */}
 					{this.userTrackButtons()}
 			</div>
     );

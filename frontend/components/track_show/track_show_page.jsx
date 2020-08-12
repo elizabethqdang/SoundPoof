@@ -172,13 +172,13 @@ class TrackShowPage extends React.Component {
 			const { comments, track, tracks, users, currentUser, trackplayer, deleteComment, seekWaveForm, seekTrack, trackId } = this.props;
 			let user = (users[this.props.track.user_id]);
 			let commentLength = ((comments.length === 1) ? "1 Comment" : `${comments.length} Comments`);
-			let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ?
-				'playing' : 'ts-play';
+			let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ? 'playing' : 'ts-play';
 			let trackButtonBar = this.trackButtonBar();
 			let numTrackIds = ((track.numTrackIds ? track.numTrackIds : "0"));
 			// console.log(numTrackIds);
 			let numFollowerIds = ((track.numFollowers ? track.numFollowers: "0"));
 			let followBtn = (currentUser.followingIds.includes(track.user_id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
+			let followText= ((currentUser.followingIds.includes(track.user_id)) ? 'Following' : "Follow");
 
 			let trackNavbar = (
 				<NavbarContainer currentUser={currentUser} />
@@ -232,13 +232,12 @@ class TrackShowPage extends React.Component {
 											<img src={track.profileImgUrl} />
 										<a href={`/#/users/${track.user_id}`}><img src={track.profileImgUrl} /></a>
 									</div>
-										<div className='ts-artist-name'>{track.userEmail}</div>
 									<a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a>
 									<div className='ts-artist-stats'> 
 										<div className='user-suggestion-followers'>{numFollowerIds}</div>
 										<div className='user-suggestion-tracks'>{numTrackIds}</div>
 									</div>
-									<button className={`user-suggestion-follow-btn ${followBtn}`} value="Follow" onClick={(e) => this.toggleFollow(e)}>Follow</button>
+									<button className={`user-suggestion-follow-btn ${followBtn}`} value="Follow" onClick={(e) => this.toggleFollow(e)}>{followText}</button>
 								</div>
 								<div className='ts-uc-right'>
 									<div className='ts-track-description'>DESCRIPTION</div>

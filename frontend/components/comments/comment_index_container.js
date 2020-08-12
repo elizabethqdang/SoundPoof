@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	deleteComment: (trackId, id) => dispatch(deleteComment(trackId, id)),
+	deleteComment: (id) => dispatch(deleteComment(id)),
 	fetchTrack: (trackId) => dispatch(fetchTrack(trackId))
 });
 
