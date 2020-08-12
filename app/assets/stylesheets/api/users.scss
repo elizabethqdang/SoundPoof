@@ -307,7 +307,7 @@
 .user-info-tabs-link {
   cursor: pointer;
   color: #333;
-  border-bottom: 1px solid transparent;
+  // border-bottom: 1px solid transparent;
   display: block;
 	font-weight: 400;
 	display: relative;
@@ -316,17 +316,21 @@
 	line-height: 1.8;
 }
 
- 
+.selected {
+	color: #f50;
+	cursor: pointer;
+	border-bottom: 1px solid #333;
+}
+
 .user-info-tabs-link.active, .user-info-tabs-link:after, .user-info-tabs-link.hover {
   border-color: #f50;
   color: #f50;
 	cursor: pointer;
  	border-bottom: 1px solid #333;
-
 }
 
 .user-info-buttons {
-  position: absolute;
+  position: relative;
   right: 0;
   vertical-align: middle;
   display: inline-block;
@@ -340,12 +344,16 @@
   margin-right: 5px;
   background-color: #f50;
   border-color: #f50;
-  color: #fff;
+	color: #fff;
+	font-size: 18px;
+	line-height: 1.8;
+	font-family: 'Lucida Grande';
 }
 
 .user-info-follow-btn.active {
   background-color: white;
-  color: #f50;
+	color: #f50;
+ 	border-color: #f50;
 }
 
 .user-info-edit-btn {

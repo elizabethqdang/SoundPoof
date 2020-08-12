@@ -17,6 +17,8 @@ class UserShow extends React.Component {
 			showStream: false,
 			showSearch: false,
 			showProfile: false,
+			showPlaylists: false,
+			showComments: false,
 		}
 		this.toggleFollow = this.toggleFollow.bind(this);
 		this.updateImage = this.updateImage.bind(this);
@@ -208,16 +210,16 @@ class UserShow extends React.Component {
 					<ul className="user-info-tabs">
 						<li className="user-info-tabs-item">
 							<NavLink exact to={`/users/${user.id}`} activeClassName="selected" onClick={() => this.showTracks()} className="user-info-tabs-link">Tracks</NavLink>
-							<NavLink exact to={`/users/${user.id}/likes`} activeClassName="" onClick={() => this.showLikes()} className="user-info-tabs-link">Likes</NavLink>
-							<NavLink exact to={`/users/${user.id}/reposts`} activeClassName="" onClick={() => this.showReposts()} className="user-info-tabs-link">Reposts</NavLink>
-							<NavLink exact to={`/users/${user.id}/playlists`} activeClassName="" className="user-info-tabs-link">Playlists</NavLink>
-							<NavLink exact to={`/users/${user.id}/comments`} activeClassName="" className="user-info-tabs-link">Comments</NavLink>
+							<NavLink exact to={`/users/${user.id}/likes`} activeClassName={this.state.likedStream ? 'selected' : ''} onClick={() => this.showLikes()} className="user-info-tabs-link">Likes</NavLink>
+							<NavLink exact to={`/users/${user.id}/reposts`} activeClassName={this.state.repostedStream ? 'selected' : ''} onClick={() => this.showReposts()} className="user-info-tabs-link">Reposts</NavLink>
+							<NavLink exact to={`/users/${user.id}/playlists`} activeClassName={this.state.showPlaylists ? 'selected' : ''} className="user-info-tabs-link">Playlists</NavLink>
+							<NavLink exact to={`/users/${user.id}/comments`} activeClassName={this.state.showComments ? 'selected' : ''} className="user-info-tabs-link">Comments</NavLink>
 
 						</li>
 					</ul>
 
 					<div className="user-info-buttons">
-						<button type="button" className={`user-info-follow-btn ${followActive}`} onClick={(e) => this.toggleFollow(e)}>{followText}</button>;
+						<button type="button" className={`action-follow user-info-follow-btn ${followActive}`} onClick={(e) => this.toggleFollow(e)}>{followText}</button>
 					</div>
 				</div>
 			
