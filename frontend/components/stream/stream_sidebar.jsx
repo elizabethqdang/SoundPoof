@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink, Link, withRouter } from 'react-router-dom';
-import { createLike, deleteLike } from '../../actions/user_actions';
+import { createLike, deleteLike, createFollow, deleteFollow } from '../../actions/user_actions';
 import { fetchTrack } from '../../actions/track_actions';
 
 class StreamSidebar extends React.Component {
@@ -10,12 +10,13 @@ class StreamSidebar extends React.Component {
 		this.followItem = this.followItem.bind(this);
 		this.likeItem = this.likeItem.bind(this);
 		this.toggleLike = this.toggleLike.bind(this);
+		this.toggleFollow = this.toggleFollow.bind(this);
   }
 	
 	followItem() {
 		return (
 		(this.props.users).map((user, idx) => {
-			return <StreamSidebarFollowItem key={idx} user={user} />
+			return <StreamSidebarFollowItem id={user.id} key={idx} user={user} currentUser={this.props.currentUser} toggleFollow={(e) => this.toggleFollow(e, user)} createFollow={this.props.createFollow} deleteFollow={this.props.deleteFollow} />
 		}))
 	}
 
@@ -42,6 +43,19 @@ class StreamSidebar extends React.Component {
 				() => this.props.fetchTrack(track.id)
 			);
 		};
+	}
+ 
+	toggleFollow(e, user) {
+		e.preventDefault();
+		const { track, deleteFollow, createFollow, currentUser, users } = this.props;
+		console.log("user", user);
+
+		if (this.props.currentUser.followingIds.includes(user.id)) {
+			deleteFollow(user.id)
+		} else {
+			createFollow(user.id)
+		};
+
 	}
 
   render() {
@@ -87,10 +101,11 @@ class StreamSidebar extends React.Component {
   }
 }
 
-const StreamSidebarFollowItem = ({ user, users, track, currentUser}) => {
+const StreamSidebarFollowItem = ({ user, users, track, currentUser, toggleFollow, createFollow, deleteFollow }) => {
 	
-	let active = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'active' : '');
-	let likeButton = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'Following' : 'Follow');
+	// let toggleFollow = ((currentUser.followingIds.includes(user.id)) ? deleteFollow(user.id) : createFollow(user.id));
+	let active = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'active' : '');
+	let likeButton = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'Following' : 'Follow');
 
   return (
 		<li className="user-suggestion-item">
@@ -105,7 +120,7 @@ const StreamSidebarFollowItem = ({ user, users, track, currentUser}) => {
 				<div className="user-suggestion-meta">
 					<div className="user-suggestion-stats">
 						<div className="user-suggestion-followers">
-							{user.likedTrackIds ? user.likedTrackIds.length : "0"}
+							{user.followerIds ? user.numFollowers : "0"}
 						</div>
 						<div className="user-suggestion-tracks">
 							{user.trackIds ? user.trackIds.length : "0"}
@@ -114,7 +129,7 @@ const StreamSidebarFollowItem = ({ user, users, track, currentUser}) => {
 
 					<div className="user-suggestion-actions">
 						<button 
-						// onClick={this.like} 
+						onClick={(e) => toggleFollow(e, user)} 
 						className={`bc-btn user-suggestion-follow-btn ${active}`} type="button">{likeButton}</button>
 					</div>
 				</div>
@@ -197,7 +212,9 @@ const mapDispatchToProps = dispatch => ({
 	fetchUser: (userId) => dispatch(fetchUser(userId)),
 	fetchCurrentUser: (id) => dispatch(fetchCurrentUser(id)),
 	createLike: (trackId) => dispatch(createLike(trackId)),
-	deleteLike: (trackId) => dispatch(deleteLike(trackId))
+	deleteLike: (trackId) => dispatch(deleteLike(trackId)),
+	createFollow: (userId) => dispatch(createFollow(userId)),
+	deleteFollow: (userId) => dispatch(deleteFollow(userId)),
 });
 
 export default (connect)(mapStateToProps, mapDispatchToProps)(withRouter(StreamSidebar));

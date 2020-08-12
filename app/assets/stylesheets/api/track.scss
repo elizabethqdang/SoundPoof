@@ -185,7 +185,7 @@
 	margin: 0 0 20px 0;
 	padding: 5px 0;
 
-	.sound-actions-btn.action-like, .sound-actions-btn.action-repost, .sound-actions-btn.controller-btn.delete-btn {
+	.sound-actions-btn.action-like, .sound-actions-btn.action-repost, .sound-actions-btn.controller-btn.delete-btn, .sound-actions-btn.action-follow {
 		height: 30px;
 		vertical-align: baseline;
 		padding: 2px 11px 2px 10px;
@@ -323,7 +323,7 @@
   background-size: 16px 16px;
 }
 
-.sound-actions-btn.action-like.active:before,
+.sound-actions-btn.action-follow.active:before, .sound-actions-btn.action-like.active:before,
 .sound-actions-btn.action-repost.active:before {
   background-color: #f50;
 }
@@ -348,6 +348,16 @@
   background-size: 16px 16px;
 }
 
+.action-follow:before {
+	-webkit-mask-position: 50% 50%;
+	// background-color: black;
+	-webkit-mask-image: image-url('follow-btn.svg') 0 0 no-repeat;
+	position: relative;
+	background-repeat: no-repeat;
+	background-position: center 10px;
+	background-size: 16px 16px;
+	// color: black;
+}
 
 
 

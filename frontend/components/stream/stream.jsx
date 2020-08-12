@@ -29,7 +29,7 @@ class Stream extends React.Component {
 	// }
 
 	render() {
-		const { user, currentUser, trackplayer, setPlayPause, setProg, deleteTrack, createRepost, deleteRepost, createLike, deleteLike,fetchTrack, fetchAllTracks, seekWaveForm, seekTrack, seekPlayer, setTrackPlayer, endCurrentTrack } = this.props;
+		const { user, currentUser, trackplayer, setPlayPause, setProg, deleteTrack, createRepost, deleteRepost, createLike, deleteLike, createFollow, deleteFollow,fetchTrack, fetchAllTracks, seekWaveForm, seekTrack, seekPlayer, setTrackPlayer, endCurrentTrack } = this.props;
 		let tracks = Object.values(this.props.tracks);
 		let users = Object.values(this.props.users);
 
@@ -38,7 +38,7 @@ class Stream extends React.Component {
 		));
 
 		let streamSidebar = (
-			<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} trackplayer={trackplayer} />
+			<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} trackplayer={trackplayer} createFollow={createFollow} deleteFollow={deleteFollow} />
 		);
 
 		let streamNavbar = (

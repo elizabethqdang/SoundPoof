@@ -129,7 +129,7 @@
 }
 
 .sidebar-content {
-	height: 210px;
+	height: auto;
 	max-height: 100%;
 	padding-top: 5px;
 	// width: 285px;
@@ -325,7 +325,17 @@ li.user-suggestion-item.track-stat-container a, a.user-suggestion-artist-link.tr
 
 .user-suggestion-followers:before {
   background-size: 16px 16px;
-  background-image: image-url('follow-suggestions.svg');
+	background-image: image-url('follow-suggestions.svg');
+	color: #F50;
+
+}
+
+.user-follow-btn:before {
+  background-size: 16px 16px;
+	background-image: image-url('follow-btn.svg');
+	color: white;
+	display: inline-flex;
+	background-color: #F50;
 }
 
 .user-suggestion-tracks, .user-suggestion-likes, .user-suggestion-comments, .user-suggestion-reposts {
@@ -343,7 +353,8 @@ li.user-suggestion-item.track-stat-container a, a.user-suggestion-artist-link.tr
 
 .user-suggestion-tracks:before {
   background-size: 16px 16px;
-  background-image: image-url('tracks.svg');
+	background-image: image-url('tracks.svg');
+	background-position: center left;
 }
 
 .user-suggestion-likes:before {
@@ -359,6 +370,16 @@ li.user-suggestion-item.track-stat-container a, a.user-suggestion-artist-link.tr
 .user-suggestion-reposts:before {
   background-size: 20px 16px;
   background-image: image-url('repost-icon.svg');
+}
+
+.user-follow-btn {
+	background-size: 20px 16px;
+	background: image-url('follow-btn.svg') 0 0 no-repeat;
+	background-position: 10px;
+	text-align: right;
+	text-indent: 24px;
+	border: 1px solid #e5e5e5;
+	overflow: hidden;
 }
 
 .user-suggestion-actions {
@@ -404,29 +425,40 @@ li.user-suggestion-item.track-stat-container a, a.user-suggestion-artist-link.tr
 	place-self: flex-end right;
 	background: image-url('follow-btn.svg') 0 0 no-repeat;
 	background-size: 14px 14px;
-	background-position: center left;
+	background-position: 10px ;
 	text-align: right;
-	text-indent: 14px;
+	text-indent: 24px;
 	border: 1px solid #e5e5e5;
+	overflow: hidden;
+	// background-color: #F50;
+	// color: white;
 }
 
-.user-suggestion-follow-btn:hover {
+.user-follow-btn:before {
+  color: white;
+  background-color: #F50;
+  // border-color: #f50;
+}
+
+.user-follow-btn:hover {
   border-color: #ccc;
 }
 
-.user-suggestion-follow-btn.active {
+.user-follow-btn.active {
   color: #f50;
-  background-color: white;
+  background-color: #f2f2f2;
   border-color: #f50;
 }
 
 .user-suggestion-follow-btn.active {
-  border-color: #f50;
+	border-color: #f50;
+	color: #F50;
 }
 
-button.user-suggestion-follow-btn {
-	margin-left: 0;
+button.user-follow-btn {
+	margin-left: 5px;
 }
+
 
 //
 

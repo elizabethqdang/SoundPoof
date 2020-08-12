@@ -22,6 +22,7 @@ class TrackShowPage extends React.Component {
 		this.toggleRepost = this.toggleRepost.bind(this);
 		this.deleteTrack = this.deleteTrack.bind(this);
 		this.toggleFollow = this.toggleFollow.bind(this);
+		this.userFollowBtn = this.userFollowBtn.bind(this);
 	}
 	
 	componentDidMount() {
@@ -112,20 +113,37 @@ class TrackShowPage extends React.Component {
 
 	toggleFollow(e) {
 		e.preventDefault();
-		const { track, deleteFollow, createFollow, currentUser, fetchUser, user } = this.props;
+		const { track, fetchTrack, deleteFollow, createFollow, currentUser, fetchUser, user } = this.props;
 		let followingId = track.user_id;
 
 		if (currentUser.followingIds.includes(track.user_id)) {
 			deleteFollow(track.user_id).then(
-				() => fetchUser(track.user_id),
+				() => fetchTrack(track.id)
+				// () => fetchUser(track.user_id),
 			);
 		} else {
 			createFollow(track.user_id).then(
-				() => fetchUser(track.user_id),
+				() => fetchTrack(track.id)
+				// () => fetchUser(track.user_id),
 			);
 		}
 	}
 
+	userFollowBtn() {
+		const {track, currentUser } = this.props;
+		let followBtn = (currentUser.followingIds.includes(track.user_id)) ? 'user-follow-btn active' : 'user-follow-btn';
+		let followText = ((currentUser.followingIds.includes(track.user_id)) ? 'Following' : "Follow");
+
+		if (currentUser.id !== track.user_id) {
+			return (
+				<button className={`user-suggestion-follow-btn ${followBtn}`} onClick={(e) => this.toggleFollow(e)}>{followText}</button>
+			)
+		} else {
+			return (
+				<div></div>
+			)
+		}
+	}
 	trackButtonBar() {
 		const { track, currentUser } = this.props;
 		const likeButton = (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
@@ -173,12 +191,15 @@ class TrackShowPage extends React.Component {
 			let user = (users[this.props.track.user_id]);
 			let commentLength = ((comments.length === 1) ? "1 Comment" : `${comments.length} Comments`);
 			let buttonPlaying = (trackplayer.playing && trackplayer.trackId === track.id) ? 'playing' : 'ts-play';
+			let userFollowBtn = this.userFollowBtn();
 			let trackButtonBar = this.trackButtonBar();
-			let numTrackIds = ((track.numTrackIds ? track.numTrackIds : "0"));
-			// console.log(numTrackIds);
-			let numFollowerIds = ((track.numFollowers ? track.numFollowers: "0"));
-			let followBtn = (currentUser.followingIds.includes(track.user_id)) ? 'controller-btn like-btn liked active' : 'controller-btn like-btn';
+			let numTracks = this.props.track.numTracks;
+			let numFollowers = this.props.track.numFollowers;
+			// let numTracks = ((track.numTracks ? track.numTracks : "0"));
+			// let numFollowers = ((track.numFollowers ? track.numFollowers: "0"));
+			let followBtn = (currentUser.followingIds.includes(track.user_id)) ? 'controller-btn user-suggestion-follow-btn active' : 'controller-btn user-suggestion-follow-btn';
 			let followText= ((currentUser.followingIds.includes(track.user_id)) ? 'Following' : "Follow");
+			// console.log("numTracks, numFollowers", track, numTracks, numFollowers);
 
 			let trackNavbar = (
 				<NavbarContainer currentUser={currentUser} />
@@ -234,10 +255,11 @@ class TrackShowPage extends React.Component {
 									</div>
 									<a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a>
 									<div className='ts-artist-stats'> 
-										<div className='user-suggestion-followers'>{numFollowerIds}</div>
-										<div className='user-suggestion-tracks'>{numTrackIds}</div>
+										<div className='user-suggestion-followers'>{numFollowers}</div>
+										<div className='user-suggestion-tracks'>{numTracks}</div>
 									</div>
-									<button className={`user-suggestion-follow-btn ${followBtn}`} value="Follow" onClick={(e) => this.toggleFollow(e)}>{followText}</button>
+									{/* <button className={`ts-follow-btn ${followBtn}`} value="Follow" onClick={(e) => this.toggleFollow(e)}>{followText}</button> */}
+									{userFollowBtn}
 								</div>
 								<div className='ts-uc-right'>
 									<div className='ts-track-description'>DESCRIPTION</div>

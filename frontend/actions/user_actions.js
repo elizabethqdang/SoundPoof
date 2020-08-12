@@ -60,13 +60,13 @@ export const removeRepost = (payload) => ({
 
 export const receiveFollow = (payload) => ({
 	type: RECEIVE_FOLLOW,
-	userId: payload.userId,
+	followerId: payload.followerId,
 	followingId: payload.followingId
 });
 
 export const removeFollow = (payload) => ({
 	type: REMOVE_FOLLOW,
-	userId: payload.userId,
+	followerId: payload.followerId,
 	followingId: payload.followingId
 });
 
@@ -158,7 +158,8 @@ export const createFollow = (followingId) => (dispatch) => {
 		payload => {
 			dispatch(receiveFollow(payload));
 			return payload;
-		}, errors => {
+		}, 
+		errors => {
 			dispatch(receiveUserErrors(errors.responseJSON));
 			console.log(errors.responseJSON);
 			// return errors;
