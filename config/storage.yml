@@ -13,12 +13,10 @@ amazon_dev:
   region: us-west-2
   bucket: soundpoof
 
-# amazon_pro:
-#   service: S3
-#   access_key_id: AKIA6HDAWGJESV2LVHXJ
-#   secret_access_key: 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
-#   region: us-west-2
-#   bucket: soundpoof-pro
-
 amazon_pro:
+  service: S3
+  access_key_id: AKIA6HDAWGJESV2LVHXJ
+  secret_access_key: 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
+  region: us-west-2
+  bucket: soundpoof-pro
 	secret_key_base: <%= ENV["secret_key_base"] %>
