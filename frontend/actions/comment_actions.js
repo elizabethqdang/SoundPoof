@@ -26,10 +26,10 @@ export const createComment = (comment, trackId) => dispatch => (
 	))
 );
 
-export const deleteComment = (trackId, commentId) => dispatch => (
-	CommentAPIUtil.deleteComment(trackId, commentId).then(
-			commentId => (dispatch(removeComment(commentId))
-			// errors => (dispatch(receiveCommentErrors(errors)))
+export const deleteComment = (commentId) => dispatch => (
+	CommentAPIUtil.deleteComment(commentId).then(
+			commentId => (dispatch(removeComment(commentId)),
+			errors => (dispatch(receiveCommentErrors(errors.responseJSON)))
 			// errors => (console.log(errors.responseJSON))
 	))
 );

@@ -56,7 +56,7 @@ const mapDispatchToProps = dispatch => ({
 	deleteRepost: (trackId) => dispatch(deleteRepost(trackId)),
 	createFollow: (followingId) => dispatch(createFollow(followingId)),
 	deleteFollow: (followingId) => dispatch(deleteFollow(followingId)),
-	deleteComment: (trackId, commentId) => dispatch(deleteComment(trackId, commentId))
+	deleteComment: (commentId) => dispatch(deleteComment(commentId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackShowPage);

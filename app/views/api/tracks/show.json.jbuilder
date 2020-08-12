@@ -76,13 +76,13 @@ json.comments do
 			json.comment_id comment.id
 			json.commenterEmail comment.user.email
 			json.commenterUsername comment.user.username
-			json.profileImgUrl url_for(comment.user.profile_image)
+			# json.profileImgUrl url_for(comment.user.profile_image)
 			
-			# if comment.user.profile_image.attached?
-			# 	json.profileImgUrl url_for(comment.user.profile_image)
-			# else
-			# 	json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
-			# end
+			if comment.user.profile_image.attached?
+				json.profileImgUrl url_for(comment.user.profile_image)
+			else
+				json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
+			end
 
     end 
 	end

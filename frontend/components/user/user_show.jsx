@@ -71,7 +71,7 @@ class UserShow extends React.Component {
 	
 	toggleFollow(e) {
 		e.preventDefault();
-		const { user, deleteFollow, createFollow, fetchUser } = this.props;
+		const { user, deleteFollow, createFollow, fetchUser, currentUser } = this.props;
 
 		if (currentUser && currentUser.followingIds.includes(user.id)) {
 			deleteFollow(user.id).then(fetchUser(user.id));
@@ -138,7 +138,7 @@ class UserShow extends React.Component {
 			let likedTrackIds = this.props.user.likedTrackIds;
 			let editProfile = this.updateImageBtn();
 			let numFollowing = (user && user.numFollowing ? user.numFollowing : "0");
-			console.log("user", user);
+			// console.log("user", user);
 			// console.log("trackIds", trackIds);
 
 			if (this.state.trackStream) {
@@ -217,7 +217,7 @@ class UserShow extends React.Component {
 					</ul>
 
 					<div className="user-info-buttons">
-						<button type="button" className={`user-info-follow-btn ${followActive}`} onClick={(e) => this.toggleFollow(e)}>${followText}</button>;
+						<button type="button" className={`user-info-follow-btn ${followActive}`} onClick={(e) => this.toggleFollow(e)}>{followText}</button>;
 					</div>
 				</div>
 			
