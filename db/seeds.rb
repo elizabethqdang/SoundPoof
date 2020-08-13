@@ -13,10 +13,10 @@ require 'open-uri'
 
 User.destroy_all
 
-u1 = User.create({ id: 1, email: "Demo-User", password: "password", bio: "", location: "", username: "" })
+u1 = User.create({ id: 1, email: "Demo-User", password: "password", bio: "", location: "", username: "Demo-User" })
 u1.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'), filename: 'placeholder.jpeg')
 
-u2 = User.create({ id: 2, email: "OWLSA", password: "password", bio: "", location: "", username: "" })
+u2 = User.create({ id: 2, email: "OWLSA", password: "password", bio: "", location: "", username: "OWLSA" })
 u2.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/owsla.png'), filename: 'owsla.png')
 
 u3 = User.create({ id: 3, email: "Skillex", password: "password", bio: "", location: "", username: "Skrillex" })
@@ -256,7 +256,7 @@ t21 = Track.create({
 id: 21,
 title: "You Were Right", 
 artist: "Rufus Du Sol - Louis Futon", 
-user_id: u1.id,
+user_id: u15.id,
 })
 t21.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/louisfuton-youwereright.mp3"), filename: "louis-futonyouwereright.mp3" )
 t21.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+8.49.07+PM.png"), filename: "rufusdusol.png" )
@@ -303,8 +303,8 @@ title: "Eminem - Godzilla ft. Juice WRLD",
 artist: "EMINEM", 
 user_id: u18.id,
 })
-t26.audio.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/eminem-godzilla.mp3"), filename: "eminem-godzilla.mp3" )
-t26.artwork.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/musictobemurderedby.png"), filename: "musictobemurderedby.png")
+t26.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/eminem-godzilla.mp3"), filename: "eminem-godzilla.mp3" )
+t26.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/musictobemurderedby.png"), filename: "musictobemurderedby.png")
 
 t27 = Track.create({
 id: 27,
@@ -312,8 +312,8 @@ title: "Eminem - I Will (ft. KXNG Crooked, Royce Da 5''9"" & Joell Ortiz)",
 artist: "EMINEM", 
 user_id: u18.id,
 })
-t27.audio.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/eminem-iwill.mp3"), filename: "eminem-iwill.mp3" )
-t27.artwork.attach(io: open("/Users/eqdang/Desktop/app_academy/SoundPoof/app/assets/tracks/musictobemurderedby.png"), filename: "musictobemurderedby.png")
+t27.audio.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/eminem-iwill.mp3"), filename: "eminem-iwill.mp3" )
+t27.artwork.attach(io: open("https://soundpoof.s3-us-west-2.amazonaws.com/tracks/musictobemurderedby.png"), filename: "musictobemurderedby.png")
 
 
 
