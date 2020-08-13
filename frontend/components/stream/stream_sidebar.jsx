@@ -104,7 +104,7 @@ class StreamSidebar extends React.Component {
 const StreamSidebarFollowItem = ({ user, users, track, currentUser, toggleFollow, createFollow, deleteFollow }) => {
 	
 	// let toggleFollow = ((currentUser.followingIds.includes(user.id)) ? deleteFollow(user.id) : createFollow(user.id));
-	let active = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'active' : '');
+	let active = ((currentUser && currentUser.followingIds.includes(user.id)) ? ' user-follow-btn followed active' : 'user-followers user-follow-btn');
 	let likeButton = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'Following' : 'Follow');
 
   return (
@@ -130,7 +130,7 @@ const StreamSidebarFollowItem = ({ user, users, track, currentUser, toggleFollow
 					<div className="user-suggestion-actions">
 						<button 
 						onClick={(e) => toggleFollow(e, user)} 
-						className={`bc-btn user-suggestion-follow-btn ${active}`} type="button">{likeButton}</button>
+						className={`bc-btn user-followers user-follow-btn ${active}`} type="button">{likeButton}</button>
 					</div>
 				</div>
 
