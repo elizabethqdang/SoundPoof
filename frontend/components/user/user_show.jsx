@@ -181,7 +181,7 @@ class UserShow extends React.Component {
 				}
 			});
 
-		const followActive = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'active' : '');
+		const followActive = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'followed active' : 'user-follow-btn');
 		const followText = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'Following' : 'Follow');
 	
 		const profileIcon = { ["backgroundImage"]:"https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg" };
