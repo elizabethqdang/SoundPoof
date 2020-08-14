@@ -36,4 +36,7 @@ npm-debug.log
 
 .env
 /config/storage.yml
+storage.yml
+/storage.yml
+config/storage.yml
 /config/credentials.yml.enc

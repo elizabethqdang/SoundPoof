@@ -6,8 +6,11 @@ class Splash extends React.Component {
 		super(props);
 		this.state = {
 			splash: true,
+			searchInput: ''
 		}
 		console.log(this.state.splash);
+		this.toSearch = this.toSearch.bind(this);
+		this.verifyLoggedIn = this.verifyLoggedIn.bind(this);
 	}
 	
 	componentDidMount() {
@@ -15,6 +18,33 @@ class Splash extends React.Component {
 		// this.props.fetchAllUsers();
 		// this.state.splash;
 		// console.log(this.state.splash);
+	}
+
+	update(searchInput) {
+		return (e) => {
+			e.preventDefault();
+			this.setState({ [searchInput]: e.target.value });
+		};
+	}
+
+	toSearch(e) {
+		e.preventDefault();
+		if (!this.props.currentUser) {
+			this.props.openModal("login");
+		} else if (this.props.currentUser) {
+			window.location.hash = `/search?q=${e.target.value}`;
+		}
+	}
+
+	verifyLoggedIn(e, link) {
+		e.preventDefault();
+		if (!this.props.currentUser) {
+			this.props.openModal("login");
+			window.location.hash = `/${link}`;
+
+		} else if (this.props.currentUser) {
+			window.location.hash = `/${link}`;
+		}
 	}
 
   render() {
@@ -52,18 +82,23 @@ class Splash extends React.Component {
             <h1 className="splash-title">SOUNDPOOF</h1>
             <h2 className="splash-subtitle">What's next in music is first on SoundPoof</h2>
             {/* Upload your first track and begin your journey. SoundPoof gives you space to create,find your fans, and connect with other artists. */}
-            <button className="header-button start-uploading-today">Start uploading today</button>
+            <button className="header-button start-uploading-today" onClick={(e) => IoTSiteWise.verifyLoggedIn(e, "/#/upload")}>Start uploading today</button>
           </section>
         </div>
 
         <div className="splash-search-container">
-          <form className="splash-search-form">
-            <input type="search" placeholder="Search for artists, bands, tracks, podcasts" className="splash-search-input"></input>
-						<button type="submit" className="splash-search-button"><i className="fas fa-search"></i></button>
+          <form className="splash-search-form" onSubmit={(e) => this.verifyLoggedIn(e)}>
+						<input className="splash-search-input"
+							type="search" 
+							onChange={this.update('input')} 
+							value={this.state.input}
+							placeholder="Search for artists, bands, tracks, podcasts"
+							onSubmit={(e) => this.toSearch(e)} />
+						<button onClick={(e) => this.verifyLoggedIn(e)} onSubmit={(e) => this.toSearch(e)} type="submit" className="splash-search-button"><i className="fas fa-search"></i></button>
           </form>
 					or
-          <Link to="/upload"><button className="header-button">Upload your own</button>
-					</Link>
+          <a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} href="/#/upload" onClick={(e) => this.verifyLoggedIn(e, "/#/upload")}><button className="header-button">Upload your own</button>
+					</a>
         </div>
         <br/><br/>
 
@@ -74,7 +109,7 @@ class Splash extends React.Component {
 
 					<ul className='splash-trending'>
 {/* 1 */}
-						<a className='trending-track-item-container' href="/#/signup">
+						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/1")} className='trending-track-item-container' href="/#/tracks/1">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
 									<img src='https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+8.26.54+PM.png' />
@@ -86,7 +121,7 @@ class Splash extends React.Component {
 							</li>
 						</a>
 {/* 2 */}
-						<a className='trending-track-item-container' href="/#/signup">
+						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/15")} className='trending-track-item-container' href="/#/tracks/15">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
 									<img src="https://soundpoof.s3-us-west-2.amazonaws.com/tracks/neverbelikeyou.png" />
@@ -98,7 +133,7 @@ class Splash extends React.Component {
 							</li>
 						</a>
 {/* 3 */}
-						<a className='trending-track-item-container' href="/#/signup">
+						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/27")} className='trending-track-item-container' href="/#/tracks/27">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
 									<img src="https://soundpoof.s3-us-west-2.amazonaws.com/tracks/musictobemurderedby.png" />
@@ -110,7 +145,7 @@ class Splash extends React.Component {
 							</li>
 						</a>
 {/* 4 */}
-						<a className='trending-track-item-container' href="/#/signup">
+						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/13")} className='trending-track-item-container' href="/#/tracks/13">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
 									<img src="https://soundpoof.s3-us-west-2.amazonaws.com/tracks/doyou.png" />
@@ -122,7 +157,7 @@ class Splash extends React.Component {
 							</li>
 						</a>
 {/* 5 */}
-						<a className='trending-track-item-container' href="/#/signup">
+						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/5")} className='trending-track-item-container' href="/#/tracks/5">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
 									<img src="https://soundpoof.s3-us-west-2.amazonaws.com/tracks/excision.png" />
@@ -134,7 +169,7 @@ class Splash extends React.Component {
 							</li>
 						</a>
 {/* 6 */}
-						<a className='trending-track-item-container' href="/signup">
+						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/2")} className='trending-track-item-container' href="/#/tracks/2">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
 									<img src="https://soundpoof.s3-us-west-2.amazonaws.com/tracks/saymyname.png" />
@@ -148,7 +183,7 @@ class Splash extends React.Component {
 					</ul>
 {/* 7 */}
 					<ul className='splash-trending'>
-						<a className='trending-track-item-container' href="/#/signup">
+						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} className='trending-track-item-container' href="/#/tracks/">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
 									<img src="" />
@@ -160,7 +195,7 @@ class Splash extends React.Component {
 							</li>
 						</a>
 {/* 8 */}
-						<a className='trending-track-item-container' href="/signup">
+						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} className='trending-track-item-container' href="/#/tracks/">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
 									<img src="" />
@@ -172,7 +207,7 @@ class Splash extends React.Component {
 							</li>
 						</a>
 {/* 9 */}
-						<a className='trending-track-item-container' href="/signup">
+						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} className='trending-track-item-container' href="/#/tracks/">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
 									<img src="" />
@@ -184,7 +219,7 @@ class Splash extends React.Component {
 							</li>
 						</a>
 {/* 10 */}
-						<a className='trending-track-item-container' href="/signup">
+						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} className='trending-track-item-container' href="/#/tracks/">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
 									<img src="" />
@@ -196,7 +231,7 @@ class Splash extends React.Component {
 							</li>
 						</a>
 {/* 11 */}
-						<a className='trending-track-item-container' href="/signup">
+						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} className='trending-track-item-container' href="/#/tracks/">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
 									<img src="" />
@@ -208,7 +243,7 @@ class Splash extends React.Component {
 							</li>
 						</a>
 {/* 12 */}
-						<a className='trending-track-item-container' href="/signup" >
+						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} className='trending-track-item-container' href="/#/tracks/12" >
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
 									<img src="" />

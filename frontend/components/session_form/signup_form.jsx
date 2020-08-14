@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class SignupForm extends React.Component {
 	constructor(props) {
@@ -11,9 +12,11 @@ class SignupForm extends React.Component {
 			location: ""
 		};
 
+		this.handleClear = this.handleClear.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		// this.renderErrors = this.renderErrors.bind(this);
-		this.clearedErrors = false;
+		this.renderErrors = this.renderErrors.bind(this);
+		// this.clearedErrors = false;
+		this.switchForm = this.switchForm.bind(this);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -37,22 +40,36 @@ class SignupForm extends React.Component {
 		let user = {
 			email: this.state.email,
 			password: this.state.password,
+			location: this.state.location
 		}
 		this.props.signup(user).then(
 			// this.props.history.push("/stream"), 
-			// () => this.props.closeModal(),
+			() => this.props.closeModal(),
 			// console.log(user, "user")
 		);
 	}
 
 	renderErrors() {
+		let errors = this.props.errors;
 		return (
 			<ul className="session-errors">
-				{this.props.errors ? this.props.errors.map((error, i) => (
+				{errors ? errors.map((error, i) => (
 					<li key={`error-${i}`}>{error}</li>)) : {}
 				}
 			</ul>
 		)
+	}
+
+	switchForm(e) {
+		e.preventDefault();
+		this.props.clearSessionErrors();
+		this.props.openModal("login");
+	}
+
+	handleClear(e) {
+		e.preventDefault();
+		this.props.clearSessionErrors();
+		this.props.closeModal();
 	}
 
 	render() {
@@ -61,13 +78,13 @@ class SignupForm extends React.Component {
 		
 		return (
 			<div className="session-form-container">
-				<div onClick={this.props.closeModal} className="close-x">
+				<div onClick={(e) => this.handleClear(e)} className="close-x">
 					X
 				</div>
 
 				<p className="session-header">Create your SoundPoof account</p>
 
-				<form onSubmit={this.handleSubmit} className="session-form">
+				<form onSubmit={(e) => this.handleSubmit(e)} className="session-form">
 					<div className="signup-form">
 						<a href="#">
 							<span class="glyphicon glyphicon-triangle-left"></span>
@@ -107,8 +124,8 @@ class SignupForm extends React.Component {
 						</p> */}
 						<input
 							type="text"
-							value={this.state.birthdate}
-							onChange={this.update('birthdate')}
+							// value={this.state.birthdate}
+							// onChange={this.update('birthdate')}
 							placeholder="Birthdate (mm/dd/yyyy)"
 							className="session-input birthdate"
 						/>
@@ -132,7 +149,8 @@ class SignupForm extends React.Component {
 						<input type="submit" value="Accept & continue" className="session-submit" />
 						<br />
 						<p className="session-text">
-							Are you trying to sign in? {this.props.otherForm}
+							Are you trying to sign in? 		
+							<Link to="/" onClick={(e) => this.switchForm(e)}>  log in instead</Link>
 						</p>
 					</div>
 				</form>

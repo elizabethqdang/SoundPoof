@@ -17,7 +17,8 @@ import TrackPlayerContainer from "./track_player/track_player_container";
 const App = () => (
 		<div id="app">
 
-				<Route path="/" component={ModalContainer} />
+				<ModalContainer />
+				{/* <AuthRoute path="/" component={ModalContainer} /> */}
 				<AuthRoute exact path="/" component={SplashContainer} />
 				<AuthRoute exact path="/signin" component={SessionForm} />
 
@@ -34,7 +35,7 @@ const App = () => (
 					<ProtectedRoute exact path="/users/:userId/comments" component={UserShow} />
 				</Switch>
 
-				<Route path="/" component={TrackPlayerContainer} />
+				<ProtectedRoute path="/" component={TrackPlayerContainer} />
 
 			</div>
 			);

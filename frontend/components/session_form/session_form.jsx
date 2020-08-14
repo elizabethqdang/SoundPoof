@@ -36,8 +36,9 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    this.props.processForm(user)
-      .then(() => this.props.closeModal());
+    this.props.processForm(user).then(
+			() => this.props.closeModal()
+		);
   }
 
   renderErrors() {
@@ -50,25 +51,22 @@ class SessionForm extends React.Component {
 					}
 				</ul>
 			)
-		// } else {
-		// 	return;
-		// }
 	}
 	
 	handleClear(e) {
 		e.preventDefault();
-		this.props.clearSessionErrors().then(
-			() => this.props.closeModal()
-		)
+		this.props.clearSessionErrors();
+		this.props.closeModal();
 	}
 
   handleDemoSubmit(e){
     e.preventDefault();
     const user = { email: "Demo-User", password: "password" };
 		this.props.demoSubmit(user).then(
-				() => this.props.closeModal(),
-				// this.props.history.push("/stream")
-			);
+			() => this.props.closeModal()
+		);
+		this.props.clearSessionErrors();
+		
 			// 	this.props.history.push("/stream"),
 			// 	console.log(user));
     // this.props.processForm(user).then(() => this.props.history.push("/"));
@@ -80,18 +78,18 @@ class SessionForm extends React.Component {
     return (
       <div className="loginFormContainer">
         {/* <div className=""> */}
-					<div onClick={this.props.closeModal} className="close-x">
+					<div onClick={(e) => this.handleClear(e)} className="close-x">
 						X
 					</div>
+
+				<button className="session-submit demo" onClick={(e) => this.handleDemoSubmit(e)}>Continue as Demo User</button>
 					
-          <form onSubmit={this.handleSubmit} className="loginFormBox">
+          <form onSubmit={(e) => this.handleSubmit(e)} className="loginFormBox">
 					
             {/* <h1>Welcome to SoundPoof!</h1>
             <br /><br />
 
             please {this.props.formType} or {this.props.otherForm} */}
-
-						<button className="session-submit demo" onClick={this.handleDemoSubmit}>Continue as Demo User</button>
 
 						<br /><br /><p className="session-or">or</p><br />
 					
