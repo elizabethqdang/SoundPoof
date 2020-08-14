@@ -36,8 +36,8 @@ export const signup = user => dispatch => (
   SessionAPIUtil.signup(user).then(
     user => dispatch(receiveCurrentUser(user)),
     errors => {
-			dispatch(receiveSessionErrors(errors.responseJSON));
-			console.log(errors.responseJSON);
+			dispatch(receiveSessionErrors(errors));
+			console.log(errors);
 			return errors;
 		}
   ));
@@ -59,10 +59,13 @@ export const logout = () => dispatch => (
 ));
 
 export const otherForm = email => dispatch => (
-  SessionAPIUtil.emailValidate(email)
-    .then(user => dispatch(receiveUserInfo(user)))
-    .fail(error => (dispatch(receiveSessionErrors(error.responseJSON))))
-);
+  SessionAPIUtil.emailValidate(email).then(
+		user => dispatch(receiveUserInfo(user))).fail(
+		errors => {
+			dispatch(receiveSessionErrors(errors.responseJSON));
+			console.log(errors.responseJSON);
+		}
+	))
 
 export const fetchCurrentUser = currentUserId => dispatch => {
 	return SessionAPIUtil.fetchCurrentUser(currentUserId).then(currentUser => {

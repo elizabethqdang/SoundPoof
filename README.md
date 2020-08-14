@@ -11,14 +11,14 @@
 - PostgreSQL
 
 SoundPoof is a full-stack web application clone of SoundCloud that is built on Rails. SoundPoof features music streamig. Users can search for, list, repost6, and comme4nt on music. Users can also follow other users.
-![splash](app/assets/images/splash.png)
+![splash](app/assets/images/splash-page.png)
 
 ### Features
 
 1. User Auth
-2. User Profile w/ likes/reposts/follows
+2. User Profile w/ likes/reposts/follow
 3. Track Upload
-4. Track Page 
+4. Track Page & Comments
 5. Stream
 6. Search
 7. Tracklayer
