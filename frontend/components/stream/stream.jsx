@@ -11,8 +11,10 @@ class Stream extends React.Component {
 		this.state = {
 			showStream: true,
 			showSearch: false,
-			showProfile: false,
+	 		showProfile: false,
 		}
+		this.streamSidebar = this.streamSidebar.bind(this);
+		this.stream = this.stream.bind(this);
 	}
 
 	componentDidMount() {
@@ -28,18 +30,31 @@ class Stream extends React.Component {
 	// 	}); 
 	// }
 
+	stream() {
+		return (
+		 (tracks).map((track, idx) => (
+				<TrackIndexItem id={track.id} key={idx} track={track} currentUser={currentUser || {}} users={users} tracks={tracks} user={users[track.user_id]} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} createLike={createLike} deleteLike={deleteLike} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer || {}} setTrackPlayer={setTrackPlayer} seekPlayer={seekPlayer} endCurrentTrack={endCurrentTrack} />
+			)))
+		 }
+
+	StreamSidebar() {
+		return (
+		<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} trackplayer={trackplayer} createFollow={createFollow} deleteFollow={deleteFollow} randomNum={randomNum} />
+		)
+	}
+
 	render() {
 		const { user, currentUser, trackplayer, setPlayPause, setProg, deleteTrack, createRepost, deleteRepost, createLike, deleteLike, createFollow, deleteFollow,fetchTrack, fetchAllTracks, seekWaveForm, seekTrack, seekPlayer, setTrackPlayer, endCurrentTrack } = this.props;
 		let tracks = Object.values(this.props.tracks);
 		let users = Object.values(this.props.users);
 
-		let stream = ((tracks)).map((track, idx) => (
-			<TrackIndexItem id={track.id} key={idx} track={track} currentUser={currentUser || {}} users={users} tracks={tracks} user={users[track.user_id]} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} createLike={createLike} deleteLike={deleteLike} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer || {}} setTrackPlayer={setTrackPlayer} seekPlayer={seekPlayer} endCurrentTrack={endCurrentTrack} />
-		));
+		// let stream = ((tracks)).map((track, idx) => (
+		// 	<TrackIndexItem id={track.id} key={idx} track={track} currentUser={currentUser || {}} users={users} tracks={tracks} user={users[track.user_id]} setPlayPause={setPlayPause} setProg={setProg} deleteTrack={deleteTrack} createRepost={createRepost} deleteRepost={deleteRepost} createLike={createLike} deleteLike={deleteLike} fetchTrack={fetchTrack} fetchAllTracks={fetchAllTracks} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer || {}} setTrackPlayer={setTrackPlayer} seekPlayer={seekPlayer} endCurrentTrack={endCurrentTrack} />
+		// ));
 
-		let streamSidebar = (
-			<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} trackplayer={trackplayer} createFollow={createFollow} deleteFollow={deleteFollow} />
-		);
+		// let streamSidebar = (
+		// 	<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} trackplayer={trackplayer} createFollow={createFollow} deleteFollow={deleteFollow} />
+		// );
 
 		let streamNavbar = (
 			<NavbarContainer currentUser={currentUser} tracks={tracks} trackplayer={trackplayer} users={users} />
@@ -59,7 +74,8 @@ class Stream extends React.Component {
 						</nav>
 						<p>Hear the latest posts from the people you're following</p>
 						<ul className='homepage-tracks'>
-							{stream}
+							{/* {stream} */}
+							{this.stream()}
 						</ul>
 					</div>
 
@@ -67,7 +83,9 @@ class Stream extends React.Component {
 						<div className="sidebar-ad-container">
 							<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src="" /></a>
 						</div>
-						{streamSidebar}
+						{this.streamSidebar()}
+						{/* {streamSidebar} */}
+						{/* <StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} trackplayer={trackplayer} createFollow={createFollow} deleteFollow={deleteFollow} randomNum={randomNum} /> */}
 					</div>
 					
 				</main>

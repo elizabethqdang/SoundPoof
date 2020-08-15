@@ -7,16 +7,20 @@ import { fetchTrack } from '../../actions/track_actions';
 class StreamSidebar extends React.Component {
   constructor(props) {
 		super(props);
+		let randomIdx = Math.floor(Math.random() * this.state.users.length);
 		this.followItem = this.followItem.bind(this);
 		this.likeItem = this.likeItem.bind(this);
-		this.toggleLike = this.toggleLike.bind(this);
+		// this.toggleLike = this.toggleLike.bind(this);
 		this.toggleFollow = this.toggleFollow.bind(this);
   }
 	
 	followItem() {
+		let randomIdx = Math.floor(Math.random() * this.state.users.length);
+		let users = (this.state.users.slice(randomIdx, randomIdx + 3) || {});
+
 		return (
-		(this.props.users).map((user, idx) => {
-			return <StreamSidebarFollowItem id={user.id} key={idx} user={user} currentUser={this.props.currentUser} toggleFollow={(e) => this.toggleFollow(e, user)} createFollow={this.props.createFollow} deleteFollow={this.props.deleteFollow} />
+			(users).map((user, idx) => {
+			return <StreamSidebarFollowItem id={user.id} key={idx} user={user} currentUser={this.props.currentUser} toggleFollow={(e) => this.toggleFollow(e, user)} createFollow={this.props.createFollow} deleteFollow={this.props.deleteFollow} trackplayer={this.props.trackplayer || {}} />
 		}))
 	}
 
@@ -24,31 +28,31 @@ class StreamSidebar extends React.Component {
 		return (
 			(this.props.tracks).map((track, idx) => {
 				if (this.props.cLikedTracks.includes(track.id)) {
-					return <StreamSidebarLikeItem key={idx} track={track} />
+					return <StreamSidebarLikeItem key={idx} track={track} trackplayer={this.props.trackplayer || {}} />
 				} 
 			})
 		)
 	}
 
-	toggleLike(e) {
-		e.preventDefault();
-		const { track, deleteLike, createLike, currentUser, users } = this.props;
+	// toggleLike(e) {
+	// 	e.preventDefault();
+	// 	const { track, deleteLike, createLike, currentUser, users } = this.props;
 
-		if (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) {
-			deleteLike(track.id).then(
-				() => this.props.fetchTrack(track.id)
-			);
-		} else {
-			createLike(track.id).then(
-				() => this.props.fetchTrack(track.id)
-			);
-		};
-	}
+	// 	if (this.props.currentUser.likedTrackIds.includes(this.props.track.id)) {
+	// 		deleteLike(track.id).then(
+	// 			() => this.props.fetchTrack(track.id)
+	// 		);
+	// 	} else {
+	// 		createLike(track.id).then(
+	// 			() => this.props.fetchTrack(track.id)
+	// 		);
+	// 	};
+	// }
  
 	toggleFollow(e, user) {
 		e.preventDefault();
 		const { track, deleteFollow, createFollow, currentUser, users } = this.props;
-		console.log("user", user);
+		// console.log("user", user);
 
 		if (this.props.currentUser.followingIds.includes(user.id)) {
 			deleteFollow(user.id)
@@ -62,6 +66,10 @@ class StreamSidebar extends React.Component {
 		const {users, currentUser, tracks, track, cLikedTracks, cLikedTrackIds} = this.props;
 		// const user = this.props.currentUser;
 		// console.log("user", user, "users", users, "currentUser", currentUser);
+		// let ranNum = Math.floor(Math.random() * this.state.users.length);
+		// let randonNum = this.state.randomNum;
+		// let users = (this.state.users.slice(randomIdx, randomIdx + 3) || {});
+		// let users = (this.state.users.slice(ranNum, ranNum + 3) || {});
 
     return (
 			<aside className="sidebar-right">
@@ -76,7 +84,14 @@ class StreamSidebar extends React.Component {
 
 					<div className="sidebar-content">
 						<ul className="sidebar-list">
-							{this.followItem()}
+							{this.followItem}
+
+						{/* {
+							(users).map((user, idx) => {
+							return <StreamSidebarFollowItem id={user.id} key={idx} user={user} currentUser={this.props.currentUser} toggleFollow={(e) => this.toggleFollow(e, user)} createFollow={this.props.createFollow} deleteFollow={this.props.deleteFollow} trackplayer={this.props.trackplayer || {}} />
+							})
+						} */}
+
 						</ul>
 					</div>
 				</section>
@@ -104,8 +119,8 @@ class StreamSidebar extends React.Component {
 const StreamSidebarFollowItem = ({ user, users, track, currentUser, toggleFollow, createFollow, deleteFollow }) => {
 	
 	// let toggleFollow = ((currentUser.followingIds.includes(user.id)) ? deleteFollow(user.id) : createFollow(user.id));
-	let active = ((currentUser && currentUser.followingIds.includes(user.id)) ? ' user-follow-btn followed active' : 'user-followers user-follow-btn');
-	let likeButton = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'Following' : 'Follow');
+	let followBtn = ((currentUser && currentUser.followingIds.includes(user.id)) ? ' user-follow-btn active followed active' : 'user-follow-btn');
+	let followText = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'Following' : 'Follow');
 
   return (
 		<li className="user-suggestion-item">
@@ -127,10 +142,10 @@ const StreamSidebarFollowItem = ({ user, users, track, currentUser, toggleFollow
 						</div>
 					</div>
 
-					<div className="user-suggestion-actions">
+					<div className="user-suggestion-follo-btn">
 						<button 
 						onClick={(e) => toggleFollow(e, user)} 
-						className={`bc-btn user-followers user-follow-btn ${active}`} type="button">{likeButton}</button>
+						className={`bc-btn user-suggestion-follow-btn  ${followBtn}`} type="button">{followText}</button>
 					</div>
 				</div>
 
@@ -186,22 +201,16 @@ const mapStateToProps = (state) => {
 	const users = Object.values(state.users);
 	const cLikedTracks = (cLikedTrackIds.slice(0, 3)).map((id) => {
 		return id;
-		// return tracks[id];
 	})
 	const randomIdx = Math.floor(Math.random() * users.length);
-	// console.log(users.length, randomIdx, randomIdx+3);
-	// console.log("currentUser", currentUser);
-	// console.log("cLikedTrackIds", cLikedTrackIds);
-	// console.log("tracks", tracks);
-	// console.log("cLikedTracks", cLikedTracks);
-
 	return {
 		currentUser,
 		cLikedTrackIds,
 		cLikedTracks,
 		// tracks: (Object.values(state. tracks)),
 		// tracks: state. tracks,
-		users: (Object.values(state.users)).slice(randomIdx, randomIdx+3) || {},
+		usersToFollow: (Object.values(state.users)).slice(randomIdx, randomIdx+3) || {},
+		users: Object.values(state.users) || {},
 	};
 };
 
