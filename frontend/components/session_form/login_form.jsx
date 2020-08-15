@@ -106,20 +106,13 @@ class SessionForm extends React.Component {
                   onChange={this.update('email')}
 									className={`loginInput ${error}`}
                 />
-                <input
-                  type="password"
-                  placeholder="Your Password *"
-                  value={this.state.password}
-                  onChange={this.update('password')}
-                  className={`loginInput ${error}`}
-                />
 								{/* {this.renderErrors()} */}
 								<div className="modalError">{this.renderErrors()}</div>
 
               <input
                 className="session-submit"
                 type="submit"
-                value="Sign in"
+                value="Continue"
               />
               
               <br /><br />

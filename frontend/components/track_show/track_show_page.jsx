@@ -131,7 +131,7 @@ class TrackShowPage extends React.Component {
 
 	userFollowBtn() {
 		const {track, currentUser } = this.props;
-		let followBtn = (currentUser.followingIds.includes(track.user_id)) ? 'user-follow-btn active' : 'user-follow-btn';
+		let followBtn = (currentUser.followingIds.includes(track.user_id)) ? 'user-follow-btn active followed active' : ' user-follow-btn';
 		let followText = ((currentUser.followingIds.includes(track.user_id)) ? 'Following' : "Follow");
 
 		if (currentUser.id !== track.user_id) {
@@ -233,7 +233,7 @@ class TrackShowPage extends React.Component {
 								</div>
 							</div>
 							<div className='track-sd-bott'>
-								{waveForm}
+								{/* {waveForm} */}
 							</div>
 						</div>
 						<div className='track-show-image-container'>
@@ -262,7 +262,7 @@ class TrackShowPage extends React.Component {
 									{userFollowBtn}
 								</div>
 								<div className='ts-uc-right'>
-									<div className='ts-track-description'>DESCRIPTION</div>
+									<div className='ts-track-description'>{track.description ? track.description : "DESCRIPTION"}}</div>
 									<div className='ts-track-numComments comment-btn'>{commentLength}</div>
 									<div className='track-show-comment-index'>
 										{trackComments}

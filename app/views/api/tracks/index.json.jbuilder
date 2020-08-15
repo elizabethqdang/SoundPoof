@@ -37,7 +37,7 @@
         else 
             json.artworkUrl ''
 				end
-				if track.user.profile_image.attached?
+gl				if track.user.profile_image.attached?
 					json.profileImgUrl url_for(track.user.profile_image)
 				else
 					json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'

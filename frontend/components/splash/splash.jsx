@@ -40,7 +40,7 @@ class Splash extends React.Component {
 		e.preventDefault();
 		if (!this.props.currentUser) {
 			this.props.openModal("login");
-			window.location.hash = `/${link}`;
+			// window.location.hash = `/${link}`;
 
 		} else if (this.props.currentUser) {
 			window.location.hash = `/${link}`;
@@ -82,7 +82,7 @@ class Splash extends React.Component {
             <h1 className="splash-title">SOUNDPOOF</h1>
             <h2 className="splash-subtitle">What's next in music is first on SoundPoof</h2>
             {/* Upload your first track and begin your journey. SoundPoof gives you space to create,find your fans, and connect with other artists. */}
-            <button className="header-button start-uploading-today" onClick={(e) => IoTSiteWise.verifyLoggedIn(e, "/#/upload")}>Start uploading today</button>
+            <button className="header-button start-uploading-today" onClick={(e) => this.verifyLoggedIn(e, "/#/upload")}>Start uploading today</button>
           </section>
         </div>
 
