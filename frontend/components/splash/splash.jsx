@@ -189,8 +189,8 @@ class Splash extends React.Component {
 									<img src="" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title truncate'> </p>
-									<p className='trending-track artist truncate'> </p>
+									<p className='trending-track title truncate'></p>
+									<p className='trending-track artist truncate'>Alison Wonderland</p>
 								</div>
 							</li>
 						</a>
@@ -202,7 +202,7 @@ class Splash extends React.Component {
 								</div>
 								<div className='trending-track-info'>
 									<p className='trending-track title truncate'> </p>
-									<p className='trending-track artist truncate'> </p>
+									<p className='trending-track artist truncate'>NGHTMRE</p>
 								</div>
 							</li>
 						</a>
@@ -214,7 +214,7 @@ class Splash extends React.Component {
 								</div>
 								<div className='trending-track-info'>
 									<p className='trending-track title truncate'> </p>
-									<p className='trending-track artist truncate'></p>
+									<p className='trending-track artist truncate'>Gryffin</p>
 								</div>
 							</li>
 						</a>
@@ -226,7 +226,7 @@ class Splash extends React.Component {
 								</div>
 								<div className='trending-track-info'>
 									<p className='trending-track title truncate'>  </p>
-									<p className='trending-track artist truncate'>  </p>
+									<p className='trending-track artist truncate'>Hermitude</p>
 								</div>
 							</li>
 						</a>
@@ -237,8 +237,8 @@ class Splash extends React.Component {
 									<img src="" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title truncate'> </p>
-									<p className='trending-track artist truncate'> </p>
+									<p className='trending-track title truncate'>UCLA (feat. 24hrs)</p>
+									<p className='trending-track artist truncate'>RL Grime</p>
 								</div>
 							</li>
 						</a>
