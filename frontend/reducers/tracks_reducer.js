@@ -11,15 +11,12 @@ const tracksReducer = (state = {}, action) => {
 		
     switch (action.type) {
 				case RECEIVE_ALL_TRACKS:
-					// return action.tracks;
-					// return nextState;
 					newState = action.tracks;
 					return newState;
 				case RECEIVE_TRACK:
 					newState[action.track.id] = action.track;
 					return newState;
 				case RECEIVE_SINGLE_TRACK:
-					// nextState[action.track.id] = action.track;
 					newState.track = action.track;
 					return newState;
         case REMOVE_TRACK:

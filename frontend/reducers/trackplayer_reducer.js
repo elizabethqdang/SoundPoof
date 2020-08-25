@@ -38,11 +38,6 @@ const trackplayerReducer = (state = _defaultState, action) => {
 					playerSeek: state.progressTrackId[action.trackId] || 0,
 					progressTrackId: {[action.trackId]: action.progress}
 				});
-			// } else if (!action.trackId || action.trackId === 0) {
-			// 	return merge({}, state, {
-			// 		playing: true,
-			// 		trackId: 1
-			// 	});
 			} else {
 				return merge({}, state, {
 					playing: !state.playing,
@@ -54,9 +49,6 @@ const trackplayerReducer = (state = _defaultState, action) => {
 				return merge({}, state, {
 					trackId: 1,
 					playing: true,
-					// progressTrackId: {[ac0,
-					// waveSeek: 0,
-					// playerSeek: 0,
 				})
 			} else {
 				newtrackId = state.trackId += 1
