@@ -74,13 +74,11 @@ class Navbar extends React.Component {
   handleSignup(e) {
     e.preventDefault();
     this.props.openModal("signup");
-    // this.props.history.push("/");
   }
 
   handleLogin(e) {
     e.preventDefault();
     this.props.openModal("login");
-    // this.props.history.push("/");
 	}
 	
 	handleButton(e, modal) {
@@ -92,7 +90,6 @@ class Navbar extends React.Component {
 			window.location.hash = `/${modal}`;
 			this.props.openModal(`${modal}`);
 		}
-		// console.log(`"${modal}"`, `/${modal}`, modal);
 	}
 
   // This is causing the search page to always render upon app load up
@@ -191,7 +188,6 @@ class Navbar extends React.Component {
 	}
 
   render() {
-		// console.log("navbar", this.state);
 		const { currentUser, logout, openModal, loggedIn, tracks, users, trackplayer } = this.props;
 		let navLeft = this.navLeft();
 		let navSearch = this.navSearch();
