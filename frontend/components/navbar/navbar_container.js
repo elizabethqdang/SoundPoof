@@ -8,7 +8,6 @@ import Navbar from "./navbar";
 
 const mapStateToProps = (state) => ({
 	loggedIn: Boolean(state.session.currentUser),
-	// loggedIn: Boolean(state.session.id),
 	currentUser: state.session.currentUser || {},
 	trackplayer: state.trackplayer || {},
 	tracks: state.tracks,
@@ -17,7 +16,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
-	// openModal: formType => dispatch(openModal(formType)),
 	openModal: modal => dispatch(openModal(modal)),
 	closeModal: () => dispatch(closeModal()),
 	fetchAllTracks: () => dispatch(fetchAllTracks()),

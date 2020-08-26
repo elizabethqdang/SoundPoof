@@ -44,7 +44,7 @@ class Stream extends React.Component {
 	}
 
 	render() {
-		const { user, currentUser, trackplayer, setPlayPause, setProg, deleteTrack, createRepost, deleteRepost, createLike, deleteLike, createFollow, deleteFollow,fetchTrack, fetchAllTracks, seekWaveForm, seekTrack, seekPlayer, setTrackPlayer, endCurrentTrack } = this.props;
+		const { user, currentUser, trackplayer } = this.props;
 		let tracks = Object.values(this.props.tracks);
 		let users = Object.values(this.props.users);
 
@@ -75,7 +75,8 @@ class Stream extends React.Component {
 						<p>Hear the latest posts from the people you're following</p>
 						<ul className='homepage-tracks'>
 							{/* {stream} */}
-							{this.stream()}
+							{/* {this.stream()} */}
+							<StreamSidebar users={users} currentUser={currentUser || null} tracks={tracks} trackplayer={trackplayer} createFollow={createFollow} deleteFollow={deleteFollow} /> */}
 						</ul>
 					</div>
 

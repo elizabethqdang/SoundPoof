@@ -14,12 +14,13 @@ class SearchBar extends React.Component {
 			searchResults: [],
 			showSearch: false
 		};
+
 		this.updateSearchResults = this.updateSearchResults.bind(this);
 		this.searchResultHeader = this.searchResultHeader.bind(this);
 		this.toSearch = this.toSearch.bind(this);
-		this.showSearch = this.showSearch.bind(this);
+		this.showSearch = this.showSearch.bind(this);	
+		this.clickResult = this.clickResult.bind(this);
 	}
-
 
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState.searchInput !== this.state.searchInput) {
@@ -31,8 +32,6 @@ class SearchBar extends React.Component {
 		this.setState({
 			showSearch: true,
 		});
-		// console.log("stream", this.state.showStream, this.state.showSearch, this.state.showProfile);
-
 	}
 
 	updateInput(searchInput) {
@@ -60,8 +59,6 @@ class SearchBar extends React.Component {
     for (let i = 0; i < this.props.tracks.length; i++) {
 			const title = tracks[i].title.toLowerCase() || tracks[i].title;
 			const searchString = this.state.searchInput.toLowerCase() || "";
-			// console.log("title", title);
-			// console.log("searchString", searchString);
 
       if (searchInput.length > 0 && title.includes(searchString)) {
         searchResults.push(tracks[i]);
@@ -86,10 +83,15 @@ class SearchBar extends React.Component {
     }
 	}
 	
-	toSearch(e) {
+	toSearchs(e) {
 		if (e.key === 'Enter' && e.target.value !== '') {
 			window.location.hash = `/search?q=${e.target.value}`;
 		}
+	}
+
+	clickResult(e) {
+		e.preventDefault();
+		window.location.hash
 	}
 
 	render() {
