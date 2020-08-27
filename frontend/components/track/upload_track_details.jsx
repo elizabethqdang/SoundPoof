@@ -36,7 +36,7 @@ class UploadTrackDetails extends React.Component {
 				artworkFile: file,
 				errors: [],
 				artworkUrl: fileReader.result,
-				// artwork: fileReader.result
+				artwork: fileReader.result
 			});
 		};
 

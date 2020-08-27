@@ -1,7 +1,6 @@
 import React from "react";
-import { Link, Switch, Route, withRouter } from "react-router-dom";
-import { connect } from 'react-redux';
-import { AuthRoute, ProtectedRoute, HideSplashNavRoute } from "../util/route_util";
+import { Switch } from "react-router-dom";
+import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import SplashContainer from "./splash/splash_container";
 import ModalContainer from "./modal/modal_container";
 import NavbarContainer from "./navbar/navbar_container";

@@ -125,7 +125,6 @@ class UserShow extends React.Component {
 		// console.log(user.id, currentUser.id)
 
 		if (this.props.user === undefined) {
-			// console.log("this.props.user", this.props.user);
 			return (
 				<div></div>
 			)
@@ -140,8 +139,6 @@ class UserShow extends React.Component {
 			let likedTrackIds = this.props.user.likedTrackIds;
 			let editProfile = this.updateImageBtn();
 			let numFollowing = (user && user.numFollowing ? user.numFollowing : "0");
-			// console.log("user", user);
-			// console.log("trackIds", trackIds);
 
 			if (this.state.trackStream) {
 				stream = (Object.values(tracks).map((track, idx) => {
@@ -184,9 +181,6 @@ class UserShow extends React.Component {
 		const followActive = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'followed active' : 'user-follow-btn');
 		const followText = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'Following' : 'Follow');
 	
-		const profileIcon = { ["backgroundImage"]:"https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg" };
-		const bannerImg = { ["backgroundImage"]: "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/banner.jpeg" };
-
     return (
       <div className="usershow-container">
 				{/* <NavbarContainer currentUser={currentUser || {}} /> */}
