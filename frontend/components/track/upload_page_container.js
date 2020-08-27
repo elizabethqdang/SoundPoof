@@ -7,7 +7,6 @@ const mapStateToProps = (state) => ({
 
 		currentUser: state.session.currentUser,
 		user_id: state.session.currentUser.id,
-		// userId: users[session.id]
 		// track: {
 			title: '',
 			description: '',
