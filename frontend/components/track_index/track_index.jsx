@@ -8,20 +8,12 @@ class TrackIndex extends React.Component {
 		super(props);
 	}
 
-	// componentWillMount() {
-		// this.props.fetchAllTracks();
-		// this.props.fetchAllUsers();
-	// }
-
 	render() {
 		const { tracks, trackplayer, currentUser, users, track } = this.props;
 		let libNavbar = (
 			<NavbarContainer currentUser={currentUser} tracks={tracks} trackplayer={trackplayer} users={users} /> 
 			);
 
-		// console.log("track-index");
-		// console.log("track-index", "tracks", tracks, "track", track, "currentUser", currentUser, "users", users);
-		
 		return (
 			// <div className="discover-container">
 			// 	<div className="discover">

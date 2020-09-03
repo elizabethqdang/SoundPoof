@@ -1,12 +1,5 @@
 import React from "react";
-// import UploadTrackForm from "./upload_track_form";
-
-// import { connect } from "react-redux";
-// import NavBarContainer from "../navbar/navbar_container";
-// import { openModal } from "../../actions/modal_actions";
 import {withRouter} from "react-router";
-// import { createTrack } from "../../actions/track_actions";
-// import Modal from "react-modal";
 
 class UploadTrack extends React.Component {
 	constructor(props) {
@@ -16,10 +9,7 @@ class UploadTrack extends React.Component {
 			title: "",
 			audioFile: null,
 			errors: []
-			// artist: "", artworkUrl: "", artworkFile: null, trackUrl: "", trackFile: "", route: "upload", isActive: "", formPage: "prompt page",
-		};
-		// this.back = this.back.bind(this);
-		// this.toHome = this.toHome.bind(this);
+		}
 		this.handleTrackFile = this.handleTrackFile.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -42,9 +32,6 @@ class UploadTrack extends React.Component {
 				]
 			});
 		}
-		// if (file) {
-		// 	fileReader.readAsDataURL(file);
-		// }
 	}
 
 	handleSubmit(e) {
