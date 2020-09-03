@@ -119,12 +119,10 @@ class TrackShowPage extends React.Component {
 		if (currentUser.followingIds.includes(track.user_id)) {
 			deleteFollow(track.user_id).then(
 				() => fetchTrack(track.id)
-				// () => fetchUser(track.user_id),
 			);
 		} else {
 			createFollow(track.user_id).then(
 				() => fetchTrack(track.id)
-				// () => fetchUser(track.user_id),
 			);
 		}
 	}
@@ -182,7 +180,6 @@ class TrackShowPage extends React.Component {
 	render() {
 		const { track, currentUser } = this.props;
 		if (track === undefined) {
-			// console.log("track", track);
 			return (
 				<div></div>
 			)
@@ -211,9 +208,9 @@ class TrackShowPage extends React.Component {
 				(comments).map((comment, idx) => (
 				<CommentIndexItem id={comment.id} key={idx} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} />
 			)));
-			let waveForm = (
-				<WaveFormContainer track={track} height={100} color={'#fff'} currentUser={currentUser} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer} />
-			);
+			// let waveForm = (
+			// 	<WaveFormContainer track={track} height={100} color={'#fff'} currentUser={currentUser} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer} />
+			// );
 
 			return (
 				<div className='track-show-page'>
@@ -271,9 +268,6 @@ class TrackShowPage extends React.Component {
 							</div>
 						</div>
 						<div className='trackshow-sidebar-right'>
-							{/* <div className="ad-container">
-								<a href="http://www.github.com/eqdang/soundpoof" target="_blank"><img src={this.props.currentUser.profileImgUrl} /></a>
-							</div> */}
 							<TrackSidebar users={users} currentUser={currentUser || {}} tracks={tracks} track={track} user={user} />
 						</div>
 					</div>
