@@ -10,7 +10,6 @@ class TrackSidebar extends React.Component {
   }
 	
 	trackLikes() {
-		// console.log(this.props.track);
 		return (
 		(this.props.users).map((user, idx) => {
 			if (this.props.track && this.props.track.likerIds.includes(user.id)) {
@@ -21,7 +20,6 @@ class TrackSidebar extends React.Component {
 	}
 
 	trackReposts() {
-		// console.log(this.props.track);
 		return (
 		(this.props.users).map((user, idx) => {
 			if (this.props.track && this.props.track.reposterIds.includes(user.id)) {
@@ -37,7 +35,6 @@ class TrackSidebar extends React.Component {
 		const numReposts = (track.numReposts);
 		const trackLikes = this.trackLikes();
 		const trackReposts = this.trackReposts();
-		// console.log("user", user, "users", users, "currentUser", currentUser);
 
     return (
 			<aside className="sidebar-right">
@@ -83,10 +80,6 @@ class TrackSidebar extends React.Component {
 }
 
 const TrackLikes = ({ user, users, tracks, currentUser, track }) => {
-	// let active = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'active' : '');
-	// let likeButton = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'Liked' : 'Like');
-	// console.log(user.profileImgUrl);
-
 	return (
 		<li className="user-suggestion-item track-stat-container">
 			<Link to={`/users/${user.id}`} className="user-suggestion-avatar">
@@ -99,10 +92,6 @@ const TrackLikes = ({ user, users, tracks, currentUser, track }) => {
 };
 
 const TrackReposts = ({ user, users, tracks, currentUser, track }) => {
-	// let active = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'active' : '');
-	// let likeButton = ((currentUser && currentUser.likedTrackIds.has(track.id)) ? 'Liked' : 'Like');
-	// console.log(user, user.profileImgUrl);
-
 	return (
 		<li className="user-suggestion-item track-stat-container">
 			<Link to={`/users/${user.id}`} className="user-suggestion-avatar">

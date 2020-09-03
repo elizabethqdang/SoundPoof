@@ -6,9 +6,6 @@ import NavbarContainer from '../navbar/navbar_container';
 class TrackIndex extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			// tracks: []
-		}
 	}
 
 	// componentWillMount() {
@@ -16,10 +13,6 @@ class TrackIndex extends React.Component {
 		// this.props.fetchAllUsers();
 	// }
 
-	// componentWillReceiveProps(newState) {
-  //   this.setState({ tracks: newState.tracks }); 
-	// }
-	
 	render() {
 		const { tracks, trackplayer, currentUser, users, track } = this.props;
 		let libNavbar = (
