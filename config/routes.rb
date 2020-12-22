@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   root to: 'static_pages#root'
 
   namespace :api, defaults: { format: :json } do
-		resources :users, only: [:index, :create, :show, :update]
     resource :session, only: [:create, :destroy]
+		resources :users, only: [:index, :create, :show, :update]
     resources :tracks, only: [:index, :create, :show, :update, :destroy] do
 			resources :comments, only: [:index, :create, :show]
 		end
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 		delete 'users/reposts/:track_id', to: 'users#unrepost'
 		
 		post 'users/following/:following_id', to: 'users#follow'
-    delete 'users/following/:following_id', to: 'users#unfollow'
+    delete 'users/ following/:following_id', to: 'users#unfollow'
 	end
 	
 
