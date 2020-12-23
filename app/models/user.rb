@@ -67,14 +67,14 @@ class User < ApplicationRecord
 		through: :followed_by,
 		source: :follower
 
-	def require_user_profile(user)
-      if user.profile_image.attached?
-        user.profile_image
-      else
-				'placeholder.jpeg'
-				# user.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'), filename: 'placeholder.jpeg')
-      end
-  end
+	# def require_user_profile(user)
+  #     if user.profile_image.attached?
+  #       user.profile_image
+  #     else
+	# 			'placeholder.jpeg'
+	# 			user.profile_image.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'), filename: 'placeholder.jpeg')
+  #     end
+  # end
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
