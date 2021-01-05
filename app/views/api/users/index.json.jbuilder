@@ -1,6 +1,6 @@
 @users.each do |user|
 	json.set! user.id do
-		json.extract! user, :id, :username, :email, :location, :bio, :profile_image, :banner
+		json.extract! user, :id, :username, :email, :location, :bio, :banner, :profile
 
 		json.id user.id
 		json.email user.email
@@ -27,7 +27,7 @@
 		# if user.profile_image.attached?
 		# 	json.profileImgUrl url_for(user.profile_image)
 		# else
-		# 	json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
+		# 	json.profileImgUrl "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"
 		# end
 	
 	end

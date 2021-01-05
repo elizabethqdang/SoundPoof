@@ -1,6 +1,6 @@
 json.partial! "api/users/user", user: @user 
 
-json.tracks @user.tracks
+# json.tracks @user.tracks
 
 
 # if @user.profile_image.attached?
