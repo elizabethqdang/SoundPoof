@@ -26,7 +26,8 @@ const usersReducer = (state = _initialState, action) => {
 		case RECEIVE_SINGLE_USER:
 			// newState = _.merge({}, state);
 			// newState.user = action.user;
-			return Object.assign({}, state, {[user]: action.user});
+			// return newState;
+			return Object.assign({}, state, {[action.user.id]: action.user});
 		case RECEIVE_ALL_USERS:
 			return Object.assign({}, state, action.users);
 		default:

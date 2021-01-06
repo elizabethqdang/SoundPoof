@@ -153,8 +153,8 @@ export const deleteRepost = (trackId) => (dispatch) => {
 	});
 };
 
-export const createFollow = (followingId) => (dispatch) => {
-	return UserAPIUtil.createFollow(followingId).then(
+export const createFollow = (userId) => (dispatch) => {
+	return UserAPIUtil.createFollow(userId).then(
 		payload => {
 			dispatch(receiveFollow(payload));
 			return payload;
@@ -166,8 +166,8 @@ export const createFollow = (followingId) => (dispatch) => {
 	});
 };
 
-export const deleteFollow = (followingId) => (dispatch) => {
-	return UserAPIUtil.deleteFollow(followingId).then(
+export const deleteFollow = (userId) => (dispatch) => {
+	return UserAPIUtil.deleteFollow(userId).then(
 	payload => {
 		dispatch(removeFollow(payload));
 		return payload;

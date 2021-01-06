@@ -66,16 +66,16 @@ export const deleteRepost = (trackId) => {
 	});
 };
 
-export const createFollow = (followingId) => {
+export const createFollow = (userId) => {
 	return $.ajax({
 		method: 'POST',
-		url: `/api/users/following/${followingId}`,
+		url: `/api/users/following/${userId}`
 	});
 };
 
-export const deleteFollow = (followingId) => {
+export const deleteFollow = (userId) => {
 	return $.ajax({
 		method: 'DELETE',
-		url: `/api/users/following/${followingId}`
+		url: `/api/users/following/${userId}`
 	});
 };
