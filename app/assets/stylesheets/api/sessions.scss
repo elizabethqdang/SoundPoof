@@ -150,3 +150,14 @@
 	text-align: left;
 	justify-self: left;
 }
+
+.session-input.user {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.session-input.email {
+	width: 95%;
+}

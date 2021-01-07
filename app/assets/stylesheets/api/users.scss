@@ -7,10 +7,10 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: middle;
-	width: 1240px;
+	// width: 1240px;
 	// padding: 0 20px 0;
 	margin: 0 auto;
-	height: fit-content;
+	height: auto;
 	// overflow-x: scroll;
 
 }
@@ -854,4 +854,9 @@
   font-weight: 300;
   font-size: 18px;
   line-height: 1.3;
+}
+
+
+.hidden {
+	visibility: hidden;
 }
