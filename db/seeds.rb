@@ -78,8 +78,8 @@ t1 = Track.create({
 	artist: 'Ty Dolla/Louis The Child Remix', 
 	user_id: u6.id,
 })
-t1.audio.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/louisthechild-blase.mp3'), filename: 'louisthechild-blase.mp3')
-t1.artwork.attach(io: open('https://soundpoof.s3-us-west-2.amazonaws.com/tracks/Screen+Shot+2020-04-01+at+8.26.54+PM.png'), filename: 'blase.png')
+t1.audio.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/blase.mp3'), filename: 'blase.mp3')
+t1.artwork.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/blase.png'), filename: 'blase.png')
 
 t2 = Track.create({
 id: 2,
