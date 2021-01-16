@@ -67,7 +67,7 @@ class Navbar extends React.Component {
   logoutUser(e) {
     e.preventDefault();
     this.props.logout().then(
-			this.props.history.push("/")
+			() => this.props.history.push("/")
 		);
   }
 
@@ -211,7 +211,7 @@ class Navbar extends React.Component {
 			// return (
 			// 	<UserShow currentUser={currentUser || {}} tracks={tracks} users={users} fetchUser={this.props.fetchUser} fetchAllTracks={this.props.fetchAllTracks} trackplayer={trackplayer || {}} />
 			// );
-			window.location.hash = '/stream';
+			window.location.hash = `/users/${this.props.currentUser.id}`;
 
 		};
 
