@@ -97,7 +97,7 @@ class Splash extends React.Component {
 						<button onClick={(e) => this.verifyLoggedIn(e)} onSubmit={(e) => this.toSearch(e)} type="submit" className="splash-search-button"><i className="fas fa-search"></i></button>
           </form>
 					or
-          <a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} href="/#/upload" onClick={(e) => this.verifyLoggedIn(e, "/#/upload")}><button className="header-button">Upload your own</button>
+          <a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} href="/#/upload"><button className="header-button">Upload your own</button>
 					</a>
         </div>
         <br/><br/>
@@ -160,11 +160,11 @@ class Splash extends React.Component {
 						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/5")} className='trending-track-item-container' href="/#/tracks/5">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
-									<img src="https://soundpoof.s3-us-west-2.amazonaws.com/tracks/excision.png" />
+									<img src="https://soundpoof-seeds.s3-us-west-2.amazonaws.com/high.png" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title truncate'>Throwin' Elbows</p>
-									<p className='trending-track artist truncate'>Excision</p>
+									<p className='trending-track title truncate'>High - Bassnectar Remix</p>
+									<p className='trending-track artist truncate'>Rusko</p>
 								</div>
 							</li>
 						</a>
@@ -186,11 +186,11 @@ class Splash extends React.Component {
 						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} className='trending-track-item-container' href="/#/tracks/">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
-									<img src="" />
+									<img src="https://soundpoof-seeds.s3-us-west-2.amazonaws.com/likeaboss.png" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title truncate'></p>
-									<p className='trending-track artist truncate'>Alison Wonderland</p>
+									<p className='trending-track title truncate'>Like a Boss</p>
+									<p className='trending-track artist truncate'>Eptic</p>
 								</div>
 							</li>
 						</a>
@@ -198,11 +198,11 @@ class Splash extends React.Component {
 						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} className='trending-track-item-container' href="/#/tracks/">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
-									<img src="" />
+									<img src="https://soundpoof-seeds.s3-us-west-2.amazonaws.com/basshead.png" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title truncate'> </p>
-									<p className='trending-track artist truncate'>NGHTMRE</p>
+									<p className='trending-track title truncate'>Bass Head</p>
+									<p className='trending-track artist truncate'>Bassnectar</p>
 								</div>
 							</li>
 						</a>
@@ -210,11 +210,11 @@ class Splash extends React.Component {
 						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} className='trending-track-item-container' href="/#/tracks/">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
-									<img src="" />
+									<img src="https://soundpoof-seeds.s3-us-west-2.amazonaws.com/heatwaves.png" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title truncate'> </p>
-									<p className='trending-track artist truncate'>Gryffin</p>
+									<p className='trending-track title truncate'>Heat Waves - Diplo Remix</p>
+									<p className='trending-track artist truncate'>Glass Animals</p>
 								</div>
 							</li>
 						</a>
@@ -222,11 +222,11 @@ class Splash extends React.Component {
 						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} className='trending-track-item-container' href="/#/tracks/">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
-									<img src="" />
+									<img src="https://soundpoof-seeds.s3-us-west-2.amazonaws.com/adhd.png" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title truncate'>  </p>
-									<p className='trending-track artist truncate'>Hermitude</p>
+									<p className='trending-track title truncate'>A.D.H.D.</p>
+									<p className='trending-track artist truncate'>Kendrick Lamar</p>
 								</div>
 							</li>
 						</a>
@@ -234,23 +234,23 @@ class Splash extends React.Component {
 						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} className='trending-track-item-container' href="/#/tracks/">
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
-									<img src="" />
+									<img src="https://soundpoof-seeds.s3-us-west-2.amazonaws.com/nothingforfree.png" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title truncate'>UCLA (feat. 24hrs)</p>
-									<p className='trending-track artist truncate'>RL Grime</p>
+									<p className='trending-track title truncate'>Nothing for Free</p>
+									<p className='trending-track artist truncate'>Pendulum</p>
 								</div>
 							</li>
 						</a>
 {/* 12 */}
-						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} className='trending-track-item-container' href="/#/tracks/12" >
+						<a onClick={(e) => this.verifyLoggedIn(e, "/#/tracks/")} className='trending-track-item-container' href="/#/tracks/" >
 							<li className='trending-track-item'>
 								<div className='trending-track-artwork'>
-									<img src="" />
+									<img src="https://soundpoof-seeds.s3-us-west-2.amazonaws.com/craveyou.png" />
 								</div>
 								<div className='trending-track-info'>
-									<p className='trending-track title truncate'>J Cole</p>
-									<p className='trending-track artist truncate'>Middle</p>
+									<p className='trending-track title truncate'>Flight Facilities - Crave You Remix</p>
+									<p className='trending-track artist truncate'>Adventure Club</p>
 								</div>
 							</li>
 						</a>
@@ -259,7 +259,7 @@ class Splash extends React.Component {
 				<div className="trending-footer"></div>
 
         <div>
-          <button className="header-button">Explore trending playlists</button>
+          <button className="header-button" onClick={(e) => this.verifyLoggedIn(e, "/#/stream")}>Explore trending playlists</button>
         </div>
 			</div>
 		); 

@@ -1,3 +1,4 @@
+import { forEach } from "lodash";
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -34,7 +35,7 @@ class SignupForm extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		// const user = Object.assign({}, this.state);
+		// const urser = Object.assign({}, this.state);
 		// this.props.processForm(user).then(this.props.closeModal);
 
 		let user = {
@@ -74,7 +75,29 @@ class SignupForm extends React.Component {
 
 	render() {
 		let error = ((this.props.errors && this.props.errors.length > 0) ? 'error' : '');
-		// let errors = this.renderErrors();
+		let errors = this.props.errors;
+		console.log("errors", errors);
+		const emailErr = (errors.map((err) => (err.includes('Email') ? err : '')));
+		const passwordErr = (errors.map((err) => (err.includes('Password') ? err : '')));
+		let err1 = (emailErr.every(err => err.length === 0) ? '' : 'error');
+		let err2 = (passwordErr.every(err => err.length === 0) ? '' : 'error');
+			
+		// let ((err) => (err.includes('Email')) ? 'error' : '')));
+		// let err2 = (passwordErr.map((err) => (err.includes('Password') ? 'error' : '')));
+		
+		// let err1;
+		// errors.forEach((err) => {
+		// 	if (err.includes('Email')) {
+		// 		err1 = 'error';
+		// 	} else {
+		// 		err1 = '';
+		// 	}
+		// });
+		
+		console.log("err1 2", err1, err2);
+	
+		// console.log("emailErr.length, passwordErr.length", emailErr.length, passwordErr.length);
+	
 		
 		return (
 			<div className="session-form-container">
@@ -86,17 +109,22 @@ class SignupForm extends React.Component {
 
 				<form onSubmit={(e) => this.handleSubmit(e)} className="session-form">
 					<div className="signup-form">
-						<a href="#">
-							<span class="glyphicon glyphicon-triangle-left"></span>
-						</a>
+						{/* <a href="#"> */}
+							{/* <span class="glyphicon glyphicon-triangle-left"></span> */}
+						{/* </a> */}
+						<div className={`session-input user ${err1}`}>
+							<i class="fas fa-caret-left" onClick={(e) => this.props.closeModal()}></i>
 						<input
 							type="text"
 							value={this.state.email}
 							onChange={this.update('email')}
-							placeholder="You e mail address or username"
-							className={`session-input email ${error}`}
+							placeholder="Your email or username"
+							className="session-input email"
 						/>
-						{/* <div className="modalError">{errors}</div> */}
+						</div>
+						
+						<div className="modalError">{errors.map((err) => (err.includes('Email') ? err : ""))}
+						</div>
 
 						<p className="session-instruct">
 							Choose a password
@@ -106,9 +134,10 @@ class SignupForm extends React.Component {
 							value={this.state.password}
 							onChange={this.update('password')}
 							placeholder=""
-							className={`session-input password ${error}`}
+							className={`session-input password ${err2}`}
 						/>
-						<div className="modalError">{errors}</div>
+						<div className="modalError">{errors.map((err) => (err.includes('Password') ? err : ""))}
+						</div>
 
 						<div>
 							<input

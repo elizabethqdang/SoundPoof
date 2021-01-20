@@ -12,7 +12,7 @@ const mapStateToProps = (state, { errors }) => {
 		// navLink: <Link to="/signup">sign up instead</Link>,
 		loggedIn: Boolean(state.session.currentUser),
 		errors: state.errors.session || [],
-		currentUser: state.session.currentUser,
+		currentUser: state.session.currentUser || {},
   };
 };
 
