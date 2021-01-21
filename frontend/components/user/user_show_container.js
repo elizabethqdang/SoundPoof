@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchUser, updateUser, createLike, deleteLike, createRepost, deleteRepost, createFollow, deleteFollow} from "../../actions/user_actions";
+import { fetchSingleUser, updateUser, createLike, deleteLike, createRepost, deleteRepost, createFollow, deleteFollow} from "../../actions/user_actions";
 import { fetchAllTracks, fetchTrack, deleteTrack } from "../../actions/track_actions";
 import { withRouter, Route } from "react-router-dom";
 import { setCurrentTrack, setPlayPause, setProg, seekTrack, seekWaveForm, seekPlayer } from '../../actions/trackplayer_actions';
@@ -7,30 +7,30 @@ import UserShow from "./user_show";
 
 const mapStateToProps = (state, ownProps) => {
 	// const userId = ownProps.match.params.userId;
-	// const currentUserId = ((state.session.currentUser) ? state.session.currentUser.id : null);
+	const currentUser = (state.session.currentUser) || {};
 	const users = state.users || {};
 	// const user = state.users[ownProps.match.params.userId] || {};
 	// const tracks = state.tracks || {};
-	// console.log(user);
-
+	const userId = (window.location.hash.split("/").slice(-1));
 	return {
 		users: state.users || {},
 		currentUser: state.session.currentUser || {},
-		userId: ownProps.match.params.userId,
+		// userId: userId,
 		user: state.users[ownProps.match.params.userId] || {},
-		// user: state. users[userId],
+		// user: state.users[userId],
 		// userId: ownProps.match.params.id,
 		tracks: state.tracks || {},
 		// userTracks: user.tracks || {},
 		// users: state. users || {},
 		// tracks: user.tracks || {},
+		// followed: currentUser.followingIds.includes(userId) ? true : false,
 		trackplayer: state.trackplayer || {},
 		loggedIn: Boolean(state.session.currentUser),
 	};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	fetchUser: (userId) => dispatch(fetchUser(userId)),
+	fetchSingleUser: (userId) => dispatch(fetchSingleUser(userId)),
 	fetchTrack: (trackId) => dispatch(fetchTrack(trackId)),
 	fetchAllTracks: () => dispatch(fetchAllTracks()),
 	updateUser: (userId, user) => dispatch(updateUser(userId, user)),
@@ -44,8 +44,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	deleteLike: (trackId) => dispatch(deleteLike(trackId)),
 	createRepost: (trackId) => dispatch(createRepost(trackId)),
 	deleteRepost: (trackId) => dispatch(deleteRepost(trackId)),
-	createFollow: (followingId) => dispatch(createFollow(followingId)),
-	deleteFollow: (followingId) => dispatch(deleteFollow(followingId)),
+	createFollow: (userId) => dispatch(createFollow(userId)),
+	deleteFollow: (userId) => dispatch(deleteFollow(userId)),
 	deleteTrack: (trackId) => dispatch(deleteTrack(trackId)),
 });
 

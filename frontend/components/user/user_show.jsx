@@ -14,11 +14,12 @@ class UserShow extends React.Component {
 			trackStream: true,
 			likedStream: false,
 			repostedStream: false,
-			showStream: false,
+			showStream: true,
 			showSearch: false,
 			showProfile: false,
 			showPlaylists: false,
 			showComments: false,
+			followed: "",
 		}
 		this.toggleFollow = this.toggleFollow.bind(this);
 		this.updateImage = this.updateImage.bind(this);
@@ -29,13 +30,19 @@ class UserShow extends React.Component {
   }
 
   componentDidMount() {
-		this.props.fetchUser(this.props.match.params.userId);
+		const user = this.props.fetchSingleUser(this.props.match.params.userId);
 		this.props.fetchAllTracks();
+		
+		const userId =(user ? user.id : window.location.hash.split('/').splice(-1));
+		console.log("userId", userId);
+		if (this.props.currentUser.id === userId) {
+			this.setState({followed: null});
+		};
   }
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.match.params.userId !== this.props.match.params.userId) {
-			this.props.fetchUser(this.props.match.params.userId);
+			this.props.fetchSingleUser(this.props.match.params.userId);
 		}
 
 		let { playing, trackId, player, progressTrackId } = this.props.trackplayer;
@@ -73,13 +80,16 @@ class UserShow extends React.Component {
 	
 	toggleFollow(e) {
 		e.preventDefault();
-		const { user, deleteFollow, createFollow, fetchUser, currentUser } = this.props;
+		const { user, deleteFollow, createFollow, fetchSingleUser, currentUser } = this.props;
+		const userId =(user ? user.id : window.location.hash.split('/').splice(-1));
 
 		if (currentUser && currentUser.followingIds.includes(user.id)) {
-			deleteFollow(user.id).then(fetchUser(user.id));
-		} else {
-			createFollow(user.id).then(fetchUser(user.id));
-		}
+			deleteFollow(user.id).then(fetchSingleUser(user.id));
+			this.setState({followed: false});
+		} else if (currentUser && !currentUser.followingIds.includes(user.id)) {
+			createFollow(user.id).then(fetchSingleUser(user.id));
+			this.setState({followed: true});
+		};
 	}
 
 	updateImageBtn() {
@@ -95,15 +105,20 @@ class UserShow extends React.Component {
 		}
 	}
 
-	showTracks() {
+	showTracks(e) {
+		e.preventDefault();
+		this.props.history.push(`/users/${this.props.user.id}`);
 		this.setState({
 			trackStream: true,
 			likedStream: false,
 			repostedStream: false
 		});
+		this.props.history.push(`/users/${this.props.user.id}`);
 	}
 
-	showLikes() {
+	showLikes(e) {
+		e.preventDefault();
+		this.props.history.push(`/users/${this.props.user.id}/likes`);
 		this.setState({
 			trackStream: false,
 			likedStream: true,
@@ -111,7 +126,8 @@ class UserShow extends React.Component {
 		});
 	}
 
-	showReposts() {
+	showReposts(e) {
+		e.preventDefault();
 		this.setState({
 			trackStream: false,
 			likedStream: false,
@@ -123,6 +139,27 @@ class UserShow extends React.Component {
 		const { user, users, track, tracks, currentUser, trackplayer, setPlayPause, userTracks} = this.props;
 		let editProfile = this.updateImageBtn();
 		// console.log(user.id, currentUser.id)
+		let followButton;
+		let followText;
+		let hidden = '';
+		const userId =(user ? user.id : window.location.hash.split('/').splice(-1));
+		console.log("userId", userId);
+		// if (this.props.currentUser.id === userId) {
+		// 	this.state.followed = null;
+		// };
+		if (this.props.currentUser.id === this.props.userId || this.state.followed === null) {
+			this.state.followed = null;
+			followButton = 'hidden';
+			followText = '';
+			hidden = 'hidden';
+		};
+		if (this.props.currentUser.id !== this.props.userId && this.state.followed === true) {
+			followButton = 'followed active';
+			followText = 'Following';
+		} else if (this.props.currentUser.id !== this.props.userId && this.state.followed === false) {
+			followButton = 'user-follow-btn';
+			followText = 'Follow';
+		};
 
 		if (this.props.user === undefined) {
 			return (
@@ -177,9 +214,10 @@ class UserShow extends React.Component {
 					)
 				}
 			});
-
-		const followActive = ((currentUser.id !== user.id && currentUser.followingIds.includes(user.id)) ? 'followed active' : 'user-follow-btn');
-		const followText = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'Following' : 'Follow');
+		
+		
+		// const followActive = ((currentUser.id !== user.id && currentUser.followingIds.includes(user.id)) ? 'followed active' : 'user-follow-btn');
+		// const followText = ((currentUser && currentUser.followingIds.includes(user.id)) ? 'Following' : 'Follow');
 
     return (
       <div className="usershow-container">
@@ -203,17 +241,17 @@ class UserShow extends React.Component {
 				<div className="usershow-btn-bar-container">
 					<ul className="user-info-tabs">
 						<li className="user-info-tabs-item">
-							<NavLink exact to={`/users/${user.id}`} activeClassName="selected" onClick={() => this.showTracks()} className="user-info-tabs-link">Tracks</NavLink>
-							<NavLink exact to={`/users/${user.id}/likes`} activeClassName={this.state.likedStream ? 'selected' : ''} onClick={() => this.showLikes()} className="user-info-tabs-link">Likes</NavLink>
-							<NavLink exact to={`/users/${user.id}/reposts`} activeClassName={this.state.repostedStream ? 'selected' : ''} onClick={() => this.showReposts()} className="user-info-tabs-link">Reposts</NavLink>
-							<NavLink exact to={`/users/${user.id}/playlists`} activeClassName={this.state.showPlaylists ? 'selected' : ''} className="user-info-tabs-link">Playlists</NavLink>
-							<NavLink exact to={`/users/${user.id}/comments`} activeClassName={this.state.showComments ? 'selected' : ''} className="user-info-tabs-link">Comments</NavLink>
+							<NavLink exact to={`/users/${this.props.user.id}`} activeClassName={this.state.showStream ? 'selected' : ''} onClick={(e) => this.showTracks(e)} className="user-info-tabs-link">Tracks</NavLink>
+							<NavLink exact to={`/users/${this.props.user.id}/likes`} activeClassName={this.state.likedStream ? 'selected' : ''} onClick={(e) => this.showLikes(e)} className="user-info-tabs-link">Likes</NavLink>
+							<NavLink exact to={`/users/${this.props.user.id}/reposts`} activeClassName={this.state.repostedStream ? 'selected' : ''} onClick={(e) => this.showReposts(e)} className="user-info-tabs-link">Reposts</NavLink>
+							<NavLink exact to={`/users/${this.props.user.id}/playlists`} activeClassName={this.state.showPlaylists ? 'selected' : ''} className="user-info-tabs-link">Playlists</NavLink>
+							<NavLink exact to={`/users/${this.props.user.id}/comments`} activeClassName={this.state.showComments ? 'selected' : ''} className="user-info-tabs-link">Comments</NavLink>
 
 						</li>
 					</ul>
 
-					<div className="user-info-buttons">
-						<button type="button" className={`action-follow user-info-follow-btn ${followActive}`} onClick={(e) => this.toggleFollow(e)}>{followText}</button>
+					<div className={`user-info-buttons ${hidden}`}>
+						<button type="button" className={`action-follow user-info-follow-btn ${followButton}`} onClick={(e) => this.toggleFollow(e)}>{followText}</button>
 					</div>
 				</div>
 			
@@ -252,6 +290,6 @@ class UserShow extends React.Component {
 				</div>
     )};
   }
-}
+};
 
 export default withRouter(UserShow);
