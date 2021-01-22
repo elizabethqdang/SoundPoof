@@ -24,7 +24,7 @@
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
-/config/master.key,
+/config/master.key
 config/master.key
 /.env
 .env
@@ -34,4 +34,4 @@ bundle.js.map
 .byebug_history
 .DS_Store
 npm-debug.log
-/config/credentials.yml.enc
+# /config/credentials.yml.enc
