@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { NavLink, Link, withRouter } from "react-router-dom";
 import moment from 'moment';
 import NavbarContainer from "../navbar/navbar_container";
 import CommentIndexContainer from "../comments/comment_index_container";
@@ -23,15 +23,16 @@ class TrackShowPage extends React.Component {
 		this.deleteTrack = this.deleteTrack.bind(this);
 		this.toggleFollow = this.toggleFollow.bind(this);
 		this.userFollowBtn = this.userFollowBtn.bind(this);
+		this.clickUser = this.clickUser.bind(this);
 	}
 	componentDidMount() {
 		let trackId = this.props.match.params.trackId;
-		this.props.fetchTrack(trackId);
+		let track = this.props.fetchTrack(trackId);
 		// this.props.fetchUser(this.props.user);
 	}
 		
 	componentDidUpdate(prevProps) {
-		debugger
+		// debugger
 		// const trackId = this.props.trackId;
 		if (prevProps.match.params.trackId !== this.props.match.params.trackId) {
 			this.props.fetchTrack(this.props.match.params.trackId);
@@ -77,6 +78,13 @@ class TrackShowPage extends React.Component {
 		deleteTrack(track.id).then(() => this.props.history.push('/stream'));
 	}
 
+	clickUser(e, link) {
+		e.preventDefault();
+    window.location.hash = (link);
+		console.log(link);
+		this.setState({showProfile: true});
+	}
+	
 	toggleLike(e) {
 		e.preventDefault();
 		const { track, deleteLike, createLike, currentUser, fetchTrack} = this.props;
@@ -180,6 +188,7 @@ class TrackShowPage extends React.Component {
 	render() {
 		const { track, currentUser } = this.props;
 		if (track === undefined) {
+			console.log(this.props.track);
 			return (
 				<div></div>
 			)
@@ -222,7 +231,10 @@ class TrackShowPage extends React.Component {
 							<div className='track-sd-top'>
 								<div className={buttonPlaying} onClick={(e) => this.playButton(track, e)}></div>
 								<div className='track-sd-info'>
-									<a href={`/#/users/${track.user_id}`}><div className='track-sd-uploader'>{track.artist}</div></a>
+									{/* <a href={`/#/users/${track.user_id}`} onClick={(e) => this.clickLink(e, `/users/${track.user_id}`)}><div className='track-sd-uploader'>{track.artist}</div></a> */}
+									<NavLink exact to={`/users/${track.user_id}`}onClick={(e) => this.clickUser(e, `/users/${track.user_id}`)}>
+										<div className='track-sd-uploader'>{track.artist}</div>
+										</NavLink>
 									<div className='track-sd-title'>{track.title}</div>
 								</div>
 								<div className="track-timestamp">
@@ -247,10 +259,16 @@ class TrackShowPage extends React.Component {
 							<div className='ts-uploader-ci'>
 								<div className='ts-uc-left'>
 									<div className='ts-artist-circle'>
+										<img src={track.profileImgUrl} />
+										<NavLink exact to={`/users/${track.user_id}`}onClick={(e) => this.clickUser(e, `/users/${track.user_id}`)}>
 											<img src={track.profileImgUrl} />
-										<a href={`/#/users/${track.user_id}`}><img src={track.profileImgUrl} /></a>
+										</NavLink>
+										{/* <a href={`/users/${track.user_id}`}><img src={track.profileImgUrl} /></a> */}
 									</div>
-									<a href={`/#/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a>
+									<NavLink exact to={`/users/${track.user_id}`} onClick={(e) => this.clickUser(e, `/users/${track.user_id}`)}>
+										<div className='ts-artist-name'>{track.userEmail}</div>
+									</NavLink>
+										{/* <a href={`/users/${track.user_id}`}><div className='ts-artist-name'>{track.userEmail}</div></a> */}
 									<div className='ts-artist-stats'> 
 										<div className='user-suggestion-followers'>{numFollowers}</div>
 										<div className='user-suggestion-tracks'>{numTracks}</div>
@@ -259,7 +277,7 @@ class TrackShowPage extends React.Component {
 									{userFollowBtn}
 								</div>
 								<div className='ts-uc-right'>
-									<div className='ts-track-description'>{track.description ? track.description : "DESCRIPTION"}}</div>
+									<div className='ts-track-description'>{track.description ? track.description : "DESCRIPTION"}</div>
 									<div className='ts-track-numComments comment-btn'>{commentLength}</div>
 									<div className='track-show-comment-index'>
 										{trackComments}

@@ -1,14 +1,15 @@
 import { connect } from "react-redux";
 import { fetchTrack, fetchAllTracks, deleteTrack, updateTrack } from "../../actions/track_actions";
-import { fetchAllUsers, fetchUser, createLike, deleteLike, createRepost, deleteRepost, createFollow, deleteFollow } from '../../actions/user_actions';
+import { fetchAllUsers, fetchSingleUser, createLike, deleteLike, createRepost, deleteRepost, createFollow, deleteFollow } from '../../actions/user_actions';
 import { fetchCurrentUser } from '../../actions/session_actions';
 import TrackShowPage from './track_show_page';
 import { setCurrentTrack, setPlayPause, setProg, receiveCurrentTrack, seekWaveForm, seekTrack } from '../../actions/trackplayer_actions';
 import { deleteComment } from '../../actions/comment_actions';
 
 const mapStateToProps = (state, ownProps) => {
-	// const	tracks = state. tracks;
+	// const	tracks = state.tracks;
 	// let trackId = parseInt(match.params.trackId);
+	// let track = state.tracks.track || {};
 	let track = state.tracks[ownProps.match.params.trackId] || {};
 	return {
 		tracks: state.tracks || {},
@@ -28,7 +29,7 @@ const mapDispatchToProps = dispatch => ({
 	fetchTrack: trackId => dispatch(fetchTrack(trackId)),
 	fetchAllTracks: () => dispatch(fetchAllTracks()),
 	fetchAllUsers: () => dispatch(fetchAllUsers()),
-	fetchUser: userId => dispatch(fetchUser(userId)),
+	fetchSingleUser: userId => dispatch(fetchSingleUser(userId)),
 	fetchCurrentUser: id => dispatch(fetchCurrentUser(id)),
 	playSong: () => dispatch(playSong()),
 	pauseSong: () => dispatch(pauseSong()),
