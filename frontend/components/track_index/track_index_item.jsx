@@ -122,7 +122,7 @@ class TrackIndexItem extends React.Component {
 			<div className='track-item-container'>
 				<div className='track-item-header'>
 					<aside className="track-user-profile">
-						<img src={track.profileImgUrl ? track.profileImgUrl : 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'} />
+						<img src={track.profileImgUrl ? track.profileImgUrl : 'https://soundpoof-seeds.s3-us-west-2.amazonaws.com/placeholder.jpeg'} />
 					</aside>
 					<a href={`/#/users/${track.user_id}`}><aside className="track-user-username">{track.userEmail}</aside></a>
 					<div className="track-timestamp">
