@@ -1,8 +1,8 @@
 @tracks.each do |track|
     json.set! track.id do 
-				json.extract! track, :id, :title, :artist, :user_id, :description, :created_at, :audio, :artwork
+				json.extract! track, :id, :title, :artist, :user_id, :description, :created_at
 
-				json.user_id track.user.id
+				json.user_id track.user_id
 
 				# json.commenterIds track.comments.pluck(:user_id)
 				json.numComments track.comments.length
@@ -27,20 +27,20 @@
 				json.profileUrl asset_path(track.user.profile.url)
 				json.bannerUrl asset_path(track.user.banner.url)
 				
-				# if track.audio.attached? 
-        #     json.audioUrl url_for(track.audio)
-        # else 
-        #     json.audioUrl ''
-        # end
-        # if track.artwork.attached? 
-        #     json.artworkUrl url_for(track.artwork)
-        # else 
-        #     json.artworkUrl ''
-				# end
-				# if track.user.profile_image.attached?
-				# 	json.profileImgUrl url_for(track.user.profile_image)
-				# else
-				# 	json.profileImgUrl 'https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg'
-				# end
+				if track.audio.attached? 
+            json.audioUrl url_for(track.audio)
+        else 
+            json.audioUrl ''
+        end
+        if track.artwork.attached? 
+            json.artworkUrl url_for(track.artwork)
+        else 
+            json.artworkUrl 'https://soundpoof-seeds.s3-us-west-2.amazonaws.com/placeholder.jpeg'
+				end
+				if track.user.profile_image.attached?
+					json.profileImgUrl url_for(track.user.profile_image)
+				else
+					json.profileImgUrl 'https://soundpoof-seeds.s3-us-west-2.amazonaws.com/placeholder.jpeg'
+				end
 		end
 end

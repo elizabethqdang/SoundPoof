@@ -62,7 +62,7 @@ class TrackSidebar extends React.Component {
 							<span className="sidebar-header-reposts-icon"></span>
 							<span>{numReposts} Reposts</span>
 						</h3>
-						<span className="sidebar-header-refresh" >View All</span>
+						<span className="sidebar-header-refresh">View All</span>
 					</a>
 
 					<div className="sidebar-content track-reposts">
@@ -85,8 +85,9 @@ const TrackLikes = ({ user, users, tracks, currentUser, track }) => {
 			<Link to={`/users/${user.id}`} className="user-suggestion-avatar">
 				<img src={user.profileImgUrl} />
 			</Link>
-			<a href='/#/users/${user.id}' className="user-suggestion-artist-link truncate track-likes">{user.email}
-			</a>
+			<Link to={`/users/${user.id}`} className="user-suggestion-artist-link truncate track-likes">
+				{user.email}
+			</Link>
 		</li>
 	);
 };

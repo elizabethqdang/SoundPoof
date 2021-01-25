@@ -38,11 +38,11 @@ const sessionReducer = (state = _nullUser, action) => {
 			return newState;
 		case RECEIVE_FOLLOW:
 			newState = _.merge({}, state);
-			newState.currentUser.followingIds.push(action.followingId);
+			newState.currentUser.followingIds.push(action.userId);
 			return newState;
 		case REMOVE_FOLLOW:
 			newState = _.merge({}, state);
-			idx = newState.currentUser.followingIds.indexOf(action.followingId);
+			idx = newState.currentUser.followingIds.indexOf(action.userId);
 			newState.currentUser.followingIds.splice(idx, 1);
 			return newState;
 		default:

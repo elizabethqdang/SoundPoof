@@ -162,7 +162,7 @@ export const createFollow = (userId) => (dispatch) => {
 		errors => {
 			dispatch(receiveUserErrors(errors.responseJSON));
 			console.log(errors.responseJSON);
-			// return errors;
+			return errors;
 	});
 };
 
@@ -174,7 +174,7 @@ export const deleteFollow = (userId) => (dispatch) => {
 	}, errors => {
 		dispatch(receiveUserErrors(errors.responseJSON));
 		console.log(errors.responseJSON);
-		// return errors;
+		return errors;
 	});
 };
 

@@ -67,7 +67,7 @@ class StreamSidebar extends React.Component {
 	}
 
   render() {
-	debugger
+	// debugger
 		const { currentUser, tracks, track, cLikedTracks, cLikedTrackIds} = this.props;
 		let followItem = this.followItem();
 		// const user = this.props.currentUser;

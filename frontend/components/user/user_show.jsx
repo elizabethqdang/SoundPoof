@@ -85,10 +85,10 @@ class UserShow extends React.Component {
 
 		if (currentUser && currentUser.followingIds.includes(user.id)) {
 			deleteFollow(user.id).then(fetchSingleUser(user.id));
-			this.setState({followed: false});
+			// this.setState({followed: false});
 		} else if (currentUser && !currentUser.followingIds.includes(user.id)) {
 			createFollow(user.id).then(fetchSingleUser(user.id));
-			this.setState({followed: true});
+			// this.setState({followed: true});
 		};
 	}
 
@@ -147,16 +147,16 @@ class UserShow extends React.Component {
 		// if (this.props.currentUser.id === userId) {
 		// 	this.state.followed = null;
 		// };
-		if (this.props.currentUser.id === this.props.userId || this.state.followed === null) {
-			this.state.followed = null;
+		if (this.props.currentUser.id === this.props.userId) {
+			// this.state.followed = null;
 			followButton = 'hidden';
 			followText = '';
 			hidden = 'hidden';
 		};
-		if (this.props.currentUser.id !== this.props.userId && this.state.followed === true) {
+		if (this.props.currentUser.id !== userId && this.props.currentUser.followingIds.includes(userId)) {
 			followButton = 'followed active';
 			followText = 'Following';
-		} else if (this.props.currentUser.id !== this.props.userId && this.state.followed === false) {
+		} else if (this.props.currentUser.id !== this.props.userId && !this.props.currentUser.followingIds.includes(userId)) {
 			followButton = 'user-follow-btn';
 			followText = 'Follow';
 		};

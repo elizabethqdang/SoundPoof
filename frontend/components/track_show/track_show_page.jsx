@@ -28,6 +28,7 @@ class TrackShowPage extends React.Component {
 	componentDidMount() {
 		let trackId = this.props.match.params.trackId;
 		let track = this.props.fetchTrack(trackId);
+		this.setState({track: track});
 		// this.props.fetchUser(this.props.user);
 	}
 		
@@ -92,11 +93,13 @@ class TrackShowPage extends React.Component {
 		if (currentUser.likedTrackIds.includes(track.id)) {
 			deleteLike(track.id).then(
 				() => fetchTrack(track.id),
+				() => fetchSingleTrack(track.id),
 				this.trackButtonBar()
 			);
 		} else {
 			createLike(track.id).then(
 				() => fetchTrack(track.id),
+				() => fetchSingleTrack(track.id),
 				this.trackButtonBar()
 			);;
 		}
@@ -187,7 +190,7 @@ class TrackShowPage extends React.Component {
 
 	render() {
 		const { track, currentUser } = this.props;
-		if (track === undefined) {
+		if (this.props.track === undefined) {
 			console.log(this.props.track);
 			return (
 				<div></div>
@@ -217,6 +220,9 @@ class TrackShowPage extends React.Component {
 				(comments).map((comment, idx) => (
 				<CommentIndexItem id={comment.id} key={idx} currentUser={currentUser || {}} deleteComment={deleteComment} comment={comment} users={users} track={track} />
 			)));
+			let trackSidebar = (
+				<TrackSidebar users={users} currentUser={currentUser || {}} tracks={tracks} track={track} user={user} />
+			)
 			// let waveForm = (
 			// 	<WaveFormContainer track={track} height={100} color={'#fff'} currentUser={currentUser} seekWaveForm={seekWaveForm} seekTrack={seekTrack} trackplayer={trackplayer} />
 			// );
@@ -246,7 +252,7 @@ class TrackShowPage extends React.Component {
 							</div>
 						</div>
 						<div className='track-show-image-container'>
-							<img src={track.artworkUrl ? track.artworkUrl : "https://soundpoof.s3-us-west-2.amazonaws.com/tracks/placeholder.jpeg"} />
+							<img src={track.artworkUrl ? track.artworkUrl : "https://soundpoof-seeds.s3-us-west-2.amazonaws.com/placeholder.jpeg"} />
 						</div>
 					</div>
 					<div className='track-show-container-bottom'>
@@ -286,7 +292,8 @@ class TrackShowPage extends React.Component {
 							</div>
 						</div>
 						<div className='trackshow-sidebar-right'>
-							<TrackSidebar users={users} currentUser={currentUser || {}} tracks={tracks} track={track} user={user} />
+							{/* <TrackSidebar users={users} currentUser={currentUser || {}} tracks={tracks} track={track} user={user} /> */}
+							{trackSidebar}
 						</div>
 					</div>
 				</div>

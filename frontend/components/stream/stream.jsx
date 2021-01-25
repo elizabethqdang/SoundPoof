@@ -78,7 +78,7 @@ class Stream extends React.Component {
 						<nav className='stream-nav'>
 							<ul>
 								<li><NavLink to='/stream' activeClassName='selected'>Stream</NavLink></li>
-								<li><Link to='/stream'>All</Link></li>
+								<li><NavLink to='/stream'>All</NavLink></li>
 								{/* <li><Link to='/stream'>Discover</Link></li> */}
 							</ul>
 						</nav>
