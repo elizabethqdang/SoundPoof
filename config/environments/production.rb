@@ -1,5 +1,12 @@
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
+	# Settings specified here will take precedence over those in config/application.rb.
+	
+	# CACHING IN RAILS 
+	# tells rails to serve assets itself
+	config.serve_static_assets = true
+	# tells client to store asset <= year
+	config.static_cache_control = "public, max-age=31536000"
+	
 
   # Code is not reloaded between requests.
   config.cache_classes = true

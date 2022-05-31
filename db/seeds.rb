@@ -1,393 +1,79 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([ name: 'Star Wars' ,  name: 'Lord of the Rings' ])
-#   Character.create(name: 'Luke', movie: movies.first)
-# 
-ActiveRecord::Base.connection.reset_pk_sequence!('users')
-ActiveRecord::Base.connection.reset_pk_sequence!('tracks')
-ActiveRecord::Base.connection.reset_pk_sequence!('comments')
-ActiveRecord::Base.connection.reset_pk_sequence!('likes')
-ActiveRecord::Base.connection.reset_pk_sequence!('reposts')
-
-
-require 'open-uri'
-
-
-User.destroy_all
-# User.reset_pkey_sequence!
-Track.destroy_all
-# Track.reset_pk_sequence!
-Comment.destroy_all
-# Comment.reset_pk_sequence!
-Repost.destroy_all
-# Repost.reset_pk_sequence!
-Like.destroy_all
-# Like.reset_pk_sequence!
-
-
-
-u1 = User.create({ id: 1, email: "Demo-User", password: "password", bio: "", location: "", username: "Demo-User" })
-u1.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/placeholder.jpeg'), filename: 'placeholder.jpeg')
-
-u2 = User.create({ id: 2, email: "Louis The Child", password: "password", bio: "", location: "Chicago, United States", username: "Louis The Child" })
-u2.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/louisthechild.png'), filename: 'louisthechild.png')
-
-u3 = User.create({ id: 3, email: "Rusko", password: "password", bio: "", location: "", username: "Rusko" })
-u3.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/rusko.png'), filename: 'rusko.png')
-
-u4 = User.create({ id: 4, email: "Eptic", password: "password", bio: "", location: "", username: "Eptic" })
-u4.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/eptic.png'), filename: 'eptic.png')
-
-u5 = User.create({ id: 5, email: "Flume", password: "password", bio: "", location: "", username: "Flume" })
-u5.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/flume.png'), filename: 'flume.png')
-
-u6 = User.create({ id: 6, email: "Glass Animals", password: "password", bio: "", location: "", username: "Glass Animals" })
-u6.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/glassanimals.png'), filename: 'glassanimals.png')
-
-u7 = User.create({ id: 7, email: "Kendrick Lamar", password: "password", bio: "", location: "", username: "Kendrick Lamar" })
-u7.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/kendrick.png'), filename: 'kendrick.png')
-
-u8 = User.create({ id: 8, email: "Pendulum", password: "password", bio: "", location: "", username: "Pendulum" })
-u8.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/pendulum.png'), filename: 'pendulum.png')
-
-u9 = User.create({ id: 9, email: "Adventure Club", password: "password", bio: "", location: "", username: "Adventure Club" })
-u9.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/adventureclub.png'), filename: 'adventureclub.png')
-
-u10 = User.create({ id: 10, email: "Eminem", password: "password", bio: "", location: "", username: "Eminem" })
-u10.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/eminem.png'), filename: 'eminem.png')
-
-u11 = User.create({ id: 11, email: "J Cole", password: "password", bio: "", location: "", username: "J Cole" })
-u11.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/jcole.png'), filename: 'jcole.png')
-
-u12 = User.create({ id: 12, email: "Cashmere Cat", password: "password", bio: "", location: "", username: "Cashmere Cat" })
-u12.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/cashmerecat.png'), filename: 'cashmerecat.png')
-
-u13 = User.create({ id: 13, email: "Bassnectar", password: "password", bio: "", location: "", username: "Bassnectar" })
-u13.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/bassnectar.png'), filename: 'bassnectar.png')
-
-u14 = User.create({ id: 14, email: "Odesza", password: "password", bio: "", location: "Seattle", username: "Odesza" })
-u14.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/odesza.png'), filename: 'odesza.png')
-
-u15 = User.create({ id: 15, email: "OWSLA", password: "password", bio: "", location: "The Mothership", username: "OWSLA" })
-u15.profile_image.attach(io: open('https://soundpoof-seeds.s3-us-west-2.amazonaws.com/owsla.png'), filename: 'owsla.png')
-
-
-
-
-
-
-
-t1 = Track.create({
-	id: 1,
-	title: "Blase - Louis The Child Remix", 
-	artist: 'Ty Dolla, Louis The Child', 
-	user_id: u2.id,
-})
-t1.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/blase.mp3"), filename: "blase.mp3")
-t1.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/blase.png"), filename: "blase.png")
-
-t2 = Track.create({
-id: 2,
-title: "Say My Name", 
-artist: "Odesza", 
-user_id: u14.id,
-})
-t2.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/saymyname.mp3"), filename: "saymyname.mp3")
-t2.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/saymyname.png"), filename: "saymyname.png")
-
-t3 = Track.create({
-id: 3,
-title: "High - Bassnectar Remix", 
-artist: "Rusko, Bassnectar", 
-user_id: u3.id,
-})
-t3.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/high.mp3"), filename: "high.mp3")
-t3.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/high.png"), filename: "high.png")
-
-t4 = Track.create({
-id: 4,
-title: "Crave You - Adventure Club Remix", 
-artist: "Adventure Club, Flight Facilities", 
-user_id: u9.id,
-})
-t4.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/craveyou.mp3"), filename: "craveyou.mp3")
-t4.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/craveyou.png"), filename: "craveyou.png")
-
-t5 = Track.create({
-id: 5,
-title: "Like a Boss", 
-artist: "Eptic", 
-user_id: u4.id,
-})
-t5.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/likeaboss.mp3"), filename: "likeaboss.mp3")
-t5.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/likeaboss.png"), filename: "likeaboss.png")
-
-t6 = Track.create({
-id: 6,
-title: "Bass Head", 
-artist: "Bassnectar", 
-user_id: u13.id 
-})
-t3.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/basshead.mp3"), filename: "basshead.mp3")
-t3.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/basshead.png"), filename: "basshead.png")
-
-t7 = Track.create({
-id: 7,
-title: "Heat Waves - Diplo Remix", 
-artist: "Glass Animals, Diplo", 
-user_id: u6.id,
-})
-t7.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/heatwaves.mp3"), filename: "heatwaves.mp3")
-t7.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/heatwaves.png"), filename: "heatwaves.png")
-
-t8 = Track.create({
-id: 8,
-title: "Nothing for Free", 
-artist: "Pendulum", 
-user_id: u8.id,
-})
-t8.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/nothingforfree.mp3"), filename: "nothingforfree.mp3")
-t8.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/nothingforfree.png"), filename: "nothingforfree.png")
-
-t9 = Track.create({
-id: 9,
-title: "Drop The Game", 
-artist: "Flume, Chet Faker", 
-user_id: u5.id 
-})
-t9.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/dropthegame.mp3"), filename: "dropthegame.mp3")
-t9.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/dropthegame.png"), filename: "dropthegame.png")
-
-t10 = Track.create({
-id: 10,
-title: "DNA", 
-artist: "Kendrick Lamar", 
-user_id: u7.id,
-})
-t10.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/dna.mp3"), filename: "dna.mp3")
-t10.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/damn.png"), filename: "damn.png")
-
-t11 = Track.create({
-id: 11,
-title: "From Here", 
-artist: "Louis The Child", 
-user_id: u2.id 
-})
-t11.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/fromhere.mp3"), filename: "fromhere.mp3")
-t11.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/fromhere.png"), filename: "fromhere.png")
-
-t12 = Track.create({
-id: 12,
-title: "Middle", 
-artist: "J Cole", 
-user_id: u11.id 
-})
-t12.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/middlechild.mp3"), filename: "middlechild.mp3")
-t12.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/middlechild.png"), filename: "middlechild.png")
-
-t13 = Track.create({
-id: 13,
-title: "Do You", 
-artist: "Cashmere Cat", 
-user_id: u12.id 
-})
-t13.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/doyou.mp3"), filename: "doyou.mp3")
-t13.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/doyou.png"), filename: "doyou.png")
-
-t14 = Track.create({
-id: 14,
-title: "Dreamland", 
-artist: "Rusko", 
-user_id: u3.id,
-})
-t14.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/dreamland.mp3"), filename: "dreamland.mp3")
-t14.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/dreamland.png"), filename: "dreamland.png")
-
-t15 = Track.create({
-id: 15,
-title: "Never Be Like You (feat. Kai)", 
-artist: "Flume, kai", 
-user_id: u5.id 
-})
-t15.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/neverbelikeyou.mp3"), filename: "neverbelikeyou.mp3")
-t15.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/neverbelikeyou.png"), filename: "neverbelikeyou.png")
-
-t16 = Track.create({
-id: 16,
-title: "You're On", 
-artist: "Louis The Child, Madeon", 
-user_id: u2.id,
-})
-t16.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/youreon.mp3"), filename: "youreon.mp3" )
-t16.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/youreon.png"), filename: "youreon.png" )
-
-t17 = Track.create({
-id: 17,
-title: "ADHD", 
-artist: "Kendrick Lamar", 
-user_id: u7.id,
-})
-t17.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/adhd.mp3"), filename: "adhd.mp3" )
-t17.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/adhd.png"), filename: "adhd.png")
-
-t18 = Track.create({
-id: 18,
-title: "Insane", 
-artist: "Flume", 
-user_id: u5.id,
-})
-t18.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/insane.mp3"), filename: "insane.mp3" )
-t18.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/insane.png"), filename: "insane.png" )
-
-t19 = Track.create({
-id: 19,
-title: "Eminem - Godzilla ft. Juice WRLD", 
-artist: "Eminem, Juice WRLD", 
-user_id: u10.id,
-})
-t19.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/godzilla.mp3"), filename: "godzilla.mp3" )
-t19.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/musictobemurderedby.png"), filename: "musictobemurderedby.png")
-
-t20 = Track.create({
-id: 20,
-title: "Eminem - I Will (ft. KXNG Crooked, Royce Da 5''9"" & Joell Ortiz)", 
-artist: "Eminem", 
-user_id: u10.id,
-})
-t20.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/iwill.mp3"), filename: "iwill.mp3" )
-t20.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/musictobemurderedby.png"), filename: "musictobemurderedby.png")
-
-t21 = Track.create({
-id: 21,
-title: "Say It - Illenium Remix", 
-artist: "Flume, Illenium", 
-user_id: u5.id,
-})
-t21.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/sayit.mp3"), filename: "sayit.mp3" )
-t21.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/sayit.png"), filename: "sayit.png")
-
-t22 = Track.create({
-id: 22,
-title: "Would You Ever", 
-artist: "Skrillex", 
-user_id: u15.id,
-})
-t22.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/wouldyouever.mp3"), filename: "wouldyouever.mp3" )
-t22.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/wouldyouever.png"), filename: "wouldyouever.png")
-
-t23 = Track.create({
-id: 23,
-title: "Levels - Skrillex Remix", 
-artist: "Skrillex, Avicii", 
-user_id: u15.id,
-})
-t23.audio.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/levels.mp3"), filename: "levels.mp3" )
-t23.artwork.attach(io: open("https://soundpoof-seeds.s3-us-west-2.amazonaws.com/levels.png"), filename: "levels.png")
-
-
-
-
-
-
-c1 = Comment.create({
-	id: 1,
-	body: 'asdfjkl;',
-	track_id: t1.id,
-	user_id: u3.id
-})
-c2 = Comment.create({
-	id: 2,
-	body: 'asdfjkl;',
-	track_id: t2.id,
-	user_id: u2.id
-})
-c3 = Comment.create({
-	id: 3,
-	body: 'asdfjkl;',
-	track_id: t3.id,
-	user_id: u9.id
-})
-c4 = Comment.create({
-	id: 4,
-	body: 'asdfjkl;',
-	track_id: t4.id,
-	user_id: u13.id
-})
-c5 = Comment.create({
-	id: 5,
-	body: 'asdfjkl;',
-	track_id: t1.id,
-	user_id: u1.id
-})
-
-
-
-
-
-r1 = Repost.create({
-	id: 1,
-	track_id: t2.id,
-	user_id: u1.id
-})
-r2 = Repost.create({
-	id: 2,
-	track_id: t3.id,
-	user_id: u1.id
-})
-r3 = Repost.create({
-	id: 3,
-	track_id: t16.id,
-	user_id: u1.id
-})
-r4 = Repost.create({
-	id: 4,
-	track_id: t23.id,
-	user_id: u1.id
-})
-
-
-
-
-l1 = Like.create({
-	id: 1,
-	track_id: t1.id,
-	user_id: u1.id
-})
-l2 = Like.create({
-	id: 2,
-	track_id: t3.id,
-	user_id: u1.id
-})
-l3 = Like.create({
-	id: 3,
-	track_id: t4.id,
-	user_id: u1.id
-})
-l4 = Like.create({
-	id: 4,
-	track_id: t12.id,
-	user_id: u1.id
-})
-l8 = Like.create({
-	id: 8,
-	track_id: t13.id,
-	user_id: u1.id
-})
-l5 = Like.create({
-	id: 5,
-	track_id: t15.id,
-	user_id: u1.id
-})
-l6 = Like.create({
-	id: 6,
-	track_id: t21.id,
-	user_id: u1.id
-})
-l7 = Like.create({
-	id: 7,
-	track_id: t7.id,
-	user_id: u1.id
-})
+Comment.create!([
+  {user_id: 3, track_id: 1, body: "asdfjkl;"},
+  {user_id: 2, track_id: 2, body: "asdfjkl;"},
+  {user_id: 9, track_id: 3, body: "asdfjkl;"},
+  {user_id: 13, track_id: 4, body: "asdfjkl;"},
+  {user_id: 1, track_id: 1, body: "asdfjkl;"},
+  {user_id: 1, track_id: 17, body: "asdf"},
+  {user_id: 1, track_id: 4, body: "asdf"}
+])
+Follow.create!([
+  {following_id: 6, follower_id: 1},
+  {following_id: 11, follower_id: 1},
+  {following_id: 7, follower_id: 1},
+  {following_id: 12, follower_id: 1},
+  {following_id: 9, follower_id: 1}
+])
+Like.create!([
+  {track_id: 1, user_id: 1},
+  {track_id: 3, user_id: 1},
+  {track_id: 12, user_id: 1},
+  {track_id: 13, user_id: 1},
+  {track_id: 15, user_id: 1},
+  {track_id: 21, user_id: 1},
+  {track_id: 17, user_id: 1},
+  {track_id: 7, user_id: 1},
+  {track_id: 10, user_id: 1},
+  {track_id: 4, user_id: 1}
+])
+Repost.create!([
+  {user_id: 1, track_id: 2},
+  {user_id: 1, track_id: 16},
+  {user_id: 1, track_id: 23},
+  {user_id: 1, track_id: 17},
+  {user_id: 1, track_id: 3}
+])
+Track.create!([
+  {title: "Eminem - Godzilla ft. Juice WRLD", description: nil, user_id: 10, artist: "Eminem, Juice WRLD", audioPeaks: nil},
+  {title: "Eminem - I Will (ft. KXNG Crooked, Royce Da 5''9 & Joell Ortiz)", description: nil, user_id: 10, artist: "Eminem", audioPeaks: nil},
+  {title: "Crave You - Adventure Club Remix", description: nil, user_id: 9, artist: "Adventure Club, Flight Facilities", audioPeaks: nil},
+  {title: "Say It - Illenium Remix", description: nil, user_id: 5, artist: "Flume, Illenium", audioPeaks: nil},
+  {title: "Like a Boss", description: nil, user_id: 4, artist: "Eptic", audioPeaks: nil},
+  {title: "Bass Head", description: nil, user_id: 13, artist: "Bassnectar", audioPeaks: nil},
+  {title: "Would You Ever", description: nil, user_id: 15, artist: "Skrillex", audioPeaks: nil},
+  {title: "High - Bassnectar Remix", description: nil, user_id: 3, artist: "Rusko, Bassnectar", audioPeaks: nil},
+  {title: "Heat Waves - Diplo Remix", description: nil, user_id: 6, artist: "Glass Animals, Diplo", audioPeaks: nil},
+  {title: "Levels - Skrillex Remix", description: nil, user_id: 15, artist: "Skrillex, Avicii", audioPeaks: nil},
+  {title: "poof", description: nil, user_id: 1, artist: "", audioPeaks: nil},
+  {title: "Nothing for Free", description: nil, user_id: 8, artist: "Pendulum", audioPeaks: nil},
+  {title: "poofpoof", description: nil, user_id: 1, artist: "", audioPeaks: nil},
+  {title: "Drop The Game", description: nil, user_id: 5, artist: "Flume, Chet Faker", audioPeaks: nil},
+  {title: "DNA", description: nil, user_id: 7, artist: "Kendrick Lamar", audioPeaks: nil},
+  {title: "From Here", description: nil, user_id: 2, artist: "Louis The Child", audioPeaks: nil},
+  {title: "Middle", description: nil, user_id: 11, artist: "J Cole", audioPeaks: nil},
+  {title: "Do You", description: nil, user_id: 12, artist: "Cashmere Cat", audioPeaks: nil},
+  {title: "Dreamland", description: nil, user_id: 3, artist: "Rusko", audioPeaks: nil},
+  {title: "Never Be Like You (feat. Kai)", description: nil, user_id: 5, artist: "Flume, kai", audioPeaks: nil},
+  {title: "You're On", description: nil, user_id: 2, artist: "Louis The Child, Madeon", audioPeaks: nil},
+  {title: "ADHD", description: nil, user_id: 7, artist: "Kendrick Lamar", audioPeaks: nil},
+  {title: "Insane", description: nil, user_id: 5, artist: "Flume", audioPeaks: nil},
+  {title: "Blase - Louis The Child Remix", description: nil, user_id: 2, artist: "Ty Dolla, Louis The Child", audioPeaks: nil},
+  {title: "Say My Name", description: nil, user_id: 14, artist: "Odesza", audioPeaks: nil}
+])
+User.create!([
+  {username: "Glass Animals", email: "Glass Animals", password_digest: "$2a$12$ku.18RTm742fzTQ5ErN.vejbhVOR5anWgjajOQJuWS1j68HbMqlji", session_token: "iq0xX7NqT06GiRaGdFR2wQ", bio: "", location: ""},
+  {username: "Kendrick Lamar", email: "Kendrick Lamar", password_digest: "$2a$12$RartKmxC11Dpi4lwyfWx3e92fLl3GU/qe4h149DudCdxab7.2WVS2", session_token: "LhEyOdVe-y1niB8jAPRbsw", bio: "", location: ""},
+  {username: "Pendulum", email: "Pendulum", password_digest: "$2a$12$K.6xlKg0U..94tPkwJGDNeIs6MGKLbfWPp.Hw0S1vFh208parHlz2", session_token: "4ZFbAJxNsV3CheYZN7r5dA", bio: "", location: ""},
+  {username: "Adventure Club", email: "Adventure Club", password_digest: "$2a$12$82occCNtTQDTHw6A2xjhQuxgAhxer3tHMh/SCgLRh0SKhSOfjRzkq", session_token: "gQnfExV9GoEE-DhvmEHqGA", bio: "", location: ""},
+  {username: "Eminem", email: "Eminem", password_digest: "$2a$12$adivpKh3xscq02.gToeY..umpfM6jGvhawgZB9NKbi7mtteNHunH2", session_token: "CG2FT57bPLkfs0S_8tMyPw", bio: "", location: ""},
+  {username: "J Cole", email: "J Cole", password_digest: "$2a$12$9GVZzJhpraz73vdfLw5CouKNBQu5QsRiiFehfB1Vz1SqTQQMEOWLy", session_token: "lomAHulC4zpbbun6uOAYzg", bio: "", location: ""},
+  {username: "Cashmere Cat", email: "Cashmere Cat", password_digest: "$2a$12$TEdyEKQlJ09U.Uhu23GnUeXyv4aFDqUqJC.t7MLErA3tpM7BOmoEa", session_token: "Jje3CtvXwxltEb3UyDbKUw", bio: "", location: ""},
+  {username: "Louis The Child", email: "Louis The Child", password_digest: "$2a$12$j4I/sKN6EzjoS/zym0bXreIjzYRD1/Ea9skCD2nMyjwx4kIOcvqeC", session_token: "8QlwprreP6eex0T5O_Xuww", bio: "", location: "Chicago, United States"},
+  {username: "Rusko", email: "Rusko", password_digest: "$2a$12$Qx0g.G2GsoRzL/L.GslvHuf76ghy2cRi9Rvq0/KAUe6AMeZ6Zy.ne", session_token: "q3zjh696DOb2KAvpw5kkiQ", bio: "", location: ""},
+  {username: "Eptic", email: "Eptic", password_digest: "$2a$12$AGnGgd5EsbFAqboJcNt/c.QfLHECKiIyOnuvhK9w0bC3eY0e7ztpe", session_token: "NCpku0VmBYU_zNWo0HX1Gg", bio: "", location: ""},
+  {username: "Flume", email: "Flume", password_digest: "$2a$12$/Y676Uh.7JEO/zoO6u7DiuUIKeNjETicHgnqOp4cWpNv8IRPzWQI6", session_token: "IRVO0gg2h6zFePXIBpNuNA", bio: "", location: ""},
+  {username: "Bassnectar", email: "Bassnectar", password_digest: "$2a$12$FXQh1A9jolUupIFZP14N/ew5IIY84OwZWr8JgSUVe/yx9rLNpsOGK", session_token: "F-8JaM8ox_PMzztaWhBbmg", bio: "", location: ""},
+  {username: "Odesza", email: "Odesza", password_digest: "$2a$12$CVyra.Q1YnFChnBU1f.tLeUdbizCoVbbRwPA7rX6pSaZnRv2ugIxu", session_token: "ChuDcIKotkz5gSth6-volg", bio: "", location: "Seattle"},
+  {username: "OWSLA", email: "OWSLA", password_digest: "$2a$12$oSlfT12wfN0kUUJc0R/w2.DRRjpJt2dso0HdeTMtPvQu/8jbZuvgG", session_token: "05E4hWY6JUChtaeumZsPGQ", bio: "", location: "The Mothership"},
+  {username: "Demo-User", email: "Demo-User", password_digest: "$2a$12$zeLdsfJCgMLnNQVh6GS1JuIAWr61j49dQHYa0RSkMS5TL9L2p4AGy", session_token: "_5tl2dBSJtB3mH-5ynrx_g", bio: "", location: ""}
+])
